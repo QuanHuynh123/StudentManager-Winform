@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{067FD9E6-4DDE-4692-8698-1B89FF839276}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{2A867FB5-6071-4955-AB01-96C220DCA910}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Videos\sgu.jpg = ..\..\..\Videos\sgu.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
