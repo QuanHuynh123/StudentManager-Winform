@@ -11,12 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{7A41E8DF-5643-4EC7-88F3-2FF77237E85D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{067FD9E6-4DDE-4692-8698-1B89FF839276}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{2A867FB5-6071-4955-AB01-96C220DCA910}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Videos\sgu.jpg = ..\..\..\Videos\sgu.jpg
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "main", "main\main.csproj", "{F108FE42-541B-45E6-8ACB-09C6C4CC4666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +35,10 @@ Global
 		{7A41E8DF-5643-4EC7-88F3-2FF77237E85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A41E8DF-5643-4EC7-88F3-2FF77237E85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A41E8DF-5643-4EC7-88F3-2FF77237E85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F108FE42-541B-45E6-8ACB-09C6C4CC4666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F108FE42-541B-45E6-8ACB-09C6C4CC4666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F108FE42-541B-45E6-8ACB-09C6C4CC4666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F108FE42-541B-45E6-8ACB-09C6C4CC4666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
