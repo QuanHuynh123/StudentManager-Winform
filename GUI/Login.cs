@@ -79,7 +79,7 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại." + isAuthenticated, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -98,6 +98,16 @@ namespace GUI
                 e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 e.Graphics.DrawRectangle(borderPen, rect);
             }
+        }
+
+        private void usernameTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void overlay_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

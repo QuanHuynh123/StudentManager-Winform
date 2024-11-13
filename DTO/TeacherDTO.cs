@@ -9,8 +9,7 @@ namespace DTO
     public class TeacherDTO
     {
         private int teacherID;
-        private string firstName;
-        private string lastName;
+        private string fullName;
         private bool gender; // true for Male, false for Female
         private string email;
         private string phoneNumber;
@@ -23,11 +22,9 @@ namespace DTO
         public int GetTeacherID() { return teacherID; }
         public void SetTeacherID(int value) { teacherID = value; }
 
-        public string GetFirstName() { return firstName; }
-        public void SetFirstName(string value) { firstName = value; }
+        public string GetFulltName() { return fullName; }
+        public void SetFullName(string value) { fullName = value; }
 
-        public string GetLastName() { return lastName; }
-        public void SetLastName(string value) { lastName = value; }
 
         public bool GetGender() { return gender; }
         public void SetGender(bool value) { gender = value; }

@@ -24,9 +24,11 @@ namespace DAL
 
                             department.SetDepartmentID((int)reader["DepartmentID"]);
                             department.SetDepartmentName((string)reader["DepartmentName"]);
-                            department.SetHeadOfDepartment((string)reader["HeadOfDepartment"]);
+                            department.SetHeadOfDepartment(reader["HeadOfDepartment"] as string);
                             department.SetEmail((string)reader["Email"]);
-                            department.SetEstablishedYear((int)reader["EstablishedYear"]);
+                            department.SetEstablishedYear(reader["EstablishedYear"] != DBNull.Value
+                                           ? (int)reader["EstablishedYear"]
+                                           : 0); // Gán giá trị mặc định nếu NULL
 
                             departments.Add(department);
                         }

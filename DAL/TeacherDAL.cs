@@ -18,7 +18,7 @@ namespace DAL
                 {
                     // Thêm tham số để tránh SQL Injection
                     command.Parameters.AddWithValue("@Username", account.GetUsername());
-                    command.Parameters.AddWithValue("@Password", account.GetPassword());
+                    command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(account.GetPassword()));
 
                     int count = (int)command.ExecuteScalar(); // Trả về số lượng bản ghi tìm thấy
 
@@ -34,7 +34,7 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "SELECT TeacherID, FirstName, LastName, Gender, Email, PhoneNumber, Status, DepartmentID FROM Teacher WHERE Username = @Username";
+                string query = "SELECT TeacherID,FullName,  Gender, Email, PhoneNumber, Status, DepartmentID FROM Teacher WHERE Username = @Username";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -45,8 +45,7 @@ namespace DAL
                         {
                             TeacherDTO teacher = new TeacherDTO();
                             teacher.SetTeacherID((int)reader["TeacherID"]);
-                            teacher.SetFirstName((string)reader["FirstName"]);
-                            teacher.SetLastName((string)reader["LastName"]);
+                            teacher.SetFullName((string)reader["FullName"]);
                             teacher.SetGender((bool)reader["Gender"]);
                             teacher.SetEmail((string)reader["Email"]);
                             teacher.SetPhoneNumber((string)reader["PhoneNumber"]);

@@ -2,6 +2,8 @@
 using BLL;
 using System;
 using System.Collections.Generic;
+using DAL;
+using System.Security.Principal;
 
 namespace YourNamespace // Thay YourNamespace bằng namespace của bạn
 {
@@ -10,10 +12,16 @@ namespace YourNamespace // Thay YourNamespace bằng namespace của bạn
         static void Main(string[] args)
         {
             AccountDTO accountDTO = new AccountDTO();
-            accountDTO.SetUsername("quan");
-            accountDTO.SetPassword("password");
+            accountDTO.SetUsername("thuyloansgu");
+            accountDTO.SetPassword("123");
 
-            TeacherBLL teacgerBLL = new BLL.TeacherBLL();
+
+            // Khởi tạo TeacherDAL
+            TeacherDAL teacherDAL = new TeacherDAL();
+
+            // Kiểm tra thông tin đăng nhập
+            bool isAuthenticated = teacherDAL.CheckTeacherPassword(accountDTO);
+            Console.WriteLine("heloooooooooo" + isAuthenticated);
 
         }
     }
