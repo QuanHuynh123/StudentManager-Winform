@@ -46,7 +46,7 @@ namespace GUI
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            label1.ForeColor = Color.SkyBlue;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(136, 355);
             label1.Name = "label1";
             label1.Size = new Size(498, 54);
@@ -61,9 +61,9 @@ namespace GUI
             pictureBox.BackColor = Color.Transparent;
             pictureBox.BackgroundImage = (Image)resources.GetObject("pictureBox.BackgroundImage");
             pictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox.Location = new Point(184, 3);
+            pictureBox.Location = new Point(194, 3);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(401, 309);
+            pictureBox.Size = new Size(382, 309);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
             pictureBox.Click += pictureBox_Click;

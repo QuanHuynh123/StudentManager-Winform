@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using DTO;
 
@@ -34,7 +35,7 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "SELECT TeacherID,FullName,  Gender, Email, PhoneNumber, Status, DepartmentID FROM Teacher WHERE Username = @Username";
+                string query = "SELECT TeacherID,FullName,  Gender, Email, PhoneNumber, Status, DepartmentID , RoleID FROM Teacher WHERE Username = @Username";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -51,6 +52,7 @@ namespace DAL
                             teacher.SetPhoneNumber((string)reader["PhoneNumber"]);
                             teacher.SetStatus((bool)reader["Status"]);
                             teacher.SetDepartmentID((int)reader["DepartmentID"]);
+                            teacher.SetRoleID((int)reader["RoleID"]);
 
                             return teacher;
                         }
@@ -59,5 +61,54 @@ namespace DAL
             }
             return null; // Nếu không tìm thấy giáo viên
         }
+
+        public List<TeacherDTO> GetTeachersForHeadOfDepartment()
+        {
+            List<TeacherDTO> teachers = new List<TeacherDTO>();
+
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = "SELECT TeacherID, FullName FROM Teacher WHERE RoleID = 1 AND Status = 1";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            TeacherDTO teacher = new TeacherDTO();
+                            teacher.SetTeacherID((int)reader["TeacherID"]);
+                            teacher.SetFullName((string)reader["FullName"]);
+
+                            teachers.Add(teacher);
+                        }
+                    }
+                }
+            }
+
+            return teachers;
+        }
+
+        public bool UpdateTeacherRole(int teacherID, int newRoleID)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = "UPDATE Teacher SET RoleID = @RoleID WHERE TeacherID = @TeacherID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TeacherID", teacherID);
+                    command.Parameters.AddWithValue("@RoleID", newRoleID);
+
+                    int rowsAffected = command.ExecuteNonQuery(); // Execute the update query
+
+                    // Return true if the update was successful (i.e., rows were affected)
+                    return rowsAffected > 0;
+                }
+            }
+        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace DTO
         public int GetTeacherID() { return teacherID; }
         public void SetTeacherID(int value) { teacherID = value; }
 
-        public string GetFulltName() { return fullName; }
+        public string GetFullName() { return fullName; }
         public void SetFullName(string value) { fullName = value; }
 
 

@@ -46,6 +46,7 @@ namespace GUI
             customPanel.SuspendLayout();
             tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pictureBox1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -56,14 +57,14 @@ namespace GUI
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.Controls.Add(customPanel, 1, 1);
-            tableLayoutPanel1.Location = new Point(379, 206);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Dock= DockStyle.Fill;
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanel1.Size = new Size(901, 594);
+            tableLayoutPanel1.Size = new Size(1280, 800);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // customPanel
@@ -71,9 +72,9 @@ namespace GUI
             customPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             customPanel.BackColor = Color.FromArgb(150, 135, 206, 235);
             customPanel.Controls.Add(tableLayoutPanel);
-            customPanel.Location = new Point(228, 102);
+            customPanel.Location = new Point(323, 136);
             customPanel.Name = "customPanel";
-            customPanel.Size = new Size(444, 390);
+            customPanel.Size = new Size(634, 527);
             customPanel.TabIndex = 0;
             customPanel.Paint += CustomPanel_Paint;
             // 
@@ -97,7 +98,7 @@ namespace GUI
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
-            tableLayoutPanel.Size = new Size(444, 390);
+            tableLayoutPanel.Size = new Size(634, 527);
             tableLayoutPanel.TabIndex = 0;
             // 
             // titleLogin
@@ -108,7 +109,7 @@ namespace GUI
             titleLogin.ForeColor = Color.Black;
             titleLogin.Location = new Point(3, 0);
             titleLogin.Name = "titleLogin";
-            titleLogin.Size = new Size(438, 127);
+            titleLogin.Size = new Size(628, 171);
             titleLogin.TabIndex = 0;
             titleLogin.Text = "ĐĂNG NHẬP HỆ THỐNG";
             titleLogin.TextAlign = ContentAlignment.MiddleCenter;
@@ -118,12 +119,11 @@ namespace GUI
             usernameTextBox.Anchor = AnchorStyles.None;
             usernameTextBox.Font = new Font("Arial", 14F);
             usernameTextBox.ForeColor = Color.Silver;
-            usernameTextBox.Location = new Point(41, 131);
+            usernameTextBox.Location = new Point(136, 182);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(362, 34);
             usernameTextBox.TabIndex = 1;
             usernameTextBox.Text = "Username";
-            usernameTextBox.TextChanged += usernameTextBox_TextChanged_1;
             usernameTextBox.Enter += usernameTextBox_Enter;
             usernameTextBox.Leave += usernameTextBox_Leave;
             // 
@@ -132,7 +132,7 @@ namespace GUI
             passwordTextBox.Anchor = AnchorStyles.None;
             passwordTextBox.Font = new Font("Arial", 14F);
             passwordTextBox.ForeColor = Color.Silver;
-            passwordTextBox.Location = new Point(40, 173);
+            passwordTextBox.Location = new Point(135, 239);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(363, 34);
             passwordTextBox.TabIndex = 2;
@@ -145,9 +145,9 @@ namespace GUI
             forgotPasswordLabel.AutoSize = true;
             forgotPasswordLabel.Dock = DockStyle.Fill;
             forgotPasswordLabel.ForeColor = Color.White;
-            forgotPasswordLabel.Location = new Point(3, 211);
+            forgotPasswordLabel.Location = new Point(3, 285);
             forgotPasswordLabel.Name = "forgotPasswordLabel";
-            forgotPasswordLabel.Size = new Size(438, 42);
+            forgotPasswordLabel.Size = new Size(628, 57);
             forgotPasswordLabel.TabIndex = 3;
             forgotPasswordLabel.Text = "Quên mật khẩu";
             forgotPasswordLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -160,7 +160,7 @@ namespace GUI
             loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.Font = new Font("Arial", 10F, FontStyle.Bold);
             loginButton.ForeColor = Color.White;
-            loginButton.Location = new Point(121, 274);
+            loginButton.Location = new Point(216, 378);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(202, 41);
             loginButton.TabIndex = 4;
@@ -174,24 +174,24 @@ namespace GUI
             registerLabel.Dock = DockStyle.Fill;
             registerLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
             registerLabel.ForeColor = Color.Black;
-            registerLabel.Location = new Point(3, 337);
+            registerLabel.Location = new Point(3, 456);
             registerLabel.Name = "registerLabel";
-            registerLabel.Size = new Size(438, 53);
+            registerLabel.Size = new Size(628, 71);
             registerLabel.TabIndex = 5;
             registerLabel.Text = "Chưa có tài khoản? ĐĂNG KÝ";
             registerLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(4, 2);
-            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Controls.Add(tableLayoutPanel1);
             pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1280, 800);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.Size = new Size(879, 540);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            pictureBox1.Controls.Add(tableLayoutPanel1);
             // 
             // Login
             // 
@@ -204,6 +204,7 @@ namespace GUI
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pictureBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

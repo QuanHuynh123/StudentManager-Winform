@@ -14,6 +14,27 @@ namespace DTO
         private string email;
         private int establishedYear;
 
+        public DepartmentDTO( string departmentName, string headOfDepartment, string email, int establishedYear)
+        {
+            this.departmentName = departmentName;
+            this.headOfDepartment = headOfDepartment;
+            this.email = email;
+            this.establishedYear = establishedYear;
+        }
+
+
+        public DepartmentDTO( int departmentID, string departmentName, string headOfDepartment, string email, int establishedYear)
+        {   
+            this.departmentID = departmentID;   
+            this.departmentName = departmentName;
+            this.headOfDepartment = headOfDepartment;
+            this.email = email;
+            this.establishedYear = establishedYear;
+        }
+
+        public DepartmentDTO()
+        {
+        }
         public int GetDepartmentID() { return departmentID; }
         public void SetDepartmentID(int value) { departmentID = value; }
 

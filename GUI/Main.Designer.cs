@@ -34,9 +34,16 @@ namespace GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             tableLayoutPanel = new TableLayoutPanel();
             leftPanel = new Panel();
+            panel1 = new Panel();
+            panel_fc10 = new Panel();
+            pictureBox_fc10 = new PictureBox();
+            label_fc10 = new Label();
+            panel19 = new Panel();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
             panel2 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            panel_fc9 = new Panel();
+            panel_logout = new Panel();
             pictureBox_fc9 = new PictureBox();
             label_fc9 = new Label();
             panel_fc8 = new Panel();
@@ -54,7 +61,7 @@ namespace GUI
             panel_fc4 = new Panel();
             pictureBox_fc4 = new PictureBox();
             label_fc4 = new Label();
-            panel_fc5 = new Panel();
+            panel_department = new Panel();
             pictureBox_fc5 = new PictureBox();
             label_fc5 = new Label();
             panel_fc2 = new Panel();
@@ -63,16 +70,6 @@ namespace GUI
             panel_fc3 = new Panel();
             pictureBox_fc3 = new PictureBox();
             label_fc3 = new Label();
-            panel17 = new Panel();
-            panel1 = new Panel();
-            panel14 = new Panel();
-            panel_fc10 = new Panel();
-            pictureBox_fc10 = new PictureBox();
-            label_fc10 = new Label();
-            panel19 = new Panel();
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            pictureBox3 = new PictureBox();
             topPanel = new Panel();
             pictureBox12 = new PictureBox();
             label13 = new Label();
@@ -120,9 +117,14 @@ namespace GUI
             label24 = new Label();
             tableLayoutPanel.SuspendLayout();
             leftPanel.SuspendLayout();
+            panel1.SuspendLayout();
+            panel_fc10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_fc10).BeginInit();
+            panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
-            panel_fc9.SuspendLayout();
+            panel_logout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc9).BeginInit();
             panel_fc8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc8).BeginInit();
@@ -134,18 +136,12 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc6).BeginInit();
             panel_fc4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc4).BeginInit();
-            panel_fc5.SuspendLayout();
+            panel_department.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc5).BeginInit();
             panel_fc2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc2).BeginInit();
             panel_fc3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc3).BeginInit();
-            panel1.SuspendLayout();
-            panel_fc10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_fc10).BeginInit();
-            panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             mainPanel.SuspendLayout();
@@ -194,8 +190,8 @@ namespace GUI
             // leftPanel
             // 
             leftPanel.BackColor = Color.FromArgb(45, 45, 48);
-            leftPanel.Controls.Add(panel2);
             leftPanel.Controls.Add(panel1);
+            leftPanel.Controls.Add(panel2);
             leftPanel.Dock = DockStyle.Fill;
             leftPanel.Location = new Point(3, 3);
             leftPanel.Name = "leftPanel";
@@ -203,10 +199,85 @@ namespace GUI
             leftPanel.Size = new Size(250, 794);
             leftPanel.TabIndex = 0;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(panel_fc10);
+            panel1.Controls.Add(panel19);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(250, 187);
+            panel1.TabIndex = 0;
+            // 
+            // panel_fc10
+            // 
+            panel_fc10.Controls.Add(pictureBox_fc10);
+            panel_fc10.Controls.Add(label_fc10);
+            panel_fc10.Dock = DockStyle.Bottom;
+            panel_fc10.Location = new Point(0, 133);
+            panel_fc10.Name = "panel_fc10";
+            panel_fc10.Size = new Size(246, 50);
+            panel_fc10.TabIndex = 21;
+            // 
+            // pictureBox_fc10
+            // 
+            pictureBox_fc10.Image = (Image)resources.GetObject("pictureBox_fc10.Image");
+            pictureBox_fc10.Location = new Point(13, 2);
+            pictureBox_fc10.Name = "pictureBox_fc10";
+            pictureBox_fc10.Size = new Size(44, 44);
+            pictureBox_fc10.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_fc10.TabIndex = 1;
+            pictureBox_fc10.TabStop = false;
+            // 
+            // label_fc10
+            // 
+            label_fc10.AutoSize = true;
+            label_fc10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label_fc10.ForeColor = Color.White;
+            label_fc10.Location = new Point(80, 10);
+            label_fc10.Name = "label_fc10";
+            label_fc10.Size = new Size(65, 28);
+            label_fc10.TabIndex = 3;
+            label_fc10.Text = "Home";
+            // 
+            // panel19
+            // 
+            panel19.Controls.Add(pictureBox1);
+            panel19.Controls.Add(label1);
+            panel19.Dock = DockStyle.Top;
+            panel19.Location = new Point(0, 0);
+            panel19.Name = "panel19";
+            panel19.Size = new Size(246, 77);
+            panel19.TabIndex = 21;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(9, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(61, 54);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(88, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(155, 46);
+            label1.TabIndex = 0;
+            label1.Text = "SCHOOL";
+            // 
             // panel2
             // 
+            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(tableLayoutPanel2);
-            panel2.Controls.Add(panel17);
+            panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 193);
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 601);
@@ -214,18 +285,18 @@ namespace GUI
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(panel_fc9, 0, 8);
+            tableLayoutPanel2.Controls.Add(panel_logout, 0, 8);
             tableLayoutPanel2.Controls.Add(panel_fc8, 0, 7);
             tableLayoutPanel2.Controls.Add(panel_fc1, 0, 0);
             tableLayoutPanel2.Controls.Add(panel_fc7, 0, 6);
             tableLayoutPanel2.Controls.Add(panel_fc6, 0, 5);
             tableLayoutPanel2.Controls.Add(panel_fc4, 0, 3);
-            tableLayoutPanel2.Controls.Add(panel_fc5, 0, 4);
+            tableLayoutPanel2.Controls.Add(panel_department, 0, 4);
             tableLayoutPanel2.Controls.Add(panel_fc2, 0, 1);
             tableLayoutPanel2.Controls.Add(panel_fc3, 0, 2);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.Padding = new Padding(0, 30, 0, 0);
@@ -240,19 +311,18 @@ namespace GUI
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.Size = new Size(250, 601);
+            tableLayoutPanel2.Size = new Size(246, 597);
             tableLayoutPanel2.TabIndex = 21;
             // 
-            // panel_fc9
+            // panel_logout
             // 
-            panel_fc9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel_fc9.Controls.Add(pictureBox_fc9);
-            panel_fc9.Controls.Add(label_fc9);
-            panel_fc9.Location = new Point(3, 489);
-            panel_fc9.Name = "panel_fc9";
-            panel_fc9.Size = new Size(244, 51);
-            panel_fc9.TabIndex = 28;
-            panel_fc9.Paint += panel_fc9_Paint;
+            panel_logout.Controls.Add(pictureBox_fc9);
+            panel_logout.Controls.Add(label_fc9);
+            panel_logout.Dock = DockStyle.Fill;
+            panel_logout.Location = new Point(3, 481);
+            panel_logout.Name = "panel_logout";
+            panel_logout.Size = new Size(240, 50);
+            panel_logout.TabIndex = 28;
             // 
             // pictureBox_fc9
             // 
@@ -269,7 +339,7 @@ namespace GUI
             label_fc9.AutoSize = true;
             label_fc9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc9.ForeColor = SystemColors.Window;
-            label_fc9.Location = new Point(77, 14);
+            label_fc9.Location = new Point(77, 8);
             label_fc9.Name = "label_fc9";
             label_fc9.Size = new Size(75, 28);
             label_fc9.TabIndex = 20;
@@ -277,12 +347,12 @@ namespace GUI
             // 
             // panel_fc8
             // 
-            panel_fc8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc8.Controls.Add(pictureBox_fc8);
             panel_fc8.Controls.Add(label_fc8);
-            panel_fc8.Location = new Point(3, 432);
+            panel_fc8.Dock = DockStyle.Fill;
+            panel_fc8.Location = new Point(3, 425);
             panel_fc8.Name = "panel_fc8";
-            panel_fc8.Size = new Size(244, 51);
+            panel_fc8.Size = new Size(240, 50);
             panel_fc8.TabIndex = 27;
             // 
             // pictureBox_fc8
@@ -300,7 +370,7 @@ namespace GUI
             label_fc8.AutoSize = true;
             label_fc8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc8.ForeColor = Color.White;
-            label_fc8.Location = new Point(74, 13);
+            label_fc8.Location = new Point(74, 8);
             label_fc8.Name = "label_fc8";
             label_fc8.Size = new Size(75, 28);
             label_fc8.TabIndex = 18;
@@ -308,12 +378,12 @@ namespace GUI
             // 
             // panel_fc1
             // 
-            panel_fc1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc1.Controls.Add(pictureBox_fc1);
             panel_fc1.Controls.Add(label_fc1);
+            panel_fc1.Dock = DockStyle.Fill;
             panel_fc1.Location = new Point(3, 33);
             panel_fc1.Name = "panel_fc1";
-            panel_fc1.Size = new Size(244, 51);
+            panel_fc1.Size = new Size(240, 50);
             panel_fc1.TabIndex = 20;
             // 
             // pictureBox_fc1
@@ -331,7 +401,7 @@ namespace GUI
             label_fc1.AutoSize = true;
             label_fc1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc1.ForeColor = Color.White;
-            label_fc1.Location = new Point(77, 15);
+            label_fc1.Location = new Point(77, 11);
             label_fc1.Name = "label_fc1";
             label_fc1.Size = new Size(114, 28);
             label_fc1.TabIndex = 4;
@@ -339,12 +409,12 @@ namespace GUI
             // 
             // panel_fc7
             // 
-            panel_fc7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc7.Controls.Add(pictureBox_fc7);
             panel_fc7.Controls.Add(label_fc7);
-            panel_fc7.Location = new Point(3, 375);
+            panel_fc7.Dock = DockStyle.Fill;
+            panel_fc7.Location = new Point(3, 369);
             panel_fc7.Name = "panel_fc7";
-            panel_fc7.Size = new Size(244, 51);
+            panel_fc7.Size = new Size(240, 50);
             panel_fc7.TabIndex = 26;
             // 
             // pictureBox_fc7
@@ -370,12 +440,12 @@ namespace GUI
             // 
             // panel_fc6
             // 
-            panel_fc6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc6.Controls.Add(pictureBox_fc6);
             panel_fc6.Controls.Add(label_fc6);
-            panel_fc6.Location = new Point(3, 318);
+            panel_fc6.Dock = DockStyle.Fill;
+            panel_fc6.Location = new Point(3, 313);
             panel_fc6.Name = "panel_fc6";
-            panel_fc6.Size = new Size(244, 51);
+            panel_fc6.Size = new Size(240, 50);
             panel_fc6.TabIndex = 24;
             // 
             // pictureBox_fc6
@@ -393,7 +463,7 @@ namespace GUI
             label_fc6.AutoSize = true;
             label_fc6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc6.ForeColor = Color.White;
-            label_fc6.Location = new Point(74, 13);
+            label_fc6.Location = new Point(74, 11);
             label_fc6.Name = "label_fc6";
             label_fc6.Size = new Size(163, 28);
             label_fc6.TabIndex = 12;
@@ -401,12 +471,12 @@ namespace GUI
             // 
             // panel_fc4
             // 
-            panel_fc4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc4.Controls.Add(pictureBox_fc4);
             panel_fc4.Controls.Add(label_fc4);
-            panel_fc4.Location = new Point(3, 204);
+            panel_fc4.Dock = DockStyle.Fill;
+            panel_fc4.Location = new Point(3, 201);
             panel_fc4.Name = "panel_fc4";
-            panel_fc4.Size = new Size(244, 51);
+            panel_fc4.Size = new Size(240, 50);
             panel_fc4.TabIndex = 23;
             // 
             // pictureBox_fc4
@@ -430,15 +500,15 @@ namespace GUI
             label_fc4.TabIndex = 10;
             label_fc4.Text = "Subject";
             // 
-            // panel_fc5
+            // panel_department
             // 
-            panel_fc5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel_fc5.Controls.Add(pictureBox_fc5);
-            panel_fc5.Controls.Add(label_fc5);
-            panel_fc5.Location = new Point(3, 261);
-            panel_fc5.Name = "panel_fc5";
-            panel_fc5.Size = new Size(244, 51);
-            panel_fc5.TabIndex = 25;
+            panel_department.Controls.Add(pictureBox_fc5);
+            panel_department.Controls.Add(label_fc5);
+            panel_department.Dock = DockStyle.Fill;
+            panel_department.Location = new Point(3, 257);
+            panel_department.Name = "panel_department";
+            panel_department.Size = new Size(240, 50);
+            panel_department.TabIndex = 25;
             // 
             // pictureBox_fc5
             // 
@@ -455,7 +525,7 @@ namespace GUI
             label_fc5.AutoSize = true;
             label_fc5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc5.ForeColor = Color.White;
-            label_fc5.Location = new Point(74, 13);
+            label_fc5.Location = new Point(74, 8);
             label_fc5.Name = "label_fc5";
             label_fc5.Size = new Size(117, 28);
             label_fc5.TabIndex = 14;
@@ -463,12 +533,12 @@ namespace GUI
             // 
             // panel_fc2
             // 
-            panel_fc2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc2.Controls.Add(pictureBox_fc2);
             panel_fc2.Controls.Add(label_fc2);
-            panel_fc2.Location = new Point(3, 90);
+            panel_fc2.Dock = DockStyle.Fill;
+            panel_fc2.Location = new Point(3, 89);
             panel_fc2.Name = "panel_fc2";
-            panel_fc2.Size = new Size(244, 51);
+            panel_fc2.Size = new Size(240, 50);
             panel_fc2.TabIndex = 21;
             // 
             // pictureBox_fc2
@@ -486,7 +556,7 @@ namespace GUI
             label_fc2.AutoSize = true;
             label_fc2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label_fc2.ForeColor = Color.White;
-            label_fc2.Location = new Point(74, 12);
+            label_fc2.Location = new Point(74, 15);
             label_fc2.Name = "label_fc2";
             label_fc2.Size = new Size(99, 28);
             label_fc2.TabIndex = 6;
@@ -494,12 +564,12 @@ namespace GUI
             // 
             // panel_fc3
             // 
-            panel_fc3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc3.Controls.Add(pictureBox_fc3);
             panel_fc3.Controls.Add(label_fc3);
-            panel_fc3.Location = new Point(3, 147);
+            panel_fc3.Dock = DockStyle.Fill;
+            panel_fc3.Location = new Point(3, 145);
             panel_fc3.Name = "panel_fc3";
-            panel_fc3.Size = new Size(244, 51);
+            panel_fc3.Size = new Size(240, 50);
             panel_fc3.TabIndex = 22;
             // 
             // pictureBox_fc3
@@ -522,108 +592,6 @@ namespace GUI
             label_fc3.Size = new Size(89, 28);
             label_fc3.TabIndex = 8;
             label_fc3.Text = "Class List";
-            // 
-            // panel17
-            // 
-            panel17.BackColor = Color.White;
-            panel17.Location = new Point(-3, -2);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(253, 5);
-            panel17.TabIndex = 20;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(panel14);
-            panel1.Controls.Add(panel_fc10);
-            panel1.Controls.Add(panel19);
-            panel1.Controls.Add(pictureBox3);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(250, 193);
-            panel1.TabIndex = 0;
-            // 
-            // panel14
-            // 
-            panel14.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            panel14.BackColor = Color.White;
-            panel14.Location = new Point(2, 185);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(250, 5);
-            panel14.TabIndex = 20;
-            // 
-            // panel_fc10
-            // 
-            panel_fc10.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            panel_fc10.Controls.Add(pictureBox_fc10);
-            panel_fc10.Controls.Add(label_fc10);
-            panel_fc10.Location = new Point(0, 134);
-            panel_fc10.Name = "panel_fc10";
-            panel_fc10.Size = new Size(250, 50);
-            panel_fc10.TabIndex = 21;
-            // 
-            // pictureBox_fc10
-            // 
-            pictureBox_fc10.Image = (Image)resources.GetObject("pictureBox_fc10.Image");
-            pictureBox_fc10.Location = new Point(13, 2);
-            pictureBox_fc10.Name = "pictureBox_fc10";
-            pictureBox_fc10.Size = new Size(44, 44);
-            pictureBox_fc10.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_fc10.TabIndex = 1;
-            pictureBox_fc10.TabStop = false;
-            // 
-            // label_fc10
-            // 
-            label_fc10.AutoSize = true;
-            label_fc10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_fc10.ForeColor = Color.White;
-            label_fc10.Location = new Point(80, 13);
-            label_fc10.Name = "label_fc10";
-            label_fc10.Size = new Size(65, 28);
-            label_fc10.TabIndex = 3;
-            label_fc10.Text = "Home";
-            // 
-            // panel19
-            // 
-            panel19.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel19.Controls.Add(pictureBox1);
-            panel19.Controls.Add(label1);
-            panel19.Location = new Point(-3, 0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(254, 72);
-            panel19.TabIndex = 21;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(9, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(61, 54);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(92, 11);
-            label1.Name = "label1";
-            label1.Size = new Size(155, 46);
-            label1.TabIndex = 0;
-            label1.Text = "SCHOOL";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(6, 85);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(57, 34);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
             // 
             // topPanel
             // 
@@ -684,7 +652,6 @@ namespace GUI
             label11.Size = new Size(125, 31);
             label11.TabIndex = 4;
             label11.Text = "XIN CHÀO";
-            label11.Click += label11_Click;
             // 
             // mainPanel
             // 
@@ -1025,6 +992,7 @@ namespace GUI
             // 
             // dashboard3
             // 
+            dashboard3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             dashboard3.BackColor = Color.DarkBlue;
             dashboard3.Controls.Add(label29);
             dashboard3.Controls.Add(label26);
@@ -1059,6 +1027,7 @@ namespace GUI
             // 
             // dashboard2
             // 
+            dashboard2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dashboard2.BackColor = Color.DarkGreen;
             dashboard2.Controls.Add(label28);
             dashboard2.Controls.Add(label25);
@@ -1093,6 +1062,7 @@ namespace GUI
             // 
             // dashboard1
             // 
+            dashboard1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dashboard1.BackColor = Color.Chocolate;
             dashboard1.Controls.Add(label27);
             dashboard1.Controls.Add(label24);
@@ -1100,7 +1070,6 @@ namespace GUI
             dashboard1.Name = "dashboard1";
             dashboard1.Size = new Size(300, 100);
             dashboard1.TabIndex = 1;
-            dashboard1.Paint += dashboard1_Paint;
             // 
             // label27
             // 
@@ -1137,10 +1106,17 @@ namespace GUI
             Text = "HOME";
             tableLayoutPanel.ResumeLayout(false);
             leftPanel.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel_fc10.ResumeLayout(false);
+            panel_fc10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_fc10).EndInit();
+            panel19.ResumeLayout(false);
+            panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
-            panel_fc9.ResumeLayout(false);
-            panel_fc9.PerformLayout();
+            panel_logout.ResumeLayout(false);
+            panel_logout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc9).EndInit();
             panel_fc8.ResumeLayout(false);
             panel_fc8.PerformLayout();
@@ -1157,8 +1133,8 @@ namespace GUI
             panel_fc4.ResumeLayout(false);
             panel_fc4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc4).EndInit();
-            panel_fc5.ResumeLayout(false);
-            panel_fc5.PerformLayout();
+            panel_department.ResumeLayout(false);
+            panel_department.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc5).EndInit();
             panel_fc2.ResumeLayout(false);
             panel_fc2.PerformLayout();
@@ -1166,14 +1142,6 @@ namespace GUI
             panel_fc3.ResumeLayout(false);
             panel_fc3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc3).EndInit();
-            panel1.ResumeLayout(false);
-            panel_fc10.ResumeLayout(false);
-            panel_fc10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_fc10).EndInit();
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             topPanel.ResumeLayout(false);
             topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -1225,32 +1193,12 @@ namespace GUI
         private PictureBox pictureBox1;
         private Label label1;
         private PictureBox pictureBox_fc10;
-        private PictureBox pictureBox3;
         private Label label_fc10;
         private Panel panel1;
-        private Panel panel2;        
         private Panel panel3;        
         private PictureBox pictureBox4;
-        private Label label_fc1;
-        private Label label_fc2;        
-        private Label label_fc3;
-        private Label label_fc4;
-        private Label label_fc5;       
-        private Label label_fc6;
-        private Label label_fc7;
-        private Label label_fc8;
-        private Label label_fc9;
         private Label label11;
         private Label label12;
-        private PictureBox pictureBox_fc1;           
-        private PictureBox pictureBox_fc2;        
-        private PictureBox pictureBox_fc3;      
-        private PictureBox pictureBox_fc4;
-        private PictureBox pictureBox_fc5;     
-        private PictureBox pictureBox_fc6;       
-        private PictureBox pictureBox_fc7;
-        private PictureBox pictureBox_fc8; 
-        private PictureBox pictureBox_fc9;
         private PictureBox pictureBox12;
         private Label label13;
         private TableLayoutPanel tableLayoutPanel1;
@@ -1290,19 +1238,36 @@ namespace GUI
         private Label label25;
         private Label label27;
         private Label label24;
-        private Panel panel17;
         private Panel panel19;
         private Panel panel_fc10;
-        private Panel panel_fc6;
-        private Panel panel_fc1;
-        private Panel panel_fc4;
-        private Panel panel_fc2;
-        private Panel panel_fc3;
-        private Panel panel_fc5;
-        private Panel panel_fc9;
-        private Panel panel_fc8;
-        private Panel panel_fc7;
+        private Panel panel2;
         private TableLayoutPanel tableLayoutPanel2;
-        private Panel panel14;
+        private Panel panel_logout;
+        private PictureBox pictureBox_fc9;
+        private Label label_fc9;
+        private Panel panel_fc8;
+        private PictureBox pictureBox_fc8;
+        private Label label_fc8;
+        private Panel panel_fc1;
+        private PictureBox pictureBox_fc1;
+        private Label label_fc1;
+        private Panel panel_fc7;
+        private PictureBox pictureBox_fc7;
+        private Label label_fc7;
+        private Panel panel_fc6;
+        private PictureBox pictureBox_fc6;
+        private Label label_fc6;
+        private Panel panel_fc4;
+        private PictureBox pictureBox_fc4;
+        private Label label_fc4;
+        private Panel panel_department;
+        private PictureBox pictureBox_fc5;
+        private Label label_fc5;
+        private Panel panel_fc2;
+        private PictureBox pictureBox_fc2;
+        private Label label_fc2;
+        private Panel panel_fc3;
+        private PictureBox pictureBox_fc3;
+        private Label label_fc3;
     }
 }

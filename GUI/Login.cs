@@ -8,9 +8,13 @@ namespace GUI
 {
     public partial class Login : Form
     {
+        TeacherBLL teacherBLL;
+        TeacherDTO teacherDTO;
         public Login()
         {
             InitializeComponent();
+            teacherBLL = new TeacherBLL();
+            teacherDTO = new TeacherDTO();
             this.DoubleBuffered = true; // Kích hoạt double buffering
         }
 
@@ -29,6 +33,7 @@ namespace GUI
             {
                 passwordTextBox.Text = "";
                 passwordTextBox.ForeColor = System.Drawing.Color.Black;
+                passwordTextBox.PasswordChar = '*'; // Bật chế độ ẩn ký tự bằng dấu '*'
             }
         }
 
@@ -62,17 +67,19 @@ namespace GUI
             account.SetUsername(username);
             account.SetPassword(password);
 
-            // Khởi tạo TeacherDAL
-            TeacherDAL teacherDAL = new TeacherDAL();
-
             // Kiểm tra thông tin đăng nhập
-            bool isAuthenticated = teacherDAL.CheckTeacherPassword(account);
+            bool isAuthenticated = teacherBLL.ValidateTeacher(account);
 
             // Hiển thị thông báo tương ứng
             if (isAuthenticated)
             {
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SessionLogin.LoggedInUsername = username;
+                //SessionLogin.LoggedInTeacher =
+
+                teacherDTO = teacherBLL.getInforTeacher(SessionLogin.LoggedInUsername);
+                SessionLogin.LoggedInTeacher = teacherDTO;
+
                 // Mở trang chính sau khi đăng nhập thành công
                 home main = new home();
                 main.Show();
@@ -101,14 +108,5 @@ namespace GUI
             }
         }
 
-        private void usernameTextBox_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void overlay_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

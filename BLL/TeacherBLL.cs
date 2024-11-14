@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DAL;
 using DTO;
 
@@ -26,6 +27,16 @@ namespace BLL
         public TeacherDTO getInforTeacher(String username)
         {
             return teacherDAL.GetTeacherInfo(username);
+        }
+
+        public List<TeacherDTO> getTeacherForHeadOfDepartment()
+        {
+            return teacherDAL.GetTeachersForHeadOfDepartment();
+        }
+
+        public bool ChangeTeacherRoleToHeadOfDepartment(int teacherID)
+        {
+            return teacherDAL.UpdateTeacherRole(teacherID, 3);
         }
 
     }
