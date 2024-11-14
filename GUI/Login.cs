@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using DTO; // Đảm bảo bạn đã thêm namespace DTO cho AccountDTO
-using DAL; // Thêm namespace DAL cho TeacherDAL
+using DTO;
+using DAL; 
+using BLL; 
 
 namespace GUI
 {
@@ -71,7 +72,7 @@ namespace GUI
             if (isAuthenticated)
             {
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                SessionLogin.LoggedInUsername = username;
                 // Mở trang chính sau khi đăng nhập thành công
                 home main = new home();
                 main.Show();

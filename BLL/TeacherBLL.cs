@@ -4,7 +4,7 @@ using DTO;
 
 namespace BLL
 {
-    internal class TeacherBLL
+    public class TeacherBLL
     {
         private TeacherDAL teacherDAL;
 
@@ -23,9 +23,9 @@ namespace BLL
             return false;
         }
 
-        public TeacherDTO getInforTeacher(AccountDTO account)
+        public TeacherDTO getInforTeacher(String username)
         {
-            return teacherDAL.GetTeacherInfo(account.GetUsername());
+            return teacherDAL.GetTeacherInfo(username);
         }
 
     }

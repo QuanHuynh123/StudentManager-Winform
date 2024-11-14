@@ -214,6 +214,7 @@ namespace GUI
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(panel_fc9, 0, 8);
@@ -225,7 +226,6 @@ namespace GUI
             tableLayoutPanel2.Controls.Add(panel_fc5, 0, 4);
             tableLayoutPanel2.Controls.Add(panel_fc2, 0, 1);
             tableLayoutPanel2.Controls.Add(panel_fc3, 0, 2);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.Padding = new Padding(0, 30, 0, 0);
@@ -245,13 +245,14 @@ namespace GUI
             // 
             // panel_fc9
             // 
+            panel_fc9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc9.Controls.Add(pictureBox_fc9);
             panel_fc9.Controls.Add(label_fc9);
-            panel_fc9.Dock = DockStyle.Fill;
             panel_fc9.Location = new Point(3, 489);
             panel_fc9.Name = "panel_fc9";
             panel_fc9.Size = new Size(244, 51);
             panel_fc9.TabIndex = 28;
+            panel_fc9.Paint += panel_fc9_Paint;
             // 
             // pictureBox_fc9
             // 
@@ -276,9 +277,9 @@ namespace GUI
             // 
             // panel_fc8
             // 
+            panel_fc8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc8.Controls.Add(pictureBox_fc8);
             panel_fc8.Controls.Add(label_fc8);
-            panel_fc8.Dock = DockStyle.Fill;
             panel_fc8.Location = new Point(3, 432);
             panel_fc8.Name = "panel_fc8";
             panel_fc8.Size = new Size(244, 51);
@@ -307,9 +308,9 @@ namespace GUI
             // 
             // panel_fc1
             // 
+            panel_fc1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc1.Controls.Add(pictureBox_fc1);
             panel_fc1.Controls.Add(label_fc1);
-            panel_fc1.Dock = DockStyle.Fill;
             panel_fc1.Location = new Point(3, 33);
             panel_fc1.Name = "panel_fc1";
             panel_fc1.Size = new Size(244, 51);
@@ -338,9 +339,9 @@ namespace GUI
             // 
             // panel_fc7
             // 
+            panel_fc7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc7.Controls.Add(pictureBox_fc7);
             panel_fc7.Controls.Add(label_fc7);
-            panel_fc7.Dock = DockStyle.Fill;
             panel_fc7.Location = new Point(3, 375);
             panel_fc7.Name = "panel_fc7";
             panel_fc7.Size = new Size(244, 51);
@@ -369,9 +370,9 @@ namespace GUI
             // 
             // panel_fc6
             // 
+            panel_fc6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc6.Controls.Add(pictureBox_fc6);
             panel_fc6.Controls.Add(label_fc6);
-            panel_fc6.Dock = DockStyle.Fill;
             panel_fc6.Location = new Point(3, 318);
             panel_fc6.Name = "panel_fc6";
             panel_fc6.Size = new Size(244, 51);
@@ -400,9 +401,9 @@ namespace GUI
             // 
             // panel_fc4
             // 
+            panel_fc4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc4.Controls.Add(pictureBox_fc4);
             panel_fc4.Controls.Add(label_fc4);
-            panel_fc4.Dock = DockStyle.Fill;
             panel_fc4.Location = new Point(3, 204);
             panel_fc4.Name = "panel_fc4";
             panel_fc4.Size = new Size(244, 51);
@@ -431,9 +432,9 @@ namespace GUI
             // 
             // panel_fc5
             // 
+            panel_fc5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc5.Controls.Add(pictureBox_fc5);
             panel_fc5.Controls.Add(label_fc5);
-            panel_fc5.Dock = DockStyle.Fill;
             panel_fc5.Location = new Point(3, 261);
             panel_fc5.Name = "panel_fc5";
             panel_fc5.Size = new Size(244, 51);
@@ -462,9 +463,9 @@ namespace GUI
             // 
             // panel_fc2
             // 
+            panel_fc2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc2.Controls.Add(pictureBox_fc2);
             panel_fc2.Controls.Add(label_fc2);
-            panel_fc2.Dock = DockStyle.Fill;
             panel_fc2.Location = new Point(3, 90);
             panel_fc2.Name = "panel_fc2";
             panel_fc2.Size = new Size(244, 51);
@@ -493,9 +494,9 @@ namespace GUI
             // 
             // panel_fc3
             // 
+            panel_fc3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel_fc3.Controls.Add(pictureBox_fc3);
             panel_fc3.Controls.Add(label_fc3);
-            panel_fc3.Dock = DockStyle.Fill;
             panel_fc3.Location = new Point(3, 147);
             panel_fc3.Name = "panel_fc3";
             panel_fc3.Size = new Size(244, 51);
@@ -532,6 +533,7 @@ namespace GUI
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(panel14);
             panel1.Controls.Add(panel_fc10);
             panel1.Controls.Add(panel19);
@@ -543,14 +545,16 @@ namespace GUI
             // 
             // panel14
             // 
+            panel14.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel14.BackColor = Color.White;
-            panel14.Location = new Point(0, 187);
+            panel14.Location = new Point(2, 185);
             panel14.Name = "panel14";
             panel14.Size = new Size(250, 5);
             panel14.TabIndex = 20;
             // 
             // panel_fc10
             // 
+            panel_fc10.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel_fc10.Controls.Add(pictureBox_fc10);
             panel_fc10.Controls.Add(label_fc10);
             panel_fc10.Location = new Point(0, 134);
@@ -581,6 +585,7 @@ namespace GUI
             // 
             // panel19
             // 
+            panel19.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel19.Controls.Add(pictureBox1);
             panel19.Controls.Add(label1);
             panel19.Location = new Point(-3, 0);
@@ -611,6 +616,7 @@ namespace GUI
             // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(6, 85);
             pictureBox3.Name = "pictureBox3";
@@ -634,6 +640,7 @@ namespace GUI
             // 
             // pictureBox12
             // 
+            pictureBox12.Anchor = AnchorStyles.Right;
             pictureBox12.Image = (Image)resources.GetObject("pictureBox12.Image");
             pictureBox12.Location = new Point(833, 22);
             pictureBox12.Name = "pictureBox12";
@@ -677,6 +684,7 @@ namespace GUI
             label11.Size = new Size(125, 31);
             label11.TabIndex = 4;
             label11.Text = "XIN CHÀO";
+            label11.Click += label11_Click;
             // 
             // mainPanel
             // 
@@ -703,6 +711,7 @@ namespace GUI
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 5;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
@@ -1091,6 +1100,7 @@ namespace GUI
             dashboard1.Name = "dashboard1";
             dashboard1.Size = new Size(300, 100);
             dashboard1.TabIndex = 1;
+            dashboard1.Paint += dashboard1_Paint;
             // 
             // label27
             // 
