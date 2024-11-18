@@ -1,7 +1,7 @@
-﻿using DTO;
-using System;
+﻿using Dapper;
+using DTO;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Linq;
 
 namespace DAL
 {
@@ -14,27 +14,8 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Department", connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var department = new DepartmentDTO();
-
-                            department.DepartmentID = (int)reader["DepartmentID"];
-                            department.DepartmentName = (string)reader["DepartmentName"];
-                            department.HeadOfDepartment = reader["HeadOfDepartment"] as string;
-                            department.Email = (string)reader["Email"];
-                            department.EstablishedYear = reader["EstablishedYear"] != DBNull.Value
-                                           ? (int)reader["EstablishedYear"]
-                                           : 0; // Gán giá trị mặc định nếu NULL
-
-                            departments.Add(department);
-                        }
-                    }
-                }
-                // Kết nối sẽ tự động đóng khi sử dụng `using`
+                string query = "SELECT * FROM Department";
+                departments = connection.Query<DepartmentDTO>(query).ToList();
             }
             return departments;
         }
@@ -47,16 +28,14 @@ namespace DAL
                 string query = "INSERT INTO Department (DepartmentName, HeadOfDepartment, Email, EstablishedYear) " +
                                "VALUES (@DepartmentName, @HeadOfDepartment, @Email, @EstablishedYear)";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@DepartmentName", department.DepartmentName);
-                    command.Parameters.AddWithValue("@HeadOfDepartment", department.HeadOfDepartment ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Email", department.Email);
-                    command.Parameters.AddWithValue("@EstablishedYear", department.EstablishedYear);
+                int affectedRows = connection.Execute(query, department);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                if(affectedRows <= 0)
+                {
+                    return false;
                 }
+
+                return true;
             }
         }
 
@@ -67,12 +46,14 @@ namespace DAL
                 connection.Open();
                 string query = "DELETE FROM Department WHERE DepartmentID = @DepartmentID";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                int rowDeleted = connection.Execute(query, new { DepartmentID  = departmentID });
+
+                if (rowDeleted <= 0)
                 {
-                    command.Parameters.AddWithValue("@DepartmentID", departmentID);
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return false;
                 }
+
+                return true;
             }
         }
 
@@ -84,17 +65,14 @@ namespace DAL
                 string query = "UPDATE Department SET DepartmentName = @DepartmentName, HeadOfDepartment = @HeadOfDepartment, " +
                                "Email = @Email, EstablishedYear = @EstablishedYear WHERE DepartmentID = @DepartmentID";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@DepartmentID", department.DepartmentID);
-                    command.Parameters.AddWithValue("@DepartmentName", department.DepartmentName);
-                    command.Parameters.AddWithValue("@HeadOfDepartment", department.HeadOfDepartment ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Email", department.Email);
-                    command.Parameters.AddWithValue("@EstablishedYear", department.EstablishedYear);
+                int rowUpdated = connection.Execute(query, department);
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                if (rowUpdated <= 0)
+                {
+                    return false;
                 }
+
+                return true;
             }
         }
 
@@ -105,34 +83,12 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "SELECT * FROM Department WHERE DepartmentName LIKE @DepartmentName";
+                string query = "SELECT * FROM Department WHERE DepartmentName LIKE %@DepartmentName%";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@DepartmentName", "%" + departmentName + "%");
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var department = new DepartmentDTO();
-                            department.DepartmentID = (int)reader["DepartmentID"];
-                            department.DepartmentName = (string)reader["DepartmentName"];
-                            department.HeadOfDepartment = reader["HeadOfDepartment"] as string;
-                            department.Email = (string)reader["Email"];
-                            department.EstablishedYear = reader["EstablishedYear"] != DBNull.Value
-                                                           ? (int)reader["EstablishedYear"]
-                                                           : 0;
-
-                            departments.Add(department);
-                        }
-                    }
-                }
+               departments = connection.Query<DepartmentDTO>(query, new { DepartmentName = departmentName }).ToList();
             }
 
             return departments;
         }
-
-
     }
 }

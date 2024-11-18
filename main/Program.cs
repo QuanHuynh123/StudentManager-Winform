@@ -12,8 +12,8 @@ namespace YourNamespace // Thay YourNamespace bằng namespace của bạn
         static void Main(string[] args)
         {
             AccountDTO accountDTO = new AccountDTO();
-            accountDTO.SetUsername("thuyloansgu");
-            accountDTO.SetPassword("123");
+            accountDTO.Username = "thuyloansgu";
+            accountDTO.Password = "123";
 
 
             // Khởi tạo TeacherDAL

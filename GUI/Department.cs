@@ -32,7 +32,7 @@ namespace GUI
 
         void LoadTeachersForHeadOfDepartment()
         {
-            teachers = teacherBLL.getTeacherForHeadOfDepartment();
+            teachers = teacherBLL.GetTeacherForHeadOfDepartment();
             comboBoxChooseHeadofDepartment.Items.Clear(); // Xóa các mục cũ trước khi thêm mới
             foreach (var teacher in teachers)
             {
