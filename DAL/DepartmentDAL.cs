@@ -22,13 +22,13 @@ namespace DAL
                         {
                             var department = new DepartmentDTO();
 
-                            department.SetDepartmentID((int)reader["DepartmentID"]);
-                            department.SetDepartmentName((string)reader["DepartmentName"]);
-                            department.SetHeadOfDepartment(reader["HeadOfDepartment"] as string);
-                            department.SetEmail((string)reader["Email"]);
-                            department.SetEstablishedYear(reader["EstablishedYear"] != DBNull.Value
+                            department.DepartmentID = (int)reader["DepartmentID"];
+                            department.DepartmentName = (string)reader["DepartmentName"];
+                            department.HeadOfDepartment = reader["HeadOfDepartment"] as string;
+                            department.Email = (string)reader["Email"];
+                            department.EstablishedYear = reader["EstablishedYear"] != DBNull.Value
                                            ? (int)reader["EstablishedYear"]
-                                           : 0); // Gán giá trị mặc định nếu NULL
+                                           : 0; // Gán giá trị mặc định nếu NULL
 
                             departments.Add(department);
                         }
@@ -49,10 +49,10 @@ namespace DAL
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@DepartmentName", department.GetDepartmentName());
-                    command.Parameters.AddWithValue("@HeadOfDepartment", department.GetHeadOfDepartment() ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Email", department.GetEmail());
-                    command.Parameters.AddWithValue("@EstablishedYear", department.GetEstablishedYear());
+                    command.Parameters.AddWithValue("@DepartmentName", department.DepartmentName);
+                    command.Parameters.AddWithValue("@HeadOfDepartment", department.HeadOfDepartment ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Email", department.Email);
+                    command.Parameters.AddWithValue("@EstablishedYear", department.EstablishedYear);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -86,11 +86,11 @@ namespace DAL
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@DepartmentID", department.GetDepartmentID());
-                    command.Parameters.AddWithValue("@DepartmentName", department.GetDepartmentName());
-                    command.Parameters.AddWithValue("@HeadOfDepartment", department.GetHeadOfDepartment() ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@Email", department.GetEmail());
-                    command.Parameters.AddWithValue("@EstablishedYear", department.GetEstablishedYear());
+                    command.Parameters.AddWithValue("@DepartmentID", department.DepartmentID);
+                    command.Parameters.AddWithValue("@DepartmentName", department.DepartmentName);
+                    command.Parameters.AddWithValue("@HeadOfDepartment", department.HeadOfDepartment ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Email", department.Email);
+                    command.Parameters.AddWithValue("@EstablishedYear", department.EstablishedYear);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -116,13 +116,13 @@ namespace DAL
                         while (reader.Read())
                         {
                             var department = new DepartmentDTO();
-                            department.SetDepartmentID((int)reader["DepartmentID"]);
-                            department.SetDepartmentName((string)reader["DepartmentName"]);
-                            department.SetHeadOfDepartment(reader["HeadOfDepartment"] as string);
-                            department.SetEmail((string)reader["Email"]);
-                            department.SetEstablishedYear(reader["EstablishedYear"] != DBNull.Value
+                            department.DepartmentID = (int)reader["DepartmentID"];
+                            department.DepartmentName = (string)reader["DepartmentName"];
+                            department.HeadOfDepartment = reader["HeadOfDepartment"] as string;
+                            department.Email = (string)reader["Email"];
+                            department.EstablishedYear = reader["EstablishedYear"] != DBNull.Value
                                                            ? (int)reader["EstablishedYear"]
-                                                           : 0);
+                                                           : 0;
 
                             departments.Add(department);
                         }

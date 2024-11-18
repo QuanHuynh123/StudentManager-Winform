@@ -8,46 +8,10 @@ namespace DTO
 {
     public class DepartmentDTO
     {
-        private int departmentID;
-        private string departmentName;
-        private string headOfDepartment;
-        private string email;
-        private int establishedYear;
-
-        public DepartmentDTO( string departmentName, string headOfDepartment, string email, int establishedYear)
-        {
-            this.departmentName = departmentName;
-            this.headOfDepartment = headOfDepartment;
-            this.email = email;
-            this.establishedYear = establishedYear;
-        }
-
-
-        public DepartmentDTO( int departmentID, string departmentName, string headOfDepartment, string email, int establishedYear)
-        {   
-            this.departmentID = departmentID;   
-            this.departmentName = departmentName;
-            this.headOfDepartment = headOfDepartment;
-            this.email = email;
-            this.establishedYear = establishedYear;
-        }
-
-        public DepartmentDTO()
-        {
-        }
-        public int GetDepartmentID() { return departmentID; }
-        public void SetDepartmentID(int value) { departmentID = value; }
-
-        public string GetDepartmentName() { return departmentName; }
-        public void SetDepartmentName(string value) { departmentName = value; }
-
-        public string GetHeadOfDepartment() { return headOfDepartment; }
-        public void SetHeadOfDepartment(string value) { headOfDepartment = value; }
-
-        public string GetEmail() { return email; }
-        public void SetEmail(string value) { email = value; }
-
-        public int GetEstablishedYear() { return establishedYear; }
-        public void SetEstablishedYear(int value) { establishedYear = value; }
+        public int DepartmentID {  get; set; }
+        public string DepartmentName { get; set; }
+        public string HeadOfDepartment { get; set; }
+        public string Email { get; set; }
+        public int EstablishedYear { get; set; }
     }
 }

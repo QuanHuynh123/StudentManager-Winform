@@ -49,7 +49,7 @@ namespace GUI
 
         private void openDepartment()
         {
-            if (SessionLogin.LoggedInTeacher.GetRoleID() == 4)
+            if (SessionLogin.LoggedInTeacher.RoleID == 4)
             {
                 this.Close();
                 new Department().Show();
@@ -64,7 +64,7 @@ namespace GUI
         {
             if (SessionLogin.IsLoggedIn != null)
             {
-                label13.Text = SessionLogin.LoggedInTeacher.GetFullName();
+                label13.Text = SessionLogin.LoggedInTeacher.FullName;
             }
             else
             {

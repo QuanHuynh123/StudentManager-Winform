@@ -36,7 +36,7 @@ namespace GUI
             comboBoxChooseHeadofDepartment.Items.Clear(); // Xóa các mục cũ trước khi thêm mới
             foreach (var teacher in teachers)
             {
-                comboBoxChooseHeadofDepartment.Items.Add(teacher.GetFullName());
+                comboBoxChooseHeadofDepartment.Items.Add(teacher.FullName);
             }
         }
 
@@ -49,11 +49,11 @@ namespace GUI
             foreach (var department in departments)
             {
                 // Tạo một item mới cho mỗi phòng ban
-                ListViewItem item = new ListViewItem(department.GetDepartmentID().ToString());
-                item.SubItems.Add(department.GetDepartmentName());
-                item.SubItems.Add(department.GetHeadOfDepartment());
-                item.SubItems.Add(department.GetEmail());
-                item.SubItems.Add(department.GetEstablishedYear().ToString());
+                ListViewItem item = new ListViewItem(department.DepartmentID.ToString());
+                item.SubItems.Add(department.DepartmentName);
+                item.SubItems.Add(department.HeadOfDepartment);
+                item.SubItems.Add(department.Email);
+                item.SubItems.Add(department.EstablishedYear.ToString());
 
                 // Thêm item vào ListView
                 listViewDepartment.Items.Add(item);
@@ -88,7 +88,13 @@ namespace GUI
                 return;
             }
 
-            DepartmentDTO department = new DepartmentDTO(departmentName,headOfDepartment,email,establishedYear);
+            DepartmentDTO department = new DepartmentDTO
+            {
+                DepartmentName = departmentName,
+                HeadOfDepartment = headOfDepartment,
+                Email = email,
+                EstablishedYear = establishedYear
+            };
 
             bool isAdded = departmentBLL.AddDepartment(department);
             if (isAdded)
@@ -116,9 +122,9 @@ namespace GUI
             string selectedTeacherName = comboBoxChooseHeadofDepartment.SelectedItem.ToString();
             foreach (var teacher in teachers)
             {
-                if (teacher.GetFullName() == selectedTeacherName)
+                if (teacher.FullName == selectedTeacherName)
                 {
-                    selectedTeacherID = teacher.GetTeacherID(); // Lưu ID của giáo viên đã chọn
+                    selectedTeacherID = teacher.TeacherID; // Lưu ID của giáo viên đã chọn
                     break;
                 }
             }
@@ -163,7 +169,12 @@ namespace GUI
                 return;
             }
 
-            DepartmentDTO department = new DepartmentDTO( departmentID , departmentName,headOfDepartment,email,establishedYear);
+            DepartmentDTO department = new DepartmentDTO { 
+                DepartmentID = departmentID, 
+                DepartmentName = departmentName, 
+                HeadOfDepartment = headOfDepartment, 
+                Email = email, 
+                EstablishedYear =  establishedYear };
 
             bool isUpdated = departmentBLL.UpdateDepartment(department);
             if (isUpdated)
