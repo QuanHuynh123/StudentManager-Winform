@@ -64,8 +64,8 @@ namespace GUI
             // Tạo đối tượng AccountDTO
             AccountDTO account = new AccountDTO();
 
-            account.SetUsername(username);
-            account.SetPassword(password);
+            account.Username = username;
+            account.Password = password;
 
             // Kiểm tra thông tin đăng nhập
             bool isAuthenticated = teacherBLL.ValidateTeacher(account);

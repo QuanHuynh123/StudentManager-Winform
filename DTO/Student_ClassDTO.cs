@@ -8,8 +8,8 @@ namespace DTO
 {
     public class Student_ClassDTO
     {
-        private int ID { get; set; }
-        private int StudentID { get; set; }
-        private int ClassID { get; set; }
+        public int ID { get; set; }
+        public int StudentID { get; set; }
+        public int ClassID { get; set; }
     }
 }

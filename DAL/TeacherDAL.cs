@@ -18,8 +18,8 @@ namespace DAL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Thêm tham số để tránh SQL Injection
-                    command.Parameters.AddWithValue("@Username", account.GetUsername());
-                    command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(account.GetPassword()));
+                    command.Parameters.AddWithValue("@Username", account.Username);
+                    command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(account.Password));
 
                     int count = (int)command.ExecuteScalar(); // Trả về số lượng bản ghi tìm thấy
 
@@ -45,14 +45,14 @@ namespace DAL
                         if (reader.Read())
                         {
                             TeacherDTO teacher = new TeacherDTO();
-                            teacher.SetTeacherID((int)reader["TeacherID"]);
-                            teacher.SetFullName((string)reader["FullName"]);
-                            teacher.SetGender((bool)reader["Gender"]);
-                            teacher.SetEmail((string)reader["Email"]);
-                            teacher.SetPhoneNumber((string)reader["PhoneNumber"]);
-                            teacher.SetStatus((bool)reader["Status"]);
-                            teacher.SetDepartmentID((int)reader["DepartmentID"]);
-                            teacher.SetRoleID((int)reader["RoleID"]);
+                            teacher.TeacherID = (int)reader["TeacherID"];
+                            teacher.FullName = (string)reader["FullName"];
+                            teacher.Gender = (bool)reader["Gender"];
+                            teacher.Email = (string)reader["Email"];
+                            teacher.PhoneNumber = (string)reader["PhoneNumber"];
+                            teacher.Status = (bool)reader["Status"];
+                            teacher.DepartmentID = (int)reader["DepartmentID"];
+                            teacher.RoleID = (int)reader["RoleID"];
 
                             return teacher;
                         }
@@ -78,8 +78,8 @@ namespace DAL
                         while (reader.Read())
                         {
                             TeacherDTO teacher = new TeacherDTO();
-                            teacher.SetTeacherID((int)reader["TeacherID"]);
-                            teacher.SetFullName((string)reader["FullName"]);
+                            teacher.TeacherID = (int)reader["TeacherID"];
+                            teacher.FullName = (string)reader["FullName"];
 
                             teachers.Add(teacher);
                         }

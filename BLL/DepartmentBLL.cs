@@ -27,7 +27,7 @@ namespace BLL
             try
             {
                 // Kiểm tra trước khi thêm vào cơ sở dữ liệu
-                if (string.IsNullOrEmpty(department.GetDepartmentName()))
+                if (string.IsNullOrEmpty(department.DepartmentName))
                     return false;
 
                 return departmentDAL.AddDepartment(department);
@@ -45,7 +45,7 @@ namespace BLL
             try
             {
                 // Kiểm tra trước khi cập nhật
-                if (department.GetDepartmentID() <= 0 || string.IsNullOrEmpty(department.GetDepartmentName()))
+                if (department.DepartmentID <= 0 || string.IsNullOrEmpty(department.DepartmentName))
                     return false;
 
                 return departmentDAL.UpdateDepartment(department);

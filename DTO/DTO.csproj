@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountDTO.cs" />
+    <Compile Include="ClassDTO.cs" />
     <Compile Include="DepartmentDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleDTO.cs" />

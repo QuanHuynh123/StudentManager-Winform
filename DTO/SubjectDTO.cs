@@ -8,25 +8,10 @@ namespace DTO
 {
     public class SubjectDTO
     {
-        private int subjectID;
-        private string subjectName;
-        private int credits;
-        private int programID;
-        private int departmentID;
-
-        public int GetSubjectID() { return subjectID; }
-        public void SetSubjectID(int value) { subjectID = value; }
-
-        public string GetSubjectName() { return subjectName; }
-        public void SetSubjectName(string value) { subjectName = value; }
-
-        public int GetCredits() { return credits; }
-        public void SetCredits(int value) { credits = value; }
-
-        public int GetProgramID() { return programID; }
-        public void SetProgramID(int value) { programID = value; }
-
-        public int GetDepartmentID() { return departmentID; }
-        public void SetDepartmentID(int value) { departmentID = value; }
+        public int SubjectID { get; set; }
+        public string SubjectName { get; set; }
+        public int Credits { get; set; }
+        public int ProgramID { get; set; }
+        public int DepartmentID { get; set; }
     }
 }
