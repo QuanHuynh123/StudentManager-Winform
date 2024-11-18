@@ -1,8 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using BLL;
 using DTO;
-using DAL; 
-using BLL; 
 
 namespace GUI
 {
@@ -77,7 +74,7 @@ namespace GUI
                 SessionLogin.LoggedInUsername = username;
                 //SessionLogin.LoggedInTeacher =
 
-                teacherDTO = teacherBLL.getInforTeacher(SessionLogin.LoggedInUsername);
+                teacherDTO = teacherBLL.GetInforTeacher(SessionLogin.LoggedInUsername);
                 SessionLogin.LoggedInTeacher = teacherDTO;
 
                 // Mở trang chính sau khi đăng nhập thành công

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL;
+﻿using DAL;
 using DTO;
+using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -15,7 +15,7 @@ namespace BLL
         }
 
         // Phương thức kiểm tra tài khoản giáo viên
-        public Boolean ValidateTeacher(AccountDTO account)
+        public bool ValidateTeacher(AccountDTO account)
         {
             if (teacherDAL.CheckTeacherPassword(account))
             {
@@ -24,12 +24,12 @@ namespace BLL
             return false;
         }
 
-        public TeacherDTO getInforTeacher(String username)
+        public TeacherDTO GetInforTeacher(String username)
         {
             return teacherDAL.GetTeacherInfo(username);
         }
 
-        public List<TeacherDTO> getTeacherForHeadOfDepartment()
+        public List<TeacherDTO> GetTeacherForHeadOfDepartment()
         {
             return teacherDAL.GetTeachersForHeadOfDepartment();
         }
