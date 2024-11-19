@@ -49,7 +49,7 @@ namespace GUI
             panel_fc8 = new Panel();
             pictureBox_fc8 = new PictureBox();
             label_fc8 = new Label();
-            panel_fc1 = new Panel();
+            panel_student = new Panel();
             pictureBox_fc1 = new PictureBox();
             label_fc1 = new Label();
             panel_fc7 = new Panel();
@@ -128,7 +128,7 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc9).BeginInit();
             panel_fc8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc8).BeginInit();
-            panel_fc1.SuspendLayout();
+            panel_student.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc1).BeginInit();
             panel_fc7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc7).BeginInit();
@@ -291,7 +291,7 @@ namespace GUI
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(panel_logout, 0, 8);
             tableLayoutPanel2.Controls.Add(panel_fc8, 0, 7);
-            tableLayoutPanel2.Controls.Add(panel_fc1, 0, 0);
+            tableLayoutPanel2.Controls.Add(panel_student, 0, 0);
             tableLayoutPanel2.Controls.Add(panel_fc7, 0, 6);
             tableLayoutPanel2.Controls.Add(panel_fc6, 0, 5);
             tableLayoutPanel2.Controls.Add(panel_fc4, 0, 3);
@@ -341,7 +341,7 @@ namespace GUI
             label_fc9.AutoSize = true;
             label_fc9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc9.ForeColor = SystemColors.Window;
-            label_fc9.Location = new Point(77, 8);
+            label_fc9.Location = new Point(75, 8);
             label_fc9.Name = "label_fc9";
             label_fc9.Size = new Size(78, 28);
             label_fc9.TabIndex = 20;
@@ -372,21 +372,21 @@ namespace GUI
             label_fc8.AutoSize = true;
             label_fc8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc8.ForeColor = Color.White;
-            label_fc8.Location = new Point(74, 8);
+            label_fc8.Location = new Point(72, 8);
             label_fc8.Name = "label_fc8";
             label_fc8.Size = new Size(80, 28);
             label_fc8.TabIndex = 18;
             label_fc8.Text = "Setting";
             // 
-            // panel_fc1
+            // panel_student
             // 
-            panel_fc1.Controls.Add(pictureBox_fc1);
-            panel_fc1.Controls.Add(label_fc1);
-            panel_fc1.Dock = DockStyle.Fill;
-            panel_fc1.Location = new Point(3, 33);
-            panel_fc1.Name = "panel_fc1";
-            panel_fc1.Size = new Size(240, 50);
-            panel_fc1.TabIndex = 20;
+            panel_student.Controls.Add(pictureBox_fc1);
+            panel_student.Controls.Add(label_fc1);
+            panel_student.Dock = DockStyle.Fill;
+            panel_student.Location = new Point(3, 33);
+            panel_student.Name = "panel_student";
+            panel_student.Size = new Size(240, 50);
+            panel_student.TabIndex = 20;
             // 
             // pictureBox_fc1
             // 
@@ -403,11 +403,12 @@ namespace GUI
             label_fc1.AutoSize = true;
             label_fc1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc1.ForeColor = Color.White;
-            label_fc1.Location = new Point(77, 11);
+            label_fc1.Location = new Point(75, 11);
             label_fc1.Name = "label_fc1";
             label_fc1.Size = new Size(125, 28);
             label_fc1.TabIndex = 4;
             label_fc1.Text = "Student List";
+            label_fc1.Click += label_fc1_Click;
             // 
             // panel_fc7
             // 
@@ -434,7 +435,7 @@ namespace GUI
             label_fc7.AutoSize = true;
             label_fc7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc7.ForeColor = Color.White;
-            label_fc7.Location = new Point(77, 9);
+            label_fc7.Location = new Point(75, 9);
             label_fc7.Name = "label_fc7";
             label_fc7.Size = new Size(90, 28);
             label_fc7.TabIndex = 16;
@@ -465,7 +466,7 @@ namespace GUI
             label_fc6.AutoSize = true;
             label_fc6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc6.ForeColor = Color.White;
-            label_fc6.Location = new Point(74, 11);
+            label_fc6.Location = new Point(72, 11);
             label_fc6.Name = "label_fc6";
             label_fc6.Size = new Size(176, 28);
             label_fc6.TabIndex = 12;
@@ -496,7 +497,7 @@ namespace GUI
             label_fc4.AutoSize = true;
             label_fc4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc4.ForeColor = Color.White;
-            label_fc4.Location = new Point(74, 11);
+            label_fc4.Location = new Point(72, 11);
             label_fc4.Name = "label_fc4";
             label_fc4.Size = new Size(82, 28);
             label_fc4.TabIndex = 10;
@@ -527,7 +528,7 @@ namespace GUI
             label_fc5.AutoSize = true;
             label_fc5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc5.ForeColor = Color.White;
-            label_fc5.Location = new Point(74, 8);
+            label_fc5.Location = new Point(72, 8);
             label_fc5.Name = "label_fc5";
             label_fc5.Size = new Size(127, 28);
             label_fc5.TabIndex = 14;
@@ -558,7 +559,7 @@ namespace GUI
             label_fc2.AutoSize = true;
             label_fc2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc2.ForeColor = Color.White;
-            label_fc2.Location = new Point(74, 15);
+            label_fc2.Location = new Point(72, 15);
             label_fc2.Name = "label_fc2";
             label_fc2.Size = new Size(109, 28);
             label_fc2.TabIndex = 6;
@@ -589,7 +590,7 @@ namespace GUI
             label_fc3.AutoSize = true;
             label_fc3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_fc3.ForeColor = Color.White;
-            label_fc3.Location = new Point(74, 12);
+            label_fc3.Location = new Point(72, 12);
             label_fc3.Name = "label_fc3";
             label_fc3.Size = new Size(98, 28);
             label_fc3.TabIndex = 8;
@@ -1123,8 +1124,8 @@ namespace GUI
             panel_fc8.ResumeLayout(false);
             panel_fc8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc8).EndInit();
-            panel_fc1.ResumeLayout(false);
-            panel_fc1.PerformLayout();
+            panel_student.ResumeLayout(false);
+            panel_student.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_fc1).EndInit();
             panel_fc7.ResumeLayout(false);
             panel_fc7.PerformLayout();
@@ -1250,7 +1251,7 @@ namespace GUI
         private Panel panel_fc8;
         private PictureBox pictureBox_fc8;
         private Label label_fc8;
-        private Panel panel_fc1;
+        private Panel panel_student;
         private PictureBox pictureBox_fc1;
         private Label label_fc1;
         private Panel panel_fc7;
