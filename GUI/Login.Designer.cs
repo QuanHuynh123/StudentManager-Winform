@@ -70,7 +70,7 @@ namespace GUI
             // customPanel
             // 
             customPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            customPanel.BackColor = Color.FromArgb(150, 135, 206, 235);
+            customPanel.BackColor = Color.FromArgb(200, 145, 206, 235);
             customPanel.Controls.Add(tableLayoutPanel);
             customPanel.Location = new Point(323, 136);
             customPanel.Name = "customPanel";
@@ -89,7 +89,7 @@ namespace GUI
             tableLayoutPanel.Controls.Add(forgotPasswordLabel, 0, 3);
             tableLayoutPanel.Controls.Add(loginButton, 0, 4);
             tableLayoutPanel.Controls.Add(registerLabel, 0, 5);
-            tableLayoutPanel.Dock = DockStyle.Fill;
+            tableLayoutPanel.Dock = DockStyle.Bottom;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
@@ -105,8 +105,8 @@ namespace GUI
             // 
             titleLogin.AutoSize = true;
             titleLogin.Dock = DockStyle.Fill;
-            titleLogin.Font = new Font("Arial", 18F, FontStyle.Bold);
-            titleLogin.ForeColor = Color.Black;
+            titleLogin.Font = new Font("Forte", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            titleLogin.ForeColor = Color.White;
             titleLogin.Location = new Point(3, 0);
             titleLogin.Name = "titleLogin";
             titleLogin.Size = new Size(628, 171);
@@ -144,6 +144,7 @@ namespace GUI
             // 
             forgotPasswordLabel.AutoSize = true;
             forgotPasswordLabel.Dock = DockStyle.Fill;
+            forgotPasswordLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             forgotPasswordLabel.ForeColor = Color.White;
             forgotPasswordLabel.Location = new Point(3, 285);
             forgotPasswordLabel.Name = "forgotPasswordLabel";
@@ -160,9 +161,9 @@ namespace GUI
             loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.Font = new Font("Arial", 10F, FontStyle.Bold);
             loginButton.ForeColor = Color.White;
-            loginButton.Location = new Point(216, 378);
+            loginButton.Location = new Point(167, 378);
             loginButton.Name = "loginButton";
-            loginButton.Size = new Size(202, 41);
+            loginButton.Size = new Size(299, 41);
             loginButton.TabIndex = 4;
             loginButton.Text = "ĐĂNG NHẬP";
             loginButton.UseVisualStyleBackColor = false;

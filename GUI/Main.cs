@@ -22,16 +22,21 @@ namespace GUI
         public home()
         {
             InitializeComponent();
-            panels = new List<Panel> { panel_student, panel_fc2, panel_fc3, panel_fc4, panel_department, panel_fc6, panel_fc7, panel_fc8, panel_logout, panel_fc10 };
+            panels = new List<Panel> { panel_student, panel_fc2, panel_ClassList, panel_fc4, panel_department, panel_fc6, panel_fc7, panel_fc8, panel_logout, panel_fc10 };
             labels = new List<Label> { label_fc1, label_fc2, label_fc3, label_fc4, label_fc5, label_fc6, label_fc7, label_fc8, label_fc9, label_fc10 };
             pictureBoxes = new List<PictureBox> { pictureBox_fc1, pictureBox_fc2, pictureBox_fc3, pictureBox_fc4, pictureBox_fc5, pictureBox_fc6, pictureBox_fc7, pictureBox_fc8, pictureBox_fc9, pictureBox_fc10 };
 
-            panel_logout.Click += (sender, e) => Logout();
-            foreach (Control control in panel_logout.Controls)
+            // Áp dụng sự kiện hover cho tất cả các Panel
+            for (int i = 0; i < panels.Count; i++)
             {
-                control.Click += (sender, e) => Logout();
+                ApplyHoverEffect(panels[i], labels[i]);
             }
+            loadAllFunction();
+            setNameUser();
+        }
 
+        private void loadAllFunction()
+        {
             panel_department.Click += (sender, e) => openDepartment();
             foreach (Control control in panel_department.Controls)
             {
@@ -44,13 +49,17 @@ namespace GUI
                 control.Click += (sender, e) => openStudentList();
             }
 
-            // Áp dụng sự kiện hover cho tất cả các Panel
-            for (int i = 0; i < panels.Count; i++)
+            panel_ClassList.Click += (sender, e) => openClassList();
+            foreach (Control control in panel_ClassList.Controls)
             {
-                ApplyHoverEffect(panels[i], labels[i]);
+                control.Click += (sender, e) => openClassList();
             }
 
-            setNameUser();
+            panel_logout.Click += (sender, e) => Logout();
+            foreach (Control control in panel_logout.Controls)
+            {
+                control.Click += (sender, e) => Logout();
+            }
         }
 
         private void openDepartment()
@@ -69,8 +78,14 @@ namespace GUI
         private void openStudentList()
         {
 
-                this.Close();
-                new Student().Show();
+            this.Close();
+            new Student().Show();
+        }
+        private void openClassList()
+        {
+
+            this.Close();
+            new Class().Show();
         }
 
         private void setNameUser()
@@ -122,9 +137,5 @@ namespace GUI
             new Login().Show(); // Mở lại form đăng nhập
         }
 
-        private void label_fc1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
