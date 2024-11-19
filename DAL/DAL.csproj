@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PasswordHasher.cs" />
-    <Compile Include="StudentDAL.cs" />
     <Compile Include="TeacherDAL.cs" />
     <Compile Include="SqlConnection.cs" />
     <Compile Include="DepartmentDAL.cs" />

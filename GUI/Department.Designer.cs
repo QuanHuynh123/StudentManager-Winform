@@ -84,7 +84,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.DimGray;
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
@@ -226,7 +226,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Yu Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Cyan;
+            label1.ForeColor = Color.OrangeRed;
             label1.Location = new Point(78, 103);
             label1.Name = "label1";
             label1.Size = new Size(262, 44);
