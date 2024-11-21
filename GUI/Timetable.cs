@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class StudentDetail : Form
+    public partial class Timetable : Form
     {
-        public StudentDetail()
+        public Timetable()
         {
             InitializeComponent();
         }
 
-        private void panel16_Paint(object sender, PaintEventArgs e)
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
