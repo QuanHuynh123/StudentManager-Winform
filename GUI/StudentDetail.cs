@@ -16,7 +16,7 @@ namespace GUI
     {
         private StudentBLL studentBLL;
         private DepartmentBLL departmentBLL;
-        private TrainingProgramBLL trainingProgramBLL;
+        //private TrainingProgramBLL trainingProgramBLL;
         private int studentID; 
         public StudentDetail(int studentiD)
         {
@@ -39,7 +39,7 @@ namespace GUI
             labelAddress.Text = student.PermanentAddress.ToString();
             labelClass.Text = student.Class.ToString();
 
-            DepartmentDTO departmentDTO;
+            //DepartmentDTO departmentDTO;
         }
 
         private void loadAllFunction()
@@ -59,7 +59,7 @@ namespace GUI
 
         private void openTranscript()
         {
-            new Transcript().Show();
+            //new Transcript().Show();
         }
 
         private void openTimetable()
