@@ -11,32 +11,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
 
 namespace GUI
 {
+
     public partial class home : Form
     {
         private List<Panel> panels;
         private List<Label> labels;
         private List<PictureBox> pictureBoxes;
+        private Size formSize;
         public home()
         {
             InitializeComponent();
-            panels = new List<Panel> { panel_student, panel_fc2, panel_ClassList, panel_fc4, panel_department, panel_fc6, panel_fc7, panel_fc8, panel_logout, panel_fc10 };
-            labels = new List<Label> { label_fc1, label_fc2, label_fc3, label_fc4, label_fc5, label_fc6, label_fc7, label_fc8, label_fc9, label_fc10 };
-            pictureBoxes = new List<PictureBox> { pictureBox_fc1, pictureBox_fc2, pictureBox_fc3, pictureBox_fc4, pictureBox_fc5, pictureBox_fc6, pictureBox_fc7, pictureBox_fc8, pictureBox_fc9, pictureBox_fc10 };
+            panels = new List<Panel> { panel_student, panel_timetable, panel_classlist, panel_subject, panel_department, panel_program, panel_account, panel_settings, panel_logout, panel_home };
+            labels = new List<Label> { label_studentlist, label_timetable, label_classlist, label_subject, label_department, label_program, label_account, label_settings, label_logout, label_home };
+            pictureBoxes = new List<PictureBox> { pictureBox_studentlist, pictureBox_timetable, pictureBox_classlist, pictureBox_subject, pictureBox_department, pictureBox_program, pictureBox_account, pictureBox_settings, pictureBox_logout, pictureBox_home };
 
             // Áp dụng sự kiện hover cho tất cả các Panel
             for (int i = 0; i < panels.Count; i++)
             {
                 ApplyHoverEffect(panels[i], labels[i]);
             }
+            openHome();
             loadAllFunction();
             setNameUser();
         }
 
         private void loadAllFunction()
         {
+
+            panel_home.Click += (sender, e) => openHome();
+            foreach (Control control in panel_department.Controls)
+            {
+                control.Click += (sender, e) => openHome();
+            }
             panel_department.Click += (sender, e) => openDepartment();
             foreach (Control control in panel_department.Controls)
             {
@@ -49,10 +60,22 @@ namespace GUI
                 control.Click += (sender, e) => openStudentList();
             }
 
-            panel_ClassList.Click += (sender, e) => openClassList();
-            foreach (Control control in panel_ClassList.Controls)
+            panel_classlist.Click += (sender, e) => openClassList();
+            foreach (Control control in panel_classlist.Controls)
             {
                 control.Click += (sender, e) => openClassList();
+            }
+
+            panel_program.Click += (sender, e) => openProgram();
+            foreach (Control control in panel_program.Controls)
+            {
+                control.Click += (sender, e) => openProgram();
+            }
+
+            panel_account.Click += (sender, e) => openAccount();
+            foreach (Control control in panel_account.Controls)
+            {
+                control.Click += (sender, e) => openAccount();
             }
 
             panel_logout.Click += (sender, e) => Logout();
@@ -62,12 +85,39 @@ namespace GUI
             }
         }
 
+        private void loadPanel(string title, System.Windows.Forms.Form iForm)
+        {
+            label_headertitle.Text = title;
+            userPanel.Controls.Clear();
+            userPanel.Controls.Add(iForm);
+            iForm.Show();
+        }
+
+        private void openAccount()
+        {
+            Account accountWindow = new Account() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ TÀI KHOẢN", accountWindow);
+        }
+
+        private void openProgram()
+        {
+            TrainingProgram programWindow = new TrainingProgram() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ CHƯƠNG TRÌNH ĐÀO TẠO", programWindow);
+        }
+
+        private void openHome()
+        {
+            Dashboard dashboardWindow = new Dashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("XIN CHÀO", dashboardWindow);
+        }
         private void openDepartment()
         {
             if (SessionLogin.LoggedInTeacher.RoleID == 4)
             {
-                this.Close();
-                new Department().Show();
+                //    this.Close();
+                //    new Department().Show();
+                Department departmentWindow = new Department() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+                loadPanel("QUẢN LÝ KHOA", departmentWindow);
             }
             else
             {
@@ -77,26 +127,24 @@ namespace GUI
 
         private void openStudentList()
         {
-
-            this.Close();
-            new Student().Show();
+            Student studentWindow = new Student() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ SINH VIÊN", studentWindow);
         }
         private void openClassList()
         {
-
-            this.Close();
-            new Class().Show();
+            Class classWindow = new Class() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ LỚP", classWindow);
         }
 
         private void setNameUser()
         {
             if (SessionLogin.IsLoggedIn != null)
             {
-                label13.Text = SessionLogin.LoggedInTeacher.FullName;
+                label_name.Text = SessionLogin.LoggedInTeacher.FullName;
             }
             else
             {
-                label13.Text = "User";
+                label_name.Text = "User";
             }
         }
 
@@ -137,5 +185,38 @@ namespace GUI
             new Login().Show(); // Mở lại form đăng nhập
         }
 
+        private void label_home_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_subject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label_studentlist_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+    public class GradientPanel : Panel
+    {
+        public Color ColorTop { get; set; }
+        public Color ColorBottom { get; set; }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            LinearGradientBrush lgb = new
+            LinearGradientBrush(this.ClientRectangle, this.ColorTop,
+            this.ColorBottom, 90F);
+            Graphics g = e.Graphics;
+            g.FillRectangle(lgb, this.ClientRectangle);
+            base.OnPaint(e);
+        }
     }
 }
