@@ -52,10 +52,39 @@ namespace GUI
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void panel8_Paint(object sender, PaintEventArgs e)
         {
-            this.Close();
-            new home().Show();
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_panelTitle_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_search_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel_form_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

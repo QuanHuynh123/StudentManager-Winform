@@ -54,7 +54,6 @@ namespace GUI
                 item.SubItems.Add(department.HeadOfDepartment);
                 item.SubItems.Add(department.Email);
                 item.SubItems.Add(department.EstablishedYear.ToString());
-
                 // Thêm item vào ListView
                 listViewDepartment.Items.Add(item);
             }
@@ -69,11 +68,7 @@ namespace GUI
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            new home().Show();
-        }
+
 
         private void button_add_Click(object sender, EventArgs e)
         {
@@ -141,7 +136,7 @@ namespace GUI
                 textBoxDepartmentName.Text = selectedItem.SubItems[1].Text;    // Tên khoa
                 comboBoxChooseHeadofDepartment.Text = selectedItem.SubItems[2].Text; // Trưởng khoa
                 textBoxEmail.Text = selectedItem.SubItems[3].Text;             // Email
-                comboBox1.Text = selectedItem.SubItems[4].Text; 
+                comboBox1.Text = selectedItem.SubItems[4].Text;
             }
         }
 
@@ -169,12 +164,14 @@ namespace GUI
                 return;
             }
 
-            DepartmentDTO department = new DepartmentDTO { 
-                DepartmentID = departmentID, 
-                DepartmentName = departmentName, 
-                HeadOfDepartment = headOfDepartment, 
-                Email = email, 
-                EstablishedYear =  establishedYear };
+            DepartmentDTO department = new DepartmentDTO
+            {
+                DepartmentID = departmentID,
+                DepartmentName = departmentName,
+                HeadOfDepartment = headOfDepartment,
+                Email = email,
+                EstablishedYear = establishedYear
+            };
 
             bool isUpdated = departmentBLL.UpdateDepartment(department);
             if (isUpdated)
@@ -213,6 +210,16 @@ namespace GUI
                 MessageBox.Show("Xóa khoa thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadListDepartment(); // Reload the list of departments
             }
+        }
+
+        private void panel_searchBtn_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
