@@ -34,7 +34,16 @@ namespace GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             tableLayoutPanel = new TableLayoutPanel();
             leftPanel = new Panel();
-            boardPanel = new GradientPanel();
+            topPanel = new Panel();
+            panel_avatar = new Panel();
+            pictureBox_avatar = new PictureBox();
+            panel_header = new Panel();
+            panel_name = new Panel();
+            label_name = new Label();
+            label_role = new Label();
+            label_headertitle = new Label();
+            mainPanel = new Panel();
+            userPanel = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel_student = new Panel();
             pictureBox_studentlist = new PictureBox();
@@ -70,19 +79,13 @@ namespace GUI
             panel_apptitle = new Panel();
             label1 = new Label();
             pictureBox_school = new PictureBox();
-            topPanel = new Panel();
-            panel_avatar = new Panel();
-            pictureBox_avatar = new PictureBox();
-            panel_header = new Panel();
-            panel_name = new Panel();
-            label_name = new Label();
-            label_role = new Label();
-            label_headertitle = new Label();
-            mainPanel = new Panel();
-            userPanel = new Panel();
             tableLayoutPanel.SuspendLayout();
-            leftPanel.SuspendLayout();
-            boardPanel.SuspendLayout();
+            topPanel.SuspendLayout();
+            panel_avatar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).BeginInit();
+            panel_header.SuspendLayout();
+            panel_name.SuspendLayout();
+            mainPanel.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             panel_student.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_studentlist).BeginInit();
@@ -107,12 +110,6 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)pictureBox_home).BeginInit();
             panel_apptitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_school).BeginInit();
-            topPanel.SuspendLayout();
-            panel_avatar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).BeginInit();
-            panel_header.SuspendLayout();
-            panel_name.SuspendLayout();
-            mainPanel.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel
@@ -126,43 +123,141 @@ namespace GUI
             tableLayoutPanel.Controls.Add(mainPanel, 1, 1);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(0, 0);
-            tableLayoutPanel.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = 2;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13.8335285F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 86.16647F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tableLayoutPanel.Size = new Size(1208, 692);
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new Size(1381, 923);
             tableLayoutPanel.TabIndex = 0;
             // 
             // leftPanel
             // 
             leftPanel.BackColor = Color.Transparent;
-            leftPanel.Controls.Add(boardPanel);
             leftPanel.Dock = DockStyle.Fill;
-            leftPanel.Location = new Point(3, 2);
-            leftPanel.Margin = new Padding(3, 2, 3, 2);
-            leftPanel.MaximumSize = new Size(350, 1485);
-            leftPanel.MinimumSize = new Size(236, 635);
+            leftPanel.Location = new Point(3, 3);
+            leftPanel.MaximumSize = new Size(400, 1980);
+            leftPanel.MinimumSize = new Size(270, 847);
             leftPanel.Name = "leftPanel";
             tableLayoutPanel.SetRowSpan(leftPanel, 2);
-            leftPanel.Size = new Size(236, 688);
+            leftPanel.Size = new Size(270, 917);
             leftPanel.TabIndex = 0;
             // 
-            // boardPanel
+            // topPanel
             // 
-            boardPanel.ColorBottom = Color.FromArgb(9, 20, 69);
-            boardPanel.ColorTop = Color.FromArgb(35, 40, 45);
-            boardPanel.Controls.Add(flowLayoutPanel1);
-            boardPanel.Controls.Add(panel1);
-            boardPanel.Dock = DockStyle.Fill;
-            boardPanel.Location = new Point(0, 0);
-            boardPanel.Margin = new Padding(3, 2, 3, 2);
-            boardPanel.MaximumSize = new Size(306, 1485);
-            boardPanel.MinimumSize = new Size(236, 635);
-            boardPanel.Name = "boardPanel";
-            boardPanel.Size = new Size(236, 688);
-            boardPanel.TabIndex = 0;
+            topPanel.BackColor = Color.White;
+            topPanel.Controls.Add(panel_avatar);
+            topPanel.Controls.Add(panel_header);
+            topPanel.Dock = DockStyle.Fill;
+            topPanel.Location = new Point(279, 3);
+            topPanel.Name = "topPanel";
+            topPanel.Padding = new Padding(0, 0, 15, 0);
+            topPanel.Size = new Size(1099, 121);
+            topPanel.TabIndex = 1;
+            // 
+            // panel_avatar
+            // 
+            panel_avatar.Controls.Add(pictureBox_avatar);
+            panel_avatar.Dock = DockStyle.Right;
+            panel_avatar.Location = new Point(919, 0);
+            panel_avatar.Name = "panel_avatar";
+            panel_avatar.Size = new Size(165, 121);
+            panel_avatar.TabIndex = 22;
+            // 
+            // pictureBox_avatar
+            // 
+            pictureBox_avatar.Dock = DockStyle.Fill;
+            pictureBox_avatar.Image = (Image)resources.GetObject("pictureBox_avatar.Image");
+            pictureBox_avatar.InitialImage = null;
+            pictureBox_avatar.Location = new Point(0, 0);
+            pictureBox_avatar.Name = "pictureBox_avatar";
+            pictureBox_avatar.Padding = new Padding(0, 11, 0, 0);
+            pictureBox_avatar.Size = new Size(165, 121);
+            pictureBox_avatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_avatar.TabIndex = 19;
+            pictureBox_avatar.TabStop = false;
+            // 
+            // panel_header
+            // 
+            panel_header.Controls.Add(panel_name);
+            panel_header.Controls.Add(label_headertitle);
+            panel_header.Dock = DockStyle.Left;
+            panel_header.Location = new Point(0, 0);
+            panel_header.Name = "panel_header";
+            panel_header.Padding = new Padding(10, 20, 0, 0);
+            panel_header.Size = new Size(783, 121);
+            panel_header.TabIndex = 21;
+            // 
+            // panel_name
+            // 
+            panel_name.Controls.Add(label_name);
+            panel_name.Controls.Add(label_role);
+            panel_name.Dock = DockStyle.Top;
+            panel_name.Location = new Point(10, 66);
+            panel_name.MaximumSize = new Size(279, 29);
+            panel_name.Name = "panel_name";
+            panel_name.Size = new Size(279, 29);
+            panel_name.TabIndex = 20;
+            // 
+            // label_name
+            // 
+            label_name.AutoSize = true;
+            label_name.BackColor = Color.Transparent;
+            label_name.Dock = DockStyle.Left;
+            label_name.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_name.ForeColor = Color.MidnightBlue;
+            label_name.Location = new Point(37, 0);
+            label_name.Name = "label_name";
+            label_name.Padding = new Padding(1, 0, 0, 0);
+            label_name.Size = new Size(156, 23);
+            label_name.TabIndex = 6;
+            label_name.Text = "Trương Thị Mỹ Lan";
+            // 
+            // label_role
+            // 
+            label_role.AutoSize = true;
+            label_role.BackColor = Color.Transparent;
+            label_role.Dock = DockStyle.Left;
+            label_role.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label_role.ForeColor = Color.Black;
+            label_role.Location = new Point(0, 0);
+            label_role.Name = "label_role";
+            label_role.Size = new Size(37, 23);
+            label_role.TabIndex = 5;
+            label_role.Text = "GV.";
+            // 
+            // label_headertitle
+            // 
+            label_headertitle.AutoSize = true;
+            label_headertitle.BackColor = Color.Transparent;
+            label_headertitle.Dock = DockStyle.Top;
+            label_headertitle.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold);
+            label_headertitle.ForeColor = Color.MidnightBlue;
+            label_headertitle.Location = new Point(10, 20);
+            label_headertitle.Name = "label_headertitle";
+            label_headertitle.Size = new Size(181, 46);
+            label_headertitle.TabIndex = 4;
+            label_headertitle.Text = "XIN CHÀO";
+            // 
+            // mainPanel
+            // 
+            mainPanel.BackColor = Color.Transparent;
+            mainPanel.Controls.Add(userPanel);
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(279, 130);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Padding = new Padding(0, 0, 15, 0);
+            mainPanel.Size = new Size(1099, 790);
+            mainPanel.TabIndex = 2;
+            // 
+            // userPanel
+            // 
+            userPanel.BackColor = Color.Transparent;
+            userPanel.Dock = DockStyle.Fill;
+            userPanel.Location = new Point(0, 0);
+            userPanel.Name = "userPanel";
+            userPanel.Size = new Size(1084, 790);
+            userPanel.TabIndex = 10;
             // 
             // flowLayoutPanel1
             // 
@@ -208,7 +303,7 @@ namespace GUI
             label_studentlist.ForeColor = Color.White;
             label_studentlist.Location = new Point(51, 8);
             label_studentlist.Name = "label_studentlist";
-            label_studentlist.Size = new Size(97, 21);
+            label_studentlist.Size = new Size(121, 28);
             label_studentlist.TabIndex = 4;
             label_studentlist.Text = "Student List";
             // 
@@ -241,7 +336,7 @@ namespace GUI
             label_timetable.ForeColor = Color.White;
             label_timetable.Location = new Point(51, 8);
             label_timetable.Name = "label_timetable";
-            label_timetable.Size = new Size(84, 21);
+            label_timetable.Size = new Size(104, 28);
             label_timetable.TabIndex = 6;
             label_timetable.Text = "TimeTable";
             // 
@@ -273,7 +368,7 @@ namespace GUI
             label_classlist.ForeColor = Color.White;
             label_classlist.Location = new Point(51, 10);
             label_classlist.Name = "label_classlist";
-            label_classlist.Size = new Size(75, 21);
+            label_classlist.Size = new Size(94, 28);
             label_classlist.TabIndex = 8;
             label_classlist.Text = "Class List";
             // 
@@ -305,7 +400,7 @@ namespace GUI
             label_subject.ForeColor = Color.White;
             label_subject.Location = new Point(48, 8);
             label_subject.Name = "label_subject";
-            label_subject.Size = new Size(65, 21);
+            label_subject.Size = new Size(79, 28);
             label_subject.TabIndex = 10;
             label_subject.Text = "Subject";
             // 
@@ -337,7 +432,7 @@ namespace GUI
             label_department.ForeColor = Color.White;
             label_department.Location = new Point(48, 8);
             label_department.Name = "label_department";
-            label_department.Size = new Size(98, 21);
+            label_department.Size = new Size(121, 28);
             label_department.TabIndex = 14;
             label_department.Text = "Department";
             // 
@@ -369,7 +464,7 @@ namespace GUI
             label_program.ForeColor = Color.White;
             label_program.Location = new Point(51, 7);
             label_program.Name = "label_program";
-            label_program.Size = new Size(130, 21);
+            label_program.Size = new Size(162, 28);
             label_program.TabIndex = 12;
             label_program.Text = "TrainingProgram";
             // 
@@ -401,7 +496,7 @@ namespace GUI
             label_account.ForeColor = Color.White;
             label_account.Location = new Point(51, 7);
             label_account.Name = "label_account";
-            label_account.Size = new Size(71, 21);
+            label_account.Size = new Size(86, 28);
             label_account.TabIndex = 16;
             label_account.Text = "Account";
             // 
@@ -433,7 +528,7 @@ namespace GUI
             label_settings.ForeColor = Color.White;
             label_settings.Location = new Point(51, 9);
             label_settings.Name = "label_settings";
-            label_settings.Size = new Size(70, 21);
+            label_settings.Size = new Size(86, 28);
             label_settings.TabIndex = 18;
             label_settings.Text = "Settings";
             // 
@@ -465,7 +560,7 @@ namespace GUI
             label_logout.ForeColor = SystemColors.Window;
             label_logout.Location = new Point(51, 8);
             label_logout.Name = "label_logout";
-            label_logout.Size = new Size(63, 21);
+            label_logout.Size = new Size(77, 28);
             label_logout.TabIndex = 20;
             label_logout.Text = "Logout";
             // 
@@ -513,7 +608,7 @@ namespace GUI
             label_home.ForeColor = Color.White;
             label_home.Location = new Point(52, 10);
             label_home.Name = "label_home";
-            label_home.Size = new Size(56, 20);
+            label_home.Size = new Size(68, 25);
             label_home.TabIndex = 3;
             label_home.Text = "Home";
             // 
@@ -537,7 +632,7 @@ namespace GUI
             label1.Location = new Point(76, 4);
             label1.Name = "label1";
             label1.Padding = new Padding(0, 30, 0, 0);
-            label1.Size = new Size(145, 60);
+            label1.Size = new Size(176, 67);
             label1.TabIndex = 0;
             label1.Text = "UNIVERSITY";
             // 
@@ -553,144 +648,26 @@ namespace GUI
             pictureBox_school.TabIndex = 0;
             pictureBox_school.TabStop = false;
             // 
-            // topPanel
-            // 
-            topPanel.BackColor = Color.White;
-            topPanel.Controls.Add(panel_avatar);
-            topPanel.Controls.Add(panel_header);
-            topPanel.Dock = DockStyle.Fill;
-            topPanel.Location = new Point(244, 2);
-            topPanel.Margin = new Padding(3, 2, 3, 2);
-            topPanel.Name = "topPanel";
-            topPanel.Padding = new Padding(0, 0, 13, 0);
-            topPanel.Size = new Size(961, 91);
-            topPanel.TabIndex = 1;
-            // 
-            // panel_avatar
-            // 
-            panel_avatar.Controls.Add(pictureBox_avatar);
-            panel_avatar.Dock = DockStyle.Right;
-            panel_avatar.Location = new Point(804, 0);
-            panel_avatar.Margin = new Padding(3, 2, 3, 2);
-            panel_avatar.Name = "panel_avatar";
-            panel_avatar.Size = new Size(144, 91);
-            panel_avatar.TabIndex = 22;
-            // 
-            // pictureBox_avatar
-            // 
-            pictureBox_avatar.Dock = DockStyle.Fill;
-            pictureBox_avatar.Image = (Image)resources.GetObject("pictureBox_avatar.Image");
-            pictureBox_avatar.InitialImage = null;
-            pictureBox_avatar.Location = new Point(0, 0);
-            pictureBox_avatar.Margin = new Padding(3, 2, 3, 2);
-            pictureBox_avatar.Name = "pictureBox_avatar";
-            pictureBox_avatar.Padding = new Padding(0, 8, 0, 0);
-            pictureBox_avatar.Size = new Size(144, 91);
-            pictureBox_avatar.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_avatar.TabIndex = 19;
-            pictureBox_avatar.TabStop = false;
-            // 
-            // panel_header
-            // 
-            panel_header.Controls.Add(panel_name);
-            panel_header.Controls.Add(label_headertitle);
-            panel_header.Dock = DockStyle.Left;
-            panel_header.Location = new Point(0, 0);
-            panel_header.Margin = new Padding(3, 2, 3, 2);
-            panel_header.Name = "panel_header";
-            panel_header.Padding = new Padding(9, 15, 0, 0);
-            panel_header.Size = new Size(685, 91);
-            panel_header.TabIndex = 21;
-            // 
-            // panel_name
-            // 
-            panel_name.Controls.Add(label_name);
-            panel_name.Controls.Add(label_role);
-            panel_name.Dock = DockStyle.Top;
-            panel_name.Location = new Point(9, 52);
-            panel_name.Margin = new Padding(3, 2, 3, 2);
-            panel_name.MaximumSize = new Size(244, 22);
-            panel_name.Name = "panel_name";
-            panel_name.Size = new Size(244, 22);
-            panel_name.TabIndex = 20;
-            // 
-            // label_name
-            // 
-            label_name.AutoSize = true;
-            label_name.BackColor = Color.Transparent;
-            label_name.Dock = DockStyle.Left;
-            label_name.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_name.ForeColor = Color.MidnightBlue;
-            label_name.Location = new Point(31, 0);
-            label_name.Name = "label_name";
-            label_name.Padding = new Padding(1, 0, 0, 0);
-            label_name.Size = new Size(130, 19);
-            label_name.TabIndex = 6;
-            label_name.Text = "Trương Thị Mỹ Lan";
-            // 
-            // label_role
-            // 
-            label_role.AutoSize = true;
-            label_role.BackColor = Color.Transparent;
-            label_role.Dock = DockStyle.Left;
-            label_role.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_role.ForeColor = Color.Black;
-            label_role.Location = new Point(0, 0);
-            label_role.Name = "label_role";
-            label_role.Size = new Size(31, 19);
-            label_role.TabIndex = 5;
-            label_role.Text = "GV.";
-            // 
-            // label_headertitle
-            // 
-            label_headertitle.AutoSize = true;
-            label_headertitle.BackColor = Color.Transparent;
-            label_headertitle.Dock = DockStyle.Top;
-            label_headertitle.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold);
-            label_headertitle.ForeColor = Color.MidnightBlue;
-            label_headertitle.Location = new Point(9, 15);
-            label_headertitle.Name = "label_headertitle";
-            label_headertitle.Size = new Size(145, 37);
-            label_headertitle.TabIndex = 4;
-            label_headertitle.Text = "XIN CHÀO";
-            // 
-            // mainPanel
-            // 
-            mainPanel.BackColor = Color.Transparent;
-            mainPanel.Controls.Add(userPanel);
-            mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(244, 97);
-            mainPanel.Margin = new Padding(3, 2, 3, 2);
-            mainPanel.Name = "mainPanel";
-            mainPanel.Padding = new Padding(0, 0, 13, 0);
-            mainPanel.Size = new Size(961, 593);
-            mainPanel.TabIndex = 2;
-            // 
-            // userPanel
-            // 
-            userPanel.BackColor = Color.Transparent;
-            userPanel.Dock = DockStyle.Fill;
-            userPanel.Location = new Point(0, 0);
-            userPanel.Margin = new Padding(3, 2, 3, 2);
-            userPanel.Name = "userPanel";
-            userPanel.Size = new Size(948, 593);
-            userPanel.TabIndex = 10;
-            // 
             // home
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1208, 692);
+            ClientSize = new Size(1381, 923);
             Controls.Add(tableLayoutPanel);
             ForeColor = SystemColors.ControlLightLight;
             IsMdiContainer = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "home";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HOME";
             tableLayoutPanel.ResumeLayout(false);
-            leftPanel.ResumeLayout(false);
-            boardPanel.ResumeLayout(false);
+            topPanel.ResumeLayout(false);
+            panel_avatar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).EndInit();
+            panel_header.ResumeLayout(false);
+            panel_header.PerformLayout();
+            panel_name.ResumeLayout(false);
+            panel_name.PerformLayout();
+            mainPanel.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             panel_student.ResumeLayout(false);
             panel_student.PerformLayout();
@@ -726,14 +703,6 @@ namespace GUI
             panel_apptitle.ResumeLayout(false);
             panel_apptitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_school).EndInit();
-            topPanel.ResumeLayout(false);
-            panel_avatar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).EndInit();
-            panel_header.ResumeLayout(false);
-            panel_header.PerformLayout();
-            panel_name.ResumeLayout(false);
-            panel_name.PerformLayout();
-            mainPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
