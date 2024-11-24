@@ -1,4 +1,6 @@
-﻿namespace GUI
+﻿using GUI.Properties;
+
+namespace GUI
 {
     partial class Dashboard
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             tableLayoutPanel1 = new TableLayoutPanel();
             panel_subject2 = new Panel();
             label18 = new Label();
@@ -140,7 +143,7 @@
             // 
             // pictureBox_subject2
             // 
-            pictureBox_subject2.Image = Properties.Resources.subject;
+            pictureBox_subject2.Image = (Image)resources.GetObject("pictureBox_subject2.Image");
             pictureBox_subject2.Location = new Point(52, 45);
             pictureBox_subject2.Name = "pictureBox_subject2";
             pictureBox_subject2.Size = new Size(80, 80);
@@ -179,7 +182,7 @@
             // 
             // pictureBox_logout2
             // 
-            pictureBox_logout2.Image = Properties.Resources.logout;
+            pictureBox_logout2.Image = (Image)resources.GetObject("pictureBox_logout2.Image");
             pictureBox_logout2.Location = new Point(52, 39);
             pictureBox_logout2.Name = "pictureBox_logout2";
             pictureBox_logout2.Size = new Size(80, 80);
@@ -210,7 +213,7 @@
             // 
             // pictureBox_settings2
             // 
-            pictureBox_settings2.Image = Properties.Resources.setting;
+            pictureBox_settings2.Image = (Image)resources.GetObject("pictureBox_settings2.Image");
             pictureBox_settings2.Location = new Point(44, 39);
             pictureBox_settings2.Name = "pictureBox_settings2";
             pictureBox_settings2.Size = new Size(80, 80);
@@ -241,7 +244,7 @@
             // 
             // pictureBox_program2
             // 
-            pictureBox_program2.Image = Properties.Resources.trainning_program;
+            pictureBox_program2.Image = (Image)resources.GetObject("pictureBox_program2.Image");
             pictureBox_program2.Location = new Point(50, 45);
             pictureBox_program2.Name = "pictureBox_program2";
             pictureBox_program2.Size = new Size(80, 80);
@@ -272,7 +275,7 @@
             // 
             // pictureBox_classlist2
             // 
-            pictureBox_classlist2.Image = Properties.Resources._class;
+            pictureBox_classlist2.Image = (Image)resources.GetObject("pictureBox_classlist2.Image");
             pictureBox_classlist2.Location = new Point(45, 45);
             pictureBox_classlist2.Name = "pictureBox_classlist2";
             pictureBox_classlist2.Size = new Size(80, 80);
@@ -303,7 +306,7 @@
             // 
             // pictureBox_timetable2
             // 
-            pictureBox_timetable2.Image = Properties.Resources.timetable;
+            pictureBox_timetable2.Image = (Image)resources.GetObject("pictureBox_timetable2.Image");
             pictureBox_timetable2.Location = new Point(48, 45);
             pictureBox_timetable2.Name = "pictureBox_timetable2";
             pictureBox_timetable2.Size = new Size(80, 80);
@@ -334,7 +337,7 @@
             // 
             // pictureBox_department2
             // 
-            pictureBox_department2.Image = Properties.Resources.department;
+            pictureBox_department2.Image = (Image)resources.GetObject("pictureBox_department2.Image");
             pictureBox_department2.Location = new Point(53, 39);
             pictureBox_department2.Name = "pictureBox_department2";
             pictureBox_department2.Size = new Size(80, 80);
@@ -365,7 +368,7 @@
             // 
             // pictureBox_account2
             // 
-            pictureBox_account2.Image = Properties.Resources.account;
+            pictureBox_account2.Image = (Image)resources.GetObject("pictureBox_account2.Image");
             pictureBox_account2.Location = new Point(30, 39);
             pictureBox_account2.Name = "pictureBox_account2";
             pictureBox_account2.Size = new Size(121, 80);
@@ -382,6 +385,7 @@
             panel_studentlist2.Name = "panel_studentlist2";
             panel_studentlist2.Size = new Size(180, 215);
             panel_studentlist2.TabIndex = 1;
+            panel_studentlist2.Paint += panel_studentlist2_Paint;
             // 
             // label15
             // 
@@ -396,13 +400,14 @@
             // 
             // pictureBox_studentlist2
             // 
-            pictureBox_studentlist2.Image = Properties.Resources.student;
+            pictureBox_studentlist2.Image = (Image)resources.GetObject("pictureBox_studentlist2.Image");
             pictureBox_studentlist2.Location = new Point(53, 45);
             pictureBox_studentlist2.Name = "pictureBox_studentlist2";
             pictureBox_studentlist2.Size = new Size(80, 80);
             pictureBox_studentlist2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_studentlist2.TabIndex = 4;
             pictureBox_studentlist2.TabStop = false;
+            pictureBox_studentlist2.Click += pictureBox_studentlist2_Click;
             // 
             // dashboard3
             // 

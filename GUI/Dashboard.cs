@@ -16,5 +16,16 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void panel_studentlist2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox_studentlist2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new Student().Show();
+        }
     }
 }

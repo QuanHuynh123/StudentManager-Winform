@@ -44,7 +44,7 @@ namespace GUI
         {
 
             panel_home.Click += (sender, e) => openHome();
-            foreach (Control control in panel_department.Controls)
+            foreach (Control control in panel_home.Controls)
             {
                 control.Click += (sender, e) => openHome();
             }
@@ -92,6 +92,7 @@ namespace GUI
             userPanel.Controls.Add(iForm);
             iForm.Show();
         }
+        
 
         private void openAccount()
         {
@@ -201,6 +202,11 @@ namespace GUI
         }
 
         private void label_studentlist_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void leftPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
