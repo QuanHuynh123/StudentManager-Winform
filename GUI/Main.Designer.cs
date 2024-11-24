@@ -34,7 +34,16 @@ namespace GUI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home));
             tableLayoutPanel = new TableLayoutPanel();
             leftPanel = new Panel();
-            boardPanel = new GradientPanel();
+            topPanel = new Panel();
+            panel_avatar = new Panel();
+            pictureBox_avatar = new PictureBox();
+            panel_header = new Panel();
+            panel_name = new Panel();
+            label_name = new Label();
+            label_role = new Label();
+            label_headertitle = new Label();
+            mainPanel = new Panel();
+            userPanel = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel_logout = new Panel();
             pictureBox_logout = new PictureBox();
@@ -70,19 +79,13 @@ namespace GUI
             panel_apptitle = new Panel();
             label1 = new Label();
             pictureBox_school = new PictureBox();
-            topPanel = new Panel();
-            panel_avatar = new Panel();
-            pictureBox_avatar = new PictureBox();
-            panel_header = new Panel();
-            panel_name = new Panel();
-            label_name = new Label();
-            label_role = new Label();
-            label_headertitle = new Label();
-            mainPanel = new Panel();
-            userPanel = new Panel();
             tableLayoutPanel.SuspendLayout();
-            leftPanel.SuspendLayout();
-            boardPanel.SuspendLayout();
+            topPanel.SuspendLayout();
+            panel_avatar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).BeginInit();
+            panel_header.SuspendLayout();
+            panel_name.SuspendLayout();
+            mainPanel.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel_logout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_logout).BeginInit();
@@ -107,12 +110,6 @@ namespace GUI
             ((System.ComponentModel.ISupportInitialize)pictureBox_home).BeginInit();
             panel_apptitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_school).BeginInit();
-            topPanel.SuspendLayout();
-            panel_avatar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).BeginInit();
-            panel_header.SuspendLayout();
-            panel_name.SuspendLayout();
-            mainPanel.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel
@@ -137,7 +134,6 @@ namespace GUI
             // leftPanel
             // 
             leftPanel.BackColor = Color.Transparent;
-            leftPanel.Controls.Add(boardPanel);
             leftPanel.Dock = DockStyle.Fill;
             leftPanel.Location = new Point(3, 3);
             leftPanel.MaximumSize = new Size(400, 1980);
@@ -146,419 +142,6 @@ namespace GUI
             tableLayoutPanel.SetRowSpan(leftPanel, 2);
             leftPanel.Size = new Size(270, 916);
             leftPanel.TabIndex = 0;
-            // 
-            // boardPanel
-            // 
-            boardPanel.ColorBottom = Color.FromArgb(9, 20, 69);
-            boardPanel.ColorTop = Color.FromArgb(35, 40, 45);
-            boardPanel.Controls.Add(tableLayoutPanel2);
-            boardPanel.Controls.Add(panel1);
-            boardPanel.Dock = DockStyle.Fill;
-            boardPanel.Location = new Point(0, 0);
-            boardPanel.MaximumSize = new Size(350, 1980);
-            boardPanel.MinimumSize = new Size(270, 847);
-            boardPanel.Name = "boardPanel";
-            boardPanel.Size = new Size(270, 916);
-            boardPanel.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.AutoSize = true;
-            tableLayoutPanel2.BackColor = Color.Transparent;
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(panel_logout, 0, 8);
-            tableLayoutPanel2.Controls.Add(panel_settings, 0, 7);
-            tableLayoutPanel2.Controls.Add(panel_account, 0, 6);
-            tableLayoutPanel2.Controls.Add(panel_program, 0, 5);
-            tableLayoutPanel2.Controls.Add(panel_subject, 0, 3);
-            tableLayoutPanel2.Controls.Add(panel_department, 0, 4);
-            tableLayoutPanel2.Controls.Add(panel_timetable, 0, 1);
-            tableLayoutPanel2.Controls.Add(panel_classlist, 0, 2);
-            tableLayoutPanel2.Controls.Add(panel_student, 0, 0);
-            tableLayoutPanel2.Dock = DockStyle.Top;
-            tableLayoutPanel2.Location = new Point(0, 169);
-            tableLayoutPanel2.Margin = new Padding(0, 0, 2, 0);
-            tableLayoutPanel2.MaximumSize = new Size(400, 1980);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.Padding = new Padding(0, 10, 0, 0);
-            tableLayoutPanel2.RowCount = 10;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel2.Size = new Size(270, 650);
-            tableLayoutPanel2.TabIndex = 21;
-            // 
-            // panel_logout
-            // 
-            panel_logout.Controls.Add(pictureBox_logout);
-            panel_logout.Controls.Add(label_logout);
-            panel_logout.Dock = DockStyle.Top;
-            panel_logout.Location = new Point(3, 525);
-            panel_logout.Name = "panel_logout";
-            panel_logout.Size = new Size(264, 54);
-            panel_logout.TabIndex = 28;
-            // 
-            // pictureBox_logout
-            // 
-            pictureBox_logout.Image = Properties.Resources.logout;
-            pictureBox_logout.Location = new Point(6, 3);
-            pictureBox_logout.Name = "pictureBox_logout";
-            pictureBox_logout.Size = new Size(51, 49);
-            pictureBox_logout.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_logout.TabIndex = 19;
-            pictureBox_logout.TabStop = false;
-            // 
-            // label_logout
-            // 
-            label_logout.AutoSize = true;
-            label_logout.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_logout.ForeColor = SystemColors.Window;
-            label_logout.Location = new Point(58, 10);
-            label_logout.Name = "label_logout";
-            label_logout.Size = new Size(77, 28);
-            label_logout.TabIndex = 20;
-            label_logout.Text = "Logout";
-            // 
-            // panel_settings
-            // 
-            panel_settings.Controls.Add(pictureBox_settings);
-            panel_settings.Controls.Add(label_settings);
-            panel_settings.Dock = DockStyle.Top;
-            panel_settings.Location = new Point(3, 461);
-            panel_settings.Name = "panel_settings";
-            panel_settings.Size = new Size(264, 58);
-            panel_settings.TabIndex = 27;
-            // 
-            // pictureBox_settings
-            // 
-            pictureBox_settings.Image = Properties.Resources.setting1;
-            pictureBox_settings.Location = new Point(6, 0);
-            pictureBox_settings.Name = "pictureBox_settings";
-            pictureBox_settings.Size = new Size(48, 52);
-            pictureBox_settings.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_settings.TabIndex = 17;
-            pictureBox_settings.TabStop = false;
-            // 
-            // label_settings
-            // 
-            label_settings.AutoSize = true;
-            label_settings.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_settings.ForeColor = Color.White;
-            label_settings.Location = new Point(58, 12);
-            label_settings.Name = "label_settings";
-            label_settings.Size = new Size(86, 28);
-            label_settings.TabIndex = 18;
-            label_settings.Text = "Settings";
-            // 
-            // panel_account
-            // 
-            panel_account.Controls.Add(pictureBox_account);
-            panel_account.Controls.Add(label_account);
-            panel_account.Dock = DockStyle.Top;
-            panel_account.Location = new Point(3, 397);
-            panel_account.Name = "panel_account";
-            panel_account.Size = new Size(264, 45);
-            panel_account.TabIndex = 26;
-            // 
-            // pictureBox_account
-            // 
-            pictureBox_account.Image = Properties.Resources.account1;
-            pictureBox_account.Location = new Point(0, 0);
-            pictureBox_account.Name = "pictureBox_account";
-            pictureBox_account.Size = new Size(52, 46);
-            pictureBox_account.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_account.TabIndex = 15;
-            pictureBox_account.TabStop = false;
-            // 
-            // label_account
-            // 
-            label_account.AutoSize = true;
-            label_account.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_account.ForeColor = Color.White;
-            label_account.Location = new Point(58, 9);
-            label_account.Name = "label_account";
-            label_account.Size = new Size(86, 28);
-            label_account.TabIndex = 16;
-            label_account.Text = "Account";
-            // 
-            // panel_program
-            // 
-            panel_program.Controls.Add(pictureBox_program);
-            panel_program.Controls.Add(label_program);
-            panel_program.Dock = DockStyle.Top;
-            panel_program.Location = new Point(3, 333);
-            panel_program.Name = "panel_program";
-            panel_program.Size = new Size(264, 48);
-            panel_program.TabIndex = 24;
-            // 
-            // pictureBox_program
-            // 
-            pictureBox_program.Image = Properties.Resources.trainning_program;
-            pictureBox_program.Location = new Point(6, 0);
-            pictureBox_program.Name = "pictureBox_program";
-            pictureBox_program.Size = new Size(46, 48);
-            pictureBox_program.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_program.TabIndex = 11;
-            pictureBox_program.TabStop = false;
-            // 
-            // label_program
-            // 
-            label_program.AutoSize = true;
-            label_program.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_program.ForeColor = Color.White;
-            label_program.Location = new Point(55, 10);
-            label_program.Name = "label_program";
-            label_program.Size = new Size(162, 28);
-            label_program.TabIndex = 12;
-            label_program.Text = "TrainingProgram";
-            // 
-            // panel_subject
-            // 
-            panel_subject.Controls.Add(pictureBox_subject);
-            panel_subject.Controls.Add(label_subject);
-            panel_subject.Dock = DockStyle.Top;
-            panel_subject.Location = new Point(3, 205);
-            panel_subject.Name = "panel_subject";
-            panel_subject.Size = new Size(264, 47);
-            panel_subject.TabIndex = 23;
-            // 
-            // pictureBox_subject
-            // 
-            pictureBox_subject.Image = Properties.Resources.subject;
-            pictureBox_subject.Location = new Point(6, 0);
-            pictureBox_subject.Name = "pictureBox_subject";
-            pictureBox_subject.Size = new Size(46, 51);
-            pictureBox_subject.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_subject.TabIndex = 9;
-            pictureBox_subject.TabStop = false;
-            // 
-            // label_subject
-            // 
-            label_subject.AutoSize = true;
-            label_subject.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_subject.ForeColor = Color.White;
-            label_subject.Location = new Point(55, 10);
-            label_subject.Name = "label_subject";
-            label_subject.Size = new Size(79, 28);
-            label_subject.TabIndex = 10;
-            label_subject.Text = "Subject";
-            label_subject.Click += label_subject_Click;
-            // 
-            // panel_department
-            // 
-            panel_department.Controls.Add(pictureBox_department);
-            panel_department.Controls.Add(label_department);
-            panel_department.Dock = DockStyle.Top;
-            panel_department.Location = new Point(3, 269);
-            panel_department.Name = "panel_department";
-            panel_department.Size = new Size(264, 51);
-            panel_department.TabIndex = 25;
-            // 
-            // pictureBox_department
-            // 
-            pictureBox_department.Image = Properties.Resources.department;
-            pictureBox_department.Location = new Point(6, -1);
-            pictureBox_department.Name = "pictureBox_department";
-            pictureBox_department.Size = new Size(46, 52);
-            pictureBox_department.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_department.TabIndex = 13;
-            pictureBox_department.TabStop = false;
-            // 
-            // label_department
-            // 
-            label_department.AutoSize = true;
-            label_department.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_department.ForeColor = Color.White;
-            label_department.Location = new Point(55, 10);
-            label_department.Name = "label_department";
-            label_department.Size = new Size(121, 28);
-            label_department.TabIndex = 14;
-            label_department.Text = "Department";
-            // 
-            // panel_timetable
-            // 
-            panel_timetable.Controls.Add(pictureBox_timetable);
-            panel_timetable.Controls.Add(label_timetable);
-            panel_timetable.Dock = DockStyle.Top;
-            panel_timetable.Location = new Point(3, 77);
-            panel_timetable.Name = "panel_timetable";
-            panel_timetable.Size = new Size(264, 50);
-            panel_timetable.TabIndex = 21;
-            // 
-            // pictureBox_timetable
-            // 
-            pictureBox_timetable.Image = Properties.Resources.timetable;
-            pictureBox_timetable.InitialImage = (Image)resources.GetObject("pictureBox_timetable.InitialImage");
-            pictureBox_timetable.Location = new Point(6, 0);
-            pictureBox_timetable.Name = "pictureBox_timetable";
-            pictureBox_timetable.Size = new Size(46, 47);
-            pictureBox_timetable.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_timetable.TabIndex = 5;
-            pictureBox_timetable.TabStop = false;
-            // 
-            // label_timetable
-            // 
-            label_timetable.AutoSize = true;
-            label_timetable.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_timetable.ForeColor = Color.White;
-            label_timetable.Location = new Point(58, 10);
-            label_timetable.Name = "label_timetable";
-            label_timetable.Size = new Size(104, 28);
-            label_timetable.TabIndex = 6;
-            label_timetable.Text = "TimeTable";
-            // 
-            // panel_classlist
-            // 
-            panel_classlist.Controls.Add(pictureBox_classlist);
-            panel_classlist.Controls.Add(label_classlist);
-            panel_classlist.Dock = DockStyle.Top;
-            panel_classlist.Location = new Point(3, 141);
-            panel_classlist.Name = "panel_classlist";
-            panel_classlist.Size = new Size(264, 50);
-            panel_classlist.TabIndex = 22;
-            // 
-            // pictureBox_classlist
-            // 
-            pictureBox_classlist.Image = Properties.Resources._class;
-            pictureBox_classlist.Location = new Point(-2, 0);
-            pictureBox_classlist.Name = "pictureBox_classlist";
-            pictureBox_classlist.Size = new Size(59, 50);
-            pictureBox_classlist.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_classlist.TabIndex = 7;
-            pictureBox_classlist.TabStop = false;
-            // 
-            // label_classlist
-            // 
-            label_classlist.AutoSize = true;
-            label_classlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
-            label_classlist.ForeColor = Color.White;
-            label_classlist.Location = new Point(58, 13);
-            label_classlist.Name = "label_classlist";
-            label_classlist.Size = new Size(94, 28);
-            label_classlist.TabIndex = 8;
-            label_classlist.Text = "Class List";
-            // 
-            // panel_student
-            // 
-            panel_student.Controls.Add(pictureBox_studentlist);
-            panel_student.Controls.Add(label_studentlist);
-            panel_student.Dock = DockStyle.Top;
-            panel_student.Location = new Point(3, 13);
-            panel_student.Name = "panel_student";
-            panel_student.Size = new Size(264, 48);
-            panel_student.TabIndex = 20;
-            // 
-            // pictureBox_studentlist
-            // 
-            pictureBox_studentlist.Image = Properties.Resources.student;
-            pictureBox_studentlist.Location = new Point(6, 0);
-            pictureBox_studentlist.Name = "pictureBox_studentlist";
-            pictureBox_studentlist.Size = new Size(46, 48);
-            pictureBox_studentlist.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_studentlist.TabIndex = 5;
-            pictureBox_studentlist.TabStop = false;
-            // 
-            // label_studentlist
-            // 
-            label_studentlist.AutoSize = true;
-            label_studentlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_studentlist.ForeColor = Color.White;
-            label_studentlist.Location = new Point(58, 10);
-            label_studentlist.Name = "label_studentlist";
-            label_studentlist.Size = new Size(121, 28);
-            label_studentlist.TabIndex = 4;
-            label_studentlist.Text = "Student List";
-            label_studentlist.Click += label_studentlist_Click;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Transparent;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(panel_home);
-            panel1.Controls.Add(panel_apptitle);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.MaximumSize = new Size(400, 1980);
-            panel1.Name = "panel1";
-            panel1.Padding = new Padding(0, 0, 0, 10);
-            panel1.Size = new Size(270, 169);
-            panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
-            // 
-            // panel_home
-            // 
-            panel_home.Controls.Add(pictureBox_home);
-            panel_home.Controls.Add(label_home);
-            panel_home.Dock = DockStyle.Bottom;
-            panel_home.Location = new Point(0, 113);
-            panel_home.Name = "panel_home";
-            panel_home.Size = new Size(268, 44);
-            panel_home.TabIndex = 21;
-            // 
-            // pictureBox_home
-            // 
-            pictureBox_home.Image = Properties.Resources.home;
-            pictureBox_home.Location = new Point(8, 0);
-            pictureBox_home.Name = "pictureBox_home";
-            pictureBox_home.Size = new Size(48, 47);
-            pictureBox_home.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_home.TabIndex = 1;
-            pictureBox_home.TabStop = false;
-            // 
-            // label_home
-            // 
-            label_home.AutoSize = true;
-            label_home.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label_home.ForeColor = Color.White;
-            label_home.Location = new Point(60, 13);
-            label_home.Name = "label_home";
-            label_home.Size = new Size(68, 25);
-            label_home.TabIndex = 3;
-            label_home.Text = "Home";
-            label_home.Click += label_home_Click;
-            // 
-            // panel_apptitle
-            // 
-            panel_apptitle.Controls.Add(label1);
-            panel_apptitle.Controls.Add(pictureBox_school);
-            panel_apptitle.Dock = DockStyle.Top;
-            panel_apptitle.Location = new Point(0, 0);
-            panel_apptitle.Name = "panel_apptitle";
-            panel_apptitle.Padding = new Padding(13, 5, 0, 0);
-            panel_apptitle.Size = new Size(268, 87);
-            panel_apptitle.TabIndex = 21;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Microsoft Himalaya", 22F, FontStyle.Bold);
-            label1.Location = new Point(87, 5);
-            label1.Name = "label1";
-            label1.Padding = new Padding(0, 40, 0, 0);
-            label1.Size = new Size(176, 77);
-            label1.TabIndex = 0;
-            label1.Text = "UNIVERSITY";
-            // 
-            // pictureBox_school
-            // 
-            pictureBox_school.Dock = DockStyle.Left;
-            pictureBox_school.Image = Properties.Resources.school;
-            pictureBox_school.Location = new Point(13, 5);
-            pictureBox_school.Margin = new Padding(20, 3, 3, 3);
-            pictureBox_school.Name = "pictureBox_school";
-            pictureBox_school.Size = new Size(74, 82);
-            pictureBox_school.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox_school.TabIndex = 0;
-            pictureBox_school.TabStop = false;
             // 
             // topPanel
             // 
@@ -584,7 +167,7 @@ namespace GUI
             // pictureBox_avatar
             // 
             pictureBox_avatar.Dock = DockStyle.Fill;
-            pictureBox_avatar.Image = Properties.Resources.avatar;
+            pictureBox_avatar.Image = (Image)resources.GetObject("pictureBox_avatar.Image");
             pictureBox_avatar.InitialImage = null;
             pictureBox_avatar.Location = new Point(0, 0);
             pictureBox_avatar.Name = "pictureBox_avatar";
@@ -676,6 +259,394 @@ namespace GUI
             userPanel.Size = new Size(1084, 789);
             userPanel.TabIndex = 10;
             // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.AutoSize = true;
+            tableLayoutPanel2.BackColor = Color.Transparent;
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(panel_logout, 0, 8);
+            tableLayoutPanel2.Controls.Add(panel_settings, 0, 7);
+            tableLayoutPanel2.Controls.Add(panel_account, 0, 6);
+            tableLayoutPanel2.Controls.Add(panel_program, 0, 5);
+            tableLayoutPanel2.Controls.Add(panel_subject, 0, 3);
+            tableLayoutPanel2.Controls.Add(panel_department, 0, 4);
+            tableLayoutPanel2.Controls.Add(panel_timetable, 0, 1);
+            tableLayoutPanel2.Controls.Add(panel_classlist, 0, 2);
+            tableLayoutPanel2.Controls.Add(panel_student, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Top;
+            tableLayoutPanel2.Location = new Point(0, 169);
+            tableLayoutPanel2.Margin = new Padding(0, 0, 2, 0);
+            tableLayoutPanel2.MaximumSize = new Size(400, 1980);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.Padding = new Padding(0, 10, 0, 0);
+            tableLayoutPanel2.RowCount = 10;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.Size = new Size(270, 650);
+            tableLayoutPanel2.TabIndex = 21;
+            // 
+            // panel_logout
+            // 
+            panel_logout.Controls.Add(pictureBox_logout);
+            panel_logout.Controls.Add(label_logout);
+            panel_logout.Dock = DockStyle.Top;
+            panel_logout.Location = new Point(3, 525);
+            panel_logout.Name = "panel_logout";
+            panel_logout.Size = new Size(264, 54);
+            panel_logout.TabIndex = 28;
+            // 
+            // pictureBox_logout
+            // 
+            pictureBox_logout.Location = new Point(6, 3);
+            pictureBox_logout.Name = "pictureBox_logout";
+            pictureBox_logout.Size = new Size(51, 49);
+            pictureBox_logout.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_logout.TabIndex = 19;
+            pictureBox_logout.TabStop = false;
+            // 
+            // label_logout
+            // 
+            label_logout.AutoSize = true;
+            label_logout.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_logout.ForeColor = SystemColors.Window;
+            label_logout.Location = new Point(58, 10);
+            label_logout.Name = "label_logout";
+            label_logout.Size = new Size(77, 28);
+            label_logout.TabIndex = 20;
+            label_logout.Text = "Logout";
+            // 
+            // panel_settings
+            // 
+            panel_settings.Controls.Add(pictureBox_settings);
+            panel_settings.Controls.Add(label_settings);
+            panel_settings.Dock = DockStyle.Top;
+            panel_settings.Location = new Point(3, 461);
+            panel_settings.Name = "panel_settings";
+            panel_settings.Size = new Size(264, 58);
+            panel_settings.TabIndex = 27;
+            // 
+            // pictureBox_settings
+            // 
+            pictureBox_settings.Location = new Point(6, 0);
+            pictureBox_settings.Name = "pictureBox_settings";
+            pictureBox_settings.Size = new Size(48, 52);
+            pictureBox_settings.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_settings.TabIndex = 17;
+            pictureBox_settings.TabStop = false;
+            // 
+            // label_settings
+            // 
+            label_settings.AutoSize = true;
+            label_settings.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_settings.ForeColor = Color.White;
+            label_settings.Location = new Point(58, 12);
+            label_settings.Name = "label_settings";
+            label_settings.Size = new Size(86, 28);
+            label_settings.TabIndex = 18;
+            label_settings.Text = "Settings";
+            // 
+            // panel_account
+            // 
+            panel_account.Controls.Add(pictureBox_account);
+            panel_account.Controls.Add(label_account);
+            panel_account.Dock = DockStyle.Top;
+            panel_account.Location = new Point(3, 397);
+            panel_account.Name = "panel_account";
+            panel_account.Size = new Size(264, 45);
+            panel_account.TabIndex = 26;
+            // 
+            // pictureBox_account
+            // 
+            pictureBox_account.Location = new Point(0, 0);
+            pictureBox_account.Name = "pictureBox_account";
+            pictureBox_account.Size = new Size(52, 46);
+            pictureBox_account.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_account.TabIndex = 15;
+            pictureBox_account.TabStop = false;
+            // 
+            // label_account
+            // 
+            label_account.AutoSize = true;
+            label_account.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_account.ForeColor = Color.White;
+            label_account.Location = new Point(58, 9);
+            label_account.Name = "label_account";
+            label_account.Size = new Size(86, 28);
+            label_account.TabIndex = 16;
+            label_account.Text = "Account";
+            // 
+            // panel_program
+            // 
+            panel_program.Controls.Add(pictureBox_program);
+            panel_program.Controls.Add(label_program);
+            panel_program.Dock = DockStyle.Top;
+            panel_program.Location = new Point(3, 333);
+            panel_program.Name = "panel_program";
+            panel_program.Size = new Size(264, 48);
+            panel_program.TabIndex = 24;
+            // 
+            // pictureBox_program
+            // 
+            pictureBox_program.Location = new Point(6, 0);
+            pictureBox_program.Name = "pictureBox_program";
+            pictureBox_program.Size = new Size(46, 48);
+            pictureBox_program.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_program.TabIndex = 11;
+            pictureBox_program.TabStop = false;
+            // 
+            // label_program
+            // 
+            label_program.AutoSize = true;
+            label_program.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_program.ForeColor = Color.White;
+            label_program.Location = new Point(55, 10);
+            label_program.Name = "label_program";
+            label_program.Size = new Size(162, 28);
+            label_program.TabIndex = 12;
+            label_program.Text = "TrainingProgram";
+            // 
+            // panel_subject
+            // 
+            panel_subject.Controls.Add(pictureBox_subject);
+            panel_subject.Controls.Add(label_subject);
+            panel_subject.Dock = DockStyle.Top;
+            panel_subject.Location = new Point(3, 205);
+            panel_subject.Name = "panel_subject";
+            panel_subject.Size = new Size(264, 47);
+            panel_subject.TabIndex = 23;
+            // 
+            // pictureBox_subject
+            // 
+            pictureBox_subject.Location = new Point(6, 0);
+            pictureBox_subject.Name = "pictureBox_subject";
+            pictureBox_subject.Size = new Size(46, 51);
+            pictureBox_subject.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_subject.TabIndex = 9;
+            pictureBox_subject.TabStop = false;
+            // 
+            // label_subject
+            // 
+            label_subject.AutoSize = true;
+            label_subject.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_subject.ForeColor = Color.White;
+            label_subject.Location = new Point(55, 10);
+            label_subject.Name = "label_subject";
+            label_subject.Size = new Size(79, 28);
+            label_subject.TabIndex = 10;
+            label_subject.Text = "Subject";
+            label_subject.Click += label_subject_Click;
+            // 
+            // panel_department
+            // 
+            panel_department.Controls.Add(pictureBox_department);
+            panel_department.Controls.Add(label_department);
+            panel_department.Dock = DockStyle.Top;
+            panel_department.Location = new Point(3, 269);
+            panel_department.Name = "panel_department";
+            panel_department.Size = new Size(264, 51);
+            panel_department.TabIndex = 25;
+            // 
+            // pictureBox_department
+            // 
+            pictureBox_department.Location = new Point(6, -1);
+            pictureBox_department.Name = "pictureBox_department";
+            pictureBox_department.Size = new Size(46, 52);
+            pictureBox_department.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_department.TabIndex = 13;
+            pictureBox_department.TabStop = false;
+            // 
+            // label_department
+            // 
+            label_department.AutoSize = true;
+            label_department.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_department.ForeColor = Color.White;
+            label_department.Location = new Point(55, 10);
+            label_department.Name = "label_department";
+            label_department.Size = new Size(121, 28);
+            label_department.TabIndex = 14;
+            label_department.Text = "Department";
+            // 
+            // panel_timetable
+            // 
+            panel_timetable.Controls.Add(pictureBox_timetable);
+            panel_timetable.Controls.Add(label_timetable);
+            panel_timetable.Dock = DockStyle.Top;
+            panel_timetable.Location = new Point(3, 77);
+            panel_timetable.Name = "panel_timetable";
+            panel_timetable.Size = new Size(264, 50);
+            panel_timetable.TabIndex = 21;
+            // 
+            // pictureBox_timetable
+            // 
+            pictureBox_timetable.InitialImage = (Image)resources.GetObject("pictureBox_timetable.InitialImage");
+            pictureBox_timetable.Location = new Point(6, 0);
+            pictureBox_timetable.Name = "pictureBox_timetable";
+            pictureBox_timetable.Size = new Size(46, 47);
+            pictureBox_timetable.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_timetable.TabIndex = 5;
+            pictureBox_timetable.TabStop = false;
+            // 
+            // label_timetable
+            // 
+            label_timetable.AutoSize = true;
+            label_timetable.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_timetable.ForeColor = Color.White;
+            label_timetable.Location = new Point(58, 10);
+            label_timetable.Name = "label_timetable";
+            label_timetable.Size = new Size(104, 28);
+            label_timetable.TabIndex = 6;
+            label_timetable.Text = "TimeTable";
+            // 
+            // panel_classlist
+            // 
+            panel_classlist.Controls.Add(pictureBox_classlist);
+            panel_classlist.Controls.Add(label_classlist);
+            panel_classlist.Dock = DockStyle.Top;
+            panel_classlist.Location = new Point(3, 141);
+            panel_classlist.Name = "panel_classlist";
+            panel_classlist.Size = new Size(264, 50);
+            panel_classlist.TabIndex = 22;
+            // 
+            // pictureBox_classlist
+            // 
+            pictureBox_classlist.Location = new Point(-2, 0);
+            pictureBox_classlist.Name = "pictureBox_classlist";
+            pictureBox_classlist.Size = new Size(59, 50);
+            pictureBox_classlist.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_classlist.TabIndex = 7;
+            pictureBox_classlist.TabStop = false;
+            // 
+            // label_classlist
+            // 
+            label_classlist.AutoSize = true;
+            label_classlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
+            label_classlist.ForeColor = Color.White;
+            label_classlist.Location = new Point(58, 13);
+            label_classlist.Name = "label_classlist";
+            label_classlist.Size = new Size(94, 28);
+            label_classlist.TabIndex = 8;
+            label_classlist.Text = "Class List";
+            // 
+            // panel_student
+            // 
+            panel_student.Controls.Add(pictureBox_studentlist);
+            panel_student.Controls.Add(label_studentlist);
+            panel_student.Dock = DockStyle.Top;
+            panel_student.Location = new Point(3, 13);
+            panel_student.Name = "panel_student";
+            panel_student.Size = new Size(264, 48);
+            panel_student.TabIndex = 20;
+            // 
+            // pictureBox_studentlist
+            // 
+            pictureBox_studentlist.Location = new Point(6, 0);
+            pictureBox_studentlist.Name = "pictureBox_studentlist";
+            pictureBox_studentlist.Size = new Size(46, 48);
+            pictureBox_studentlist.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_studentlist.TabIndex = 5;
+            pictureBox_studentlist.TabStop = false;
+            // 
+            // label_studentlist
+            // 
+            label_studentlist.AutoSize = true;
+            label_studentlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_studentlist.ForeColor = Color.White;
+            label_studentlist.Location = new Point(58, 10);
+            label_studentlist.Name = "label_studentlist";
+            label_studentlist.Size = new Size(121, 28);
+            label_studentlist.TabIndex = 4;
+            label_studentlist.Text = "Student List";
+            label_studentlist.Click += label_studentlist_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Transparent;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(panel_home);
+            panel1.Controls.Add(panel_apptitle);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.MaximumSize = new Size(400, 1980);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(0, 0, 0, 10);
+            panel1.Size = new Size(270, 169);
+            panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // panel_home
+            // 
+            panel_home.Controls.Add(pictureBox_home);
+            panel_home.Controls.Add(label_home);
+            panel_home.Dock = DockStyle.Bottom;
+            panel_home.Location = new Point(0, 113);
+            panel_home.Name = "panel_home";
+            panel_home.Size = new Size(268, 44);
+            panel_home.TabIndex = 21;
+            // 
+            // pictureBox_home
+            // 
+            pictureBox_home.Location = new Point(8, 0);
+            pictureBox_home.Name = "pictureBox_home";
+            pictureBox_home.Size = new Size(48, 47);
+            pictureBox_home.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_home.TabIndex = 1;
+            pictureBox_home.TabStop = false;
+            // 
+            // label_home
+            // 
+            label_home.AutoSize = true;
+            label_home.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            label_home.ForeColor = Color.White;
+            label_home.Location = new Point(60, 13);
+            label_home.Name = "label_home";
+            label_home.Size = new Size(68, 25);
+            label_home.TabIndex = 3;
+            label_home.Text = "Home";
+            label_home.Click += label_home_Click;
+            // 
+            // panel_apptitle
+            // 
+            panel_apptitle.Controls.Add(label1);
+            panel_apptitle.Controls.Add(pictureBox_school);
+            panel_apptitle.Dock = DockStyle.Top;
+            panel_apptitle.Location = new Point(0, 0);
+            panel_apptitle.Name = "panel_apptitle";
+            panel_apptitle.Padding = new Padding(13, 5, 0, 0);
+            panel_apptitle.Size = new Size(268, 87);
+            panel_apptitle.TabIndex = 21;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Microsoft Himalaya", 22F, FontStyle.Bold);
+            label1.Location = new Point(87, 5);
+            label1.Name = "label1";
+            label1.Padding = new Padding(0, 40, 0, 0);
+            label1.Size = new Size(176, 77);
+            label1.TabIndex = 0;
+            label1.Text = "UNIVERSITY";
+            // 
+            // pictureBox_school
+            // 
+            pictureBox_school.Dock = DockStyle.Left;
+            pictureBox_school.Location = new Point(13, 5);
+            pictureBox_school.Margin = new Padding(20, 3, 3, 3);
+            pictureBox_school.Name = "pictureBox_school";
+            pictureBox_school.Size = new Size(74, 82);
+            pictureBox_school.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_school.TabIndex = 0;
+            pictureBox_school.TabStop = false;
+            // 
             // home
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -688,9 +659,14 @@ namespace GUI
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HOME";
             tableLayoutPanel.ResumeLayout(false);
-            leftPanel.ResumeLayout(false);
-            boardPanel.ResumeLayout(false);
-            boardPanel.PerformLayout();
+            topPanel.ResumeLayout(false);
+            panel_avatar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).EndInit();
+            panel_header.ResumeLayout(false);
+            panel_header.PerformLayout();
+            panel_name.ResumeLayout(false);
+            panel_name.PerformLayout();
+            mainPanel.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             panel_logout.ResumeLayout(false);
             panel_logout.PerformLayout();
@@ -726,14 +702,6 @@ namespace GUI
             panel_apptitle.ResumeLayout(false);
             panel_apptitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox_school).EndInit();
-            topPanel.ResumeLayout(false);
-            panel_avatar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox_avatar).EndInit();
-            panel_header.ResumeLayout(false);
-            panel_header.PerformLayout();
-            panel_name.ResumeLayout(false);
-            panel_name.PerformLayout();
-            mainPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 

@@ -44,7 +44,8 @@ namespace DAL
             }
         }
 
-        public List<TeacherDTO> GetTeachersForHeadOfDepartment()
+        // Lấy danh sách giáo viên chưa làm trưởng khoa để đề cử
+        public List<TeacherDTO> GetTeachersForHeadOfDepartment()       
         {
             using (var connection = Connection())
             {
@@ -58,6 +59,7 @@ namespace DAL
             }
         }
 
+        // Update role của giảng viên thành Trưởng Khoa sau khi đề cử
         public bool UpdateTeacherRole(int teacherID, int newRoleID)
         {
             using (var connection = Connection())

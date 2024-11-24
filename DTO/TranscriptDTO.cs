@@ -15,5 +15,10 @@ namespace DTO
         public float FinalScore { get; set; }
         public float TotalScore { get; set; }
         public string Semester { get; set; }
+        public int YearTranscript { get; set; }
+        public bool Status { get; set; }
+
+        public string SubjectName { get; set; }
+        public int Credits {  get; set; }
     }
 }

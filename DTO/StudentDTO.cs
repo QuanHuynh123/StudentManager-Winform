@@ -19,7 +19,7 @@ namespace DTO
         public int TotalCreditsEarned { get; set; }
         public string Hometown { get; set; }
         public string PermanentAddress { get; set; }
-        public string StudentClass { get; set; }
+        public string Class { get; set; }
         public int DepartmentID { get; set; }
         public int ProgramID { get; set; }
     }

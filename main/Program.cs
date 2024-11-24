@@ -10,19 +10,11 @@ namespace YourNamespace // Thay YourNamespace bằng namespace của bạn
     class Program
     {
         static void Main(string[] args)
-        {
-            AccountDTO accountDTO = new AccountDTO();
-            accountDTO.Username = "thuyloansgu";
-            accountDTO.Password = "123";
+        { 
+            StudentBLL studentBLL = new StudentBLL();
+            StudentDTO studentDTO = studentBLL.getStudentInfo(1);
+            Console.WriteLine(studentDTO.StudentID + " " + studentDTO.FullName +  " " + studentDTO.Email );
+        } 
 
-
-            // Khởi tạo TeacherDAL
-            TeacherDAL teacherDAL = new TeacherDAL();
-
-            // Kiểm tra thông tin đăng nhập
-            bool isAuthenticated = teacherDAL.CheckTeacherPassword(accountDTO);
-            Console.WriteLine("heloooooooooo" + isAuthenticated);
-
-        }
     }
 }
