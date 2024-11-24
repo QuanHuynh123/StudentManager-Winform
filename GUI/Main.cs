@@ -1,17 +1,4 @@
 ﻿using BLL;
-using DTO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
 
 namespace GUI
@@ -19,28 +6,39 @@ namespace GUI
 
     public partial class home : Form
     {
-        private List<Panel> panels;
-        private List<Label> labels;
-        private List<PictureBox> pictureBoxes;
+        private Dictionary<string, (Panel, Label)> panels = [];
+        private List<string> defaultVisible = [];
+        //private List<PictureBox> pictureBoxes;
         private Size formSize;
         public home()
         {
             InitializeComponent();
-            panels = new List<Panel> { panel_student, panel_timetable, panel_classlist, panel_subject, panel_department, panel_program, panel_account, panel_settings, panel_logout, panel_home };
-            labels = new List<Label> { label_studentlist, label_timetable, label_classlist, label_subject, label_department, label_program, label_account, label_settings, label_logout, label_home };
-            pictureBoxes = new List<PictureBox> { pictureBox_studentlist, pictureBox_timetable, pictureBox_classlist, pictureBox_subject, pictureBox_department, pictureBox_program, pictureBox_account, pictureBox_settings, pictureBox_logout, pictureBox_home };
+            //pictureBoxes = new List<PictureBox> { pictureBox_studentlist, pictureBox_timetable, pictureBox_classlist, pictureBox_subject, pictureBox_department, pictureBox_program, pictureBox_account, pictureBox_settings, pictureBox_logout, pictureBox_home };
+
+            panels.Add(Constants.Student, (panel_student, label_studentlist));
+            panels.Add(Constants.TimeTable, (panel_timetable, label_timetable));
+            panels.Add(Constants.Class, (panel_classlist, label_classlist));
+            panels.Add(Constants.Subject, (panel_subject, label_subject));
+            panels.Add(Constants.Department, (panel_department, label_department));
+            panels.Add(Constants.TrainingProgram, (panel_program, label_program));
+            panels.Add(Constants.Account, (panel_account, label_account));
+            panels.Add(Constants.Setting, (panel_settings, label_settings));
+            panels.Add(Constants.Logout, (panel_logout, label_logout));
+            panels.Add(Constants.Home, (panel_home, label_home));
+
+            defaultVisible.AddRange([Constants.Home, Constants.Account, Constants.Setting, Constants.Logout]);
+
+            openHome();
 
             // Áp dụng sự kiện hover cho tất cả các Panel
-            for (int i = 0; i < panels.Count; i++)
-            {
-                ApplyHoverEffect(panels[i], labels[i]);
-            }
-            openHome();
-            loadAllFunction();
-            setNameUser();
+            ApplyHoverEffect();
+            LoadAllFunction();
+
+            // Decentralize
+            LoadPanelForUser();
         }
 
-        private void loadAllFunction()
+        private void LoadAllFunction()
         {
 
             panel_home.Click += (sender, e) => openHome();
@@ -92,7 +90,7 @@ namespace GUI
             userPanel.Controls.Add(iForm);
             iForm.Show();
         }
-        
+
 
         private void openAccount()
         {
@@ -137,30 +135,20 @@ namespace GUI
             loadPanel("QUẢN LÝ LỚP", classWindow);
         }
 
-        private void setNameUser()
+        private void ApplyHoverEffect()
         {
-            if (SessionLogin.IsLoggedIn != null)
+            foreach (var panel in panels)
             {
-                label_name.Text = SessionLogin.LoggedInTeacher.FullName;
-            }
-            else
-            {
-                label_name.Text = "User";
-            }
-        }
+                // Đặt sự kiện cho chính Panel
+                panel.Value.Item1.MouseEnter += (sender, e) => SetHoverState(panel.Value.Item1, panel.Value.Item2, true);
+                panel.Value.Item1.MouseLeave += (sender, e) => SetHoverState(panel.Value.Item1, panel.Value.Item2, false);
 
-
-        private void ApplyHoverEffect(Panel panel, Label label)
-        {
-            // Đặt sự kiện cho chính Panel
-            panel.MouseEnter += (sender, e) => SetHoverState(panel, label, true);
-            panel.MouseLeave += (sender, e) => SetHoverState(panel, label, false);
-
-            // Đặt sự kiện cho các phần tử con trong Panel
-            foreach (Control control in panel.Controls)
-            {
-                control.MouseEnter += (sender, e) => SetHoverState(panel, label, true);
-                control.MouseLeave += (sender, e) => SetHoverState(panel, label, false);
+                // Đặt sự kiện cho các phần tử con trong Panel
+                foreach (Control control in panel.Value.Item1.Controls)
+                {
+                    control.MouseEnter += (sender, e) => SetHoverState(panel.Value.Item1, panel.Value.Item2, true);
+                    control.MouseLeave += (sender, e) => SetHoverState(panel.Value.Item1, panel.Value.Item2, false);
+                }
             }
         }
 
@@ -186,29 +174,36 @@ namespace GUI
             new Login().Show(); // Mở lại form đăng nhập
         }
 
-        private void label_home_Click(object sender, EventArgs e)
+        private void LoadPanelForUser()
         {
+            if (SessionLogin.IsLoggedIn)
+            {
+                label_name.Text = SessionLogin.LoggedInTeacher.FullName;
 
-        }
+                if (SessionLogin.LoggedInTeacher.RoleID == Constants.Principal)
+                {
+                    return;
+                }
 
-        private void label_subject_Click(object sender, EventArgs e)
-        {
+                var myFeatures = SessionLogin.LoggedInTeacher.Role.RoleActivities.GroupBy(ra => ra.Feature).ToList().Where(x => x.Key != null);
 
-        }
+                foreach (var item in defaultVisible)
+                {
+                    panels.Remove(item);
+                }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+                var unavailable = panels.ExceptBy(myFeatures.Select(mf => mf.Key.ToLower()), p => p.Key.ToLower());
 
-        }
-
-        private void label_studentlist_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void leftPanel_Paint(object sender, PaintEventArgs e)
-        {
-
+                foreach (var panel in unavailable)
+                {
+                    panel.Value.Item1.Visible = false;
+                    panel.Value.Item2.Visible = false;
+                }
+            }
+            else
+            {
+                label_name.Text = "User";
+            }
         }
     }
     public class GradientPanel : Panel

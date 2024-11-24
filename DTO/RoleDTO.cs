@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DTO
 {
@@ -11,5 +7,6 @@ namespace DTO
         public int RoleID { get; set; }
         public string NameRole { get; set; }
         public string Description { get; set; }
+        public List<RoleActivityDTO> RoleActivities { get; set; }
     }
 }

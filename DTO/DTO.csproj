@@ -44,7 +44,10 @@
     <Compile Include="AccountDTO.cs" />
     <Compile Include="ClassDTO.cs" />
     <Compile Include="DepartmentDTO.cs" />
+    <Compile Include="Models\SearchRequest.cs" />
+    <Compile Include="Models\SearchResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleActivityDTO.cs" />
     <Compile Include="RoleDTO.cs" />
     <Compile Include="StudentDTO.cs" />
     <Compile Include="Student_ClassDTO.cs" />

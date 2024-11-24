@@ -65,18 +65,13 @@ namespace GUI
             account.Password = password;
 
             // Kiểm tra thông tin đăng nhập
-            bool isAuthenticated = teacherBLL.ValidateTeacher(account);
+            SessionLogin.LoggedInTeacher = teacherBLL.GetUserSession(account);
 
             // Hiển thị thông báo tương ứng
-            if (isAuthenticated)
+            if (SessionLogin.IsLoggedIn)
             {
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                SessionLogin.LoggedInUsername = username;
-                //SessionLogin.LoggedInTeacher =
-
-                teacherDTO = teacherBLL.GetInforTeacher(SessionLogin.LoggedInUsername);
-                SessionLogin.LoggedInTeacher = teacherDTO;
-
+                
                 // Mở trang chính sau khi đăng nhập thành công
                 home main = new home();
                 main.Show();
@@ -84,7 +79,7 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại." + isAuthenticated, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

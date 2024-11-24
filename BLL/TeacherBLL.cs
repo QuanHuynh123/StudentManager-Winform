@@ -1,5 +1,7 @@
 ﻿using DAL;
+using DAL.Models;
 using DTO;
+using DTO.Models;
 using System;
 using System.Collections.Generic;
 
@@ -14,14 +16,22 @@ namespace BLL
             teacherDAL = new TeacherDAL();
         }
 
-        // Phương thức kiểm tra tài khoản giáo viên
-        public bool ValidateTeacher(AccountDTO account)
-        {
-            if (teacherDAL.CheckTeacherPassword(account))
+        public TeacherDTO GetUserSession(AccountDTO account) 
+        { 
+            TeacherDTO foundTeacher = teacherDAL.GetUserSession(account);
+            return foundTeacher;
+        }
+
+        public SearchResponse<TeacherDTO> Search(SearchRequest request) {
+            try
             {
-                return true;
+                return teacherDAL.Search(request);
             }
-            return false;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi tìm kiếm: {ex.Message}");
+                return new SearchResponse<TeacherDTO>();
+            }
         }
 
         public TeacherDTO GetInforTeacher(String username)

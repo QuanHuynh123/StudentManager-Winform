@@ -1,5 +1,7 @@
-﻿using Dapper;
+﻿using DAL.Models;
+using Dapper;
 using DTO;
+using DTO.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,25 +9,103 @@ namespace DAL
 {
     public class TeacherDAL : SqlConnectionData
     {
-        // Phương thức kiểm tra mật khẩu giáo viên
-        public bool CheckTeacherPassword(AccountDTO account)
+        public TeacherDTO GetUserSession(AccountDTO account)
         {
             using (var connection = Connection())
             {
                 connection.Open();
 
-                string query = "SELECT COUNT(*) FROM Teacher WHERE Username = @Username AND Password = @Password";
+                string query = @"SELECT *
+                                FROM teacher t
+                                JOIN (
+                                    SELECT r.RoleID, r.NameRole, r.Description, ra.RoleActivityID, ra.ActivityName, ra.Feature  
+                                    FROM [Role] r
+                                    left JOIN Role_Activity ra ON r.RoleID = ra.RoleID
+                                ) AS ra ON t.RoleID = ra.RoleID
+                                WHERE t.Username = @Username 
+                                  AND t.Password = @Password";
 
-                TeacherDTO foundTeacher = connection.QuerySingle<TeacherDTO>(query, new { 
-                    Username = account.Username, 
-                    Password = PasswordHasher.HashPassword(account.Password) });
+                var teacherDictionary = new Dictionary<int, TeacherDTO>();
 
-                if(foundTeacher == null)
+                var foundTeacher = connection.Query<TeacherDTO, RoleDTO, RoleActivityDTO, TeacherDTO>(
+                    query,
+                    (t, r, ra) =>
+                    {
+                        if (!teacherDictionary.TryGetValue(t.TeacherID, out var currentTeacher))
+                        {
+                            currentTeacher = t;
+                            currentTeacher.Role = r;
+                            currentTeacher.Role.RoleActivities = new List<RoleActivityDTO>();
+
+                            teacherDictionary.Add(currentTeacher.TeacherID, currentTeacher);
+                        }
+
+                        if (ra != null)
+                        {
+                            currentTeacher.Role.RoleActivities.Add(ra);
+                        }
+
+                        return currentTeacher;
+                    },
+                    new
+                    {
+                        Username = account.Username,
+                        Password = PasswordHasher.HashPassword(account.Password)
+                    },
+                    splitOn: "RoleID,RoleActivityID"
+                ).FirstOrDefault();
+
+                return foundTeacher;
+            }
+        }
+
+        public SearchResponse<TeacherDTO> Search(SearchRequest request)
+        {
+            string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
+            string query = @"Select * from teacher 
+                                left join role on teacher.RoleID = role.RoleID 
+                            where FullName like @FullName order by TeacherID offset @Offset rows fetch next @Limit rows only";
+
+            string queryNumberOfRecord = @"Select count(*) from teacher where FullName like @FullName";
+
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                List<TeacherDTO> foundTeachers = connection.Query<TeacherDTO, RoleDTO, TeacherDTO>(
+                    query, (t, r) => {
+                        t.Role = r;
+                        return t;
+                    }, new
+                    {
+                        FullName = $"%{keyWord}%",
+                        Offset = request.PageSize * request.PageIndex,
+                        Limit = request.PageSize
+                    }, splitOn: "TeacherID,RoleID"
+                ).ToList();
+
+                int numberOfRecord = connection.QueryFirst<int>(
+                     queryNumberOfRecord,
+                     new
+                     {
+                         FullName = $"%{keyWord}%",
+                     }
+                 );
+
+                if (foundTeachers.Count > 0)
                 {
-                    return false;
+                    return new SearchResponse<TeacherDTO>
+                    {
+                        Data = foundTeachers,
+                        TotalRecord = numberOfRecord
+                    };
                 }
 
-                return true;
+                return new SearchResponse<TeacherDTO>
+                {
+                    Data = foundTeachers,
+                    TotalRecord = numberOfRecord
+                };
             }
         }
 
@@ -79,6 +159,5 @@ namespace DAL
                 return true;
             }
         }
-
     }
 }

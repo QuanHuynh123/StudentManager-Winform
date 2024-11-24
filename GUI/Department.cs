@@ -189,11 +189,11 @@ namespace GUI
         {
             if (listViewDepartment.CheckedItems.Count == 0)
             {
-                MessageBox.Show("Hãy chọn 1 khoa bất kì trước khi xóa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hãy chọn record bất kì trước khi xóa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khoa này hay không ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa hay không ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 foreach (ListViewItem item in listViewDepartment.CheckedItems)
@@ -203,11 +203,12 @@ namespace GUI
                     bool isDeleted = departmentBLL.DeleteDepartment(departmentID);
                     if (!isDeleted)
                     {
-                        MessageBox.Show($"Xảy ra lỗi khi xóa khoa có ID :  {departmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Xảy ra lỗi khi xóa ID :  {departmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
 
-                MessageBox.Show("Xóa khoa thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadListDepartment(); // Reload the list of departments
             }
         }
