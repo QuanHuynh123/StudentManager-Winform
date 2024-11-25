@@ -90,5 +90,20 @@ namespace DAL
 
             return departments;
         }
+
+        public DepartmentDTO findByIdDepartment(int departmentID)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = "SELECT * FROM Department WHERE DepartmentID = @DepartmentID";
+
+                // Thực thi truy vấn và lấy kết quả
+                DepartmentDTO department = connection.QueryFirstOrDefault<DepartmentDTO>(query, new { DepartmentID = departmentID });
+
+                return department;
+            }
+        }
+
     }
 }

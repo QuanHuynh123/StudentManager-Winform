@@ -159,5 +159,36 @@ namespace DAL
                 return true;
             }
         }
+
+        public bool UpdateTeacherInfo(TeacherDTO updatedTeacher)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                string query = @"
+            UPDATE Teacher
+            SET 
+                FullName = @FullName,
+                Gender = @Gender,
+                Email = @Email,
+                PhoneNumber = @PhoneNumber,
+            WHERE 
+                TeacherID = @TeacherID";
+
+                var rowsUpdated = connection.Execute(query, new
+                {
+                    FullName = updatedTeacher.FullName,
+                    Gender = updatedTeacher.Gender,
+                    Email = updatedTeacher.Email,
+                    PhoneNumber = updatedTeacher.PhoneNumber,
+                    DepartmentID = updatedTeacher.DepartmentID,
+                    TeacherID = updatedTeacher.TeacherID
+                });
+
+                return rowsUpdated > 0; // Trả về true nếu cập nhật thành công
+            }
+        }
+
     }
 }
