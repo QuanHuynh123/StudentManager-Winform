@@ -109,6 +109,67 @@ namespace DAL
             }
         }
 
+        public bool CreateTeacher(TeacherDTO teacherDTO)
+        {
+            string query = @"Insert into teacher (FullName, Gender, Email, PhoneNumber, Status, DepartmentID, Username, Password, RoleID) 
+                            Values (@FullName, @Gender, @Email, @PhoneNumber, @Status, @DepartmentID, @Username, @Password, @RoleID)";
+            using(var connection = Connection())
+            {
+                int affectedRows = connection.Execute(query, teacherDTO);
+
+                if (affectedRows <= 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+        public bool Delete(int teacherID)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = "DELETE FROM teacher WHERE TeacherID = @TeacherID";
+
+                int rowDeleted = connection.Execute(query, new { TeacherID = teacherID });
+
+                if (rowDeleted <= 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool Update(TeacherDTO teacherDTO)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = @"UPDATE teacher SET FullName = @FullName, 
+                                    Gender = @Gender, 
+                                    Email = @Email, 
+                                    PhoneNumber = @PhoneNumber, 
+                                    Status = @Status, 
+                                    DepartmentID = @DepartmentID,
+                                    Username = @Username,
+                                    Password = @Password,
+                                    RoleID = @RoleID
+                                WHERE TeacherID = @TeacherID";
+
+                int rowUpdated = connection.Execute(query, teacherDTO);
+
+                if (rowUpdated <= 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
         // Phương thức lấy thông tin giáo viên
         public TeacherDTO GetTeacherInfo(string username)
         {

@@ -43,7 +43,7 @@
             end_page = new Label();
             label9 = new Label();
             button_add = new Button();
-            button3 = new Button();
+            button_export = new Button();
             button_delete = new Button();
             button_edit = new Button();
             back_button = new Button();
@@ -202,7 +202,7 @@
             tableLayoutPanel2.Controls.Add(end_page, 8, 0);
             tableLayoutPanel2.Controls.Add(label9, 4, 0);
             tableLayoutPanel2.Controls.Add(button_add, 2, 0);
-            tableLayoutPanel2.Controls.Add(button3, 3, 0);
+            tableLayoutPanel2.Controls.Add(button_export, 3, 0);
             tableLayoutPanel2.Controls.Add(button_delete, 1, 0);
             tableLayoutPanel2.Controls.Add(button_edit, 0, 0);
             tableLayoutPanel2.Controls.Add(back_button, 5, 0);
@@ -255,19 +255,20 @@
             button_add.UseVisualStyleBackColor = false;
             button_add.Click += button_add_Click;
             // 
-            // button3
+            // button_export
             // 
-            button3.BackColor = Color.FromArgb(73, 69, 104);
-            button3.Dock = DockStyle.Left;
-            button3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            button3.ForeColor = SystemColors.ButtonHighlight;
-            button3.Location = new Point(481, 2);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(157, 33);
-            button3.TabIndex = 34;
-            button3.Text = "Xuất Excel";
-            button3.UseVisualStyleBackColor = false;
+            button_export.BackColor = Color.FromArgb(73, 69, 104);
+            button_export.Dock = DockStyle.Left;
+            button_export.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button_export.ForeColor = SystemColors.ButtonHighlight;
+            button_export.Location = new Point(481, 2);
+            button_export.Margin = new Padding(3, 2, 3, 2);
+            button_export.Name = "button_export";
+            button_export.Size = new Size(157, 33);
+            button_export.TabIndex = 34;
+            button_export.Text = "Xuất Excel";
+            button_export.UseVisualStyleBackColor = false;
+            button_export.Click += button_export_Click;
             // 
             // button_delete
             // 
@@ -734,7 +735,7 @@
         private Label label11;
         private TextBox textBoxSearch;
         private Button button_search;
-        private Button button3;
+        private Button button_export;
         private Button button_edit;
         private Button button_delete;
         private Button button_add;

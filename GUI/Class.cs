@@ -2,6 +2,7 @@
 using DAL.Models;
 using DTO;
 using DTO.Models;
+using Mapster;
 
 namespace GUI
 {
@@ -33,6 +34,7 @@ namespace GUI
             controls.Add(Constants.Add, button_add);
             controls.Add(Constants.Update, button_edit);
             controls.Add(Constants.Delete, button_delete);
+            controls.Add(Constants.Export, button_export);
 
             search_action(null, null);
             BindDataToComboBox();
@@ -321,6 +323,15 @@ namespace GUI
                 page_number.SelectionStart = page_number.Text.Length;
                 search_action(null, null, int.Parse(input) - 1);
             }
+        }
+
+        private void button_export_Click(object sender, EventArgs e)
+        {
+            string fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}-class";
+            SearchResponse<ClassDTO> classResponse = classBLL.Search(new SearchRequest { PageSize = 9999 });
+            List<ClassForExport> data = classResponse.Data.Adapt<List<ClassForExport>>();
+
+            Common.ExportExcel<ClassForExport>(data, fileName);
         }
     }
 }
