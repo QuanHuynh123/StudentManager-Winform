@@ -16,18 +16,22 @@ namespace GUI
     {
         private StudentBLL studentBLL;
         private DepartmentBLL departmentBLL;
+        private TrainingProgramBLL trainingProgramBLL;
+        StudentDTO student; 
         //private TrainingProgramBLL trainingProgramBLL;
         private int studentID; 
         public StudentDetail(int studentiD)
         {
             InitializeComponent();
             studentBLL = new StudentBLL();
+            departmentBLL = new DepartmentBLL();
+            student = studentBLL.getStudentInfo(studentID);
+            trainingProgramBLL = new TrainingProgramBLL();
             this.studentID = studentiD;
             loadInfoStudent();
             loadAllFunction();
         }
         private void loadInfoStudent() { 
-            StudentDTO  student = studentBLL.getStudentInfo(studentID);
             labelStudentID.Text = student.StudentID.ToString();
             labelNameStudent.Text = student.FullName.ToString();
             if (student.Gender)
@@ -38,8 +42,14 @@ namespace GUI
             labelHometown.Text = student.Hometown.ToString();
             labelAddress.Text = student.PermanentAddress.ToString();
             labelClass.Text = student.Class.ToString();
-
-            //DepartmentDTO departmentDTO;
+            DepartmentDTO department = departmentBLL.findByIdDepartment(student.DepartmentID);
+            labelDepartment.Text = department.DepartmentName.ToString();
+            labelDepartment2.Text = department.DepartmentName.ToString();
+            TrainingProgramDTO trainingProgram = trainingProgramBLL.FindByIdTrainingProgram(student.ProgramID);
+            labelTrainingProgram.Text = trainingProgram.ProgramName.ToString();
+            labelTrainingProgram.Text  = trainingProgram.StartYear.ToString() + " " + trainingProgram.EndYear.ToString();   
+            labelGPA.Text  = student.Gpa.ToString();
+            labelTotalCredits.Text = student.TotalCreditsEarned.ToString();
         }
 
         private void loadAllFunction()

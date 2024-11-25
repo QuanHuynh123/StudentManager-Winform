@@ -49,5 +49,10 @@ namespace BLL
             return teacherDAL.UpdateTeacherRole(teacherID, 3);
         }
 
+        public bool UpdateTeacher(TeacherDTO updatedTeacher)
+        {
+            return teacherDAL.UpdateTeacherInfo(updatedTeacher);
+        }
+
     }
 }

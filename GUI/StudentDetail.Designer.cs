@@ -42,16 +42,16 @@
             panel15 = new Panel();
             label25 = new Label();
             panel14 = new Panel();
-            label23 = new Label();
+            labelYear = new Label();
             label24 = new Label();
             panel13 = new Panel();
-            label21 = new Label();
+            labelTrainingProgram = new Label();
             label22 = new Label();
             panel12 = new Panel();
-            label19 = new Label();
+            labelDepartment2 = new Label();
             label20 = new Label();
             panel11 = new Panel();
-            label17 = new Label();
+            labelDepartment = new Label();
             label18 = new Label();
             panel10 = new Panel();
             labelClass = new Label();
@@ -86,10 +86,10 @@
             label38 = new Label();
             panel23 = new Panel();
             panel26 = new Panel();
-            label41 = new Label();
+            labelTotalCredits = new Label();
             label42 = new Label();
             panel25 = new Panel();
-            label39 = new Label();
+            labelGPA = new Label();
             label40 = new Label();
             pictureBox2 = new PictureBox();
             panel20 = new Panel();
@@ -283,23 +283,23 @@
             // panel14
             // 
             panel14.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel14.Controls.Add(label23);
+            panel14.Controls.Add(labelYear);
             panel14.Controls.Add(label24);
             panel14.Location = new Point(1, 564);
             panel14.Name = "panel14";
             panel14.Size = new Size(705, 32);
             panel14.TabIndex = 6;
             // 
-            // label23
+            // labelYear
             // 
-            label23.AutoSize = true;
-            label23.BackColor = Color.Transparent;
-            label23.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label23.Location = new Point(233, 0);
-            label23.Name = "label23";
-            label23.Size = new Size(99, 25);
-            label23.TabIndex = 1;
-            label23.Text = "2020-2025";
+            labelYear.AutoSize = true;
+            labelYear.BackColor = Color.Transparent;
+            labelYear.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelYear.Location = new Point(233, 0);
+            labelYear.Name = "labelYear";
+            labelYear.Size = new Size(99, 25);
+            labelYear.TabIndex = 1;
+            labelYear.Text = "2020-2025";
             // 
             // label24
             // 
@@ -315,23 +315,23 @@
             // panel13
             // 
             panel13.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel13.Controls.Add(label21);
+            panel13.Controls.Add(labelTrainingProgram);
             panel13.Controls.Add(label22);
             panel13.Location = new Point(1, 526);
             panel13.Name = "panel13";
             panel13.Size = new Size(705, 32);
             panel13.TabIndex = 5;
             // 
-            // label21
+            // labelTrainingProgram
             // 
-            label21.AutoSize = true;
-            label21.BackColor = Color.Transparent;
-            label21.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label21.Location = new Point(233, 0);
-            label21.Name = "label21";
-            label21.Size = new Size(212, 25);
-            label21.TabIndex = 1;
-            label21.Text = "CÔNG NGHỆ THÔNG TIN";
+            labelTrainingProgram.AutoSize = true;
+            labelTrainingProgram.BackColor = Color.Transparent;
+            labelTrainingProgram.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTrainingProgram.Location = new Point(233, 0);
+            labelTrainingProgram.Name = "labelTrainingProgram";
+            labelTrainingProgram.Size = new Size(212, 25);
+            labelTrainingProgram.TabIndex = 1;
+            labelTrainingProgram.Text = "CÔNG NGHỆ THÔNG TIN";
             // 
             // label22
             // 
@@ -347,23 +347,23 @@
             // panel12
             // 
             panel12.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel12.Controls.Add(label19);
+            panel12.Controls.Add(labelDepartment2);
             panel12.Controls.Add(label20);
             panel12.Location = new Point(1, 488);
             panel12.Name = "panel12";
             panel12.Size = new Size(705, 32);
             panel12.TabIndex = 4;
             // 
-            // label19
+            // labelDepartment2
             // 
-            label19.AutoSize = true;
-            label19.BackColor = Color.Transparent;
-            label19.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label19.Location = new Point(233, 0);
-            label19.Name = "label19";
-            label19.Size = new Size(178, 25);
-            label19.TabIndex = 1;
-            label19.Text = "Công nghệ thông tin";
+            labelDepartment2.AutoSize = true;
+            labelDepartment2.BackColor = Color.Transparent;
+            labelDepartment2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelDepartment2.Location = new Point(233, 0);
+            labelDepartment2.Name = "labelDepartment2";
+            labelDepartment2.Size = new Size(178, 25);
+            labelDepartment2.TabIndex = 1;
+            labelDepartment2.Text = "Công nghệ thông tin";
             // 
             // label20
             // 
@@ -379,23 +379,23 @@
             // panel11
             // 
             panel11.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel11.Controls.Add(label17);
+            panel11.Controls.Add(labelDepartment);
             panel11.Controls.Add(label18);
             panel11.Location = new Point(0, 450);
             panel11.Name = "panel11";
             panel11.Size = new Size(706, 32);
             panel11.TabIndex = 3;
             // 
-            // label17
+            // labelDepartment
             // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.Transparent;
-            label17.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.Location = new Point(233, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(178, 25);
-            label17.TabIndex = 1;
-            label17.Text = "Công nghệ thông tin";
+            labelDepartment.AutoSize = true;
+            labelDepartment.BackColor = Color.Transparent;
+            labelDepartment.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelDepartment.Location = new Point(233, 0);
+            labelDepartment.Name = "labelDepartment";
+            labelDepartment.Size = new Size(178, 25);
+            labelDepartment.TabIndex = 1;
+            labelDepartment.Text = "Công nghệ thông tin";
             // 
             // label18
             // 
@@ -755,23 +755,23 @@
             // panel26
             // 
             panel26.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel26.Controls.Add(label41);
+            panel26.Controls.Add(labelTotalCredits);
             panel26.Controls.Add(label42);
             panel26.Location = new Point(0, 101);
             panel26.Name = "panel26";
             panel26.Size = new Size(558, 32);
             panel26.TabIndex = 5;
             // 
-            // label41
+            // labelTotalCredits
             // 
-            label41.AutoSize = true;
-            label41.BackColor = Color.Transparent;
-            label41.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label41.Location = new Point(233, 0);
-            label41.Name = "label41";
-            label41.Size = new Size(42, 25);
-            label41.TabIndex = 1;
-            label41.Text = "129";
+            labelTotalCredits.AutoSize = true;
+            labelTotalCredits.BackColor = Color.Transparent;
+            labelTotalCredits.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTotalCredits.Location = new Point(233, 0);
+            labelTotalCredits.Name = "labelTotalCredits";
+            labelTotalCredits.Size = new Size(42, 25);
+            labelTotalCredits.TabIndex = 1;
+            labelTotalCredits.Text = "129";
             // 
             // label42
             // 
@@ -787,23 +787,23 @@
             // panel25
             // 
             panel25.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel25.Controls.Add(label39);
+            panel25.Controls.Add(labelGPA);
             panel25.Controls.Add(label40);
             panel25.Location = new Point(1, 63);
             panel25.Name = "panel25";
             panel25.Size = new Size(558, 32);
             panel25.TabIndex = 4;
             // 
-            // label39
+            // labelGPA
             // 
-            label39.AutoSize = true;
-            label39.BackColor = Color.Transparent;
-            label39.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label39.Location = new Point(233, 0);
-            label39.Name = "label39";
-            label39.Size = new Size(36, 25);
-            label39.TabIndex = 1;
-            label39.Text = "4.0";
+            labelGPA.AutoSize = true;
+            labelGPA.BackColor = Color.Transparent;
+            labelGPA.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelGPA.Location = new Point(233, 0);
+            labelGPA.Name = "labelGPA";
+            labelGPA.Size = new Size(36, 25);
+            labelGPA.TabIndex = 1;
+            labelGPA.Text = "4.0";
             // 
             // label40
             // 
@@ -1046,16 +1046,16 @@
         private Panel panel15;
         private Label label25;
         private Panel panel14;
-        private Label label23;
+        private Label labelYear;
         private Label label24;
         private Panel panel13;
-        private Label label21;
+        private Label labelTrainingProgram;
         private Label label22;
         private Panel panel12;
-        private Label label19;
+        private Label labelDepartment2;
         private Label label20;
         private Panel panel11;
-        private Label label17;
+        private Label labelDepartment;
         private Label label18;
         private Panel panel10;
         private Label labelClass;
@@ -1083,11 +1083,11 @@
         private Label label38;
         private Panel panel23;
         private Panel panel25;
-        private Label label39;
+        private Label labelGPA;
         private Label label40;
         private PictureBox pictureBox2;
         private Panel panel26;
-        private Label label41;
+        private Label labelTotalCredits;
         private Label label42;
     }
 }

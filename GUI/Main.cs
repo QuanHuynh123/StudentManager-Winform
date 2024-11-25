@@ -70,12 +70,6 @@ namespace GUI
                 control.Click += (sender, e) => openProgram();
             }
 
-            panel_account.Click += (sender, e) => openAccount();
-            foreach (Control control in panel_account.Controls)
-            {
-                control.Click += (sender, e) => openAccount();
-            }
-
             panel_logout.Click += (sender, e) => Logout();
             foreach (Control control in panel_logout.Controls)
             {
@@ -92,9 +86,9 @@ namespace GUI
         }
 
 
-        private void openAccount()
+        private void openProfile()
         {
-            Account accountWindow = new Account() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            Profile accountWindow = new Profile() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             loadPanel("QUẢN LÝ TÀI KHOẢN", accountWindow);
         }
 
@@ -204,6 +198,11 @@ namespace GUI
             {
                 label_name.Text = "User";
             }
+        }
+
+        private void pictureBox_avatar_Click(object sender, EventArgs e)
+        {
+            openProfile();
         }
     }
     public class GradientPanel : Panel

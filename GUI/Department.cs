@@ -222,5 +222,10 @@ namespace GUI
         {
 
         }
+
+        private void label_panelTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -89,5 +89,21 @@ namespace BLL
                 return new List<DepartmentDTO>();
             }
         }
+
+        public DepartmentDTO findByIdDepartment(int departmentID)
+        {
+            try
+            {
+                if (departmentID <= 0)
+                    return null;
+
+                return departmentDAL.findByIdDepartment(departmentID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi tìm Department theo ID: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

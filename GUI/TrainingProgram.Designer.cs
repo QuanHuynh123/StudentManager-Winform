@@ -52,11 +52,13 @@
             panel3 = new Panel();
             label3 = new Label();
             textBox_duration = new TextBox();
+            button_add = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel_search = new Panel();
             button_search = new Button();
             textBoxSearch = new TextBox();
-            listView1 = new ListView();
+            listViewTrainingProgram = new ListView();
+            columnHeader8 = new ColumnHeader();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
@@ -109,6 +111,7 @@
             tableLayoutPanel2.Controls.Add(panel1, 0, 1);
             tableLayoutPanel2.Controls.Add(panel4, 0, 4);
             tableLayoutPanel2.Controls.Add(panel3, 0, 3);
+            tableLayoutPanel2.Controls.Add(button_add, 0, 8);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -175,6 +178,7 @@
             comboBox_department.Name = "comboBox_department";
             comboBox_department.Size = new Size(241, 28);
             comboBox_department.TabIndex = 2;
+            comboBox_department.SelectedIndexChanged += comboBox_department_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -206,6 +210,7 @@
             comboBox_degree.Name = "comboBox_degree";
             comboBox_degree.Size = new Size(241, 28);
             comboBox_degree.TabIndex = 2;
+            comboBox_degree.SelectedIndexChanged += comboBox_degree_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -230,7 +235,6 @@
             label1.TabIndex = 1;
             label1.Text = "THÔNG TIN KHOÁ";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
             // 
             // panel5
             // 
@@ -285,7 +289,6 @@
             label_programName.TabIndex = 1;
             label_programName.Text = "Name";
             label_programName.TextAlign = ContentAlignment.MiddleLeft;
-            label_programName.Click += label2_Click;
             // 
             // textBox_programName
             // 
@@ -357,14 +360,27 @@
             textBox_duration.Name = "textBox_duration";
             textBox_duration.Size = new Size(241, 27);
             textBox_duration.TabIndex = 0;
-            textBox_duration.TextChanged += textBox1_TextChanged;
+            // 
+            // button_add
+            // 
+            button_add.BackColor = Color.FromArgb(0, 192, 0);
+            button_add.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button_add.ForeColor = SystemColors.ControlLightLight;
+            button_add.Location = new Point(3, 590);
+            button_add.Margin = new Padding(3, 20, 3, 3);
+            button_add.Name = "button_add";
+            button_add.Size = new Size(348, 40);
+            button_add.TabIndex = 6;
+            button_add.Text = "Thêm";
+            button_add.UseVisualStyleBackColor = false;
+            button_add.Click += button_add_Click;
             // 
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(panel_search, 0, 0);
-            tableLayoutPanel3.Controls.Add(listView1, 0, 1);
+            tableLayoutPanel3.Controls.Add(listViewTrainingProgram, 0, 1);
             tableLayoutPanel3.Controls.Add(panel_control, 0, 2);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(363, 3);
@@ -400,6 +416,7 @@
             button_search.TabIndex = 7;
             button_search.Text = "Tìm kiếm";
             button_search.UseVisualStyleBackColor = false;
+            button_search.Click += button_search_Click;
             // 
             // textBoxSearch
             // 
@@ -414,25 +431,28 @@
             textBoxSearch.Size = new Size(535, 38);
             textBoxSearch.TabIndex = 4;
             // 
-            // listView1
+            // listViewTrainingProgram
             // 
-            listView1.BackColor = Color.WhiteSmoke;
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
-            listView1.Dock = DockStyle.Fill;
-            listView1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            listView1.GridLines = true;
-            listView1.Location = new Point(3, 83);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(694, 554);
-            listView1.TabIndex = 1;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            listViewTrainingProgram.BackColor = Color.WhiteSmoke;
+            listViewTrainingProgram.Columns.AddRange(new ColumnHeader[] { columnHeader8, columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
+            listViewTrainingProgram.Dock = DockStyle.Fill;
+            listViewTrainingProgram.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            listViewTrainingProgram.GridLines = true;
+            listViewTrainingProgram.Location = new Point(3, 83);
+            listViewTrainingProgram.Name = "listViewTrainingProgram";
+            listViewTrainingProgram.Size = new Size(694, 554);
+            listViewTrainingProgram.TabIndex = 1;
+            listViewTrainingProgram.UseCompatibleStateImageBehavior = false;
+            listViewTrainingProgram.View = View.Details;
+            // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "ID";
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "Tên khoá";
-            columnHeader1.Width = 100;
+            columnHeader1.Text = "Tên chương trình đào tạo";
+            columnHeader1.Width = 200;
             // 
             // columnHeader2
             // 
@@ -486,6 +506,7 @@
             button_delete.TabIndex = 9;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
+            button_delete.Click += button_delete_Click;
             // 
             // button_update
             // 
@@ -499,6 +520,7 @@
             button_update.TabIndex = 7;
             button_update.Text = "Sửa";
             button_update.UseVisualStyleBackColor = false;
+            button_update.Click += button_update_Click;
             // 
             // TrainingProgram
             // 
@@ -565,7 +587,7 @@
         private Panel panel_search;
         private TextBox textBoxSearch;
         private Button button_search;
-        private ListView listView1;
+        private ListView listViewTrainingProgram;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
@@ -576,5 +598,7 @@
         private Panel panel_control;
         private Button button_update;
         private Button button_delete;
+        private Button button_add;
+        private ColumnHeader columnHeader8;
     }
 }
