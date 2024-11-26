@@ -27,7 +27,6 @@ namespace GUI
         private void InitPage()
         {
             listView_class.FullRowSelect = true;
-            listView_class.CheckBoxes = true;
 
             button_search.Click += (sender, e) => search_action(sender, e);
 
@@ -333,5 +332,6 @@ namespace GUI
 
             Common.ExportExcel<ClassForExport>(data, fileName);
         }
+
     }
 }

@@ -29,38 +29,38 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Transcript));
-            panel2 = new Panel();
+            panelContent = new Panel();
             tableLayoutPanelTranscript = new TableLayoutPanel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            panel1 = new Panel();
-            panel2.SuspendLayout();
+            panelHeader = new Panel();
+            panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
+            panelHeader.SuspendLayout();
             SuspendLayout();
             // 
-            // panel2
+            // panelContent
             // 
-            panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(tableLayoutPanelTranscript);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 93);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1280, 707);
-            panel2.TabIndex = 4;
+            panelContent.AutoScroll = true;
+            panelContent.BackColor = SystemColors.ControlLightLight;
+            panelContent.Controls.Add(tableLayoutPanelTranscript);
+            panelContent.Dock = DockStyle.Bottom;
+            panelContent.Location = new Point(0, 99);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(1280, 701);
+            panelContent.TabIndex = 4;
             // 
             // tableLayoutPanelTranscript
             // 
             tableLayoutPanelTranscript.ColumnCount = 1;
-            tableLayoutPanelTranscript.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelTranscript.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanelTranscript.Dock = DockStyle.Fill;
             tableLayoutPanelTranscript.Location = new Point(0, 0);
             tableLayoutPanelTranscript.Name = "tableLayoutPanelTranscript";
-            tableLayoutPanelTranscript.RowCount = 1;
-            tableLayoutPanelTranscript.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelTranscript.Size = new Size(1280, 707);
+            tableLayoutPanelTranscript.Size = new Size(1280, 701);
             tableLayoutPanelTranscript.TabIndex = 0;
+            tableLayoutPanelTranscript.AutoScroll = true;
             // 
             // pictureBox1
             // 
@@ -82,38 +82,38 @@
             label1.TabIndex = 1;
             label1.Text = "Xem điểm";
             // 
-            // panel1
+            // panelHeader
             // 
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(2, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(400, 59);
-            panel1.TabIndex = 3;
+            panelHeader.Controls.Add(pictureBox1);
+            panelHeader.Controls.Add(label1);
+            panelHeader.Location = new Point(2, 2);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(400, 59);
+            panelHeader.TabIndex = 3;
             // 
             // Transcript
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1280, 800);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(panelContent);
+            Controls.Add(panelHeader);
             Name = "Transcript";
             Text = "Transcript";
-            panel2.ResumeLayout(false);
+            panelContent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel2;
+        private Panel panelContent;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private PictureBox pictureBox1;
         private Label label1;
-        private Panel panel1;
+        private Panel panelHeader;
         private TableLayoutPanel tableLayoutPanelTranscript;
     }
 }

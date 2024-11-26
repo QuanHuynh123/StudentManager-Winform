@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class Dashboard : Form
+    public partial class Subject : Form
     {
-        public Dashboard()
+        public Subject()
         {
             InitializeComponent();
-        }
-        private void pictureBox_studentlist2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            new Student().Show();
         }
     }
 }

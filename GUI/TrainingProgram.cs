@@ -1,14 +1,6 @@
 ﻿using BLL;
 using DTO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace GUI
 {
@@ -243,10 +235,39 @@ namespace GUI
             }
         }
 
+        private void listViewTrainingProgram_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có hàng nào được chọn không
+            if (listViewTrainingProgram.SelectedItems.Count > 0)
+            {
+                // Lấy dòng đã chọn
+                ListViewItem selectedItem = listViewTrainingProgram.SelectedItems[0];
 
+                // Gán giá trị từ các SubItems vào các trường input
+                textBox_programName.Text = selectedItem.SubItems[1].Text; // Tên chương trình
+                comboBox_department.Text = selectedItem.SubItems[2].Text; // Tên khoa
+                textBox_duration.Text = selectedItem.SubItems[3].Text; // Thời gian đào tạo
+                textBox_startYear.Text = selectedItem.SubItems[4].Text; // Năm bắt đầu
+                textBox_endYear.Text = selectedItem.SubItems[5].Text; // Năm kết thúc
+                comboBox_degree.Text = selectedItem.SubItems[6].Text; // Bằng cấp
+                textBox_credit.Text = selectedItem.SubItems[7].Text; // Số tín chỉ
 
+                // Lấy `DepartmentID` từ tên khoa nếu cần để thực hiện cập nhật
+                string departmentName = selectedItem.SubItems[2].Text;
+                var department = departmentBLL.GetAllDepartments()
+                                              .FirstOrDefault(d => d.DepartmentName == departmentName);
+                if (department != null)
+                {
+                    selectedDepartmentID = department.DepartmentID;
+                }
+                else
+                {
+                    selectedDepartmentID = 0; // Giá trị mặc định nếu không tìm thấy
+                }
 
-
-
+                // Lấy `Degree` nếu cần để lưu hoặc chỉnh sửa
+                selectedDegree = selectedItem.SubItems[6].Text;
+            }
+        }
     }
 }

@@ -20,14 +20,14 @@ namespace GUI
         StudentDTO student; 
         //private TrainingProgramBLL trainingProgramBLL;
         private int studentID; 
-        public StudentDetail(int studentiD)
+        public StudentDetail(int studentID)
         {
             InitializeComponent();
             studentBLL = new StudentBLL();
             departmentBLL = new DepartmentBLL();
-            student = studentBLL.getStudentInfo(studentID);
             trainingProgramBLL = new TrainingProgramBLL();
-            this.studentID = studentiD;
+            this.studentID = studentID;
+            student = studentBLL.getStudentInfo(studentID);
             loadInfoStudent();
             loadAllFunction();
         }
@@ -69,12 +69,12 @@ namespace GUI
 
         private void openTranscript()
         {
-            //new Transcript().Show();
+            new Transcript(studentID, student.TotalCreditsEarned , student.Gpa).Show();
         }
 
         private void openTimetable()
         {
-            new Timetable().Show();
+            new Timetable(studentID).Show();
         }
     }
 }
