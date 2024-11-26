@@ -21,7 +21,14 @@ namespace BLL
         {
             try
             {
-                return subjectDAL.Search(request);
+                int roleID = SessionLogin.LoggedInTeacher.RoleID;
+                if (roleID == Constants.Principal)
+                {
+                    return subjectDAL.Search(request);
+
+                }
+
+                return subjectDAL.Search(request, SessionLogin.LoggedInTeacher.DepartmentID);
             }
             catch (Exception ex)
             {

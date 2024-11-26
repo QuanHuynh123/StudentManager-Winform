@@ -9,11 +9,12 @@ namespace DAL
 {
     public class SubjectDAL : SqlConnectionData
     {
-        public SearchResponse<SubjectDTO> Search(SearchRequest request)
+        public SearchResponse<SubjectDTO> Search(SearchRequest request, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
-            string query = @"Select * from subject 
-                    where SubjectName like @SubjectName";
+            string query = $@"Select * from subject 
+                    where SubjectName like @SubjectName
+                        {(departmentID != 0 ? $" and subject.DepartmentID = {departmentID}" : "")}";
 
             using (var connection = Connection())
             {

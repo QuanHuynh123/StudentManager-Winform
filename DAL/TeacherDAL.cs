@@ -59,14 +59,19 @@ namespace DAL
             }
         }
 
-        public SearchResponse<TeacherDTO> Search(SearchRequest request)
+        public SearchResponse<TeacherDTO> Search(SearchRequest request, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
-            string query = @"Select * from teacher 
+            string query = $@"Select * from teacher 
                                 left join role on teacher.RoleID = role.RoleID 
-                            where FullName like @FullName order by TeacherID offset @Offset rows fetch next @Limit rows only";
+                            where FullName like @FullName 
+                                {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")} 
+                            order by TeacherID offset @Offset rows fetch next @Limit rows only";
 
-            string queryNumberOfRecord = @"Select count(*) from teacher where FullName like @FullName";
+            string queryNumberOfRecord = $@"Select count(*) from teacher
+                                                left join role on teacher.RoleID = role.RoleID
+                                                {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")} 
+                                           where FullName like @FullName";
 
             using (var connection = Connection())
             {
@@ -109,7 +114,7 @@ namespace DAL
             }
         }
 
-        public bool CreateTeacher(TeacherDTO teacherDTO)
+        public bool Create(TeacherDTO teacherDTO)
         {
             string query = @"Insert into teacher (FullName, Gender, Email, PhoneNumber, Status, DepartmentID, Username, Password, RoleID) 
                             Values (@FullName, @Gender, @Email, @PhoneNumber, @Status, @DepartmentID, @Username, @Password, @RoleID)";
@@ -125,6 +130,7 @@ namespace DAL
                 return true;
             }
         }
+
         public bool Delete(int teacherID)
         {
             using (var connection = Connection())
@@ -167,6 +173,60 @@ namespace DAL
                 }
 
                 return true;
+            }
+        }
+
+        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID)
+        {
+            string query = @"Select * from teacher
+                                left join department on teacher.DepartmentID = department.DepartmentID
+                                left join role on teacher.RoleID = role.RoleID 
+                            where teacher.DepartmentID = @DepartmentID order by teacher.TeacherID offset @Offset rows fetch next @Limit rows only";
+
+            string queryNumberOfRecord = @"Select count(*) from teacher
+                                              left join department on teacher.DepartmentID = department.DepartmentID
+                                              left join role on teacher.RoleID = role.RoleID 
+                                           where teacher.DepartmentID = @DepartmentID";
+
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                List<TeacherDTO> foundTeachers = connection.Query<TeacherDTO, DepartmentDTO, RoleDTO, TeacherDTO>(
+                    query, (t, d, r) => {
+                        t.Department = d;
+                        t.Role = r;
+                        return t;
+                    }, new
+                    {
+                        DepartmentID = departmentID,
+                        Offset = request.PageSize * request.PageIndex,
+                        Limit = request.PageSize
+                    }, splitOn: "TeacherID,DepartmentID,RoleID"
+                ).ToList();
+
+                int numberOfRecord = connection.QueryFirst<int>(
+                   queryNumberOfRecord,
+                   new
+                   {
+                       DepartmentID = departmentID
+                   }
+               );
+
+                if (foundTeachers.Count > 0)
+                {
+                    return new SearchResponse<TeacherDTO>
+                    {
+                        Data = foundTeachers,
+                        TotalRecord = numberOfRecord
+                    };
+                }
+
+                return new SearchResponse<TeacherDTO>
+                {
+                    Data = foundTeachers,
+                    TotalRecord = numberOfRecord
+                };
             }
         }
 

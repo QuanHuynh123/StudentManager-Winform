@@ -64,6 +64,12 @@ namespace GUI
                 control.Click += (sender, e) => openClassList();
             }
 
+            panel_account.Click += (sender, e) => openAccount();
+            foreach (Control control in panel_account.Controls)
+            {
+                control.Click += (sender, e) => openAccount();
+            }
+
             panel_program.Click += (sender, e) => openProgram();
             foreach (Control control in panel_program.Controls)
             {
@@ -90,7 +96,6 @@ namespace GUI
             userPanel.Controls.Add(iForm);
             iForm.Show();
         }
-
 
         private void openProfile()
         {
@@ -136,6 +141,12 @@ namespace GUI
         {
             Class classWindow = new Class() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             loadPanel("QUẢN LÝ LỚP", classWindow);
+        }
+
+        private void openAccount()
+        {
+            Account accountWindow = new Account() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ LỚP", accountWindow);
         }
 
         private void ApplyHoverEffect()

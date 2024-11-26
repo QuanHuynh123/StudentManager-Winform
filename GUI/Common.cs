@@ -5,7 +5,7 @@ namespace GUI
 {
     public static class Common
     {
-        public static void LoadFeatureForUser(Dictionary<string, Button> controls, string featureNmme)
+        public static void LoadFeatureForUser(Dictionary<string, Button> controls, string featureName)
         {
             if (SessionLogin.IsLoggedIn)
             {
@@ -15,14 +15,13 @@ namespace GUI
                 }
 
                 var myFeatures = SessionLogin.LoggedInTeacher.Role.RoleActivities.GroupBy(ra => ra.Feature).ToList().Where(x => x.Key != null);
-                var feature = myFeatures.FirstOrDefault(mf => mf.Key.Equals(featureNmme, StringComparison.OrdinalIgnoreCase));
+                var feature = myFeatures.FirstOrDefault(mf => mf.Key.Equals(featureName, StringComparison.OrdinalIgnoreCase));
 
                 var unavailable = controls.ExceptBy(feature?.Select(f => f.ActivityName.ToLower()) ?? [], p => p.Key.ToLower());
 
                 foreach (var control in unavailable)
                 {
-                    control.Value.Visible = false;
-                    control.Value.Visible = false;
+                    control.Value.Enabled = false;
                 }
             }
         }

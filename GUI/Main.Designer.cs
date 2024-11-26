@@ -125,12 +125,13 @@ namespace GUI
             tableLayoutPanel.Controls.Add(mainPanel, 1, 1);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(0, 0);
+            tableLayoutPanel.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = 2;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 13.8335285F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 86.16647F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel.Size = new Size(1381, 923);
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel.Size = new Size(1208, 692);
             tableLayoutPanel.TabIndex = 0;
             // 
             // leftPanel
@@ -139,12 +140,13 @@ namespace GUI
             leftPanel.Controls.Add(flowLayoutPanelMenu);
             leftPanel.Controls.Add(panel1);
             leftPanel.Dock = DockStyle.Fill;
-            leftPanel.Location = new Point(3, 3);
-            leftPanel.MaximumSize = new Size(400, 1980);
-            leftPanel.MinimumSize = new Size(270, 847);
+            leftPanel.Location = new Point(3, 2);
+            leftPanel.Margin = new Padding(3, 2, 3, 2);
+            leftPanel.MaximumSize = new Size(350, 1485);
+            leftPanel.MinimumSize = new Size(236, 635);
             leftPanel.Name = "leftPanel";
             tableLayoutPanel.SetRowSpan(leftPanel, 2);
-            leftPanel.Size = new Size(270, 917);
+            leftPanel.Size = new Size(236, 688);
             leftPanel.TabIndex = 0;
             // 
             // flowLayoutPanelMenu
@@ -161,18 +163,20 @@ namespace GUI
             flowLayoutPanelMenu.Controls.Add(panel_settings);
             flowLayoutPanelMenu.Controls.Add(panel_logout);
             flowLayoutPanelMenu.Dock = DockStyle.Bottom;
-            flowLayoutPanelMenu.Location = new Point(0, 210);
+            flowLayoutPanelMenu.Location = new Point(0, 158);
+            flowLayoutPanelMenu.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanelMenu.Name = "flowLayoutPanelMenu";
-            flowLayoutPanelMenu.Size = new Size(270, 707);
+            flowLayoutPanelMenu.Size = new Size(236, 530);
             flowLayoutPanelMenu.TabIndex = 22;
             // 
             // panelSpace
             // 
             panelSpace.BackColor = Color.White;
             panelSpace.Dock = DockStyle.Top;
-            panelSpace.Location = new Point(3, 3);
+            panelSpace.Location = new Point(3, 2);
+            panelSpace.Margin = new Padding(3, 2, 3, 2);
             panelSpace.Name = "panelSpace";
-            panelSpace.Size = new Size(270, 5);
+            panelSpace.Size = new Size(236, 4);
             panelSpace.TabIndex = 0;
             // 
             // panel_student
@@ -180,19 +184,19 @@ namespace GUI
             panel_student.Controls.Add(pictureBox_studentlist);
             panel_student.Controls.Add(label_studentlist);
             panel_student.Dock = DockStyle.Top;
-            panel_student.Location = new Point(0, 18);
-            panel_student.Margin = new Padding(0, 7, 0, 7);
+            panel_student.Location = new Point(0, 13);
+            panel_student.Margin = new Padding(0, 5, 0, 5);
             panel_student.Name = "panel_student";
-            panel_student.Size = new Size(270, 60);
+            panel_student.Size = new Size(236, 45);
             panel_student.TabIndex = 20;
             // 
             // pictureBox_studentlist
             // 
             pictureBox_studentlist.Image = (Image)resources.GetObject("pictureBox_studentlist.Image");
-            pictureBox_studentlist.Location = new Point(5, 0);
+            pictureBox_studentlist.Location = new Point(4, 0);
             pictureBox_studentlist.Margin = new Padding(3, 2, 3, 2);
             pictureBox_studentlist.Name = "pictureBox_studentlist";
-            pictureBox_studentlist.Size = new Size(60, 60);
+            pictureBox_studentlist.Size = new Size(52, 45);
             pictureBox_studentlist.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_studentlist.TabIndex = 5;
             pictureBox_studentlist.TabStop = false;
@@ -202,9 +206,9 @@ namespace GUI
             label_studentlist.AutoSize = true;
             label_studentlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_studentlist.ForeColor = Color.White;
-            label_studentlist.Location = new Point(77, 11);
+            label_studentlist.Location = new Point(67, 8);
             label_studentlist.Name = "label_studentlist";
-            label_studentlist.Size = new Size(121, 28);
+            label_studentlist.Size = new Size(97, 21);
             label_studentlist.TabIndex = 4;
             label_studentlist.Text = "Student List";
             // 
@@ -213,20 +217,20 @@ namespace GUI
             panel_timetable.Controls.Add(pictureBox_timetable);
             panel_timetable.Controls.Add(label_timetable);
             panel_timetable.Dock = DockStyle.Top;
-            panel_timetable.Location = new Point(0, 92);
-            panel_timetable.Margin = new Padding(0, 7, 0, 7);
+            panel_timetable.Location = new Point(0, 68);
+            panel_timetable.Margin = new Padding(0, 5, 0, 5);
             panel_timetable.Name = "panel_timetable";
-            panel_timetable.Size = new Size(270, 60);
+            panel_timetable.Size = new Size(236, 45);
             panel_timetable.TabIndex = 21;
             // 
             // pictureBox_timetable
             // 
             pictureBox_timetable.Image = (Image)resources.GetObject("pictureBox_timetable.Image");
             pictureBox_timetable.InitialImage = (Image)resources.GetObject("pictureBox_timetable.InitialImage");
-            pictureBox_timetable.Location = new Point(5, 0);
+            pictureBox_timetable.Location = new Point(4, 0);
             pictureBox_timetable.Margin = new Padding(3, 2, 3, 2);
             pictureBox_timetable.Name = "pictureBox_timetable";
-            pictureBox_timetable.Size = new Size(60, 60);
+            pictureBox_timetable.Size = new Size(52, 45);
             pictureBox_timetable.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_timetable.TabIndex = 5;
             pictureBox_timetable.TabStop = false;
@@ -236,9 +240,9 @@ namespace GUI
             label_timetable.AutoSize = true;
             label_timetable.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_timetable.ForeColor = Color.White;
-            label_timetable.Location = new Point(77, 13);
+            label_timetable.Location = new Point(67, 10);
             label_timetable.Name = "label_timetable";
-            label_timetable.Size = new Size(104, 28);
+            label_timetable.Size = new Size(84, 21);
             label_timetable.TabIndex = 6;
             label_timetable.Text = "TimeTable";
             // 
@@ -247,10 +251,10 @@ namespace GUI
             panel_classlist.Controls.Add(pictureBox_classlist);
             panel_classlist.Controls.Add(label_classlist);
             panel_classlist.Dock = DockStyle.Top;
-            panel_classlist.Location = new Point(0, 166);
-            panel_classlist.Margin = new Padding(0, 7, 0, 7);
+            panel_classlist.Location = new Point(0, 123);
+            panel_classlist.Margin = new Padding(0, 5, 0, 5);
             panel_classlist.Name = "panel_classlist";
-            panel_classlist.Size = new Size(270, 60);
+            panel_classlist.Size = new Size(236, 45);
             panel_classlist.TabIndex = 22;
             // 
             // pictureBox_classlist
@@ -259,7 +263,7 @@ namespace GUI
             pictureBox_classlist.Location = new Point(-2, 2);
             pictureBox_classlist.Margin = new Padding(3, 2, 3, 2);
             pictureBox_classlist.Name = "pictureBox_classlist";
-            pictureBox_classlist.Size = new Size(60, 60);
+            pictureBox_classlist.Size = new Size(52, 45);
             pictureBox_classlist.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_classlist.TabIndex = 7;
             pictureBox_classlist.TabStop = false;
@@ -269,9 +273,9 @@ namespace GUI
             label_classlist.AutoSize = true;
             label_classlist.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_classlist.ForeColor = Color.White;
-            label_classlist.Location = new Point(77, 17);
+            label_classlist.Location = new Point(67, 13);
             label_classlist.Name = "label_classlist";
-            label_classlist.Size = new Size(94, 28);
+            label_classlist.Size = new Size(75, 21);
             label_classlist.TabIndex = 8;
             label_classlist.Text = "Class List";
             // 
@@ -280,19 +284,19 @@ namespace GUI
             panel_subject.Controls.Add(pictureBox_subject);
             panel_subject.Controls.Add(label_subject);
             panel_subject.Dock = DockStyle.Top;
-            panel_subject.Location = new Point(0, 240);
-            panel_subject.Margin = new Padding(0, 7, 0, 7);
+            panel_subject.Location = new Point(0, 178);
+            panel_subject.Margin = new Padding(0, 5, 0, 5);
             panel_subject.Name = "panel_subject";
-            panel_subject.Size = new Size(269, 60);
+            panel_subject.Size = new Size(235, 45);
             panel_subject.TabIndex = 23;
             // 
             // pictureBox_subject
             // 
             pictureBox_subject.Image = (Image)resources.GetObject("pictureBox_subject.Image");
-            pictureBox_subject.Location = new Point(5, 0);
+            pictureBox_subject.Location = new Point(4, 0);
             pictureBox_subject.Margin = new Padding(3, 2, 3, 2);
             pictureBox_subject.Name = "pictureBox_subject";
-            pictureBox_subject.Size = new Size(60, 60);
+            pictureBox_subject.Size = new Size(52, 45);
             pictureBox_subject.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_subject.TabIndex = 9;
             pictureBox_subject.TabStop = false;
@@ -302,9 +306,9 @@ namespace GUI
             label_subject.AutoSize = true;
             label_subject.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_subject.ForeColor = Color.White;
-            label_subject.Location = new Point(77, 13);
+            label_subject.Location = new Point(67, 10);
             label_subject.Name = "label_subject";
-            label_subject.Size = new Size(79, 28);
+            label_subject.Size = new Size(65, 21);
             label_subject.TabIndex = 10;
             label_subject.Text = "Subject";
             // 
@@ -313,19 +317,19 @@ namespace GUI
             panel_department.Controls.Add(pictureBox_department);
             panel_department.Controls.Add(label_department);
             panel_department.Dock = DockStyle.Top;
-            panel_department.Location = new Point(0, 314);
-            panel_department.Margin = new Padding(0, 7, 0, 7);
+            panel_department.Location = new Point(0, 233);
+            panel_department.Margin = new Padding(0, 5, 0, 5);
             panel_department.Name = "panel_department";
-            panel_department.Size = new Size(270, 60);
+            panel_department.Size = new Size(236, 45);
             panel_department.TabIndex = 25;
             // 
             // pictureBox_department
             // 
             pictureBox_department.Image = (Image)resources.GetObject("pictureBox_department.Image");
-            pictureBox_department.Location = new Point(5, -1);
+            pictureBox_department.Location = new Point(4, -1);
             pictureBox_department.Margin = new Padding(3, 2, 3, 2);
             pictureBox_department.Name = "pictureBox_department";
-            pictureBox_department.Size = new Size(60, 60);
+            pictureBox_department.Size = new Size(52, 45);
             pictureBox_department.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_department.TabIndex = 13;
             pictureBox_department.TabStop = false;
@@ -335,9 +339,9 @@ namespace GUI
             label_department.AutoSize = true;
             label_department.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_department.ForeColor = Color.White;
-            label_department.Location = new Point(77, 12);
+            label_department.Location = new Point(67, 9);
             label_department.Name = "label_department";
-            label_department.Size = new Size(121, 28);
+            label_department.Size = new Size(98, 21);
             label_department.TabIndex = 14;
             label_department.Text = "Department";
             // 
@@ -346,19 +350,19 @@ namespace GUI
             panel_program.Controls.Add(pictureBox_program);
             panel_program.Controls.Add(label_program);
             panel_program.Dock = DockStyle.Top;
-            panel_program.Location = new Point(0, 388);
-            panel_program.Margin = new Padding(0, 7, 0, 7);
+            panel_program.Location = new Point(0, 288);
+            panel_program.Margin = new Padding(0, 5, 0, 5);
             panel_program.Name = "panel_program";
-            panel_program.Size = new Size(270, 60);
+            panel_program.Size = new Size(236, 45);
             panel_program.TabIndex = 24;
             // 
             // pictureBox_program
             // 
             pictureBox_program.Image = (Image)resources.GetObject("pictureBox_program.Image");
-            pictureBox_program.Location = new Point(6, 7);
+            pictureBox_program.Location = new Point(5, 5);
             pictureBox_program.Margin = new Padding(3, 2, 3, 2);
             pictureBox_program.Name = "pictureBox_program";
-            pictureBox_program.Size = new Size(60, 60);
+            pictureBox_program.Size = new Size(52, 45);
             pictureBox_program.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_program.TabIndex = 11;
             pictureBox_program.TabStop = false;
@@ -368,9 +372,9 @@ namespace GUI
             label_program.AutoSize = true;
             label_program.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_program.ForeColor = Color.White;
-            label_program.Location = new Point(77, 17);
+            label_program.Location = new Point(67, 13);
             label_program.Name = "label_program";
-            label_program.Size = new Size(162, 28);
+            label_program.Size = new Size(130, 21);
             label_program.TabIndex = 12;
             label_program.Text = "TrainingProgram";
             // 
@@ -379,19 +383,19 @@ namespace GUI
             panel_account.Controls.Add(pictureBox_account);
             panel_account.Controls.Add(label_account);
             panel_account.Dock = DockStyle.Top;
-            panel_account.Location = new Point(0, 462);
-            panel_account.Margin = new Padding(0, 7, 0, 7);
+            panel_account.Location = new Point(0, 343);
+            panel_account.Margin = new Padding(0, 5, 0, 5);
             panel_account.Name = "panel_account";
-            panel_account.Size = new Size(269, 60);
+            panel_account.Size = new Size(235, 45);
             panel_account.TabIndex = 26;
             // 
             // pictureBox_account
             // 
             pictureBox_account.Image = (Image)resources.GetObject("pictureBox_account.Image");
-            pictureBox_account.Location = new Point(2, 7);
+            pictureBox_account.Location = new Point(2, 5);
             pictureBox_account.Margin = new Padding(3, 2, 3, 2);
             pictureBox_account.Name = "pictureBox_account";
-            pictureBox_account.Size = new Size(60, 60);
+            pictureBox_account.Size = new Size(52, 45);
             pictureBox_account.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_account.TabIndex = 15;
             pictureBox_account.TabStop = false;
@@ -401,9 +405,9 @@ namespace GUI
             label_account.AutoSize = true;
             label_account.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_account.ForeColor = Color.White;
-            label_account.Location = new Point(77, 17);
+            label_account.Location = new Point(67, 13);
             label_account.Name = "label_account";
-            label_account.Size = new Size(86, 28);
+            label_account.Size = new Size(71, 21);
             label_account.TabIndex = 16;
             label_account.Text = "Account";
             // 
@@ -412,19 +416,19 @@ namespace GUI
             panel_settings.Controls.Add(pictureBox_settings);
             panel_settings.Controls.Add(label_settings);
             panel_settings.Dock = DockStyle.Top;
-            panel_settings.Location = new Point(0, 536);
-            panel_settings.Margin = new Padding(0, 7, 0, 7);
+            panel_settings.Location = new Point(0, 398);
+            panel_settings.Margin = new Padding(0, 5, 0, 5);
             panel_settings.Name = "panel_settings";
-            panel_settings.Size = new Size(269, 60);
+            panel_settings.Size = new Size(235, 45);
             panel_settings.TabIndex = 27;
             // 
             // pictureBox_settings
             // 
             pictureBox_settings.Image = (Image)resources.GetObject("pictureBox_settings.Image");
-            pictureBox_settings.Location = new Point(5, 0);
+            pictureBox_settings.Location = new Point(4, 0);
             pictureBox_settings.Margin = new Padding(3, 2, 3, 2);
             pictureBox_settings.Name = "pictureBox_settings";
-            pictureBox_settings.Size = new Size(60, 60);
+            pictureBox_settings.Size = new Size(52, 45);
             pictureBox_settings.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_settings.TabIndex = 17;
             pictureBox_settings.TabStop = false;
@@ -434,9 +438,9 @@ namespace GUI
             label_settings.AutoSize = true;
             label_settings.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_settings.ForeColor = Color.White;
-            label_settings.Location = new Point(77, 15);
+            label_settings.Location = new Point(67, 11);
             label_settings.Name = "label_settings";
-            label_settings.Size = new Size(86, 28);
+            label_settings.Size = new Size(70, 21);
             label_settings.TabIndex = 18;
             label_settings.Text = "Settings";
             // 
@@ -445,19 +449,19 @@ namespace GUI
             panel_logout.Controls.Add(pictureBox_logout);
             panel_logout.Controls.Add(label_logout);
             panel_logout.Dock = DockStyle.Top;
-            panel_logout.Location = new Point(0, 610);
-            panel_logout.Margin = new Padding(0, 7, 0, 7);
+            panel_logout.Location = new Point(0, 453);
+            panel_logout.Margin = new Padding(0, 5, 0, 5);
             panel_logout.Name = "panel_logout";
-            panel_logout.Size = new Size(270, 60);
+            panel_logout.Size = new Size(236, 45);
             panel_logout.TabIndex = 28;
             // 
             // pictureBox_logout
             // 
             pictureBox_logout.Image = (Image)resources.GetObject("pictureBox_logout.Image");
-            pictureBox_logout.Location = new Point(5, 2);
+            pictureBox_logout.Location = new Point(4, 2);
             pictureBox_logout.Margin = new Padding(3, 2, 3, 2);
             pictureBox_logout.Name = "pictureBox_logout";
-            pictureBox_logout.Size = new Size(60, 60);
+            pictureBox_logout.Size = new Size(52, 45);
             pictureBox_logout.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_logout.TabIndex = 19;
             pictureBox_logout.TabStop = false;
@@ -467,9 +471,9 @@ namespace GUI
             label_logout.AutoSize = true;
             label_logout.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_logout.ForeColor = SystemColors.Window;
-            label_logout.Location = new Point(77, 14);
+            label_logout.Location = new Point(67, 10);
             label_logout.Name = "label_logout";
-            label_logout.Size = new Size(77, 28);
+            label_logout.Size = new Size(63, 21);
             label_logout.TabIndex = 20;
             label_logout.Text = "Logout";
             // 
@@ -481,10 +485,10 @@ namespace GUI
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.MaximumSize = new Size(350, 1486);
+            panel1.MaximumSize = new Size(306, 1114);
             panel1.Name = "panel1";
-            panel1.Padding = new Padding(0, 0, 0, 8);
-            panel1.Size = new Size(270, 205);
+            panel1.Padding = new Padding(0, 0, 0, 6);
+            panel1.Size = new Size(236, 154);
             panel1.TabIndex = 0;
             // 
             // panel_home
@@ -492,19 +496,19 @@ namespace GUI
             panel_home.Controls.Add(pictureBox_home);
             panel_home.Controls.Add(label_home);
             panel_home.Dock = DockStyle.Bottom;
-            panel_home.Location = new Point(0, 138);
+            panel_home.Location = new Point(0, 104);
             panel_home.Margin = new Padding(3, 2, 3, 2);
             panel_home.Name = "panel_home";
-            panel_home.Size = new Size(270, 59);
+            panel_home.Size = new Size(236, 44);
             panel_home.TabIndex = 21;
             // 
             // pictureBox_home
             // 
             pictureBox_home.Image = (Image)resources.GetObject("pictureBox_home.Image");
-            pictureBox_home.Location = new Point(7, 0);
+            pictureBox_home.Location = new Point(6, 0);
             pictureBox_home.Margin = new Padding(3, 2, 3, 2);
             pictureBox_home.Name = "pictureBox_home";
-            pictureBox_home.Size = new Size(60, 59);
+            pictureBox_home.Size = new Size(52, 44);
             pictureBox_home.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_home.TabIndex = 1;
             pictureBox_home.TabStop = false;
@@ -514,9 +518,9 @@ namespace GUI
             label_home.AutoSize = true;
             label_home.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             label_home.ForeColor = Color.White;
-            label_home.Location = new Point(76, 16);
+            label_home.Location = new Point(66, 12);
             label_home.Name = "label_home";
-            label_home.Size = new Size(68, 25);
+            label_home.Size = new Size(56, 20);
             label_home.TabIndex = 3;
             label_home.Text = "Home";
             // 
@@ -528,8 +532,8 @@ namespace GUI
             panel_apptitle.Location = new Point(0, 0);
             panel_apptitle.Margin = new Padding(3, 2, 3, 2);
             panel_apptitle.Name = "panel_apptitle";
-            panel_apptitle.Padding = new Padding(11, 4, 0, 0);
-            panel_apptitle.Size = new Size(270, 77);
+            panel_apptitle.Padding = new Padding(10, 3, 0, 0);
+            panel_apptitle.Size = new Size(236, 58);
             panel_apptitle.TabIndex = 21;
             // 
             // label1
@@ -537,10 +541,10 @@ namespace GUI
             label1.AutoSize = true;
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Microsoft Himalaya", 22F, FontStyle.Bold);
-            label1.Location = new Point(76, 4);
+            label1.Location = new Point(67, 3);
             label1.Name = "label1";
-            label1.Padding = new Padding(0, 30, 0, 0);
-            label1.Size = new Size(176, 67);
+            label1.Padding = new Padding(0, 22, 0, 0);
+            label1.Size = new Size(145, 52);
             label1.TabIndex = 0;
             label1.Text = "UNIVERSITY";
             // 
@@ -548,10 +552,10 @@ namespace GUI
             // 
             pictureBox_school.Dock = DockStyle.Left;
             pictureBox_school.Image = (Image)resources.GetObject("pictureBox_school.Image");
-            pictureBox_school.Location = new Point(11, 4);
-            pictureBox_school.Margin = new Padding(18, 2, 3, 2);
+            pictureBox_school.Location = new Point(10, 3);
+            pictureBox_school.Margin = new Padding(16, 2, 3, 2);
             pictureBox_school.Name = "pictureBox_school";
-            pictureBox_school.Size = new Size(65, 73);
+            pictureBox_school.Size = new Size(57, 55);
             pictureBox_school.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_school.TabIndex = 0;
             pictureBox_school.TabStop = false;
@@ -562,19 +566,21 @@ namespace GUI
             topPanel.Controls.Add(panel_avatar);
             topPanel.Controls.Add(panel_header);
             topPanel.Dock = DockStyle.Top;
-            topPanel.Location = new Point(279, 3);
+            topPanel.Location = new Point(244, 2);
+            topPanel.Margin = new Padding(3, 2, 3, 2);
             topPanel.Name = "topPanel";
-            topPanel.Padding = new Padding(0, 0, 15, 0);
-            topPanel.Size = new Size(1099, 121);
+            topPanel.Padding = new Padding(0, 0, 13, 0);
+            topPanel.Size = new Size(961, 91);
             topPanel.TabIndex = 1;
             // 
             // panel_avatar
             // 
             panel_avatar.Controls.Add(pictureBox_avatar);
             panel_avatar.Dock = DockStyle.Right;
-            panel_avatar.Location = new Point(919, 0);
+            panel_avatar.Location = new Point(804, 0);
+            panel_avatar.Margin = new Padding(3, 2, 3, 2);
             panel_avatar.Name = "panel_avatar";
-            panel_avatar.Size = new Size(165, 121);
+            panel_avatar.Size = new Size(144, 91);
             panel_avatar.TabIndex = 22;
             // 
             // pictureBox_avatar
@@ -583,9 +589,10 @@ namespace GUI
             pictureBox_avatar.Image = (Image)resources.GetObject("pictureBox_avatar.Image");
             pictureBox_avatar.InitialImage = null;
             pictureBox_avatar.Location = new Point(0, 0);
+            pictureBox_avatar.Margin = new Padding(3, 2, 3, 2);
             pictureBox_avatar.Name = "pictureBox_avatar";
-            pictureBox_avatar.Padding = new Padding(0, 11, 0, 0);
-            pictureBox_avatar.Size = new Size(165, 121);
+            pictureBox_avatar.Padding = new Padding(0, 8, 0, 0);
+            pictureBox_avatar.Size = new Size(144, 91);
             pictureBox_avatar.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_avatar.TabIndex = 19;
             pictureBox_avatar.TabStop = false;
@@ -597,9 +604,10 @@ namespace GUI
             panel_header.Controls.Add(label_headertitle);
             panel_header.Dock = DockStyle.Left;
             panel_header.Location = new Point(0, 0);
+            panel_header.Margin = new Padding(3, 2, 3, 2);
             panel_header.Name = "panel_header";
-            panel_header.Padding = new Padding(10, 20, 0, 0);
-            panel_header.Size = new Size(783, 121);
+            panel_header.Padding = new Padding(9, 15, 0, 0);
+            panel_header.Size = new Size(685, 91);
             panel_header.TabIndex = 21;
             // 
             // panel_name
@@ -607,10 +615,11 @@ namespace GUI
             panel_name.Controls.Add(label_name);
             panel_name.Controls.Add(label_role);
             panel_name.Dock = DockStyle.Top;
-            panel_name.Location = new Point(10, 66);
-            panel_name.MaximumSize = new Size(279, 29);
+            panel_name.Location = new Point(9, 52);
+            panel_name.Margin = new Padding(3, 2, 3, 2);
+            panel_name.MaximumSize = new Size(244, 22);
             panel_name.Name = "panel_name";
-            panel_name.Size = new Size(279, 29);
+            panel_name.Size = new Size(244, 22);
             panel_name.TabIndex = 20;
             // 
             // label_name
@@ -620,10 +629,10 @@ namespace GUI
             label_name.Dock = DockStyle.Left;
             label_name.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_name.ForeColor = Color.MidnightBlue;
-            label_name.Location = new Point(37, 0);
+            label_name.Location = new Point(31, 0);
             label_name.Name = "label_name";
             label_name.Padding = new Padding(1, 0, 0, 0);
-            label_name.Size = new Size(156, 23);
+            label_name.Size = new Size(130, 19);
             label_name.TabIndex = 6;
             label_name.Text = "Trương Thị Mỹ Lan";
             // 
@@ -636,7 +645,7 @@ namespace GUI
             label_role.ForeColor = Color.Black;
             label_role.Location = new Point(0, 0);
             label_role.Name = "label_role";
-            label_role.Size = new Size(37, 23);
+            label_role.Size = new Size(31, 19);
             label_role.TabIndex = 5;
             label_role.Text = "GV.";
             // 
@@ -647,9 +656,9 @@ namespace GUI
             label_headertitle.Dock = DockStyle.Top;
             label_headertitle.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold);
             label_headertitle.ForeColor = Color.MidnightBlue;
-            label_headertitle.Location = new Point(10, 20);
+            label_headertitle.Location = new Point(9, 15);
             label_headertitle.Name = "label_headertitle";
-            label_headertitle.Size = new Size(181, 46);
+            label_headertitle.Size = new Size(145, 37);
             label_headertitle.TabIndex = 4;
             label_headertitle.Text = "XIN CHÀO";
             // 
@@ -658,10 +667,11 @@ namespace GUI
             mainPanel.BackColor = Color.Transparent;
             mainPanel.Controls.Add(userPanel);
             mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(279, 130);
+            mainPanel.Location = new Point(244, 97);
+            mainPanel.Margin = new Padding(3, 2, 3, 2);
             mainPanel.Name = "mainPanel";
-            mainPanel.Padding = new Padding(0, 0, 15, 0);
-            mainPanel.Size = new Size(1099, 790);
+            mainPanel.Padding = new Padding(0, 0, 13, 0);
+            mainPanel.Size = new Size(961, 593);
             mainPanel.TabIndex = 2;
             // 
             // userPanel
@@ -669,18 +679,20 @@ namespace GUI
             userPanel.BackColor = Color.Transparent;
             userPanel.Dock = DockStyle.Fill;
             userPanel.Location = new Point(0, 0);
+            userPanel.Margin = new Padding(3, 2, 3, 2);
             userPanel.Name = "userPanel";
-            userPanel.Size = new Size(1084, 790);
+            userPanel.Size = new Size(948, 593);
             userPanel.TabIndex = 10;
             // 
             // home
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1381, 923);
+            ClientSize = new Size(1208, 692);
             Controls.Add(tableLayoutPanel);
             ForeColor = SystemColors.ControlLightLight;
             IsMdiContainer = true;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "home";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HOME";

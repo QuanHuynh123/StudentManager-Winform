@@ -17,6 +17,16 @@ namespace BLL
         {
             try
             {
+                int roleID = SessionLogin.LoggedInTeacher.RoleID;
+                if (roleID == Constants.INTERN_TEACHER || roleID == Constants.TEACHER) { 
+                    return classDAL.Search(request, SessionLogin.LoggedInTeacher.TeacherID);
+                }
+
+                if (roleID == Constants.HEAD_OF_DEPARTMENT)
+                {
+                    return classDAL.Search(request, SessionLogin.LoggedInTeacher.TeacherID, SessionLogin.LoggedInTeacher.DepartmentID);
+                }
+
                 return classDAL.Search(request);
             }
             catch (Exception ex)

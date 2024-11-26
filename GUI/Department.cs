@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BLL;
-using DAL;
+﻿using BLL;
 using DTO;
 
 namespace GUI
@@ -19,6 +9,7 @@ namespace GUI
         private TeacherBLL teacherBLL;
         private List<TeacherDTO> teachers;
         int selectedTeacherID;
+
         public Department()
         {
             InitializeComponent();
@@ -51,7 +42,7 @@ namespace GUI
                 // Tạo một item mới cho mỗi phòng ban
                 ListViewItem item = new ListViewItem(department.DepartmentID.ToString());
                 item.SubItems.Add(department.DepartmentName);
-                item.SubItems.Add(department.HeadOfDepartment);
+                item.SubItems.Add(department.Teacher?.FullName ?? string.Empty);
                 item.SubItems.Add(department.Email);
                 item.SubItems.Add(department.EstablishedYear.ToString());
                 // Thêm item vào ListView
@@ -67,8 +58,6 @@ namespace GUI
                 comboBox1.Items.Add(year);
             }
         }
-
-
 
         private void button_add_Click(object sender, EventArgs e)
         {
@@ -86,7 +75,7 @@ namespace GUI
             DepartmentDTO department = new DepartmentDTO
             {
                 DepartmentName = departmentName,
-                HeadOfDepartment = headOfDepartment,
+                //HeadOfDepartment = headOfDepartment,
                 Email = email,
                 EstablishedYear = establishedYear
             };
@@ -168,7 +157,7 @@ namespace GUI
             {
                 DepartmentID = departmentID,
                 DepartmentName = departmentName,
-                HeadOfDepartment = headOfDepartment,
+                //HeadOfDepartment = headOfDepartment,
                 Email = email,
                 EstablishedYear = establishedYear
             };

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ClassDAL.cs" />
     <Compile Include="PasswordHasher.cs" />
+    <Compile Include="RoleDAL.cs" />
     <Compile Include="StudentDAL.cs" />
     <Compile Include="SubjectDAL.cs" />
     <Compile Include="TeacherDAL.cs" />

@@ -33,7 +33,6 @@ namespace GUI
             controls.Add(Constants.Add, button_add);
             controls.Add(Constants.Update, button_edit);
             controls.Add(Constants.Delete, button_delete);
-            controls.Add(Constants.Export, button_export);
 
             search_action(null, null);
             BindDataToComboBox();
@@ -142,10 +141,7 @@ namespace GUI
 
         private void button_add_Click(object sender, EventArgs e)
         {
-            ListViewItem selectedItem = listView_class.SelectedItems[0];
-
             // Get data
-            int classID = int.Parse(selectedItem.Text);
             string className = textBox_class_name.Text;
             int subjectID = int.Parse(comboBox_subject.Text.Split(" - ")[0]);
             int teacherID = int.Parse(comboBox_teacher.SelectedValue.ToString());
@@ -164,7 +160,6 @@ namespace GUI
 
             ClassDTO classDTO = new ClassDTO
             {
-                ClassID = classID,
                 ClassName = className,
                 SubjectID = subjectID,
                 TeacherID = teacherID,
@@ -259,7 +254,7 @@ namespace GUI
             {
                 foreach (ListViewItem item in listView_class.CheckedItems)
                 {
-                    int classID = int.Parse(item.Text); // Get the department ID from the selected item
+                    int classID = int.Parse(item.Text);
 
                     bool isDeleted = classBLL.Delete_action(classID);
                     if (!isDeleted)
@@ -279,8 +274,6 @@ namespace GUI
             if (listView_class.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = listView_class.SelectedItems[0];
-
-                var test = selectedItem.SubItems[4].Text?.Split(" - ")[0];
 
                 // Show data
                 textBox_class_name.Text = selectedItem.SubItems[1].Text;

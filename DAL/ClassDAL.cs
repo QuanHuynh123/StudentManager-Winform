@@ -9,15 +9,20 @@ namespace DAL
 {
     public class ClassDAL : SqlConnectionData
     {
-        public SearchResponse<ClassDTO> Search(SearchRequest request)
+        public SearchResponse<ClassDTO> Search(SearchRequest request, int teacherID = 0, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
-            string query = @"Select * from class 
+            string query = $@"Select * from class 
                                 left join subject on subject.SubjectID = class.ClassID 
                                 left join teacher on teacher.TeacherID = class.TeacherID 
-                            where ClassName like @ClassName order by ClassID offset @Offset rows fetch next @Limit rows only";
+                            where 
+                                ClassName like @ClassName {(teacherID != 0 ? $" and class.TeacherID = {teacherID}" : "")}
+                                                          {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")}
+                            order by ClassID offset @Offset rows fetch next @Limit rows only";
 
-            string queryNumberOfRecord = @"Select count(*) from class where ClassName like @ClassName";
+            string queryNumberOfRecord = $@"Select count(*) from class where ClassName like @ClassName 
+                                                {(teacherID != 0 ? $" and class.TeacherID = {teacherID}" : "")}
+                                                {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")}";
 
             using(var connection = Connection())
             {
@@ -79,8 +84,8 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "INSERT INTO class (ClassName, Room, SubjectID, TeacherID, StartPeriod, EndPeriod, Day, StartDate, EndDate) " +
-                               "VALUES (@ClassName, @Room, @SubjectID, @TeacherID, @StartPeriod, @EndPeriod, @Day, @StartDate, @EndDate)";
+                string query = "INSERT INTO class (ClassName, Room, SubjectID, TeacherID, StartPeriod, EndPeriod, Day) " +
+                               "VALUES (@ClassName, @Room, @SubjectID, @TeacherID, @StartPeriod, @EndPeriod, @Day)";
 
                 int affectedRows = connection.Execute(query, classDTO);
 
@@ -123,8 +128,6 @@ namespace DAL
                                     StartPeriod = @StartPeriod, 
                                     EndPeriod = @EndPeriod,
                                     Day = @Day,
-                                    StartDate = @StartDate,
-                                    EndDate = @EndDate
                                 WHERE ClassID = @ClassID";
 
                 int rowUpdated = connection.Execute(query, classDTO);
