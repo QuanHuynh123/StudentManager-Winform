@@ -31,7 +31,7 @@ namespace BLL
             return studentDAL.getStudentInfo(studentID);
         }
 
-        public List<StudentDTO> GetStudentByIdDeparment(int departmentID)
+        public List<StudentDTO> GetStudentByIdDepartment(int departmentID)
         {
             try
             {
@@ -83,11 +83,24 @@ namespace BLL
             }
         }
 
-        public List<StudentDTO> SearchStudentsByName(string name)
+        public List<StudentDTO> SearchStudentsByNameOfDepartment(string name, int departmentId)
         {
             try
             {
-                return studentDAL.SearchStudentsByName(name);
+                return studentDAL.SearchStudentsByNameOfDepartment(name, departmentId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi tìm kiếm học sinh theo tên: {ex.Message}");
+                return new List<StudentDTO>();
+            }
+        }
+
+        public List<StudentDTO> SearchStudentsByNameOfMyStudent(string name, int teacherId)
+        {
+            try
+            {
+                return studentDAL.SearchStudentsByNameOfMyStudent(name, teacherId);
             }
             catch (Exception ex)
             {

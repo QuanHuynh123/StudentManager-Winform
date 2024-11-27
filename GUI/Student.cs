@@ -11,17 +11,17 @@ namespace GUI
         private StudentBLL studentBLL;
         private TrainingProgramBLL trainingProgramBLL;
         private DepartmentBLL departmentBLL;
+        private bool check = false;
         public Student()
         {
             InitializeComponent();
             studentBLL = new StudentBLL();
             trainingProgramBLL = new TrainingProgramBLL();
             departmentBLL = new DepartmentBLL();
-            List<StudentDTO> students = studentBLL.GetStudentFromHomeroom(SessionLogin.LoggedInTeacher.TeacherID);
             comboBox_gender.Items.Clear();
             comboBox_gender.Items.Add("Nam");
             comboBox_gender.Items.Add("Nữ");
-            loadListStudent(students);
+            loadStudentOfTeacher();
             hideButton();
             loadComboBoxProgram();
         }
@@ -65,14 +65,26 @@ namespace GUI
 
         private void button_departmentList_Click(object sender, EventArgs e)
         {
-            List<StudentDTO> students = studentBLL.GetStudentByIdDeparment(SessionLogin.LoggedInTeacher.DepartmentID);
+            loadStudentOfDepartment();
+        }
+
+        public void loadStudentOfDepartment()
+        {
+            List<StudentDTO> students = studentBLL.GetStudentByIdDepartment(SessionLogin.LoggedInTeacher.DepartmentID);
             loadListStudent(students);
+            check = true;
         }
 
         private void button_classList_Click(object sender, EventArgs e)
         {
+            loadStudentOfTeacher();
+        }
+
+        public void loadStudentOfTeacher()
+        {
             List<StudentDTO> students = studentBLL.GetStudentFromHomeroom(SessionLogin.LoggedInTeacher.TeacherID);
             loadListStudent(students);
+            check = false;
         }
 
         private void button_add_Click(object sender, EventArgs e)
@@ -131,7 +143,7 @@ namespace GUI
                     if (isAdded)
                     {
                         MessageBox.Show("Thêm học sinh thành công.");
-                        loadListStudent(studentBLL.GetStudentByIdDeparment(SessionLogin.LoggedInTeacher.DepartmentID));
+                        loadListStudent(studentBLL.GetStudentByIdDepartment(SessionLogin.LoggedInTeacher.DepartmentID));
                     }
                     else
                     {
@@ -212,10 +224,25 @@ namespace GUI
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            var searchName = textBox_search.Text;
-            var students = studentBLL.SearchStudentsByName(searchName);
-            loadListStudent(students);
+            var searchName = textBox_search.Text?.Trim(); // Loại bỏ khoảng trắng thừa và tránh null
+            List<StudentDTO> students;
+
+            if (string.IsNullOrEmpty(searchName))
+            {
+                if (check)
+                    loadStudentOfDepartment();
+                else loadStudentOfTeacher();
+            }
+            else
+            {
+                if (check)
+                    students = studentBLL.SearchStudentsByNameOfDepartment(searchName, SessionLogin.LoggedInTeacher.DepartmentID);
+                else
+                    students = studentBLL.SearchStudentsByNameOfMyStudent(searchName, SessionLogin.LoggedInTeacher.TeacherID);
+                loadListStudent(students);
+            }
         }
+
 
         private void comboBox_program_SelectedIndexChanged(object sender, EventArgs e)
         {

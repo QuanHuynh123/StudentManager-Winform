@@ -11,7 +11,7 @@ namespace DTO
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime EnrollmentDate { get; set; }
-        public int Gpa { get; set; }
+        public float Gpa { get; set; }
         public int TotalCreditsEarned { get; set; }
         public string Hometown { get; set; }
         public string PermanentAddress { get; set; }

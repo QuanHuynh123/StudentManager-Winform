@@ -111,7 +111,8 @@ namespace GUI
 
         private void openSubject()
         {
-            new StudentDetail(1);
+            Subject subjectWindow = new Subject() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ MÔN", subjectWindow);
         }
 
         private void openHome()

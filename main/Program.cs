@@ -11,11 +11,9 @@ namespace YourNamespace // Thay YourNamespace bằng namespace của bạn
     {
         static void Main(string[] args)
         {
-            StudentBLL studentBLL = new StudentBLL();
-            List<StudentDTO> studentDTO = studentBLL.GetStudentByIdDeparment(1);
-
-            Console.WriteLine(studentDTO[1].FullName);
-
+            SubjectBLL subjectBLL = new SubjectBLL();
+            List<SubjectDTO> subjects = subjectBLL.GetSubjectByTeacherID(1);
+            Console.WriteLine(subjects[0].SubjectName);
         }
     }
 }

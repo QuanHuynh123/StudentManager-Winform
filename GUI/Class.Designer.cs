@@ -495,11 +495,11 @@
             // comboBox_subject
             // 
             comboBox_subject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            comboBox_subject.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox_subject.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox_subject.FormattingEnabled = true;
-            comboBox_subject.Location = new Point(98, 7);
+            comboBox_subject.Location = new Point(97, 9);
             comboBox_subject.Name = "comboBox_subject";
-            comboBox_subject.Size = new Size(219, 36);
+            comboBox_subject.Size = new Size(219, 28);
             comboBox_subject.TabIndex = 6;
             // 
             // label4
@@ -507,7 +507,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 10.5F);
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(16, 16);
+            label4.Location = new Point(10, 16);
             label4.Name = "label4";
             label4.Size = new Size(76, 21);
             label4.TabIndex = 2;
@@ -526,12 +526,13 @@
             // comboBox_teacher
             // 
             comboBox_teacher.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            comboBox_teacher.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox_teacher.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox_teacher.FormattingEnabled = true;
-            comboBox_teacher.Location = new Point(98, 7);
+            comboBox_teacher.Location = new Point(97, 9);
             comboBox_teacher.Name = "comboBox_teacher";
-            comboBox_teacher.Size = new Size(219, 36);
+            comboBox_teacher.Size = new Size(219, 28);
             comboBox_teacher.TabIndex = 7;
+            comboBox_teacher.SelectedIndexChanged += comboBox_teacher_SelectedIndexChanged;
             // 
             // label6
             // 

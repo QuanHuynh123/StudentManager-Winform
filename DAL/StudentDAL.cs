@@ -129,18 +129,40 @@ namespace DAL
             }
         }
 
-        public List<StudentDTO> SearchStudentsByName(string name)
+        public List<StudentDTO> SearchStudentsByNameOfDepartment(string name , int departmentId)
         {
             using (var connection = Connection())
             {
                 connection.Open();
-
-                string query = @"SELECT * FROM Student 
-                         WHERE Name LIKE CONCAT('%', @Name, '%')";
-
+                string query = @"SELECT * 
+                                FROM Student 
+                                WHERE FullName LIKE CONCAT('%', @FullName, '%') 
+                                AND DepartmentId = @DepartmentId";
                 List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
                     query,
-                    new { Name = name }
+                    new { FullName = name , DepartmentId = departmentId }
+                ).ToList();
+
+                return foundStudents;
+            }
+        }
+
+        public List<StudentDTO> SearchStudentsByNameOfMyStudent(string name, int teacherId)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = @"  SELECT * FROM student s
+                                    WHERE s.StudentID IN (
+                                        SELECT cs.StudentID FROM class c
+                                        LEFT JOIN teacher t ON t.TeacherID = c.TeacherID
+                                        RIGHT JOIN class_student cs ON c.ClassID = cs.ClassID
+                                        WHERE c.SubjectID IS NULL AND c.TeacherID = @TeacherId
+                                    )
+                                    AND s.FullName LIKE CONCAT('%',@FullName, '%')";
+                List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
+                    query,
+                    new { TeacherId = teacherId, FullName = name }
                 ).ToList();
 
                 return foundStudents;

@@ -326,5 +326,9 @@ namespace GUI
             Common.ExportExcel<ClassForExport>(data, fileName);
         }
 
+        private void comboBox_teacher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

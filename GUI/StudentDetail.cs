@@ -17,9 +17,9 @@ namespace GUI
         private StudentBLL studentBLL;
         private DepartmentBLL departmentBLL;
         private TrainingProgramBLL trainingProgramBLL;
-        StudentDTO student; 
+        StudentDTO student;
         //private TrainingProgramBLL trainingProgramBLL;
-        private int studentID; 
+        private int studentID;
         public StudentDetail(int studentID)
         {
             InitializeComponent();
@@ -31,7 +31,8 @@ namespace GUI
             loadInfoStudent();
             loadAllFunction();
         }
-        private void loadInfoStudent() { 
+        private void loadInfoStudent()
+        {
             labelStudentID.Text = student.StudentID.ToString();
             labelNameStudent.Text = student.FullName.ToString();
             if (student.Gender)
@@ -42,14 +43,20 @@ namespace GUI
             labelHometown.Text = student.Hometown.ToString();
             labelAddress.Text = student.PermanentAddress.ToString();
             labelClass.Text = student.Class.ToString();
+
             DepartmentDTO department = departmentBLL.findByIdDepartment(student.DepartmentID);
             labelDepartment.Text = department.DepartmentName.ToString();
             labelDepartment2.Text = department.DepartmentName.ToString();
             TrainingProgramDTO trainingProgram = trainingProgramBLL.FindByIdTrainingProgram(student.ProgramID);
             labelTrainingProgram.Text = trainingProgram.ProgramName.ToString();
-            labelTrainingProgram.Text  = trainingProgram.StartYear.ToString() + " " + trainingProgram.EndYear.ToString();   
-            labelGPA.Text  = student.Gpa.ToString();
+            labelYear.Text = trainingProgram.StartYear.ToString() + "-" + trainingProgram.EndYear.ToString();
+
+            labelGPA.Text = student.Gpa.ToString();
             labelTotalCredits.Text = student.TotalCreditsEarned.ToString();
+
+            label_nameTeacher.Text = SessionLogin.LoggedInTeacher.FullName.ToString();
+            label_phone.Text = SessionLogin.LoggedInTeacher.PhoneNumber.ToString();
+            label_emailTeacher.Text = SessionLogin.LoggedInTeacher.Email.ToString();
         }
 
         private void loadAllFunction()
@@ -69,7 +76,7 @@ namespace GUI
 
         private void openTranscript()
         {
-            new Transcript(studentID, student.TotalCreditsEarned , student.Gpa).Show();
+            new Transcript(studentID, student.TotalCreditsEarned, student.Gpa).Show();
         }
 
         private void openTimetable()

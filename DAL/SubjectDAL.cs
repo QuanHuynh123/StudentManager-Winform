@@ -40,8 +40,8 @@ namespace DAL
 
         public void Add(SubjectDTO subject)
         {
-            string query = @"INSERT INTO subject (SubjectName, DepartmentID) 
-                     VALUES (@SubjectName, @DepartmentID)";
+            string query = @"INSERT INTO subject (SubjectName,Credits, DepartmentID , ProgramID) 
+                     VALUES (@SubjectName,@Credits ,@DepartmentID , @ProgramID)";
 
             using (var connection = Connection())
             {
@@ -49,7 +49,9 @@ namespace DAL
                 connection.Execute(query, new
                 {
                     SubjectName = subject.SubjectName,
-                    DepartmentID = subject.DepartmentID
+                    Credits = subject.Credits,
+                    DepartmentID = subject.DepartmentID,
+                    ProgramID = subject.ProgramID,
                 });
             }
         }
@@ -68,7 +70,7 @@ namespace DAL
         public void Update(SubjectDTO subject)
         {
             string query = @"UPDATE subject 
-                     SET SubjectName = @SubjectName, DepartmentID = @DepartmentID
+                     SET SubjectName = @SubjectName, DepartmentID = @DepartmentID , Credits = @Credits , ProgramID = @ProgramID
                      WHERE SubjectID = @SubjectID";
 
             using (var connection = Connection())
@@ -76,9 +78,10 @@ namespace DAL
                 connection.Open();
                 connection.Execute(query, new
                 {
-                    SubjectID = subject.SubjectID,
                     SubjectName = subject.SubjectName,
-                    DepartmentID = subject.DepartmentID
+                    Credits = subject.Credits,
+                    DepartmentID = subject.DepartmentID,
+                    ProgramID = subject.ProgramID,
                 });
             }
         }
@@ -112,20 +115,21 @@ namespace DAL
 
         public List<SubjectDTO> GetSubjectByTeacherID(int teacherId)
         {
-            string query = @"SELECT 
-                            [ClassID],
-                            [ClassName],
-                            [Room],
-                            [SubjectID],
-                            [TeacherID],
-                            [StartPeriod],
-                            [EndPeriod],
-                            [Day]
+            string query = @"  SELECT 
+                                [SubjectID],
+                                [SubjectName],
+                                [Credits],
+                                [ProgramID],
+                                [DepartmentID]
                             FROM 
-                                [Class]
+	                            [Subject]
                             WHERE 
-                            TeacherID = @TeacherID 
-                            AND SubjectID IS NOT NULL";
+                                [SubjectID] IN (
+                                    SELECT [SubjectID]
+                                    FROM [Class]
+                                    WHERE TeacherID = @TeacherID
+                                    AND SubjectID IS NOT NULL
+                                )";
 
             using (var connection = Connection())
             {
