@@ -52,6 +52,7 @@
     <Compile Include="RoleDTO.cs" />
     <Compile Include="StudentDTO.cs" />
     <Compile Include="Student_ClassDTO.cs" />
+    <Compile Include="Student_TranscriptDTO.cs" />
     <Compile Include="SubjectDTO.cs" />
     <Compile Include="TeacherDTO.cs" />
     <Compile Include="TrainingProgramDTO.cs" />

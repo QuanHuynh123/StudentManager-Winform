@@ -122,15 +122,8 @@ namespace GUI
         }
         private void openDepartment()
         {
-            if (SessionLogin.LoggedInTeacher.RoleID == 4)
-            {
-                Department departmentWindow = new Department() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-                loadPanel("QUẢN LÝ KHOA", departmentWindow);
-            }
-            else
-            {
-                MessageBox.Show("Bạn không đủ quyền hạn để truy cập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            Department departmentWindow = new Department() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ KHOA", departmentWindow);
         }
 
         private void openStudentList()

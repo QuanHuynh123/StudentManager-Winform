@@ -60,21 +60,23 @@
             tabPage2 = new TabPage();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
-            listView_student = new ListView();
+            listView_score = new ListView();
             columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
             columnHeader7 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
-            columnHeader10 = new ColumnHeader();
-            columnHeader11 = new ColumnHeader();
             columnHeader12 = new ColumnHeader();
-            columnHeader13 = new ColumnHeader();
-            columnHeader14 = new ColumnHeader();
-            columnHeader15 = new ColumnHeader();
-            columnHeader16 = new ColumnHeader();
             label5 = new Label();
             tableLayoutPanel6 = new TableLayoutPanel();
             panel_transcript = new Panel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel6 = new Panel();
+            label_ = new Label();
+            textBox_midterm = new TextBox();
+            panel5 = new Panel();
+            label7 = new Label();
+            textBox_final = new TextBox();
+            button1 = new Button();
             label6 = new Label();
             panel_window = new Panel();
             tableLayoutPanel1.SuspendLayout();
@@ -91,6 +93,10 @@
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
+            panel_transcript.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            panel6.SuspendLayout();
+            panel5.SuspendLayout();
             panel_window.SuspendLayout();
             SuspendLayout();
             // 
@@ -148,6 +154,7 @@
             listViewSubject.UseCompatibleStateImageBehavior = false;
             listViewSubject.View = View.Details;
             listViewSubject.SelectedIndexChanged += listViewSubject_SelectedIndexChanged;
+            listViewSubject.MouseClick += listViewSubject_MouseClick;
             // 
             // columnHeader8
             // 
@@ -426,14 +433,14 @@
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1139, 737);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Class";
+            tabPage2.Text = "Score";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
             tableLayoutPanel5.ColumnCount = 2;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 73.87467F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 26.1253319F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.84378F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.1562233F));
             tableLayoutPanel5.Controls.Add(tableLayoutPanel4, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 1, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
@@ -449,7 +456,7 @@
             tableLayoutPanel4.BackColor = Color.FromArgb(35, 48, 103);
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(listView_student, 0, 1);
+            tableLayoutPanel4.Controls.Add(listView_score, 0, 1);
             tableLayoutPanel4.Controls.Add(label5, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 3);
@@ -457,23 +464,23 @@
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 10.5335159F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 89.4664841F));
-            tableLayoutPanel4.Size = new Size(831, 725);
+            tableLayoutPanel4.Size = new Size(774, 725);
             tableLayoutPanel4.TabIndex = 0;
             // 
-            // listView_student
+            // listView_score
             // 
-            listView_student.BackColor = Color.WhiteSmoke;
-            listView_student.CheckBoxes = true;
-            listView_student.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader13, columnHeader14, columnHeader15, columnHeader16 });
-            listView_student.Dock = DockStyle.Fill;
-            listView_student.Font = new Font("Verdana", 10F);
-            listView_student.GridLines = true;
-            listView_student.Location = new Point(3, 79);
-            listView_student.Name = "listView_student";
-            listView_student.Size = new Size(825, 643);
-            listView_student.TabIndex = 1;
-            listView_student.UseCompatibleStateImageBehavior = false;
-            listView_student.View = View.Details;
+            listView_score.BackColor = Color.WhiteSmoke;
+            listView_score.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader9, columnHeader12 });
+            listView_score.Dock = DockStyle.Fill;
+            listView_score.Font = new Font("Verdana", 10F);
+            listView_score.GridLines = true;
+            listView_score.Location = new Point(3, 79);
+            listView_score.Name = "listView_score";
+            listView_score.Size = new Size(768, 643);
+            listView_score.TabIndex = 1;
+            listView_score.UseCompatibleStateImageBehavior = false;
+            listView_score.View = View.Details;
+            listView_score.SelectedIndexChanged += listView_score_SelectedIndexChanged;
             // 
             // columnHeader5
             // 
@@ -482,52 +489,22 @@
             // columnHeader6
             // 
             columnHeader6.Text = "FullName";
-            columnHeader6.Width = 120;
+            columnHeader6.Width = 150;
             // 
             // columnHeader7
             // 
-            columnHeader7.Text = "Age";
-            columnHeader7.Width = 70;
+            columnHeader7.Text = "Midtermscore";
+            columnHeader7.Width = 150;
             // 
             // columnHeader9
             // 
-            columnHeader9.Text = "Email";
-            columnHeader9.Width = 160;
-            // 
-            // columnHeader10
-            // 
-            columnHeader10.Text = "PhoneNumber";
-            columnHeader10.Width = 130;
-            // 
-            // columnHeader11
-            // 
-            columnHeader11.Text = "Gender";
-            columnHeader11.Width = 80;
+            columnHeader9.Text = "FinalScore";
+            columnHeader9.Width = 150;
             // 
             // columnHeader12
             // 
-            columnHeader12.Text = "Class";
-            columnHeader12.Width = 120;
-            // 
-            // columnHeader13
-            // 
-            columnHeader13.Text = "Program";
-            columnHeader13.Width = 120;
-            // 
-            // columnHeader14
-            // 
-            columnHeader14.Text = "EnrollmentDate";
-            columnHeader14.Width = 140;
-            // 
-            // columnHeader15
-            // 
-            columnHeader15.Text = "PermanentAddress";
-            columnHeader15.Width = 150;
-            // 
-            // columnHeader16
-            // 
-            columnHeader16.Text = "HomeTown";
-            columnHeader16.Width = 100;
+            columnHeader12.Text = "TotalScore";
+            columnHeader12.Width = 150;
             // 
             // label5
             // 
@@ -549,22 +526,106 @@
             tableLayoutPanel6.Controls.Add(panel_transcript, 0, 1);
             tableLayoutPanel6.Controls.Add(label6, 0, 0);
             tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(840, 3);
+            tableLayoutPanel6.Location = new Point(783, 3);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 2;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 10.4827585F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 89.51724F));
-            tableLayoutPanel6.Size = new Size(290, 725);
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 19.7241383F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 80.27586F));
+            tableLayoutPanel6.Size = new Size(347, 725);
             tableLayoutPanel6.TabIndex = 1;
             // 
             // panel_transcript
             // 
             panel_transcript.BackColor = Color.FromArgb(35, 48, 103);
+            panel_transcript.Controls.Add(flowLayoutPanel1);
             panel_transcript.Dock = DockStyle.Fill;
-            panel_transcript.Location = new Point(3, 79);
+            panel_transcript.Location = new Point(3, 146);
             panel_transcript.Name = "panel_transcript";
-            panel_transcript.Size = new Size(284, 643);
+            panel_transcript.Size = new Size(341, 576);
             panel_transcript.TabIndex = 4;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(panel6);
+            flowLayoutPanel1.Controls.Add(panel5);
+            flowLayoutPanel1.Controls.Add(button1);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(341, 576);
+            flowLayoutPanel1.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            panel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel6.Controls.Add(label_);
+            panel6.Controls.Add(textBox_midterm);
+            panel6.Location = new Point(3, 20);
+            panel6.Margin = new Padding(3, 20, 3, 3);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(341, 48);
+            panel6.TabIndex = 2;
+            // 
+            // label_
+            // 
+            label_.AutoSize = true;
+            label_.ForeColor = SystemColors.ControlLightLight;
+            label_.ImageAlign = ContentAlignment.MiddleRight;
+            label_.Location = new Point(12, 14);
+            label_.Name = "label_";
+            label_.Size = new Size(75, 19);
+            label_.TabIndex = 1;
+            label_.Text = "Midterm";
+            // 
+            // textBox_midterm
+            // 
+            textBox_midterm.Location = new Point(103, 10);
+            textBox_midterm.Name = "textBox_midterm";
+            textBox_midterm.Size = new Size(232, 28);
+            textBox_midterm.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel5.Controls.Add(label7);
+            panel5.Controls.Add(textBox_final);
+            panel5.Location = new Point(3, 101);
+            panel5.Margin = new Padding(3, 30, 3, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(341, 48);
+            panel5.TabIndex = 0;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = SystemColors.ControlLightLight;
+            label7.Location = new Point(12, 14);
+            label7.Name = "label7";
+            label7.Size = new Size(46, 19);
+            label7.TabIndex = 1;
+            label7.Text = "Final";
+            // 
+            // textBox_final
+            // 
+            textBox_final.Location = new Point(103, 10);
+            textBox_final.Name = "textBox_final";
+            textBox_final.Size = new Size(232, 28);
+            textBox_final.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button1.BackColor = Color.ForestGreen;
+            button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = SystemColors.ControlLightLight;
+            button1.Location = new Point(3, 172);
+            button1.Margin = new Padding(3, 20, 3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(335, 36);
+            button1.TabIndex = 3;
+            button1.Text = "Cập nhật";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label6
             // 
@@ -572,7 +633,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Cambria", 16.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(3, 21);
+            label6.Location = new Point(3, 54);
             label6.Name = "label6";
             label6.Size = new Size(149, 34);
             label6.TabIndex = 3;
@@ -618,6 +679,12 @@
             tableLayoutPanel4.PerformLayout();
             tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel6.PerformLayout();
+            panel_transcript.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel_window.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -655,22 +722,24 @@
         private Panel panel_window;
         private TabPage tabPage2;
         private TableLayoutPanel tableLayoutPanel4;
-        private ListView listView_student;
+        private ListView listView_score;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
         private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader9;
-        private ColumnHeader columnHeader10;
-        private ColumnHeader columnHeader11;
-        private ColumnHeader columnHeader12;
-        private ColumnHeader columnHeader13;
-        private ColumnHeader columnHeader14;
-        private ColumnHeader columnHeader15;
-        private ColumnHeader columnHeader16;
         private Label label5;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel6;
         private Label label6;
         private Panel panel_transcript;
+        private ColumnHeader columnHeader12;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel6;
+        private Label label_;
+        private TextBox textBox_midterm;
+        private Panel panel5;
+        private Label label7;
+        private TextBox textBox_final;
+        private Button button1;
     }
 }

@@ -54,7 +54,7 @@ namespace GUI
 
         private void hideButton()
         {
-            if (SessionLogin.LoggedInTeacher.RoleID != 3 & SessionLogin.LoggedInTeacher.RoleID != 4)
+            if (SessionLogin.LoggedInTeacher.RoleID != Constants.HEAD_OF_DEPARTMENT & SessionLogin.LoggedInTeacher.RoleID != Constants.Principal)
             {
                 button_departmentList.Enabled = false;
                 button_departmentList.BackColor = Color.Gray;

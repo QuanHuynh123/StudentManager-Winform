@@ -115,5 +115,35 @@ namespace BLL
                 return new List<SubjectDTO>();
             }
         }
+
+        public List<Student_TranscriptDTO> GetStudentAndTranscriptBySubjectId(int subjectId)
+        {
+            try
+            {
+                return subjectDAL.GetStudentAndTranscriptBySubjectId(subjectId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi lấy danh sách sinh viên và bảng điểm: {ex.Message}");
+                return new List<Student_TranscriptDTO>();
+            }
+        }
+
+        public bool UpdateTranscriptScoresAndStatus(Student_TranscriptDTO transcript)
+        {
+            try
+            {
+                return subjectDAL.UpdateTranscriptScoresAndStatus(
+                    transcript.TranscriptID,
+                    transcript.MidtermScore,
+                    transcript.FinalScore);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi cập nhật điểm và trạng thái: {ex.Message}");
+                return false;
+            }
+        }
+
     }
 }

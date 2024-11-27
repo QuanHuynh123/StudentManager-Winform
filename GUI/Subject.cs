@@ -21,6 +21,7 @@ namespace GUI
         public TrainingProgramBLL trainingProgramBLL;
         public int selectedDepartmentID;
         public int selectedProgramID;
+        int subject;
         int selectedCredit;
         public Subject()
         {
@@ -214,6 +215,105 @@ namespace GUI
 
             string departmentName = selectedItem.SubItems[4].Text;
             comboBox_department.SelectedIndex = comboBox_department.FindStringExact(departmentName);
+        }
+
+        private void listViewSubject_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)  // Kiểm tra nếu là click chuột phải
+            {
+                // Hiển thị MessageBox và chờ người dùng nhấn OK
+                DialogResult result = MessageBox.Show("Xem chi tiết", "Thông báo", MessageBoxButtons.OKCancel);
+
+                // Kiểm tra nếu người dùng nhấn OK
+                if (result == DialogResult.OK)
+                {
+                    // Lấy dòng đã chọn
+                    ListViewItem selectedItem = listViewSubject.SelectedItems[0];
+                    subject = int.Parse(selectedItem.Text);
+
+                    // chuyen tab
+                    foreach (TabPage tab in tabControl1.TabPages)
+                    {
+                        if (tab.Text == "Score")
+                        {
+                            tabControl1.SelectedTab = tab;
+                            loadScore(subject);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void loadScore(int subjectID)
+        {
+            listView_score.Items.Clear();
+            listView_score.FullRowSelect = true;
+            List<Student_TranscriptDTO> transcripts = subjectBLL.GetStudentAndTranscriptBySubjectId(subjectID);
+            if (transcripts == null || transcripts.Count == 0)
+            {
+                MessageBox.Show("Lớp không có học sinh nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            foreach (Student_TranscriptDTO transcript in transcripts)
+            {
+                ListViewItem item = new ListViewItem(transcript.TranscriptID.ToString());
+                item.SubItems.Add(transcript.FullName);
+                item.SubItems.Add(transcript.MidtermScore.ToString("F2")); // Hiển thị điểm với 2 chữ số thập phân
+                item.SubItems.Add(transcript.FinalScore.ToString("F2"));
+                item.SubItems.Add(transcript.TotalScore.ToString("F2"));
+                listView_score.Items.Add(item);
+            }
+        }
+
+        private void listView_score_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView_score.SelectedItems.Count == 0) return;
+
+            var selectedItem = listView_score.SelectedItems[0];
+
+            // Gán giá trị từ ListView sang các TextBox
+            textBox_midterm.Text = selectedItem.SubItems[2].Text;
+            textBox_final.Text = selectedItem.SubItems[3].Text;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (listView_score.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một học sinh!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var selectedItem = listView_score.SelectedItems[0];
+            int transcriptId = int.Parse(selectedItem.SubItems[0].Text);
+
+            if (float.TryParse(textBox_midterm.Text, out float midtermScore) && float.TryParse(textBox_final.Text, out float finalScore))
+            {
+                var transcript = new Student_TranscriptDTO
+                {
+                    TranscriptID = transcriptId,
+                    MidtermScore = midtermScore,
+                    FinalScore = finalScore
+                };
+
+                bool success = subjectBLL.UpdateTranscriptScoresAndStatus(transcript);
+
+                if (success)
+                {
+                    MessageBox.Show("Cập nhật điểm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadScore(subject); // Tải lại danh sách
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật điểm thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập đúng định dạng điểm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

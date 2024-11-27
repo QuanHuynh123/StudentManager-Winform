@@ -2,6 +2,7 @@
 using Dapper;
 using DTO;
 using DTO.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -110,9 +111,6 @@ namespace DAL
                 return subject;
             }
         }
-
-
-
         public List<SubjectDTO> GetSubjectByTeacherID(int teacherId)
         {
             string query = @"  SELECT 
@@ -138,6 +136,70 @@ namespace DAL
                 return subjects;
             }
         }
+
+        public List<Student_TranscriptDTO> GetStudentAndTranscriptBySubjectId(int subjectId)
+        {
+            // Lấy năm hiện tại
+            int year = DateTime.Now.Year;
+
+            string query = @"SELECT 
+                        T.TranscriptID, 
+                        T.MidtermScore, 
+                        T.FinalScore, 
+                        T.TotalScore,
+                        S.FullName
+                    FROM 
+                        Transcript T
+                    JOIN 
+                        Student S
+                    ON 
+                        T.StudentID = S.StudentID
+                    WHERE 
+                        T.SubjectID = @SubjectId
+                        AND T.YearTranscript = @Year";
+
+            using (var connection = Connection())
+            {
+                connection.Open();
+                // Truyền thêm tham số Year vào truy vấn
+                var transcript = connection.Query<Student_TranscriptDTO>(query, new { SubjectId = subjectId, Year = year }).ToList();
+                return transcript;
+            }
+        }
+
+        public bool UpdateTranscriptScoresAndStatus(int transcriptId, float midtermScore, float finalScore)
+        {
+            // Tính TotalScore
+            float totalScore = (midtermScore + finalScore) / 2;
+
+            // Xác định trạng thái
+            int status = totalScore > 4 ? 1 : 0;
+
+            string query = @"UPDATE Transcript
+                     SET 
+                         MidtermScore = @MidtermScore,
+                         FinalScore = @FinalScore,
+                         TotalScore = @TotalScore,
+                         Status = @Status
+                     WHERE 
+                         TranscriptID = @TranscriptID";
+
+            using (var connection = Connection())
+            {
+                connection.Open();
+                int rowsAffected = connection.Execute(query, new
+                {
+                    MidtermScore = midtermScore,
+                    FinalScore = finalScore,
+                    TotalScore = totalScore,
+                    Status = status,
+                    TranscriptID = transcriptId
+                });
+
+                return rowsAffected > 0;
+            }
+        }
+
 
     }
 }

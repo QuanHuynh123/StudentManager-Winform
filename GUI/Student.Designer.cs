@@ -37,7 +37,6 @@
             button_delete = new Button();
             button_classList = new Button();
             button_add = new Button();
-            comboBox1 = new ComboBox();
             panel_search = new Panel();
             panel_searchBar = new Panel();
             textBox_search = new TextBox();
@@ -140,18 +139,16 @@
             // 
             tableLayoutPanel2.BackColor = Color.White;
             tableLayoutPanel2.BackgroundImageLayout = ImageLayout.None;
-            tableLayoutPanel2.ColumnCount = 4;
+            tableLayoutPanel2.ColumnCount = 3;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel2.Controls.Add(button_export, 3, 0);
+            tableLayoutPanel2.Controls.Add(button_export, 2, 1);
             tableLayoutPanel2.Controls.Add(button_departmentList, 1, 1);
             tableLayoutPanel2.Controls.Add(button_update, 1, 0);
             tableLayoutPanel2.Controls.Add(button_delete, 2, 0);
             tableLayoutPanel2.Controls.Add(button_classList, 0, 1);
             tableLayoutPanel2.Controls.Add(button_add, 0, 0);
-            tableLayoutPanel2.Controls.Add(comboBox1, 2, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 270);
             tableLayoutPanel2.Margin = new Padding(0);
@@ -170,9 +167,9 @@
             button_export.Dock = DockStyle.Left;
             button_export.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_export.ForeColor = SystemColors.ButtonHighlight;
-            button_export.Location = new Point(813, 3);
+            button_export.Location = new Point(723, 48);
             button_export.Name = "button_export";
-            button_export.Size = new Size(203, 39);
+            button_export.Size = new Size(200, 40);
             button_export.TabIndex = 17;
             button_export.Text = "Xuất Excel";
             button_export.UseVisualStyleBackColor = false;
@@ -183,9 +180,9 @@
             button_departmentList.Dock = DockStyle.Fill;
             button_departmentList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_departmentList.ForeColor = SystemColors.ButtonFace;
-            button_departmentList.Location = new Point(273, 48);
+            button_departmentList.Location = new Point(363, 48);
             button_departmentList.Name = "button_departmentList";
-            button_departmentList.Size = new Size(264, 40);
+            button_departmentList.Size = new Size(354, 40);
             button_departmentList.TabIndex = 1;
             button_departmentList.Text = "Danh sách theo Khoa";
             button_departmentList.UseVisualStyleBackColor = false;
@@ -197,9 +194,9 @@
             button_update.Dock = DockStyle.Fill;
             button_update.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_update.ForeColor = SystemColors.ButtonHighlight;
-            button_update.Location = new Point(273, 3);
+            button_update.Location = new Point(363, 3);
             button_update.Name = "button_update";
-            button_update.Size = new Size(264, 39);
+            button_update.Size = new Size(354, 39);
             button_update.TabIndex = 16;
             button_update.Text = "Sửa";
             button_update.UseVisualStyleBackColor = false;
@@ -208,12 +205,11 @@
             // button_delete
             // 
             button_delete.BackColor = Color.FromArgb(255, 128, 128);
-            button_delete.Dock = DockStyle.Fill;
             button_delete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_delete.ForeColor = SystemColors.ButtonHighlight;
-            button_delete.Location = new Point(543, 3);
+            button_delete.Location = new Point(723, 3);
             button_delete.Name = "button_delete";
-            button_delete.Size = new Size(264, 39);
+            button_delete.Size = new Size(200, 39);
             button_delete.TabIndex = 15;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
@@ -225,9 +221,9 @@
             button_classList.Dock = DockStyle.Right;
             button_classList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_classList.ForeColor = SystemColors.ButtonFace;
-            button_classList.Location = new Point(70, 48);
+            button_classList.Location = new Point(157, 48);
             button_classList.Name = "button_classList";
-            button_classList.Size = new Size(197, 40);
+            button_classList.Size = new Size(200, 40);
             button_classList.TabIndex = 2;
             button_classList.Text = "Danh sách  lớp cố vấn";
             button_classList.UseVisualStyleBackColor = false;
@@ -239,27 +235,13 @@
             button_add.Dock = DockStyle.Right;
             button_add.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_add.ForeColor = SystemColors.ButtonHighlight;
-            button_add.Location = new Point(70, 3);
+            button_add.Location = new Point(157, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(197, 39);
+            button_add.Size = new Size(200, 39);
             button_add.TabIndex = 14;
             button_add.Text = "Thêm";
             button_add.UseVisualStyleBackColor = false;
             button_add.Click += button_add_Click;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = SystemColors.HotTrack;
-            comboBox1.Dock = DockStyle.Fill;
-            comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.ForeColor = SystemColors.Window;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.ItemHeight = 28;
-            comboBox1.Location = new Point(543, 48);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(264, 36);
-            comboBox1.TabIndex = 18;
-            comboBox1.Text = "Danh sách theo lớp";
             // 
             // panel_search
             // 
@@ -781,7 +763,6 @@
         private Label label9;
         private TextBox textBox_search;
         private Button button_search;
-        private Button button_export;
         private Button button_update;
         private Button button_delete;
         private Button button_add;
@@ -824,6 +805,6 @@
         private ColumnHeader columnHeader11;
         private Panel panelBottom;
         private Panel panel_searchBar;
-        private ComboBox comboBox1;
+        private Button button_export;
     }
 }
