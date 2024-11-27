@@ -20,7 +20,10 @@ namespace DAL
                                                           {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")}
                             order by ClassID offset @Offset rows fetch next @Limit rows only";
 
-            string queryNumberOfRecord = $@"Select count(*) from class where ClassName like @ClassName 
+            string queryNumberOfRecord = $@"Select count(*) from class 
+                                                left join subject on subject.SubjectID = class.ClassID 
+                                                left join teacher on teacher.TeacherID = class.TeacherID 
+                                            where ClassName like @ClassName 
                                                 {(teacherID != 0 ? $" and class.TeacherID = {teacherID}" : "")}
                                                 {(departmentID != 0 ? $" and teacher.DepartmentID = {departmentID}" : "")}";
 
