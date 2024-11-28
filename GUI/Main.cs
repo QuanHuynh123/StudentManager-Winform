@@ -26,7 +26,7 @@ namespace GUI
             panels.Add(Constants.Logout, (panel_logout, label_logout));
             panels.Add(Constants.Home, (panel_home, label_home));
 
-            defaultVisible.AddRange([Constants.Home, Constants.Account, Constants.Setting, Constants.Logout]);
+            defaultVisible.AddRange([Constants.Home, Constants.Setting, Constants.Logout]);
 
             openHome();
 
@@ -64,6 +64,12 @@ namespace GUI
                 control.Click += (sender, e) => openClassList();
             }
 
+            panel_account.Click += (sender, e) => openAccount();
+            foreach (Control control in panel_account.Controls)
+            {
+                control.Click += (sender, e) => openAccount();
+            }
+
             panel_program.Click += (sender, e) => openProgram();
             foreach (Control control in panel_program.Controls)
             {
@@ -75,6 +81,12 @@ namespace GUI
             {
                 control.Click += (sender, e) => Logout();
             }
+            panel_subject.Click += (sender, e) => openSubject();
+            foreach (Control control in panel_subject.Controls)
+            {
+                control.Click += (sender, e) => openSubject();
+            }
+
         }
 
         private void loadPanel(string title, System.Windows.Forms.Form iForm)
@@ -84,7 +96,6 @@ namespace GUI
             userPanel.Controls.Add(iForm);
             iForm.Show();
         }
-
 
         private void openProfile()
         {
@@ -98,6 +109,12 @@ namespace GUI
             loadPanel("QUẢN LÝ CHƯƠNG TRÌNH ĐÀO TẠO", programWindow);
         }
 
+        private void openSubject()
+        {
+            Subject subjectWindow = new Subject() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ MÔN", subjectWindow);
+        }
+
         private void openHome()
         {
             Dashboard dashboardWindow = new Dashboard() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -105,17 +122,8 @@ namespace GUI
         }
         private void openDepartment()
         {
-            if (SessionLogin.LoggedInTeacher.RoleID == 4)
-            {
-                //    this.Close();
-                //    new Department().Show();
-                Department departmentWindow = new Department() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-                loadPanel("QUẢN LÝ KHOA", departmentWindow);
-            }
-            else
-            {
-                MessageBox.Show("Bạn không đủ quyền hạn để truy cập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            Department departmentWindow = new Department() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ KHOA", departmentWindow);
         }
 
         private void openStudentList()
@@ -127,6 +135,12 @@ namespace GUI
         {
             Class classWindow = new Class() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             loadPanel("QUẢN LÝ LỚP", classWindow);
+        }
+
+        private void openAccount()
+        {
+            Account accountWindow = new Account() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            loadPanel("QUẢN LÝ LỚP", accountWindow);
         }
 
         private void ApplyHoverEffect()
@@ -173,11 +187,6 @@ namespace GUI
             if (SessionLogin.IsLoggedIn)
             {
                 label_name.Text = SessionLogin.LoggedInTeacher.FullName;
-
-                if (SessionLogin.LoggedInTeacher.RoleID == Constants.Principal)
-                {
-                    return;
-                }
 
                 var myFeatures = SessionLogin.LoggedInTeacher.Role.RoleActivities.GroupBy(ra => ra.Feature).ToList().Where(x => x.Key != null);
 

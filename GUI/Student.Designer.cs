@@ -33,7 +33,7 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             button_export = new Button();
             button_departmentList = new Button();
-            button_edit = new Button();
+            button_update = new Button();
             button_delete = new Button();
             button_classList = new Button();
             button_add = new Button();
@@ -48,13 +48,13 @@
             textBox_phone = new TextBox();
             panel9 = new Panel();
             label10 = new Label();
-            textBox_birthplace = new TextBox();
+            textBox_hometown = new TextBox();
             panel8 = new Panel();
             comboBox_program = new ComboBox();
             label9 = new Label();
             panel10 = new Panel();
             label11 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker_enrollmentDate = new DateTimePicker();
             panel6 = new Panel();
             comboBox_gender = new ComboBox();
             label7 = new Label();
@@ -73,14 +73,13 @@
             panel_title = new Panel();
             label_panelTitle = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            listView1 = new ListView();
+            listView_student = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
             columnHeader6 = new ColumnHeader();
-            columnHeader7 = new ColumnHeader();
             columnHeader8 = new ColumnHeader();
             columnHeader9 = new ColumnHeader();
             columnHeader10 = new ColumnHeader();
@@ -112,8 +111,9 @@
             panelTop.Controls.Add(tableLayoutPanel1);
             panelTop.Dock = DockStyle.Fill;
             panelTop.Location = new Point(0, 0);
+            panelTop.Margin = new Padding(3, 2, 3, 2);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1081, 361);
+            panelTop.Size = new Size(946, 270);
             panelTop.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -127,13 +127,14 @@
             tableLayoutPanel1.Controls.Add(panel_title, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.4044323F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 18.2825489F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 42.1052628F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.8538017F));
-            tableLayoutPanel1.Size = new Size(1081, 361);
+            tableLayoutPanel1.Size = new Size(946, 270);
             tableLayoutPanel1.TabIndex = 22;
             // 
             // tableLayoutPanel2
@@ -141,23 +142,25 @@
             tableLayoutPanel2.BackColor = Color.White;
             tableLayoutPanel2.BackgroundImageLayout = ImageLayout.None;
             tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.4883728F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.139534F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40.279068F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel2.Controls.Add(button_export, 2, 1);
             tableLayoutPanel2.Controls.Add(button_departmentList, 1, 1);
-            tableLayoutPanel2.Controls.Add(button_edit, 1, 0);
+            tableLayoutPanel2.Controls.Add(button_update, 1, 0);
             tableLayoutPanel2.Controls.Add(button_delete, 2, 0);
             tableLayoutPanel2.Controls.Add(button_classList, 0, 1);
             tableLayoutPanel2.Controls.Add(button_add, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 270);
+            tableLayoutPanel2.Location = new Point(0, 202);
             tableLayoutPanel2.Margin = new Padding(0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(1081, 91);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel2.Size = new Size(946, 68);
             tableLayoutPanel2.TabIndex = 23;
             // 
             // button_export
@@ -166,12 +169,13 @@
             button_export.Dock = DockStyle.Left;
             button_export.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_export.ForeColor = SystemColors.ButtonHighlight;
-            button_export.Location = new Point(647, 48);
+            button_export.Location = new Point(723, 48);
             button_export.Name = "button_export";
-            button_export.Size = new Size(203, 40);
+            button_export.Size = new Size(200, 40);
             button_export.TabIndex = 17;
             button_export.Text = "Xuất Excel";
             button_export.UseVisualStyleBackColor = false;
+            button_export.Click += button_export_Click;
             // 
             // button_departmentList
             // 
@@ -179,39 +183,40 @@
             button_departmentList.Dock = DockStyle.Fill;
             button_departmentList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_departmentList.ForeColor = SystemColors.ButtonFace;
-            button_departmentList.Location = new Point(451, 48);
+            button_departmentList.Location = new Point(363, 48);
             button_departmentList.Name = "button_departmentList";
-            button_departmentList.Size = new Size(190, 40);
+            button_departmentList.Size = new Size(354, 40);
             button_departmentList.TabIndex = 1;
             button_departmentList.Text = "Danh sách theo Khoa";
             button_departmentList.UseVisualStyleBackColor = false;
+            button_departmentList.Click += button_departmentList_Click;
             // 
-            // button_edit
+            // button_update
             // 
-            button_edit.BackColor = Color.FromArgb(53, 97, 158);
-            button_edit.Dock = DockStyle.Fill;
-            button_edit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            button_edit.ForeColor = SystemColors.ButtonHighlight;
-            button_edit.Location = new Point(451, 3);
-            button_edit.Name = "button_edit";
-            button_edit.Size = new Size(190, 39);
-            button_edit.TabIndex = 16;
-            button_edit.Text = "Sửa";
-            button_edit.UseVisualStyleBackColor = false;
-            button_edit.Click += button2_Click;
+            button_update.BackColor = Color.FromArgb(53, 97, 158);
+            button_update.Dock = DockStyle.Fill;
+            button_update.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button_update.ForeColor = SystemColors.ButtonHighlight;
+            button_update.Location = new Point(363, 3);
+            button_update.Name = "button_update";
+            button_update.Size = new Size(354, 39);
+            button_update.TabIndex = 16;
+            button_update.Text = "Sửa";
+            button_update.UseVisualStyleBackColor = false;
+            button_update.Click += button_update_Click;
             // 
             // button_delete
             // 
             button_delete.BackColor = Color.FromArgb(255, 128, 128);
-            button_delete.Dock = DockStyle.Left;
             button_delete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_delete.ForeColor = SystemColors.ButtonHighlight;
-            button_delete.Location = new Point(647, 3);
+            button_delete.Location = new Point(723, 3);
             button_delete.Name = "button_delete";
-            button_delete.Size = new Size(203, 39);
+            button_delete.Size = new Size(200, 39);
             button_delete.TabIndex = 15;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
+            button_delete.Click += button_delete_Click;
             // 
             // button_classList
             // 
@@ -219,13 +224,13 @@
             button_classList.Dock = DockStyle.Right;
             button_classList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_classList.ForeColor = SystemColors.ButtonFace;
-            button_classList.Location = new Point(248, 48);
+            button_classList.Location = new Point(157, 48);
             button_classList.Name = "button_classList";
-            button_classList.Size = new Size(197, 40);
+            button_classList.Size = new Size(200, 40);
             button_classList.TabIndex = 2;
-            button_classList.Text = "Danh sách theo lớp ";
+            button_classList.Text = "Danh sách  lớp cố vấn";
             button_classList.UseVisualStyleBackColor = false;
-            button_classList.Click += buttonMyStudent_Click;
+            button_classList.Click += button_classList_Click;
             // 
             // button_add
             // 
@@ -233,12 +238,13 @@
             button_add.Dock = DockStyle.Right;
             button_add.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_add.ForeColor = SystemColors.ButtonHighlight;
-            button_add.Location = new Point(248, 3);
+            button_add.Location = new Point(157, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(197, 39);
+            button_add.Size = new Size(200, 39);
             button_add.TabIndex = 14;
             button_add.Text = "Thêm";
             button_add.UseVisualStyleBackColor = false;
+            button_add.Click += button_add_Click;
             // 
             // panel_search
             // 
@@ -247,21 +253,22 @@
             panel_search.Controls.Add(panel_searchBtn);
             panel_search.Dock = DockStyle.Fill;
             panel_search.ForeColor = SystemColors.ControlLight;
-            panel_search.Location = new Point(3, 55);
+            panel_search.Location = new Point(3, 41);
+            panel_search.Margin = new Padding(3, 2, 3, 2);
             panel_search.Name = "panel_search";
-            panel_search.Padding = new Padding(200, 0, 0, 0);
-            panel_search.Size = new Size(1075, 60);
+            panel_search.Padding = new Padding(175, 0, 0, 0);
+            panel_search.Size = new Size(940, 45);
             panel_search.TabIndex = 18;
-            panel_search.Paint += panel_search_Paint;
             // 
             // panel_searchBar
             // 
             panel_searchBar.Controls.Add(textBox_search);
             panel_searchBar.Dock = DockStyle.Fill;
-            panel_searchBar.Location = new Point(200, 0);
-            panel_searchBar.MaximumSize = new Size(1200, 43);
+            panel_searchBar.Location = new Point(175, 0);
+            panel_searchBar.Margin = new Padding(3, 2, 3, 2);
+            panel_searchBar.MaximumSize = new Size(1050, 32);
             panel_searchBar.Name = "panel_searchBar";
-            panel_searchBar.Size = new Size(502, 43);
+            panel_searchBar.Size = new Size(439, 32);
             panel_searchBar.TabIndex = 9;
             // 
             // textBox_search
@@ -270,10 +277,11 @@
             textBox_search.Dock = DockStyle.Fill;
             textBox_search.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox_search.Location = new Point(0, 0);
-            textBox_search.MaximumSize = new Size(1200, 38);
-            textBox_search.MinimumSize = new Size(496, 38);
+            textBox_search.Margin = new Padding(3, 2, 3, 2);
+            textBox_search.MaximumSize = new Size(1050, 38);
+            textBox_search.MinimumSize = new Size(434, 38);
             textBox_search.Name = "textBox_search";
-            textBox_search.Size = new Size(502, 38);
+            textBox_search.Size = new Size(439, 38);
             textBox_search.TabIndex = 4;
             textBox_search.TextAlign = HorizontalAlignment.Center;
             // 
@@ -281,9 +289,10 @@
             // 
             panel_searchBtn.Controls.Add(button_search);
             panel_searchBtn.Dock = DockStyle.Right;
-            panel_searchBtn.Location = new Point(702, 0);
+            panel_searchBtn.Location = new Point(614, 0);
+            panel_searchBtn.Margin = new Padding(3, 2, 3, 2);
             panel_searchBtn.Name = "panel_searchBtn";
-            panel_searchBtn.Size = new Size(373, 60);
+            panel_searchBtn.Size = new Size(326, 45);
             panel_searchBtn.TabIndex = 8;
             // 
             // button_search
@@ -291,12 +300,14 @@
             button_search.BackColor = Color.FromArgb(101, 116, 137);
             button_search.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_search.ForeColor = SystemColors.ButtonHighlight;
-            button_search.Location = new Point(24, -2);
+            button_search.Location = new Point(21, 0);
+            button_search.Margin = new Padding(3, 2, 3, 2);
             button_search.Name = "button_search";
-            button_search.Size = new Size(150, 45);
+            button_search.Size = new Size(131, 28);
             button_search.TabIndex = 7;
             button_search.Text = "Tìm kiếm";
             button_search.UseVisualStyleBackColor = false;
+            button_search.Click += button_search_Click;
             // 
             // panel_form
             // 
@@ -315,24 +326,25 @@
             panel_form.Controls.Add(panel5, 2, 0);
             panel_form.Controls.Add(panel2, 1, 1);
             panel_form.Dock = DockStyle.Fill;
-            panel_form.Location = new Point(3, 121);
+            panel_form.Location = new Point(3, 90);
+            panel_form.Margin = new Padding(3, 2, 3, 2);
             panel_form.Name = "panel_form";
             panel_form.RowCount = 3;
             panel_form.RowStyles.Add(new RowStyle(SizeType.Percent, 48.18182F));
             panel_form.RowStyles.Add(new RowStyle(SizeType.Percent, 51.81818F));
-            panel_form.RowStyles.Add(new RowStyle(SizeType.Absolute, 53F));
-            panel_form.Size = new Size(1075, 146);
+            panel_form.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            panel_form.Size = new Size(940, 110);
             panel_form.TabIndex = 20;
-            panel_form.Paint += panel_form_Paint;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.Controls.Add(label4);
             panel3.Controls.Add(textBox_phone);
-            panel3.Location = new Point(648, 47);
+            panel3.Location = new Point(566, 35);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(424, 41);
+            panel3.Size = new Size(371, 31);
             panel3.TabIndex = 11;
             // 
             // label4
@@ -340,31 +352,32 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 10.5F);
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(9, 9);
+            label4.Location = new Point(8, 7);
             label4.Name = "label4";
-            label4.Size = new Size(118, 21);
+            label4.Size = new Size(53, 19);
             label4.TabIndex = 2;
-            label4.Text = "Phone Num.";
+            label4.Text = "Phone";
             // 
             // textBox_phone
             // 
             textBox_phone.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_phone.BorderStyle = BorderStyle.FixedSingle;
             textBox_phone.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_phone.Location = new Point(133, 4);
+            textBox_phone.Location = new Point(116, 3);
+            textBox_phone.Margin = new Padding(3, 2, 3, 2);
             textBox_phone.Name = "textBox_phone";
-            textBox_phone.Size = new Size(288, 34);
+            textBox_phone.Size = new Size(252, 29);
             textBox_phone.TabIndex = 2;
-            textBox_phone.TextChanged += textBox2_TextChanged;
             // 
             // panel9
             // 
             panel9.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel9.Controls.Add(label10);
-            panel9.Controls.Add(textBox_birthplace);
-            panel9.Location = new Point(3, 95);
+            panel9.Controls.Add(textBox_hometown);
+            panel9.Location = new Point(3, 71);
+            panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
-            panel9.Size = new Size(347, 46);
+            panel9.Size = new Size(302, 34);
             panel9.TabIndex = 12;
             // 
             // label10
@@ -372,64 +385,66 @@
             label10.AutoSize = true;
             label10.Font = new Font("Century Gothic", 10.5F);
             label10.ForeColor = SystemColors.ButtonHighlight;
-            label10.Location = new Point(3, 12);
+            label10.Location = new Point(3, 9);
             label10.Name = "label10";
-            label10.Size = new Size(97, 21);
+            label10.Size = new Size(85, 19);
             label10.TabIndex = 2;
-            label10.Text = "Birthplace";
-            label10.Click += label10_Click;
+            label10.Text = "Hometown";
             // 
-            // textBox_birthplace
+            // textBox_hometown
             // 
-            textBox_birthplace.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox_birthplace.BorderStyle = BorderStyle.FixedSingle;
-            textBox_birthplace.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_birthplace.Location = new Point(104, 8);
-            textBox_birthplace.Name = "textBox_birthplace";
-            textBox_birthplace.Size = new Size(240, 34);
-            textBox_birthplace.TabIndex = 2;
+            textBox_hometown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox_hometown.BorderStyle = BorderStyle.FixedSingle;
+            textBox_hometown.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_hometown.Location = new Point(102, 6);
+            textBox_hometown.Margin = new Padding(3, 2, 3, 2);
+            textBox_hometown.Name = "textBox_hometown";
+            textBox_hometown.Size = new Size(198, 29);
+            textBox_hometown.TabIndex = 2;
             // 
             // panel8
             // 
             panel8.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel8.Controls.Add(comboBox_program);
             panel8.Controls.Add(label9);
-            panel8.Location = new Point(356, 3);
+            panel8.Location = new Point(311, 2);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(286, 38);
+            panel8.Size = new Size(249, 28);
             panel8.TabIndex = 6;
-            panel8.Paint += panel8_Paint;
             // 
             // comboBox_program
             // 
             comboBox_program.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            comboBox_program.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox_program.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox_program.FormattingEnabled = true;
-            comboBox_program.Location = new Point(161, 1);
+            comboBox_program.Location = new Point(82, 5);
+            comboBox_program.Margin = new Padding(3, 2, 3, 2);
             comboBox_program.Name = "comboBox_program";
-            comboBox_program.Size = new Size(125, 36);
+            comboBox_program.Size = new Size(167, 20);
             comboBox_program.TabIndex = 5;
-            comboBox_program.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            comboBox_program.SelectedIndexChanged += comboBox_program_SelectedIndexChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Century Gothic", 10.5F);
             label9.ForeColor = SystemColors.ButtonHighlight;
-            label9.Location = new Point(10, 9);
+            label9.Location = new Point(9, 6);
             label9.Name = "label9";
-            label9.Size = new Size(149, 21);
+            label9.Size = new Size(66, 19);
             label9.TabIndex = 2;
-            label9.Text = "TrainingProgram";
+            label9.Text = "Program";
             // 
             // panel10
             // 
             panel10.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel10.Controls.Add(label11);
-            panel10.Controls.Add(dateTimePicker1);
-            panel10.Location = new Point(648, 95);
+            panel10.Controls.Add(dateTimePicker_enrollmentDate);
+            panel10.Location = new Point(566, 71);
+            panel10.Margin = new Padding(3, 2, 3, 2);
             panel10.Name = "panel10";
-            panel10.Size = new Size(424, 46);
+            panel10.Size = new Size(371, 34);
             panel10.TabIndex = 13;
             // 
             // label11
@@ -437,28 +452,29 @@
             label11.AutoSize = true;
             label11.Font = new Font("Century Gothic", 10.5F);
             label11.ForeColor = SystemColors.ButtonHighlight;
-            label11.Location = new Point(10, 16);
+            label11.Location = new Point(9, 12);
             label11.Name = "label11";
-            label11.Size = new Size(145, 21);
+            label11.Size = new Size(115, 19);
             label11.TabIndex = 2;
             label11.Text = "EnrollmentDate";
             // 
-            // dateTimePicker1
+            // dateTimePicker_enrollmentDate
             // 
-            dateTimePicker1.Location = new Point(158, 12);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(265, 27);
-            dateTimePicker1.TabIndex = 18;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            dateTimePicker_enrollmentDate.Location = new Point(138, 9);
+            dateTimePicker_enrollmentDate.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker_enrollmentDate.Name = "dateTimePicker_enrollmentDate";
+            dateTimePicker_enrollmentDate.Size = new Size(232, 23);
+            dateTimePicker_enrollmentDate.TabIndex = 18;
             // 
             // panel6
             // 
             panel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel6.Controls.Add(comboBox_gender);
             panel6.Controls.Add(label7);
-            panel6.Location = new Point(356, 95);
+            panel6.Location = new Point(311, 71);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(286, 46);
+            panel6.Size = new Size(249, 34);
             panel6.TabIndex = 5;
             // 
             // comboBox_gender
@@ -466,9 +482,10 @@
             comboBox_gender.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox_gender.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox_gender.FormattingEnabled = true;
-            comboBox_gender.Location = new Point(94, 7);
+            comboBox_gender.Location = new Point(82, 5);
+            comboBox_gender.Margin = new Padding(3, 2, 3, 2);
             comboBox_gender.Name = "comboBox_gender";
-            comboBox_gender.Size = new Size(189, 36);
+            comboBox_gender.Size = new Size(165, 29);
             comboBox_gender.TabIndex = 5;
             // 
             // label7
@@ -476,9 +493,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 10.5F);
             label7.ForeColor = SystemColors.ButtonHighlight;
-            label7.Location = new Point(10, 15);
+            label7.Location = new Point(9, 11);
             label7.Name = "label7";
-            label7.Size = new Size(78, 21);
+            label7.Size = new Size(62, 19);
             label7.TabIndex = 2;
             label7.Text = "Gender";
             // 
@@ -487,9 +504,10 @@
             panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel4.Controls.Add(label5);
             panel4.Controls.Add(textBox_email);
-            panel4.Location = new Point(3, 47);
+            panel4.Location = new Point(3, 35);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(347, 41);
+            panel4.Size = new Size(302, 31);
             panel4.TabIndex = 12;
             // 
             // label5
@@ -497,9 +515,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 10.5F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(3, 9);
+            label5.Location = new Point(3, 7);
             label5.Name = "label5";
-            label5.Size = new Size(55, 21);
+            label5.Size = new Size(46, 19);
             label5.TabIndex = 2;
             label5.Text = "Email";
             // 
@@ -508,9 +526,10 @@
             textBox_email.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_email.BorderStyle = BorderStyle.FixedSingle;
             textBox_email.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_email.Location = new Point(104, 7);
+            textBox_email.Location = new Point(102, 5);
+            textBox_email.Margin = new Padding(3, 2, 3, 2);
             textBox_email.Name = "textBox_email";
-            textBox_email.Size = new Size(240, 34);
+            textBox_email.Size = new Size(198, 29);
             textBox_email.TabIndex = 2;
             // 
             // panel1
@@ -518,9 +537,10 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label_fullName);
             panel1.Controls.Add(textBox_name);
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(3, 2);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(347, 38);
+            panel1.Size = new Size(302, 28);
             panel1.TabIndex = 9;
             // 
             // label_fullName
@@ -528,9 +548,9 @@
             label_fullName.AutoSize = true;
             label_fullName.Font = new Font("Century Gothic", 10.5F);
             label_fullName.ForeColor = Color.White;
-            label_fullName.Location = new Point(3, 9);
+            label_fullName.Location = new Point(3, 7);
             label_fullName.Name = "label_fullName";
-            label_fullName.Size = new Size(95, 21);
+            label_fullName.Size = new Size(77, 19);
             label_fullName.TabIndex = 2;
             label_fullName.Text = "Full Name";
             // 
@@ -539,9 +559,10 @@
             textBox_name.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_name.BorderStyle = BorderStyle.FixedSingle;
             textBox_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_name.Location = new Point(104, 3);
+            textBox_name.Location = new Point(102, 2);
+            textBox_name.Margin = new Padding(3, 2, 3, 2);
             textBox_name.Name = "textBox_name";
-            textBox_name.Size = new Size(240, 34);
+            textBox_name.Size = new Size(198, 29);
             textBox_name.TabIndex = 2;
             // 
             // panel5
@@ -549,9 +570,10 @@
             panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel5.Controls.Add(textBox_address);
             panel5.Controls.Add(label6);
-            panel5.Location = new Point(648, 3);
+            panel5.Location = new Point(566, 2);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(424, 38);
+            panel5.Size = new Size(371, 28);
             panel5.TabIndex = 13;
             // 
             // textBox_address
@@ -559,9 +581,10 @@
             textBox_address.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_address.BorderStyle = BorderStyle.FixedSingle;
             textBox_address.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_address.Location = new Point(133, 3);
+            textBox_address.Location = new Point(116, 2);
+            textBox_address.Margin = new Padding(3, 2, 3, 2);
             textBox_address.Name = "textBox_address";
-            textBox_address.Size = new Size(288, 34);
+            textBox_address.Size = new Size(252, 29);
             textBox_address.TabIndex = 2;
             // 
             // label6
@@ -569,20 +592,21 @@
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 10.5F);
             label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(10, 9);
+            label6.Location = new Point(9, 7);
             label6.Name = "label6";
-            label6.Size = new Size(59, 21);
+            label6.Size = new Size(61, 19);
             label6.TabIndex = 2;
-            label6.Text = "Addr.";
+            label6.Text = "Address";
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(label3);
             panel2.Controls.Add(textBox_age);
-            panel2.Location = new Point(356, 47);
+            panel2.Location = new Point(311, 35);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(286, 41);
+            panel2.Size = new Size(249, 31);
             panel2.TabIndex = 10;
             // 
             // label3
@@ -590,9 +614,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 10.5F);
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(10, 9);
+            label3.Location = new Point(9, 7);
             label3.Name = "label3";
-            label3.Size = new Size(49, 21);
+            label3.Size = new Size(36, 19);
             label3.TabIndex = 2;
             label3.Text = "Age";
             // 
@@ -601,11 +625,11 @@
             textBox_age.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_age.BorderStyle = BorderStyle.FixedSingle;
             textBox_age.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_age.Location = new Point(93, 7);
+            textBox_age.Location = new Point(81, 5);
+            textBox_age.Margin = new Padding(3, 2, 3, 2);
             textBox_age.Name = "textBox_age";
-            textBox_age.Size = new Size(193, 34);
+            textBox_age.Size = new Size(168, 29);
             textBox_age.TabIndex = 2;
-            textBox_age.TextChanged += textBox1_TextChanged;
             // 
             // panel_title
             // 
@@ -613,11 +637,11 @@
             panel_title.Controls.Add(label_panelTitle);
             panel_title.Dock = DockStyle.Fill;
             panel_title.ForeColor = SystemColors.AppWorkspace;
-            panel_title.Location = new Point(3, 3);
+            panel_title.Location = new Point(3, 2);
+            panel_title.Margin = new Padding(3, 2, 3, 2);
             panel_title.Name = "panel_title";
-            panel_title.Size = new Size(1075, 46);
+            panel_title.Size = new Size(940, 35);
             panel_title.TabIndex = 21;
-            panel_title.Paint += panel_panelTitle_Paint;
             // 
             // label_panelTitle
             // 
@@ -626,30 +650,30 @@
             label_panelTitle.BackColor = Color.Transparent;
             label_panelTitle.Font = new Font("Cambria", 20F, FontStyle.Bold);
             label_panelTitle.ForeColor = Color.White;
-            label_panelTitle.Location = new Point(337, -4);
+            label_panelTitle.Location = new Point(214, -3);
             label_panelTitle.Name = "label_panelTitle";
-            label_panelTitle.Padding = new Padding(0, 10, 0, 0);
-            label_panelTitle.Size = new Size(365, 50);
+            label_panelTitle.Padding = new Padding(0, 8, 0, 0);
+            label_panelTitle.Size = new Size(436, 40);
             label_panelTitle.TabIndex = 8;
-            label_panelTitle.Text = "THÔNG TIN SINH VIÊN";
+            label_panelTitle.Text = "THÔNG TIN DANH SÁCH SINH VIÊN";
             label_panelTitle.TextAlign = ContentAlignment.MiddleCenter;
-            label_panelTitle.Click += label1_Click;
             // 
-            // listView1
+            // listView_student
             // 
-            listView1.BackColor = Color.WhiteSmoke;
-            listView1.CheckBoxes = true;
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
-            listView1.Dock = DockStyle.Fill;
-            listView1.Font = new Font("Verdana", 10F);
-            listView1.GridLines = true;
-            listView1.Location = new Point(0, 0);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(1081, 381);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            listView_student.BackColor = Color.WhiteSmoke;
+            listView_student.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
+            listView_student.Dock = DockStyle.Fill;
+            listView_student.Font = new Font("Verdana", 10F);
+            listView_student.GridLines = true;
+            listView_student.Location = new Point(0, 0);
+            listView_student.Margin = new Padding(3, 2, 3, 2);
+            listView_student.Name = "listView_student";
+            listView_student.Size = new Size(946, 286);
+            listView_student.TabIndex = 0;
+            listView_student.UseCompatibleStateImageBehavior = false;
+            listView_student.View = View.Details;
+            listView_student.SelectedIndexChanged += listView_student_SelectedIndexChanged;
+            listView_student.MouseClick += listView_student_MouseClick;
             // 
             // columnHeader1
             // 
@@ -680,11 +704,6 @@
             columnHeader6.Text = "Gender";
             columnHeader6.Width = 80;
             // 
-            // columnHeader7
-            // 
-            columnHeader7.Text = "Class";
-            columnHeader7.Width = 120;
-            // 
             // columnHeader8
             // 
             columnHeader8.Text = "Program";
@@ -708,21 +727,23 @@
             // panelBottom
             // 
             panelBottom.BackColor = SystemColors.ButtonFace;
-            panelBottom.Controls.Add(listView1);
+            panelBottom.Controls.Add(listView_student);
             panelBottom.Dock = DockStyle.Bottom;
-            panelBottom.Location = new Point(0, 361);
+            panelBottom.Location = new Point(0, 270);
+            panelBottom.Margin = new Padding(3, 2, 3, 2);
             panelBottom.Name = "panelBottom";
-            panelBottom.Size = new Size(1081, 381);
+            panelBottom.Size = new Size(946, 286);
             panelBottom.TabIndex = 0;
             // 
             // Student
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1081, 742);
+            ClientSize = new Size(946, 556);
             Controls.Add(panelTop);
             Controls.Add(panelBottom);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Student";
             Text = "Student";
             panelTop.ResumeLayout(false);
@@ -764,17 +785,16 @@
         private Button button_classList;
         private Panel panel10;
         private Label label11;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker_enrollmentDate;
         private Panel panel9;
         private Label label10;
-        private TextBox textBox_birthplace;
+        private TextBox textBox_hometown;
         private Panel panel8;
         private ComboBox comboBox_program;
         private Label label9;
         private TextBox textBox_search;
         private Button button_search;
-        private Button button_export;
-        private Button button_edit;
+        private Button button_update;
         private Button button_delete;
         private Button button_add;
         private Panel panel6;
@@ -803,19 +823,19 @@
         private Panel panel_title;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private ListView listView1;
+        private ListView listView_student;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
         private ColumnHeader columnHeader10;
         private ColumnHeader columnHeader11;
         private Panel panelBottom;
         private Panel panel_searchBar;
+        private Button button_export;
     }
 }

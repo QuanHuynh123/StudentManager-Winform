@@ -40,7 +40,6 @@ namespace GUI
             passwordTextBox = new TextBox();
             forgotPasswordLabel = new Label();
             loginButton = new Button();
-            registerLabel = new Label();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             customPanel.SuspendLayout();
@@ -88,7 +87,6 @@ namespace GUI
             tableLayoutPanel.Controls.Add(passwordTextBox, 0, 2);
             tableLayoutPanel.Controls.Add(forgotPasswordLabel, 0, 3);
             tableLayoutPanel.Controls.Add(loginButton, 0, 4);
-            tableLayoutPanel.Controls.Add(registerLabel, 0, 5);
             tableLayoutPanel.Dock = DockStyle.Bottom;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
@@ -109,7 +107,7 @@ namespace GUI
             titleLogin.ForeColor = Color.White;
             titleLogin.Location = new Point(3, 0);
             titleLogin.Name = "titleLogin";
-            titleLogin.Size = new Size(628, 171);
+            titleLogin.Size = new Size(628, 197);
             titleLogin.TabIndex = 0;
             titleLogin.Text = "ĐĂNG NHẬP HỆ THỐNG";
             titleLogin.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,7 +117,7 @@ namespace GUI
             usernameTextBox.Anchor = AnchorStyles.None;
             usernameTextBox.Font = new Font("Arial", 14F);
             usernameTextBox.ForeColor = Color.Silver;
-            usernameTextBox.Location = new Point(136, 182);
+            usernameTextBox.Location = new Point(136, 212);
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(362, 34);
             usernameTextBox.TabIndex = 1;
@@ -132,7 +130,7 @@ namespace GUI
             passwordTextBox.Anchor = AnchorStyles.None;
             passwordTextBox.Font = new Font("Arial", 14F);
             passwordTextBox.ForeColor = Color.Silver;
-            passwordTextBox.Location = new Point(135, 239);
+            passwordTextBox.Location = new Point(135, 277);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(363, 34);
             passwordTextBox.TabIndex = 2;
@@ -146,9 +144,9 @@ namespace GUI
             forgotPasswordLabel.Dock = DockStyle.Fill;
             forgotPasswordLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             forgotPasswordLabel.ForeColor = Color.White;
-            forgotPasswordLabel.Location = new Point(3, 285);
+            forgotPasswordLabel.Location = new Point(3, 327);
             forgotPasswordLabel.Name = "forgotPasswordLabel";
-            forgotPasswordLabel.Size = new Size(628, 57);
+            forgotPasswordLabel.Size = new Size(628, 65);
             forgotPasswordLabel.TabIndex = 3;
             forgotPasswordLabel.Text = "Quên mật khẩu";
             forgotPasswordLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -161,26 +159,13 @@ namespace GUI
             loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.Font = new Font("Arial", 10F, FontStyle.Bold);
             loginButton.ForeColor = Color.White;
-            loginButton.Location = new Point(167, 378);
+            loginButton.Location = new Point(167, 439);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(299, 41);
             loginButton.TabIndex = 4;
             loginButton.Text = "ĐĂNG NHẬP";
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += loginButton_Click;
-            // 
-            // registerLabel
-            // 
-            registerLabel.AutoSize = true;
-            registerLabel.Dock = DockStyle.Fill;
-            registerLabel.Font = new Font("Arial", 10F, FontStyle.Bold);
-            registerLabel.ForeColor = Color.Black;
-            registerLabel.Location = new Point(3, 456);
-            registerLabel.Name = "registerLabel";
-            registerLabel.Size = new Size(628, 71);
-            registerLabel.TabIndex = 5;
-            registerLabel.Text = "Chưa có tài khoản? ĐĂNG KÝ";
-            registerLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -250,7 +235,6 @@ namespace GUI
         private TextBox passwordTextBox;
         private Label forgotPasswordLabel;
         private Button loginButton;
-        private Label registerLabel;
         private PictureBox pictureBox1;
         //private Panel overlay;
     }

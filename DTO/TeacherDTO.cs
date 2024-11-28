@@ -13,5 +13,6 @@
         public string Password { get; set; }
         public int RoleID { get; set; }
         public RoleDTO Role { get; set; }
+        public DepartmentDTO Department { get; set; }
     }
 }

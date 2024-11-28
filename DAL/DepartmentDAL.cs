@@ -14,10 +14,35 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "SELECT * FROM Department";
-                departments = connection.Query<DepartmentDTO>(query).ToList();
+                string query = "SELECT * FROM department d left join teacher t on d.TeacherID = t.TeacherID";
+                departments = connection.Query<DepartmentDTO, TeacherDTO, DepartmentDTO>(
+                    query, (d, t) =>
+                    {
+                        d.Teacher = t;
+                        return d;
+                    }, splitOn: "DepartmentID,TeacherID"
+                ).ToList();
             }
             return departments;
+        }
+
+        public List<DepartmentDTO> GetDepartmentOfTeacher(int teacherID)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+                string query = $@"SELECT * FROM department d 
+                                    right join teacher t on t.TeacherID = @TeacherID";
+                var result = connection.Query<DepartmentDTO>(
+                    query,
+                    new
+                    {
+                        TeacherID = teacherID
+                    }
+                ).ToList();
+
+                return result;
+            }
         }
 
         public bool AddDepartment(DepartmentDTO department)
@@ -25,8 +50,8 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "INSERT INTO Department (DepartmentName, HeadOfDepartment, Email, EstablishedYear) " +
-                               "VALUES (@DepartmentName, @HeadOfDepartment, @Email, @EstablishedYear)";
+                string query = "INSERT INTO Department (DepartmentName, TeacherID, Email, EstablishedYear) " +
+                               "VALUES (@DepartmentName, @TeacherID, @Email, @EstablishedYear)";
 
                 int affectedRows = connection.Execute(query, department);
 
@@ -62,7 +87,7 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = "UPDATE Department SET DepartmentName = @DepartmentName, HeadOfDepartment = @HeadOfDepartment, " +
+                string query = "UPDATE Department SET DepartmentName = @DepartmentName, TeacherID = @TeacherID, " +
                                "Email = @Email, EstablishedYear = @EstablishedYear WHERE DepartmentID = @DepartmentID";
 
                 int rowUpdated = connection.Execute(query, department);

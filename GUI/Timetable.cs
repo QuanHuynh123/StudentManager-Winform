@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +16,71 @@ namespace GUI
 {
     public partial class Timetable : Form
     {
-        public Timetable()
+        StudentBLL studentBLL;
+        SubjectBLL subjectBLL;
+        int studentId;
+
+        public Timetable(int studentId)
         {
             InitializeComponent();
+            this.studentId = studentId;
+            studentBLL = new StudentBLL();
+            subjectBLL = new SubjectBLL();
+
+            // Lấy danh sách thời khóa biểu
+            List<ClassDTO> timetable = studentBLL.getTimetableStudent(studentId);
+
+            // Kiểm tra xem danh sách có null hoặc rỗng không
+            if (timetable == null)
+            {
+                MessageBox.Show("Không có dữ liệu thời khóa biểu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            loadTimetableStudent(timetable);
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        public void loadTimetableStudent(List<ClassDTO> timetable)
         {
+            foreach (ClassDTO classDTO in timetable)
+            {
+                SubjectDTO subject = subjectBLL.GetSubjectByID(classDTO.SubjectID);
+                Panel panel = new Panel
+                {
+                    BackColor = System.Drawing.Color.Khaki,
+                    Dock = DockStyle.Fill,
+                    Margin = new Padding(2),
+                };
 
+                Label subjectLabel = new Label
+                {
+                    Text = $"Môn: {subject.SubjectName}",
+                    Dock = DockStyle.Top,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = false,
+                };
+
+                Label roomLabel = new Label
+                {
+                    Text = $"Phòng: {classDTO.Room}",
+                    Dock = DockStyle.Bottom,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    AutoSize = false,
+                };
+                panel.Controls.Add(subjectLabel);
+                panel.Controls.Add(roomLabel);
+                tableLayoutPanelTimetable.Controls.Add(panel, classDTO.Day - 1, classDTO.StartPeriod);
+                tableLayoutPanelTimetable.SetRowSpan(panel, (classDTO.EndPeriod - classDTO.StartPeriod) + 1);
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void tableLayoutPanelTimetable_Paint(object sender, PaintEventArgs e)
         {
-
+        
         }
+
+  
     }
 }
+
+

@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -13,11 +14,31 @@ namespace BLL
         {
             departmentDAL = new DepartmentDAL();
         }
-
+         
         // Lấy tất cả các Department
         public List<DepartmentDTO> GetAllDepartments()
         {
             return departmentDAL.GetAllDepartments();
+        }
+
+        public List<DepartmentDTO> GetDepartmentsOfTeacher()
+        {
+            try
+            {
+                int roleID = SessionLogin.LoggedInTeacher.RoleID;
+                int departmentID = SessionLogin.LoggedInTeacher.DepartmentID;
+                var result = departmentDAL.GetAllDepartments();
+                if (roleID != Constants.Principal)
+                { 
+                    return result.Where(d => d.DepartmentID == departmentID).ToList();
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi lấy: {ex.Message}");
+                return null;
+            }
         }
 
         // Thêm Department mới

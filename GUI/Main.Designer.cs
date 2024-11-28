@@ -190,9 +190,8 @@ namespace GUI
             // 
             pictureBox_studentlist.Image = (Image)resources.GetObject("pictureBox_studentlist.Image");
             pictureBox_studentlist.Location = new Point(5, 0);
-            pictureBox_studentlist.Margin = new Padding(3, 2, 3, 2);
             pictureBox_studentlist.Name = "pictureBox_studentlist";
-            pictureBox_studentlist.Size = new Size(60, 60);
+            pictureBox_studentlist.Size = new Size(59, 60);
             pictureBox_studentlist.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_studentlist.TabIndex = 5;
             pictureBox_studentlist.TabStop = false;
@@ -224,9 +223,8 @@ namespace GUI
             pictureBox_timetable.Image = (Image)resources.GetObject("pictureBox_timetable.Image");
             pictureBox_timetable.InitialImage = (Image)resources.GetObject("pictureBox_timetable.InitialImage");
             pictureBox_timetable.Location = new Point(5, 0);
-            pictureBox_timetable.Margin = new Padding(3, 2, 3, 2);
             pictureBox_timetable.Name = "pictureBox_timetable";
-            pictureBox_timetable.Size = new Size(60, 60);
+            pictureBox_timetable.Size = new Size(59, 60);
             pictureBox_timetable.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_timetable.TabIndex = 5;
             pictureBox_timetable.TabStop = false;
@@ -256,10 +254,9 @@ namespace GUI
             // pictureBox_classlist
             // 
             pictureBox_classlist.Image = (Image)resources.GetObject("pictureBox_classlist.Image");
-            pictureBox_classlist.Location = new Point(-2, 2);
-            pictureBox_classlist.Margin = new Padding(3, 2, 3, 2);
+            pictureBox_classlist.Location = new Point(-2, 3);
             pictureBox_classlist.Name = "pictureBox_classlist";
-            pictureBox_classlist.Size = new Size(60, 60);
+            pictureBox_classlist.Size = new Size(59, 60);
             pictureBox_classlist.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_classlist.TabIndex = 7;
             pictureBox_classlist.TabStop = false;
@@ -290,9 +287,8 @@ namespace GUI
             // 
             pictureBox_subject.Image = (Image)resources.GetObject("pictureBox_subject.Image");
             pictureBox_subject.Location = new Point(5, 0);
-            pictureBox_subject.Margin = new Padding(3, 2, 3, 2);
             pictureBox_subject.Name = "pictureBox_subject";
-            pictureBox_subject.Size = new Size(60, 60);
+            pictureBox_subject.Size = new Size(59, 60);
             pictureBox_subject.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_subject.TabIndex = 9;
             pictureBox_subject.TabStop = false;
@@ -323,9 +319,8 @@ namespace GUI
             // 
             pictureBox_department.Image = (Image)resources.GetObject("pictureBox_department.Image");
             pictureBox_department.Location = new Point(5, -1);
-            pictureBox_department.Margin = new Padding(3, 2, 3, 2);
             pictureBox_department.Name = "pictureBox_department";
-            pictureBox_department.Size = new Size(60, 60);
+            pictureBox_department.Size = new Size(59, 60);
             pictureBox_department.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_department.TabIndex = 13;
             pictureBox_department.TabStop = false;
@@ -356,9 +351,8 @@ namespace GUI
             // 
             pictureBox_program.Image = (Image)resources.GetObject("pictureBox_program.Image");
             pictureBox_program.Location = new Point(6, 7);
-            pictureBox_program.Margin = new Padding(3, 2, 3, 2);
             pictureBox_program.Name = "pictureBox_program";
-            pictureBox_program.Size = new Size(60, 60);
+            pictureBox_program.Size = new Size(59, 60);
             pictureBox_program.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_program.TabIndex = 11;
             pictureBox_program.TabStop = false;
@@ -389,9 +383,8 @@ namespace GUI
             // 
             pictureBox_account.Image = (Image)resources.GetObject("pictureBox_account.Image");
             pictureBox_account.Location = new Point(2, 7);
-            pictureBox_account.Margin = new Padding(3, 2, 3, 2);
             pictureBox_account.Name = "pictureBox_account";
-            pictureBox_account.Size = new Size(60, 60);
+            pictureBox_account.Size = new Size(59, 60);
             pictureBox_account.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_account.TabIndex = 15;
             pictureBox_account.TabStop = false;
@@ -422,9 +415,8 @@ namespace GUI
             // 
             pictureBox_settings.Image = (Image)resources.GetObject("pictureBox_settings.Image");
             pictureBox_settings.Location = new Point(5, 0);
-            pictureBox_settings.Margin = new Padding(3, 2, 3, 2);
             pictureBox_settings.Name = "pictureBox_settings";
-            pictureBox_settings.Size = new Size(60, 60);
+            pictureBox_settings.Size = new Size(59, 60);
             pictureBox_settings.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_settings.TabIndex = 17;
             pictureBox_settings.TabStop = false;
@@ -454,10 +446,9 @@ namespace GUI
             // pictureBox_logout
             // 
             pictureBox_logout.Image = (Image)resources.GetObject("pictureBox_logout.Image");
-            pictureBox_logout.Location = new Point(5, 2);
-            pictureBox_logout.Margin = new Padding(3, 2, 3, 2);
+            pictureBox_logout.Location = new Point(5, 3);
             pictureBox_logout.Name = "pictureBox_logout";
-            pictureBox_logout.Size = new Size(60, 60);
+            pictureBox_logout.Size = new Size(59, 60);
             pictureBox_logout.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_logout.TabIndex = 19;
             pictureBox_logout.TabStop = false;
@@ -467,7 +458,7 @@ namespace GUI
             label_logout.AutoSize = true;
             label_logout.Font = new Font("Yu Gothic UI Semibold", 12F, FontStyle.Bold);
             label_logout.ForeColor = SystemColors.Window;
-            label_logout.Location = new Point(77, 14);
+            label_logout.Location = new Point(77, 13);
             label_logout.Name = "label_logout";
             label_logout.Size = new Size(77, 28);
             label_logout.TabIndex = 20;
@@ -480,8 +471,7 @@ namespace GUI
             panel1.Controls.Add(panel_apptitle);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.MaximumSize = new Size(350, 1486);
+            panel1.MaximumSize = new Size(350, 1485);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(0, 0, 0, 8);
             panel1.Size = new Size(270, 205);
@@ -493,7 +483,6 @@ namespace GUI
             panel_home.Controls.Add(label_home);
             panel_home.Dock = DockStyle.Bottom;
             panel_home.Location = new Point(0, 138);
-            panel_home.Margin = new Padding(3, 2, 3, 2);
             panel_home.Name = "panel_home";
             panel_home.Size = new Size(270, 59);
             panel_home.TabIndex = 21;
@@ -502,9 +491,8 @@ namespace GUI
             // 
             pictureBox_home.Image = (Image)resources.GetObject("pictureBox_home.Image");
             pictureBox_home.Location = new Point(7, 0);
-            pictureBox_home.Margin = new Padding(3, 2, 3, 2);
             pictureBox_home.Name = "pictureBox_home";
-            pictureBox_home.Size = new Size(60, 59);
+            pictureBox_home.Size = new Size(59, 59);
             pictureBox_home.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_home.TabIndex = 1;
             pictureBox_home.TabStop = false;
@@ -514,7 +502,7 @@ namespace GUI
             label_home.AutoSize = true;
             label_home.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             label_home.ForeColor = Color.White;
-            label_home.Location = new Point(76, 16);
+            label_home.Location = new Point(75, 16);
             label_home.Name = "label_home";
             label_home.Size = new Size(68, 25);
             label_home.TabIndex = 3;
@@ -526,7 +514,6 @@ namespace GUI
             panel_apptitle.Controls.Add(pictureBox_school);
             panel_apptitle.Dock = DockStyle.Top;
             panel_apptitle.Location = new Point(0, 0);
-            panel_apptitle.Margin = new Padding(3, 2, 3, 2);
             panel_apptitle.Name = "panel_apptitle";
             panel_apptitle.Padding = new Padding(11, 4, 0, 0);
             panel_apptitle.Size = new Size(270, 77);
@@ -539,8 +526,8 @@ namespace GUI
             label1.Font = new Font("Microsoft Himalaya", 22F, FontStyle.Bold);
             label1.Location = new Point(76, 4);
             label1.Name = "label1";
-            label1.Padding = new Padding(0, 30, 0, 0);
-            label1.Size = new Size(176, 67);
+            label1.Padding = new Padding(0, 29, 0, 0);
+            label1.Size = new Size(176, 66);
             label1.TabIndex = 0;
             label1.Text = "UNIVERSITY";
             // 
@@ -549,7 +536,7 @@ namespace GUI
             pictureBox_school.Dock = DockStyle.Left;
             pictureBox_school.Image = (Image)resources.GetObject("pictureBox_school.Image");
             pictureBox_school.Location = new Point(11, 4);
-            pictureBox_school.Margin = new Padding(18, 2, 3, 2);
+            pictureBox_school.Margin = new Padding(18, 3, 3, 3);
             pictureBox_school.Name = "pictureBox_school";
             pictureBox_school.Size = new Size(65, 73);
             pictureBox_school.SizeMode = PictureBoxSizeMode.StretchImage;
