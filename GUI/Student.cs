@@ -1,6 +1,9 @@
 ﻿using BLL;
 using DAL;
+using DAL.Models;
 using DTO;
+using DTO.Models;
+using Mapster;
 using System.Text.RegularExpressions;
 
 
@@ -331,14 +334,45 @@ namespace GUI
                 {
                     // Lấy dòng đã chọn
                     ListViewItem selectedItem = listView_student.SelectedItems[0];
-                    int studentID = int.Parse(selectedItem.Text);  
+                    int studentID = int.Parse(selectedItem.Text);
 
                     StudentDetail studentDetailForm = new StudentDetail(studentID);
-                    studentDetailForm.Show(); 
+                    studentDetailForm.Show();
                 }
             }
         }
 
+        private void button_export_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int roleID = SessionLogin.LoggedInTeacher.RoleID;
+                if (roleID == Constants.TEACHER)
+                {
+                    string fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}-student-homeroom";
+                    int teacherID = SessionLogin.LoggedInTeacher.TeacherID;
+                    List<StudentDTO> studentResponse = studentBLL.GetStudentFromHomeroom(teacherID);
+                    List<StudentForExport> data = studentResponse.Adapt<List<StudentForExport>>();
 
+                    Common.ExportExcel<StudentForExport>(data, fileName);
+                }
+
+                if (roleID == Constants.HEAD_OF_DEPARTMENT)
+                {
+                    string fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}-student-department";
+                    int departmentID = SessionLogin.LoggedInTeacher.DepartmentID;
+                    List<StudentDTO> studentResponse = studentBLL.GetStudentByIdDepartment(departmentID);
+                    List<StudentForExport> data = studentResponse.Adapt<List<StudentForExport>>();
+
+                    Common.ExportExcel<StudentForExport>(data, fileName);
+                }
+
+                MessageBox.Show("Export thành công", "Success");
+            } catch
+            {
+                MessageBox.Show("Export thất bại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
     }
 }

@@ -188,11 +188,6 @@ namespace GUI
             {
                 label_name.Text = SessionLogin.LoggedInTeacher.FullName;
 
-                if (SessionLogin.LoggedInTeacher.RoleID == Constants.Principal)
-                {
-                    return;
-                }
-
                 var myFeatures = SessionLogin.LoggedInTeacher.Role.RoleActivities.GroupBy(ra => ra.Feature).ToList().Where(x => x.Key != null);
 
                 foreach (var item in defaultVisible)
