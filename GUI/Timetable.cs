@@ -29,14 +29,6 @@ namespace GUI
 
             // Lấy danh sách thời khóa biểu
             List<ClassDTO> timetable = studentBLL.getTimetableStudent(studentId);
-
-            // Kiểm tra xem danh sách có null hoặc rỗng không
-            if (timetable == null)
-            {
-                MessageBox.Show("Không có dữ liệu thời khóa biểu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             loadTimetableStudent(timetable);
         }
 
@@ -62,7 +54,7 @@ namespace GUI
 
                 Label roomLabel = new Label
                 {
-                    Text = $"Phòng: {classDTO.Room}",
+                    Text = classDTO.Room,
                     Dock = DockStyle.Bottom,
                     TextAlign = ContentAlignment.MiddleCenter,
                     AutoSize = false,

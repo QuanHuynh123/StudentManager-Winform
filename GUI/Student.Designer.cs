@@ -165,13 +165,13 @@
             // 
             // button_export
             // 
-            button_export.BackColor = Color.FromArgb(73, 69, 104);
+            button_export.BackColor = Color.FromArgb(131, 8, 255);
             button_export.Dock = DockStyle.Left;
             button_export.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_export.ForeColor = SystemColors.ButtonHighlight;
-            button_export.Location = new Point(723, 48);
+            button_export.Location = new Point(633, 37);
             button_export.Name = "button_export";
-            button_export.Size = new Size(200, 40);
+            button_export.Size = new Size(200, 28);
             button_export.TabIndex = 17;
             button_export.Text = "Xuất Excel";
             button_export.UseVisualStyleBackColor = false;
@@ -179,13 +179,13 @@
             // 
             // button_departmentList
             // 
-            button_departmentList.BackColor = Color.FromArgb(83, 185, 174);
+            button_departmentList.BackColor = Color.FromArgb(255, 94, 0);
             button_departmentList.Dock = DockStyle.Fill;
             button_departmentList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_departmentList.ForeColor = SystemColors.ButtonFace;
-            button_departmentList.Location = new Point(363, 48);
+            button_departmentList.Location = new Point(318, 37);
             button_departmentList.Name = "button_departmentList";
-            button_departmentList.Size = new Size(354, 40);
+            button_departmentList.Size = new Size(309, 28);
             button_departmentList.TabIndex = 1;
             button_departmentList.Text = "Danh sách theo Khoa";
             button_departmentList.UseVisualStyleBackColor = false;
@@ -193,13 +193,13 @@
             // 
             // button_update
             // 
-            button_update.BackColor = Color.FromArgb(53, 97, 158);
+            button_update.BackColor = Color.FromArgb(47, 89, 148);
             button_update.Dock = DockStyle.Fill;
             button_update.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_update.ForeColor = SystemColors.ButtonHighlight;
-            button_update.Location = new Point(363, 3);
+            button_update.Location = new Point(318, 3);
             button_update.Name = "button_update";
-            button_update.Size = new Size(354, 39);
+            button_update.Size = new Size(309, 28);
             button_update.TabIndex = 16;
             button_update.Text = "Sửa";
             button_update.UseVisualStyleBackColor = false;
@@ -207,12 +207,12 @@
             // 
             // button_delete
             // 
-            button_delete.BackColor = Color.FromArgb(255, 128, 128);
+            button_delete.BackColor = Color.FromArgb(206, 8, 8);
             button_delete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_delete.ForeColor = SystemColors.ButtonHighlight;
-            button_delete.Location = new Point(723, 3);
+            button_delete.Location = new Point(633, 3);
             button_delete.Name = "button_delete";
-            button_delete.Size = new Size(200, 39);
+            button_delete.Size = new Size(200, 28);
             button_delete.TabIndex = 15;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
@@ -220,13 +220,13 @@
             // 
             // button_classList
             // 
-            button_classList.BackColor = Color.FromArgb(112, 169, 188);
+            button_classList.BackColor = Color.FromArgb(153, 81, 8);
             button_classList.Dock = DockStyle.Right;
             button_classList.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_classList.ForeColor = SystemColors.ButtonFace;
-            button_classList.Location = new Point(157, 48);
+            button_classList.Location = new Point(112, 37);
             button_classList.Name = "button_classList";
-            button_classList.Size = new Size(200, 40);
+            button_classList.Size = new Size(200, 28);
             button_classList.TabIndex = 2;
             button_classList.Text = "Danh sách  lớp cố vấn";
             button_classList.UseVisualStyleBackColor = false;
@@ -234,13 +234,13 @@
             // 
             // button_add
             // 
-            button_add.BackColor = Color.FromArgb(70, 90, 100);
+            button_add.BackColor = Color.FromArgb(8, 137, 72);
             button_add.Dock = DockStyle.Right;
             button_add.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             button_add.ForeColor = SystemColors.ButtonHighlight;
-            button_add.Location = new Point(157, 3);
+            button_add.Location = new Point(112, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(200, 39);
+            button_add.Size = new Size(200, 28);
             button_add.TabIndex = 14;
             button_add.Text = "Thêm";
             button_add.UseVisualStyleBackColor = false;

@@ -74,5 +74,18 @@ namespace BLL
                 return false;
             }
         }
+
+        public ClassDTO getClassById(int classID)
+        {
+            try
+            {
+                return classDAL.GetByID(classID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi xóa Class: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

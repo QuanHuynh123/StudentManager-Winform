@@ -9,25 +9,30 @@ namespace DAL
     {
         public List<StudentDTO> GetStudentFromHomeroom(int teacherID)
         {
-            string query = @"Select * from student s
-                            where s.StudentID in (
-	                            select cs.StudentID from class c 
-		                            left join teacher t ON t.TeacherID = c.TeacherID
-		                            right join class_Student cs ON c.ClassID = cs.ClassID
-	                            where c.SubjectID is Null and c.TeacherID = @TeacherID)";
+            string query = @"SELECT 
+                            s.StudentID,
+                            s.FullName,
+                            s.Gender,
+                            s.Age,
+                            s.Email,
+                            s.PhoneNumber,
+                            s.EnrollmentDate,
+                            s.Hometown,
+                            s.PermanentAddress,
+                            s.DepartmentID,
+                            s.ProgramID,
+                            s.GPA,
+	                        s.ClassID,
+                            s.TotalCreditsEarned
+                        FROM [Student] s
+                        JOIN [Class] c ON s.ClassID = c.ClassID
+                        WHERE c.TeacherID = @TeacherID";
 
             using (var connection = Connection())
             {
                 connection.Open();
-
-                List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
-                    query,
-                    new
-                    {
-                        TeacherID = teacherID
-                    }
-                ).ToList();
-
+                List<StudentDTO> foundStudents = 
+                    connection.Query<StudentDTO>(query,new{ TeacherID = teacherID } ).ToList();
                 return foundStudents;
             }
         }
@@ -54,13 +59,8 @@ namespace DAL
             {
                 connection.Open();
 
-                List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
-                    query,
-                    new
-                    {
-                        departmentID = departmentID
-                    }
-                ).ToList();
+                List<StudentDTO> foundStudents = 
+                    connection.Query<StudentDTO>( query, new{ departmentID = departmentID}).ToList();
 
                 return foundStudents;
 
@@ -152,14 +152,25 @@ namespace DAL
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = @"  SELECT * FROM student s
-                                    WHERE s.StudentID IN (
-                                        SELECT cs.StudentID FROM class c
-                                        LEFT JOIN teacher t ON t.TeacherID = c.TeacherID
-                                        RIGHT JOIN class_student cs ON c.ClassID = cs.ClassID
-                                        WHERE c.SubjectID IS NULL AND c.TeacherID = @TeacherId
-                                    )
-                                    AND s.FullName LIKE CONCAT('%',@FullName, '%')";
+                string query = @"SELECT s.[StudentID],
+                                   s.[Gender],
+                                   s.[Age],
+                                   s.[Email],
+                                   s.[PhoneNumber],
+                                   s.[EnrollmentDate],
+                                   s.[Hometown],
+                                   s.[PermanentAddress],
+                                   s.[DepartmentID],
+                                   s.[ProgramID],
+                                   s.[FullName],
+                                   s.[GPA],
+                                   s.[TotalCreditsEarned],
+                                   s.[ClassID]
+                            FROM [Student] s
+                            JOIN [Class] c ON s.ClassID = c.ClassID
+                            JOIN [Teacher] t ON c.TeacherID = t.TeacherID
+                            WHERE t.TeacherID = @TeacherID 
+                              AND s.FullName LIKE '%' + @FullName + '%'";
                 List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
                     query,
                     new { TeacherId = teacherId, FullName = name }
@@ -183,16 +194,23 @@ namespace DAL
                                 s.Email,
                                 s.PhoneNumber,
                                 s.EnrollmentDate,
-                                s.Gpa,
-                                s.TotalCreditsEarned,
                                 s.Hometown,
                                 s.PermanentAddress,
-                                s.Class,
                                 s.DepartmentID,
-                                s.ProgramID
-                            FROM [Class_Student] cs
-                            JOIN [Student] s ON cs.StudentID = s.StudentID
-                            WHERE cs.ClassID = @ClassID";
+                                s.ProgramID,
+                                s.GPA,
+                                s.TotalCreditsEarned,
+                                c.ClassID,
+                                c.ClassName,
+                                c.Room,
+                                c.SubjectID,
+                                c.TeacherID,
+                                c.StartPeriod,
+                                c.EndPeriod,
+                                c.Day
+                            FROM [Student] s
+                            JOIN [Class] c ON s.ClassID = c.ClassID
+                            WHERE c.ClassID = @ClassID";
 
                 List<StudentDTO> foundStudents = connection.Query<StudentDTO>(
                     query,
@@ -224,7 +242,7 @@ namespace DAL
                             JOIN [Subject] s ON c.SubjectID = s.SubjectID
                             WHERE cs.StudentID = @StudentID 
                             AND c.SubjectID IS NOT NULL
-                            ORDER BY c.Day, c.StartPeriod;";
+                            ORDER BY c.Day, c.StartPeriod";
 
                 List<ClassDTO> timetable = connection.Query<ClassDTO>(
                     query,

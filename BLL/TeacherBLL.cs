@@ -40,11 +40,16 @@ namespace BLL
             }
         }
 
-        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID)
+        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID , bool check)
         {
             try
             {
-                return teacherDAL.SearchTeacherInDepartment(request, departmentID);
+                string injectSQl;
+                if (check) 
+                    injectSQl = "and (teacher.RoleID = 1 or teacher.RoleID = 3)";
+                else injectSQl = "and teacher.RoleID = 1 ";
+
+                    return teacherDAL.SearchTeacherInDepartment(request, departmentID, injectSQl );
             }
             catch (Exception ex)
             {
@@ -110,6 +115,26 @@ namespace BLL
         public bool UpdateTeacher(TeacherDTO updatedTeacher)
         {
             return teacherDAL.UpdateTeacherInfo(updatedTeacher);
+        }
+
+        public TeacherDTO GetInforTeacherByIdStudent(int  studentID)
+        {
+            return teacherDAL.GetInforTeacherByIdStudent(studentID);
+        }
+
+        public bool ChangePassword(string newPassword , int teacherId)
+        {
+            string hash = PasswordHasher.HashPassword(newPassword);
+            return teacherDAL.ChangePassword(hash, teacherId);
+        }
+
+        public bool ValidateOldPassword(int teacherId, string inputPassword)
+        {
+            // Lấy mật khẩu hash từ database
+            string storedPasswordHash = teacherDAL.GetPasswordHash(teacherId);
+
+            // So sánh mật khẩu nhập vào (sau khi hash) với mật khẩu trong DB
+            return PasswordHasher.VerifyPassword( inputPassword, storedPasswordHash);
         }
 
     }

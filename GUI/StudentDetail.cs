@@ -17,6 +17,8 @@ namespace GUI
         private StudentBLL studentBLL;
         private DepartmentBLL departmentBLL;
         private TrainingProgramBLL trainingProgramBLL;
+        private TeacherBLL teacherBLL;
+        private ClassBLL classBLL;
         StudentDTO student;
         //private TrainingProgramBLL trainingProgramBLL;
         private int studentID;
@@ -26,6 +28,8 @@ namespace GUI
             studentBLL = new StudentBLL();
             departmentBLL = new DepartmentBLL();
             trainingProgramBLL = new TrainingProgramBLL();
+            teacherBLL = new TeacherBLL();
+            classBLL = new ClassBLL();
             this.studentID = studentID;
             student = studentBLL.getStudentInfo(studentID);
             loadInfoStudent();
@@ -42,7 +46,8 @@ namespace GUI
             labelEmail.Text = student.Email.ToString();
             labelHometown.Text = student.Hometown.ToString();
             labelAddress.Text = student.PermanentAddress.ToString();
-            labelClass.Text = student.Class.ToString();
+            ClassDTO classDTO = classBLL.getClassById(student.ClassID);
+            labelClass.Text = classDTO.ClassName.ToString();
 
             DepartmentDTO department = departmentBLL.findByIdDepartment(student.DepartmentID);
             labelDepartment.Text = department.DepartmentName.ToString();
@@ -54,9 +59,10 @@ namespace GUI
             labelGPA.Text = student.Gpa.ToString();
             labelTotalCredits.Text = student.TotalCreditsEarned.ToString();
 
-            label_nameTeacher.Text = SessionLogin.LoggedInTeacher.FullName.ToString();
-            label_phone.Text = SessionLogin.LoggedInTeacher.PhoneNumber.ToString();
-            label_emailTeacher.Text = SessionLogin.LoggedInTeacher.Email.ToString();
+            TeacherDTO teacherDTO = teacherBLL.GetInforTeacherByIdStudent(studentID);
+            label_nameTeacher.Text = teacherDTO.FullName.ToString();
+            label_phone.Text = teacherDTO.PhoneNumber.ToString();
+            label_emailTeacher.Text = teacherDTO.Email.ToString();
         }
 
         private void loadAllFunction()

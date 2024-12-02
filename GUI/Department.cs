@@ -23,13 +23,21 @@ namespace GUI
 
         void LoadTeachersForHeadOfDepartment()
         {
+            comboBoxChooseHeadofDepartment.Items.Clear();
             teachers = teacherBLL.GetTeacherForHeadOfDepartment();
-            comboBoxChooseHeadofDepartment.Items.Clear(); // Xóa các mục cũ trước khi thêm mới
-            foreach (var teacher in teachers)
+            if (teachers != null && teachers.Count > 0)
             {
-                comboBoxChooseHeadofDepartment.Items.Add(teacher.FullName);
+                foreach (var teacher in teachers)
+                {
+                    comboBoxChooseHeadofDepartment.Items.Add(teacher.FullName);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có giáo viên nào để làm trưởng khoa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         void LoadListDepartment()
         {
@@ -209,7 +217,25 @@ namespace GUI
 
         private void button_search_Click(object sender, EventArgs e)
         {
+            string searchQuery = textBoxSearch.Text.Trim();
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LoadListDepartment();
+                return;
+            }
 
+            listViewDepartment.Items.Clear();
+            List<DepartmentDTO> searchResults = departmentBLL.SearchDepartments(searchQuery);
+            foreach (var department in searchResults)
+            {
+                ListViewItem item = new ListViewItem(department.DepartmentID.ToString());
+                item.SubItems.Add(department.DepartmentName);
+                item.SubItems.Add(department.Teacher?.FullName ?? string.Empty);
+                item.SubItems.Add(department.Email);
+                item.SubItems.Add(department.EstablishedYear.ToString());
+                listViewDepartment.Items.Add(item);
+            }
         }
 
         private void label_panelTitle_Click(object sender, EventArgs e)

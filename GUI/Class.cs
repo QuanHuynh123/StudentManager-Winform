@@ -12,6 +12,8 @@ namespace GUI
         private readonly TeacherBLL teacherBLL;
         private readonly SubjectBLL subjectBLL;
         private int currentPageIndex;
+        private int subjectIdSelected = 0 ;
+        private int teacherIdSelected = 0 ;
         private Dictionary<string, Button> controls = [];
 
         public Class()
@@ -139,12 +141,25 @@ namespace GUI
             }
         }
 
+        private void comboBox_teacher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_teacher.SelectedItem is KeyValuePair<int, string> selectedTeacher)
+                teacherIdSelected = selectedTeacher.Key;
+        }
+
+        private void comboBox_subject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_subject.SelectedItem is KeyValuePair<int, string> selectedSubject)
+                subjectIdSelected = selectedSubject.Key;
+        }
+
+
         private void button_add_Click(object sender, EventArgs e)
         {
             // Get data
             string className = textBox_class_name.Text;
-            int subjectID = int.Parse(comboBox_subject.Text.Split(" - ")[0]);
-            int teacherID = int.Parse(comboBox_teacher.SelectedValue.ToString());
+            int subjectID = subjectIdSelected;
+            int teacherID = teacherIdSelected;
             string room = textBox_room.Text;
             int startPeriod = int.Parse(textBox_start_period.Text);
             int endPeriod = int.Parse(textBox_end_period.Text);
@@ -198,8 +213,8 @@ namespace GUI
             // Get data
             int classID = int.Parse(selectedItem.Text);
             string className = textBox_class_name.Text;
-            int subjectID = int.Parse(comboBox_subject.SelectedValue.ToString());
-            int teacherID = int.Parse(comboBox_teacher.SelectedValue.ToString());
+            int subjectID = subjectIdSelected;
+            int teacherID = teacherIdSelected;
             string room = textBox_room.Text;
             int startPeriod = int.Parse(textBox_start_period.Text);
             int endPeriod = int.Parse(textBox_end_period.Text);
@@ -222,8 +237,6 @@ namespace GUI
                 Room = room,
                 StartPeriod = startPeriod,
                 EndPeriod = endPeriod,
-                //StartDate = startDate,
-                //EndDate = endDate,
                 Day = day
             };
 
@@ -231,8 +244,8 @@ namespace GUI
             if (isUpdated)
             {
                 MessageBox.Show("Cập nhật thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                search_action(null, null);
                 clearData();
+                search_action(null, null);
                 return;
             }
             else
@@ -326,9 +339,5 @@ namespace GUI
             Common.ExportExcel<ClassForExport>(data, fileName);
         }
 
-        private void comboBox_teacher_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

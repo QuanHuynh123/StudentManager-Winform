@@ -42,7 +42,6 @@ namespace GUI
             panel1 = new Panel();
             panel_chart1 = new Panel();
             panel_chart2 = new Panel();
-            panel_chart3 = new Panel();
             dashboard3.SuspendLayout();
             dashboard2.SuspendLayout();
             dashboard1.SuspendLayout();
@@ -158,9 +157,8 @@ namespace GUI
             // 
             panel1.AutoScroll = true;
             panel1.BackColor = SystemColors.ControlLightLight;
-            panel1.Controls.Add(panel_chart3);
-            panel1.Controls.Add(panel_chart2);
             panel1.Controls.Add(panel_chart1);
+            panel1.Controls.Add(panel_chart2);
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 142);
             panel1.Name = "panel1";
@@ -169,27 +167,19 @@ namespace GUI
             // 
             // panel_chart1
             // 
-            panel_chart1.Dock = DockStyle.Bottom;
-            panel_chart1.Location = new Point(0, 268);
+            panel_chart1.Dock = DockStyle.Left;
+            panel_chart1.Location = new Point(0, 0);
             panel_chart1.Name = "panel_chart1";
-            panel_chart1.Size = new Size(1099, 379);
-            panel_chart1.TabIndex = 0;
+            panel_chart1.Size = new Size(534, 647);
+            panel_chart1.TabIndex = 2;
             // 
             // panel_chart2
             // 
             panel_chart2.Dock = DockStyle.Right;
             panel_chart2.Location = new Point(540, 0);
             panel_chart2.Name = "panel_chart2";
-            panel_chart2.Size = new Size(559, 268);
+            panel_chart2.Size = new Size(559, 647);
             panel_chart2.TabIndex = 1;
-            // 
-            // panel_chart3
-            // 
-            panel_chart3.Dock = DockStyle.Left;
-            panel_chart3.Location = new Point(0, 0);
-            panel_chart3.Name = "panel_chart3";
-            panel_chart3.Size = new Size(534, 268);
-            panel_chart3.TabIndex = 2;
             // 
             // Dashboard
             // 
@@ -225,6 +215,5 @@ namespace GUI
         private Panel panel1;
         private Panel panel_chart2;
         private Panel panel_chart1;
-        private Panel panel_chart3;
     }
 }

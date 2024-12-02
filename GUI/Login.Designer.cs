@@ -69,7 +69,7 @@ namespace GUI
             // customPanel
             // 
             customPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            customPanel.BackColor = Color.FromArgb(200, 145, 206, 235);
+            customPanel.BackColor = Color.FromArgb(100, 141, 209, 238);
             customPanel.Controls.Add(tableLayoutPanel);
             customPanel.Location = new Point(323, 136);
             customPanel.Name = "customPanel";
@@ -102,6 +102,7 @@ namespace GUI
             // titleLogin
             // 
             titleLogin.AutoSize = true;
+            titleLogin.BackColor = Color.Transparent;
             titleLogin.Dock = DockStyle.Fill;
             titleLogin.Font = new Font("Forte", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             titleLogin.ForeColor = Color.White;
@@ -117,9 +118,9 @@ namespace GUI
             usernameTextBox.Anchor = AnchorStyles.None;
             usernameTextBox.Font = new Font("Arial", 14F);
             usernameTextBox.ForeColor = Color.Silver;
-            usernameTextBox.Location = new Point(136, 212);
+            usernameTextBox.Location = new Point(136, 215);
             usernameTextBox.Name = "usernameTextBox";
-            usernameTextBox.Size = new Size(362, 34);
+            usernameTextBox.Size = new Size(362, 29);
             usernameTextBox.TabIndex = 1;
             usernameTextBox.Text = "Username";
             usernameTextBox.Enter += usernameTextBox_Enter;
@@ -130,9 +131,9 @@ namespace GUI
             passwordTextBox.Anchor = AnchorStyles.None;
             passwordTextBox.Font = new Font("Arial", 14F);
             passwordTextBox.ForeColor = Color.Silver;
-            passwordTextBox.Location = new Point(135, 277);
+            passwordTextBox.Location = new Point(135, 280);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.Size = new Size(363, 34);
+            passwordTextBox.Size = new Size(363, 29);
             passwordTextBox.TabIndex = 2;
             passwordTextBox.Text = "Password";
             passwordTextBox.Enter += passwordTextBox_Enter;

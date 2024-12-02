@@ -72,8 +72,9 @@ namespace GUI
             };
 
             int departmentID = SessionLogin.LoggedInTeacher.DepartmentID;
-
-            SearchResponse<TeacherDTO> result = teacherBLL.SearchTeacherInDepartment(searchRequest, departmentID);
+            bool check = true;
+            if (SessionLogin.LoggedInTeacher.RoleID == 3)  check = false;
+            SearchResponse<TeacherDTO> result = teacherBLL.SearchTeacherInDepartment(searchRequest, departmentID, check);
 
             ResetPage();
 

@@ -68,7 +68,7 @@ namespace DAL
             }
         }
 
-        public ClassDTO GetByID(string classID)
+        public ClassDTO GetByID(int classID)
         {
             using (var connection = Connection())
             {
@@ -130,7 +130,7 @@ namespace DAL
                                     TeacherID = @TeacherID, 
                                     StartPeriod = @StartPeriod, 
                                     EndPeriod = @EndPeriod,
-                                    Day = @Day,
+                                    Day = @Day
                                 WHERE ClassID = @ClassID";
 
                 int rowUpdated = connection.Execute(query, classDTO);

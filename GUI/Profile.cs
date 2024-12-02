@@ -60,7 +60,7 @@ namespace GUI
             textBox_department.ReadOnly = true;
         }
 
-        private void button_update_Click(object sender, EventArgs e)
+        private void button_update_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -78,16 +78,16 @@ namespace GUI
                     PhoneNumber = updatedPhone,
                     Gender = updatedGender ? false : true,
                     FullName = updatedFullName,
-                    DepartmentID = SessionLogin.LoggedInTeacher.DepartmentID, // Giữ nguyên DepartmentID
-                    RoleID = SessionLogin.LoggedInTeacher.RoleID              // Giữ nguyên RoleID
+                    DepartmentID = SessionLogin.LoggedInTeacher.DepartmentID,
+                    RoleID = SessionLogin.LoggedInTeacher.RoleID
                 };
 
                 // Gọi phương thức cập nhật thông tin giáo viên
-                if (teacherBLL.UpdateTeacher(updatedTeacher)) // Giả sử bạn có `teacherBLL.UpdateTeacher` đã được định nghĩa
+                if (teacherBLL.UpdateTeacher(updatedTeacher))
                 {
                     MessageBox.Show("Thông tin đã được cập nhật thành công!");
-                    SessionLogin.LoggedInTeacher = updatedTeacher; // Cập nhật thông tin vào session
-                    loadProfile(); // Load lại thông tin
+                    SessionLogin.LoggedInTeacher = updatedTeacher;
+                    loadProfile();
                 }
                 else
                 {
@@ -100,6 +100,10 @@ namespace GUI
             }
         }
 
+        private void buttonChangePassword_Click(object sender, EventArgs e)
+        {
+            new ChangePasswordDialog(SessionLogin.LoggedInTeacher.TeacherID).Show();
+        }
 
     }
 }

@@ -176,17 +176,19 @@ namespace DAL
             }
         }
 
-        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID)
+        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID , string injectSQL)
         {
+
             string query = @"Select * from teacher
                                 left join department on teacher.DepartmentID = department.DepartmentID
                                 left join role on teacher.RoleID = role.RoleID 
-                            where teacher.DepartmentID = @DepartmentID order by teacher.TeacherID offset @Offset rows fetch next @Limit rows only";
-
+                                where teacher.DepartmentID = @DepartmentID
+                                order by teacher.TeacherID offset @Offset rows fetch next @Limit rows only";
+            // @injectSQL sau  @DepartmentID
             string queryNumberOfRecord = @"Select count(*) from teacher
                                               left join department on teacher.DepartmentID = department.DepartmentID
                                               left join role on teacher.RoleID = role.RoleID 
-                                           where teacher.DepartmentID = @DepartmentID";
+                                              where teacher.DepartmentID = @DepartmentID";
 
             using (var connection = Connection())
             {
@@ -201,7 +203,8 @@ namespace DAL
                     {
                         DepartmentID = departmentID,
                         Offset = request.PageSize * request.PageIndex,
-                        Limit = request.PageSize
+                        Limit = request.PageSize,
+                        //injectSQL = injectSQL
                     }, splitOn: "TeacherID,DepartmentID,RoleID"
                 ).ToList();
 
@@ -252,7 +255,7 @@ namespace DAL
             {
                 connection.Open();
 
-                string query = "SELECT TeacherID, FullName FROM Teacher WHERE RoleID = 1 AND Status = 1";
+                string query = "SELECT TeacherID, FullName FROM Teacher WHERE RoleID = 1 AND Status = 1 ";
 
                 List<TeacherDTO> foundTeachers = (connection.Query<TeacherDTO>(query)).ToList();
 
@@ -288,14 +291,14 @@ namespace DAL
                 connection.Open();
 
                 string query = @"
-            UPDATE Teacher
-            SET 
-                FullName = @FullName,
-                Gender = @Gender,
-                Email = @Email,
-                PhoneNumber = @PhoneNumber,
-            WHERE 
-                TeacherID = @TeacherID";
+                        UPDATE Teacher
+                        SET 
+                            FullName = @FullName,
+                            Gender = @Gender,
+                            Email = @Email,
+                            PhoneNumber = @PhoneNumber
+                            WHERE 
+                            TeacherID = @TeacherID";
 
                 var rowsUpdated = connection.Execute(query, new
                 {
@@ -303,11 +306,71 @@ namespace DAL
                     Gender = updatedTeacher.Gender,
                     Email = updatedTeacher.Email,
                     PhoneNumber = updatedTeacher.PhoneNumber,
-                    DepartmentID = updatedTeacher.DepartmentID,
                     TeacherID = updatedTeacher.TeacherID
                 });
 
                 return rowsUpdated > 0; // Trả về true nếu cập nhật thành công
+            }
+        }
+
+        public TeacherDTO GetInforTeacherByIdStudent(int studentID)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                string query = @"SELECT 
+                                    t.TeacherID,
+                                    t.FullName ,
+                                    t.Email,
+                                    t.PhoneNumber,
+                                    t.Gender,
+                                    t.Status,
+                                    t.DepartmentID,
+                                    t.Username,
+                                    t.RoleID
+                                FROM [Teacher] t
+                                WHERE t.TeacherID IN (
+                                    SELECT c.TeacherID
+                                    FROM [Class] c
+                                    JOIN [Student] s ON s.ClassID = c.ClassID
+                                    WHERE s.StudentID = @StudentID )";
+
+                TeacherDTO infoTeacher = connection.QuerySingle<TeacherDTO>(query, new { StudentID = studentID });
+
+                return infoTeacher;
+            }
+        }
+
+        public bool ChangePassword(string newPassword, int teacherId)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                string query = @"UPDATE [Teacher]
+                         SET [Password] = @newPassword
+                         WHERE [TeacherID] = @TeacherId";
+
+                // Thực thi truy vấn và lấy số hàng bị ảnh hưởng
+                int affectedRows = connection.Execute(query, new { TeacherId = teacherId, newPassword = newPassword });
+
+                // Trả về true nếu có ít nhất một hàng bị ảnh hưởng
+                return affectedRows > 0;
+            }
+        }
+
+        public string GetPasswordHash(int teacherId)
+        {
+            using (var connection = Connection())
+            {
+                connection.Open();
+
+                string query = @"SELECT [Password] 
+                             FROM [Teacher] 
+                             WHERE [TeacherID] = @TeacherId";
+
+                return connection.QuerySingleOrDefault<string>(query, new { TeacherId = teacherId });
             }
         }
 

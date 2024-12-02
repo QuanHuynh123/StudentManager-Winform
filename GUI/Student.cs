@@ -326,7 +326,6 @@ namespace GUI
         {
             if (e.Button == MouseButtons.Right)  // Kiểm tra nếu là click chuột phải
             {
-                // Hiển thị MessageBox và chờ người dùng nhấn OK
                 DialogResult result = MessageBox.Show("Xem chi tiết", "Thông báo", MessageBoxButtons.OKCancel);
 
                 // Kiểm tra nếu người dùng nhấn OK
@@ -335,7 +334,6 @@ namespace GUI
                     // Lấy dòng đã chọn
                     ListViewItem selectedItem = listView_student.SelectedItems[0];
                     int studentID = int.Parse(selectedItem.Text);
-
                     StudentDetail studentDetailForm = new StudentDetail(studentID);
                     studentDetailForm.Show();
                 }

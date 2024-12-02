@@ -119,9 +119,9 @@ namespace DAL
                                 [Credits],
                                 [ProgramID],
                                 [DepartmentID]
-                            FROM 
-	                            [Subject]
-                            WHERE 
+                                FROM 
+	                                [Subject]
+                                WHERE 
                                 [SubjectID] IN (
                                     SELECT [SubjectID]
                                     FROM [Class]
@@ -148,13 +148,13 @@ namespace DAL
                         T.FinalScore, 
                         T.TotalScore,
                         S.FullName
-                    FROM 
-                        Transcript T
-                    JOIN 
-                        Student S
-                    ON 
-                        T.StudentID = S.StudentID
-                    WHERE 
+                        FROM 
+                            Transcript T
+                        JOIN 
+                            Student S
+                        ON 
+                            T.StudentID = S.StudentID
+                        WHERE 
                         T.SubjectID = @SubjectId
                         AND T.YearTranscript = @Year";
 
@@ -169,10 +169,8 @@ namespace DAL
 
         public bool UpdateTranscriptScoresAndStatus(int transcriptId, float midtermScore, float finalScore)
         {
-            // Tính TotalScore
             float totalScore = (midtermScore + finalScore) / 2;
 
-            // Xác định trạng thái
             int status = totalScore > 4 ? 1 : 0;
 
             string query = @"UPDATE Transcript
