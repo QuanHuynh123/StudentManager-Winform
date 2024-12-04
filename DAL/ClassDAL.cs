@@ -12,6 +12,7 @@ namespace DAL
         public SearchResponse<ClassDTO> Search(SearchRequest request, int teacherID = 0, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
+            // search by teacherID and departmentID if !null, 
             string query = $@"Select * from class 
                                 left join subject on subject.SubjectID = class.ClassID 
                                 left join teacher on teacher.TeacherID = class.TeacherID 

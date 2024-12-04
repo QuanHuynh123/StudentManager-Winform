@@ -91,14 +91,14 @@
             tableLayoutPanel3.Controls.Add(listViewTrainingProgram, 0, 1);
             tableLayoutPanel3.Controls.Add(panel_control, 0, 2);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(318, 2);
-            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel3.Location = new Point(363, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 3;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 85.471405F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 14.5285931F));
-            tableLayoutPanel3.Size = new Size(612, 552);
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(700, 735);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // panel_search
@@ -106,10 +106,9 @@
             panel_search.Controls.Add(button_search);
             panel_search.Controls.Add(textBoxSearch);
             panel_search.Dock = DockStyle.Fill;
-            panel_search.Location = new Point(3, 2);
-            panel_search.Margin = new Padding(3, 2, 3, 2);
+            panel_search.Location = new Point(3, 3);
             panel_search.Name = "panel_search";
-            panel_search.Size = new Size(606, 56);
+            panel_search.Size = new Size(694, 74);
             panel_search.TabIndex = 0;
             // 
             // button_search
@@ -118,12 +117,11 @@
             button_search.BackColor = Color.FromArgb(101, 116, 137);
             button_search.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_search.ForeColor = SystemColors.ButtonFace;
-            button_search.Location = new Point(496, 14);
-            button_search.Margin = new Padding(3, 2, 3, 2);
-            button_search.MaximumSize = new Size(105, 28);
-            button_search.MinimumSize = new Size(105, 28);
+            button_search.Location = new Point(568, 19);
+            button_search.MaximumSize = new Size(120, 37);
+            button_search.MinimumSize = new Size(120, 37);
             button_search.Name = "button_search";
-            button_search.Size = new Size(105, 28);
+            button_search.Size = new Size(120, 37);
             button_search.TabIndex = 7;
             button_search.Text = "Tìm kiếm";
             button_search.UseVisualStyleBackColor = false;
@@ -134,13 +132,12 @@
             textBoxSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxSearch.BorderStyle = BorderStyle.FixedSingle;
             textBoxSearch.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBoxSearch.Location = new Point(17, 14);
-            textBoxSearch.Margin = new Padding(3, 2, 3, 2);
-            textBoxSearch.MaximumSize = new Size(1050, 38);
-            textBoxSearch.MinimumSize = new Size(350, 38);
+            textBoxSearch.Location = new Point(19, 19);
+            textBoxSearch.MaximumSize = new Size(1200, 38);
+            textBoxSearch.MinimumSize = new Size(400, 38);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.ShortcutsEnabled = false;
-            textBoxSearch.Size = new Size(467, 38);
+            textBoxSearch.Size = new Size(534, 38);
             textBoxSearch.TabIndex = 4;
             // 
             // listViewTrainingProgram
@@ -150,10 +147,9 @@
             listViewTrainingProgram.Dock = DockStyle.Fill;
             listViewTrainingProgram.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listViewTrainingProgram.GridLines = true;
-            listViewTrainingProgram.Location = new Point(3, 62);
-            listViewTrainingProgram.Margin = new Padding(3, 2, 3, 2);
+            listViewTrainingProgram.Location = new Point(3, 83);
             listViewTrainingProgram.Name = "listViewTrainingProgram";
-            listViewTrainingProgram.Size = new Size(606, 416);
+            listViewTrainingProgram.Size = new Size(694, 553);
             listViewTrainingProgram.TabIndex = 1;
             listViewTrainingProgram.UseCompatibleStateImageBehavior = false;
             listViewTrainingProgram.View = View.Details;
@@ -203,22 +199,20 @@
             panel_control.Controls.Add(button_delete);
             panel_control.Controls.Add(button_update);
             panel_control.Dock = DockStyle.Right;
-            panel_control.Location = new Point(239, 482);
-            panel_control.Margin = new Padding(3, 2, 3, 2);
+            panel_control.Location = new Point(98, 642);
             panel_control.Name = "panel_control";
-            panel_control.Size = new Size(370, 68);
+            panel_control.Size = new Size(599, 90);
             panel_control.TabIndex = 2;
             // 
             // button_delete
             // 
-            button_delete.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button_delete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button_delete.BackColor = Color.FromArgb(255, 128, 128);
             button_delete.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_delete.ForeColor = SystemColors.ButtonHighlight;
-            button_delete.Location = new Point(219, 20);
-            button_delete.Margin = new Padding(3, 2, 3, 2);
+            button_delete.Location = new Point(426, 27);
             button_delete.Name = "button_delete";
-            button_delete.Size = new Size(146, 30);
+            button_delete.Size = new Size(167, 40);
             button_delete.TabIndex = 9;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
@@ -226,14 +220,13 @@
             // 
             // button_update
             // 
-            button_update.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button_update.Anchor = AnchorStyles.Top;
             button_update.BackColor = Color.FromArgb(35, 48, 103);
             button_update.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_update.ForeColor = SystemColors.ButtonHighlight;
-            button_update.Location = new Point(67, 20);
-            button_update.Margin = new Padding(3, 2, 3, 2);
+            button_update.Location = new Point(253, 27);
             button_update.Name = "button_update";
-            button_update.Size = new Size(146, 30);
+            button_update.Size = new Size(167, 40);
             button_update.TabIndex = 7;
             button_update.Text = "Sửa";
             button_update.UseVisualStyleBackColor = false;
@@ -254,20 +247,19 @@
             tableLayoutPanel2.Controls.Add(panel3, 0, 3);
             tableLayoutPanel2.Controls.Add(button_add, 0, 8);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 2);
-            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 9;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 112F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(309, 552);
+            tableLayoutPanel2.Size = new Size(354, 735);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // panel7
@@ -275,10 +267,10 @@
             panel7.Controls.Add(label7);
             panel7.Controls.Add(textBox_credit);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(3, 384);
-            panel7.Margin = new Padding(3, 2, 3, 0);
+            panel7.Location = new Point(3, 512);
+            panel7.Margin = new Padding(3, 3, 3, 0);
             panel7.Name = "panel7";
-            panel7.Size = new Size(303, 43);
+            panel7.Size = new Size(348, 57);
             panel7.TabIndex = 5;
             // 
             // label7
@@ -286,9 +278,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Century Gothic", 11F);
             label7.ForeColor = SystemColors.ButtonHighlight;
-            label7.Location = new Point(3, 16);
+            label7.Location = new Point(3, 21);
             label7.Name = "label7";
-            label7.Size = new Size(101, 20);
+            label7.Size = new Size(126, 22);
             label7.TabIndex = 1;
             label7.Text = "Credits Num.";
             // 
@@ -296,10 +288,9 @@
             // 
             textBox_credit.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_credit.BorderStyle = BorderStyle.FixedSingle;
-            textBox_credit.Location = new Point(118, 13);
-            textBox_credit.Margin = new Padding(3, 2, 3, 2);
+            textBox_credit.Location = new Point(135, 17);
             textBox_credit.Name = "textBox_credit";
-            textBox_credit.Size = new Size(178, 23);
+            textBox_credit.Size = new Size(205, 27);
             textBox_credit.TabIndex = 0;
             // 
             // panel2
@@ -307,20 +298,19 @@
             panel2.Controls.Add(comboBox_department);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 159);
-            panel2.Margin = new Padding(3, 2, 3, 0);
+            panel2.Location = new Point(3, 212);
+            panel2.Margin = new Padding(3, 3, 3, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(303, 43);
+            panel2.Size = new Size(348, 57);
             panel2.TabIndex = 2;
             // 
             // comboBox_department
             // 
             comboBox_department.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox_department.FormattingEnabled = true;
-            comboBox_department.Location = new Point(86, 13);
-            comboBox_department.Margin = new Padding(3, 2, 3, 2);
+            comboBox_department.Location = new Point(98, 17);
             comboBox_department.Name = "comboBox_department";
-            comboBox_department.Size = new Size(210, 23);
+            comboBox_department.Size = new Size(241, 28);
             comboBox_department.TabIndex = 2;
             comboBox_department.SelectedIndexChanged += comboBox_department_SelectedIndexChanged;
             // 
@@ -329,9 +319,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 11F);
             label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(3, 17);
+            label2.Location = new Point(3, 23);
             label2.Name = "label2";
-            label2.Size = new Size(64, 20);
+            label2.Size = new Size(80, 22);
             label2.TabIndex = 1;
             label2.Text = "Depart.";
             // 
@@ -340,20 +330,19 @@
             panel6.Controls.Add(comboBox_degree);
             panel6.Controls.Add(label6);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(3, 339);
-            panel6.Margin = new Padding(3, 2, 3, 0);
+            panel6.Location = new Point(3, 452);
+            panel6.Margin = new Padding(3, 3, 3, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(303, 43);
+            panel6.Size = new Size(348, 57);
             panel6.TabIndex = 4;
             // 
             // comboBox_degree
             // 
             comboBox_degree.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox_degree.FormattingEnabled = true;
-            comboBox_degree.Location = new Point(86, 12);
-            comboBox_degree.Margin = new Padding(3, 2, 3, 2);
+            comboBox_degree.Location = new Point(98, 16);
             comboBox_degree.Name = "comboBox_degree";
-            comboBox_degree.Size = new Size(210, 23);
+            comboBox_degree.Size = new Size(241, 28);
             comboBox_degree.TabIndex = 2;
             comboBox_degree.SelectedIndexChanged += comboBox_degree_SelectedIndexChanged;
             // 
@@ -362,9 +351,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Century Gothic", 11F);
             label6.ForeColor = SystemColors.ButtonHighlight;
-            label6.Location = new Point(3, 16);
+            label6.Location = new Point(3, 21);
             label6.Name = "label6";
-            label6.Size = new Size(65, 20);
+            label6.Size = new Size(79, 22);
             label6.TabIndex = 1;
             label6.Text = "Degree";
             // 
@@ -376,7 +365,7 @@
             label1.ForeColor = SystemColors.ButtonHighlight;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(303, 112);
+            label1.Size = new Size(348, 149);
             label1.TabIndex = 1;
             label1.Text = "THÔNG TIN KHOÁ";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -386,10 +375,10 @@
             panel5.Controls.Add(label5);
             panel5.Controls.Add(textBox_endYear);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(3, 294);
-            panel5.Margin = new Padding(3, 2, 3, 0);
+            panel5.Location = new Point(3, 392);
+            panel5.Margin = new Padding(3, 3, 3, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(303, 43);
+            panel5.Size = new Size(348, 57);
             panel5.TabIndex = 3;
             // 
             // label5
@@ -397,9 +386,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Century Gothic", 11F);
             label5.ForeColor = SystemColors.ButtonHighlight;
-            label5.Location = new Point(3, 16);
+            label5.Location = new Point(3, 21);
             label5.Name = "label5";
-            label5.Size = new Size(68, 20);
+            label5.Size = new Size(87, 22);
             label5.TabIndex = 1;
             label5.Text = "EndYear";
             // 
@@ -407,10 +396,9 @@
             // 
             textBox_endYear.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_endYear.BorderStyle = BorderStyle.FixedSingle;
-            textBox_endYear.Location = new Point(86, 13);
-            textBox_endYear.Margin = new Padding(3, 2, 3, 2);
+            textBox_endYear.Location = new Point(98, 17);
             textBox_endYear.Name = "textBox_endYear";
-            textBox_endYear.Size = new Size(210, 23);
+            textBox_endYear.Size = new Size(242, 27);
             textBox_endYear.TabIndex = 0;
             // 
             // panel1
@@ -418,10 +406,10 @@
             panel1.Controls.Add(label_programName);
             panel1.Controls.Add(textBox_programName);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 114);
-            panel1.Margin = new Padding(3, 2, 3, 0);
+            panel1.Location = new Point(3, 152);
+            panel1.Margin = new Padding(3, 3, 3, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(303, 43);
+            panel1.Size = new Size(348, 57);
             panel1.TabIndex = 0;
             // 
             // label_programName
@@ -429,9 +417,9 @@
             label_programName.AutoSize = true;
             label_programName.Font = new Font("Century Gothic", 11F);
             label_programName.ForeColor = SystemColors.ButtonHighlight;
-            label_programName.Location = new Point(3, 16);
+            label_programName.Location = new Point(3, 21);
             label_programName.Name = "label_programName";
-            label_programName.Size = new Size(53, 20);
+            label_programName.Size = new Size(66, 22);
             label_programName.TabIndex = 1;
             label_programName.Text = "Name";
             label_programName.TextAlign = ContentAlignment.MiddleLeft;
@@ -440,10 +428,9 @@
             // 
             textBox_programName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_programName.BorderStyle = BorderStyle.FixedSingle;
-            textBox_programName.Location = new Point(86, 13);
-            textBox_programName.Margin = new Padding(3, 2, 3, 2);
+            textBox_programName.Location = new Point(98, 17);
             textBox_programName.Name = "textBox_programName";
-            textBox_programName.Size = new Size(210, 23);
+            textBox_programName.Size = new Size(242, 27);
             textBox_programName.TabIndex = 0;
             // 
             // panel4
@@ -451,10 +438,10 @@
             panel4.Controls.Add(label4);
             panel4.Controls.Add(textBox_startYear);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 249);
-            panel4.Margin = new Padding(3, 2, 3, 0);
+            panel4.Location = new Point(3, 332);
+            panel4.Margin = new Padding(3, 3, 3, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(303, 43);
+            panel4.Size = new Size(348, 57);
             panel4.TabIndex = 2;
             // 
             // label4
@@ -462,9 +449,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Century Gothic", 11F);
             label4.ForeColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(3, 16);
+            label4.Location = new Point(3, 21);
             label4.Name = "label4";
-            label4.Size = new Size(73, 20);
+            label4.Size = new Size(94, 22);
             label4.TabIndex = 1;
             label4.Text = "StartYear";
             // 
@@ -472,10 +459,9 @@
             // 
             textBox_startYear.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_startYear.BorderStyle = BorderStyle.FixedSingle;
-            textBox_startYear.Location = new Point(86, 13);
-            textBox_startYear.Margin = new Padding(3, 2, 3, 2);
+            textBox_startYear.Location = new Point(98, 17);
             textBox_startYear.Name = "textBox_startYear";
-            textBox_startYear.Size = new Size(210, 23);
+            textBox_startYear.Size = new Size(242, 27);
             textBox_startYear.TabIndex = 0;
             // 
             // panel3
@@ -483,10 +469,10 @@
             panel3.Controls.Add(label3);
             panel3.Controls.Add(textBox_duration);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 204);
-            panel3.Margin = new Padding(3, 2, 3, 0);
+            panel3.Location = new Point(3, 272);
+            panel3.Margin = new Padding(3, 3, 3, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(303, 43);
+            panel3.Size = new Size(348, 57);
             panel3.TabIndex = 2;
             // 
             // label3
@@ -494,9 +480,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Century Gothic", 11F);
             label3.ForeColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(3, 17);
+            label3.Location = new Point(3, 23);
             label3.Name = "label3";
-            label3.Size = new Size(71, 20);
+            label3.Size = new Size(89, 22);
             label3.TabIndex = 1;
             label3.Text = "Duration";
             // 
@@ -504,10 +490,9 @@
             // 
             textBox_duration.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox_duration.BorderStyle = BorderStyle.FixedSingle;
-            textBox_duration.Location = new Point(86, 14);
-            textBox_duration.Margin = new Padding(3, 2, 3, 2);
+            textBox_duration.Location = new Point(98, 19);
             textBox_duration.Name = "textBox_duration";
-            textBox_duration.Size = new Size(210, 23);
+            textBox_duration.Size = new Size(242, 27);
             textBox_duration.TabIndex = 0;
             // 
             // button_add
@@ -515,10 +500,10 @@
             button_add.BackColor = Color.FromArgb(0, 192, 0);
             button_add.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_add.ForeColor = SystemColors.ControlLightLight;
-            button_add.Location = new Point(3, 442);
-            button_add.Margin = new Padding(3, 15, 3, 2);
+            button_add.Location = new Point(3, 589);
+            button_add.Margin = new Padding(3, 20, 3, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(303, 30);
+            button_add.Size = new Size(346, 40);
             button_add.TabIndex = 6;
             button_add.Text = "Thêm";
             button_add.UseVisualStyleBackColor = false;
@@ -533,22 +518,20 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(933, 556);
+            tableLayoutPanel1.Size = new Size(1066, 741);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // TrainingProgram
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(933, 556);
+            ClientSize = new Size(1066, 741);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TrainingProgram";
             Text = "TrainingProgram";
             tableLayoutPanel3.ResumeLayout(false);
