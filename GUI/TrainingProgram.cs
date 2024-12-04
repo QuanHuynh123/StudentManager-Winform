@@ -61,6 +61,16 @@ namespace GUI
                 // Thêm item vào ListView
                 listViewTrainingProgram.Items.Add(item);
             }
+
+            if (SessionLogin.LoggedInTeacher.RoleID == 3)
+            {
+                button_add.Enabled = false;
+                button_add.BackColor = Color.Gray;
+                button_delete.Enabled = false;
+                button_delete.BackColor = Color.Gray;
+                button_update.Enabled = false;
+                button_update.BackColor = Color.Gray;
+            }
         }
 
         private void comboBox_department_SelectedIndexChanged(object sender, EventArgs e)

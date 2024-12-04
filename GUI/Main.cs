@@ -213,6 +213,11 @@ namespace GUI
         {
             openProfile();
         }
+
+        private void flowLayoutPanelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     public class GradientPanel : Panel
     {

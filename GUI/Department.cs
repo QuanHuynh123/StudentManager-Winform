@@ -1,4 +1,7 @@
 ﻿using BLL;
+using DAL;
+using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DTO;
 
 namespace GUI
@@ -15,12 +18,14 @@ namespace GUI
             InitializeComponent();
             departmentBLL = new DepartmentBLL();
             teacherBLL = new TeacherBLL();
-            LoadListDepartment();
+            addDataDefault();
             LoadTeachersForHeadOfDepartment();
             PopulateYearComboBox();
             listViewDepartment.SelectedIndexChanged += listViewDepartment_SelectedIndexChanged;
         }
 
+        // GetTeacherForHeadOfDepartment gets teacher that isn't head (role=1)
+        // check null list, populate fullname
         void LoadTeachersForHeadOfDepartment()
         {
             comboBoxChooseHeadofDepartment.Items.Clear();
@@ -35,16 +40,26 @@ namespace GUI
             else
             {
                 MessageBox.Show("Không có giáo viên nào để làm trưởng khoa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
         }
 
+        void addDataDefault()
+        {
+            List<DepartmentDTO> departments = departmentBLL.GetAllDepartments();
+            LoadListDepartment(departments);
+        }
 
-        void LoadListDepartment()
+
+        // clear listview, fullrowselect
+        // get department list, with each item in list create listviewitem with corresponding subitems
+        // check null head teacher, populate listview
+
+        void LoadListDepartment(List<DepartmentDTO> departments)
         {
             listViewDepartment.Items.Clear();
             listViewDepartment.FullRowSelect = true;
             listViewDepartment.CheckBoxes = true;
-            List<DepartmentDTO> departments = departmentBLL.GetAllDepartments();
             foreach (var department in departments)
             {
                 // Tạo một item mới cho mỗi phòng ban
@@ -58,6 +73,8 @@ namespace GUI
             }
         }
 
+
+        // populate up to 10 years later 
         void PopulateYearComboBox()
         {
             int currentYear = DateTime.Now.Year;
@@ -67,12 +84,16 @@ namespace GUI
             }
         }
 
+        // get check null and valid form
+        // populate new depa, check if success
+        // change teacher role ChangeTeacherRoleToHeadOfDepartment, reload LoadListDepartment
+
         private void button_add_Click(object sender, EventArgs e)
         {
-            string departmentName = textBoxDepartmentName.Text; // Assuming you have a TextBox for department name
-            string headOfDepartment = comboBoxChooseHeadofDepartment.SelectedItem?.ToString(); // Get the selected teacher
-            string email = textBoxEmail.Text; // Assuming you have a TextBox for email
-            int establishedYear = (int)comboBox1.SelectedItem; // Get the selected year from the ComboBox
+            string departmentName = textBoxDepartmentName.Text;
+            string headOfDepartment = comboBoxChooseHeadofDepartment.SelectedItem?.ToString();
+            string email = textBoxEmail.Text;
+            int establishedYear = Int32.Parse(comboBox1.SelectedItem.ToString());
 
             if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(headOfDepartment) || string.IsNullOrEmpty(email))
             {
@@ -93,12 +114,13 @@ namespace GUI
             {
                 teacherBLL.ChangeTeacherRoleToHeadOfDepartment(selectedTeacherID);
                 MessageBox.Show("Department added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadListDepartment(); // Reload the list of departments
+                addDataDefault(); // Reload the list of departments
             }
             else
             {
                 MessageBox.Show("Failed to add department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,6 +131,8 @@ namespace GUI
             }
         }
 
+        // get selected combobox choice
+        // check equals teacherDTO FullName to save ID
         private void comboBoxChooseHeadofDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedTeacherName = comboBoxChooseHeadofDepartment.SelectedItem.ToString();
@@ -130,13 +154,15 @@ namespace GUI
                 ListViewItem selectedItem = listViewDepartment.SelectedItems[0];
 
                 // Gán dữ liệu từ các SubItems vào các trường input
-                textBoxDepartmentName.Text = selectedItem.SubItems[1].Text;    // Tên khoa
+                textBoxEmail.Text = selectedItem.SubItems[1].Text;    // Tên khoa
                 comboBoxChooseHeadofDepartment.Text = selectedItem.SubItems[2].Text; // Trưởng khoa
-                textBoxEmail.Text = selectedItem.SubItems[3].Text;             // Email
+                textBoxDepartmentName.Text = selectedItem.SubItems[3].Text;             // Email
                 comboBox1.Text = selectedItem.SubItems[4].Text;
             }
         }
 
+        // check count if list selected, get listviewitem, check null
+        // populate new dto, check update success
 
         private void button_update_Click(object sender, EventArgs e)
         {
@@ -147,10 +173,10 @@ namespace GUI
             }
 
             ListViewItem selectedItem = listViewDepartment.SelectedItems[0];
-            int departmentID = int.Parse(selectedItem.Text); // Get the selected department ID
-            string departmentName = textBoxDepartmentName.Text; // Assuming you have a TextBox for department name
-            string headOfDepartment = comboBoxChooseHeadofDepartment.Text; // Get the selected teacher
-            string email = textBoxEmail.Text; // Assuming you have a TextBox for email
+            int departmentID = int.Parse(selectedItem.Text);
+            string departmentName = textBoxEmail.Text;
+            string headOfDepartment = comboBoxChooseHeadofDepartment.Text;
+            string email = textBoxDepartmentName.Text;
             string establishedYearText = comboBox1.Text;
             int establishedYear;
             int.TryParse(establishedYearText, out establishedYear);
@@ -174,7 +200,7 @@ namespace GUI
             if (isUpdated)
             {
                 MessageBox.Show("Cập nhật khoa thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadListDepartment(); // Reload the list of departments
+                addDataDefault(); // Reload the list of departments
             }
             else
             {
@@ -206,7 +232,7 @@ namespace GUI
                 }
 
                 MessageBox.Show("Xóa thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadListDepartment(); // Reload the list of departments
+                addDataDefault(); // Reload the list of departments
             }
         }
 
@@ -221,21 +247,12 @@ namespace GUI
             if (string.IsNullOrEmpty(searchQuery))
             {
                 MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                LoadListDepartment();
+                addDataDefault();
                 return;
             }
-
             listViewDepartment.Items.Clear();
             List<DepartmentDTO> searchResults = departmentBLL.SearchDepartments(searchQuery);
-            foreach (var department in searchResults)
-            {
-                ListViewItem item = new ListViewItem(department.DepartmentID.ToString());
-                item.SubItems.Add(department.DepartmentName);
-                item.SubItems.Add(department.Teacher?.FullName ?? string.Empty);
-                item.SubItems.Add(department.Email);
-                item.SubItems.Add(department.EstablishedYear.ToString());
-                listViewDepartment.Items.Add(item);
-            }
+            LoadListDepartment(searchResults);
         }
 
         private void label_panelTitle_Click(object sender, EventArgs e)
