@@ -3,6 +3,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BLL
 {
@@ -14,7 +15,7 @@ namespace BLL
         {
             departmentDAL = new DepartmentDAL();
         }
-         
+
         // Lấy tất cả các Department
         public List<DepartmentDTO> GetAllDepartments()
         {
@@ -29,7 +30,7 @@ namespace BLL
                 int departmentID = SessionLogin.LoggedInTeacher.DepartmentID;
                 var result = departmentDAL.GetAllDepartments();
                 if (roleID != Constants.Principal)
-                { 
+                {
                     return result.Where(d => d.DepartmentID == departmentID).ToList();
                 }
                 return result;
@@ -40,7 +41,33 @@ namespace BLL
                 return null;
             }
         }
-
+        // Kiểm tra trùng tên khoa
+        public bool CheckValidName(string departmentName)
+        {
+            bool result = true;
+            List<DepartmentDTO> departments = departmentDAL.GetAllDepartments();
+            foreach (var item in departments)
+            {
+                if (string.Equals(departmentName, item.DepartmentName, StringComparison.OrdinalIgnoreCase))
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+        public bool CheckExistedDepartment(int departmentID)
+        {
+            bool result = true;
+            List<DepartmentDTO> departments = departmentDAL.GetAllDepartments();
+            foreach (var item in departments)
+            {
+                if (string.Equals(departmentID.ToString(), item.DepartmentID.ToString(), StringComparison.OrdinalIgnoreCase))
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
         // Thêm Department mới
         public bool AddDepartment(DepartmentDTO department)
         {
@@ -49,7 +76,10 @@ namespace BLL
                 // Kiểm tra trước khi thêm vào cơ sở dữ liệu
                 if (string.IsNullOrEmpty(department.DepartmentName))
                     return false;
-
+                if (!CheckValidName(department.DepartmentName))
+                {
+                    return false;
+                }
                 return departmentDAL.AddDepartment(department);
             }
             catch (Exception ex)
@@ -84,7 +114,6 @@ namespace BLL
             {
                 if (departmentID <= 0)
                     return false;
-
                 return departmentDAL.DeleteDepartment(departmentID);
             }
             catch (Exception ex)
@@ -95,14 +124,14 @@ namespace BLL
         }
 
         // Tìm kiếm Department theo tên
-        public List<DepartmentDTO> SearchDepartments(string departmentName)
+        public List<DepartmentDTO> SearchDepartments(string searchQuery)
         {
             try
             {
-                if (string.IsNullOrEmpty(departmentName))
+                if (string.IsNullOrEmpty(searchQuery))
                     return new List<DepartmentDTO>();
 
-                return departmentDAL.SearchDepartments(departmentName);
+                return departmentDAL.SearchDepartments(searchQuery);
             }
             catch (Exception ex)
             {
@@ -125,6 +154,29 @@ namespace BLL
                 Console.WriteLine($"Lỗi khi tìm Department theo ID: {ex.Message}");
                 return null;
             }
+        }
+
+        public bool CheckSameDepartmentTeacherForHeadOfDepartment(int teacherId, int departmentId)
+        {
+            return departmentDAL.CheckSameDepartmentTeacherForHeadOfDepartment(teacherId, departmentId);
+        }
+
+        public List<TeacherDTO> getTeacherByDepartmentiD(int departmentId)
+        {
+            try
+            {
+                return departmentDAL.getTeacherByDepartmentiD(departmentId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi tìm kiếm Department: {ex.Message}");
+                return new List<TeacherDTO>();
+            }
+        }
+
+        public bool UpdateTeacherRole(int newHeadOfDepartmentId, int oldHeadOfDepartmentId)
+        {
+            return departmentDAL.UpdateTeacherRole(newHeadOfDepartmentId, oldHeadOfDepartmentId);
         }
     }
 }

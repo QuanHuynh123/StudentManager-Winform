@@ -1,8 +1,12 @@
 ﻿using BLL;
 using DAL;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DTO;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
@@ -11,55 +15,49 @@ namespace GUI
         private DepartmentBLL departmentBLL;
         private TeacherBLL teacherBLL;
         private List<TeacherDTO> teachers;
+        private List<TeacherDTO> teacherList;
         int selectedTeacherID;
+        int oldTeacherId = 0;
 
         public Department()
         {
             InitializeComponent();
             departmentBLL = new DepartmentBLL();
             teacherBLL = new TeacherBLL();
-            addDataDefault();
-            LoadTeachersForHeadOfDepartment();
+            teacherList = teacherBLL.GetAllTeachers();
+            LoadListDepartment();
+            LoadComboBoxTeachersForHeadOfDepartment();
             PopulateYearComboBox();
             listViewDepartment.SelectedIndexChanged += listViewDepartment_SelectedIndexChanged;
         }
 
         // GetTeacherForHeadOfDepartment gets teacher that isn't head (role=1)
         // check null list, populate fullname
-        void LoadTeachersForHeadOfDepartment()
+        void LoadComboBoxTeachersForHeadOfDepartment()
         {
-            comboBoxChooseHeadofDepartment.Items.Clear();
             teachers = teacherBLL.GetTeacherForHeadOfDepartment();
             if (teachers != null && teachers.Count > 0)
             {
-                foreach (var teacher in teachers)
-                {
-                    comboBoxChooseHeadofDepartment.Items.Add(teacher.FullName);
-                }
+                comboBoxChooseHeadofDepartment.DataSource = teachers; // Gán danh sách đối tượng
+                comboBoxChooseHeadofDepartment.DisplayMember = "FullName"; // Thuộc tính hiển thị
+                comboBoxChooseHeadofDepartment.ValueMember = "TeacherID"; // Thuộc tính lưu ID
             }
             else
             {
                 MessageBox.Show("Không có giáo viên nào để làm trưởng khoa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
         }
-
-        void addDataDefault()
-        {
-            List<DepartmentDTO> departments = departmentBLL.GetAllDepartments();
-            LoadListDepartment(departments);
-        }
-
 
         // clear listview, fullrowselect
         // get department list, with each item in list create listviewitem with corresponding subitems
         // check null head teacher, populate listview
 
-        void LoadListDepartment(List<DepartmentDTO> departments)
+        void LoadListDepartment()
         {
             listViewDepartment.Items.Clear();
             listViewDepartment.FullRowSelect = true;
             listViewDepartment.CheckBoxes = true;
+            List<DepartmentDTO> departments = departmentBLL.GetAllDepartments();
             foreach (var department in departments)
             {
                 // Tạo một item mới cho mỗi phòng ban
@@ -68,11 +66,11 @@ namespace GUI
                 item.SubItems.Add(department.Teacher?.FullName ?? string.Empty);
                 item.SubItems.Add(department.Email);
                 item.SubItems.Add(department.EstablishedYear.ToString());
+                item.SubItems.Add(department.TeacherID.ToString());
                 // Thêm item vào ListView
                 listViewDepartment.Items.Add(item);
             }
         }
-
 
         // populate up to 10 years later 
         void PopulateYearComboBox()
@@ -84,45 +82,17 @@ namespace GUI
             }
         }
 
-        // get check null and valid form
-        // populate new depa, check if success
-        // change teacher role ChangeTeacherRoleToHeadOfDepartment, reload LoadListDepartment
-
-        private void button_add_Click(object sender, EventArgs e)
+        // Reset lại form
+        void ClearForm()
         {
-            string departmentName = textBoxDepartmentName.Text;
-            string headOfDepartment = comboBoxChooseHeadofDepartment.SelectedItem?.ToString();
-            string email = textBoxEmail.Text;
-            int establishedYear = Int32.Parse(comboBox1.SelectedItem.ToString());
-
-            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(headOfDepartment) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Hãy nhập đầy đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            DepartmentDTO department = new DepartmentDTO
-            {
-                DepartmentName = departmentName,
-                //HeadOfDepartment = headOfDepartment,
-                Email = email,
-                EstablishedYear = establishedYear
-            };
-
-            bool isAdded = departmentBLL.AddDepartment(department);
-            if (isAdded)
-            {
-                teacherBLL.ChangeTeacherRoleToHeadOfDepartment(selectedTeacherID);
-                MessageBox.Show("Department added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                addDataDefault(); // Reload the list of departments
-            }
-            else
-            {
-                MessageBox.Show("Failed to add department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+            comboBox1.Enabled = true;
+            textBoxDepartmentName.Clear();
+            textBoxEmail.Clear();
+            comboBox1.ResetText();
+            textBoxSearch.Clear();
+            LoadComboBoxTeachersForHeadOfDepartment();
+            PopulateYearComboBox();
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
@@ -132,18 +102,79 @@ namespace GUI
         }
 
         // get selected combobox choice
-        // check equals teacherDTO FullName to save ID
+        // check equals teacher fullname, save into selectedteacherID
         private void comboBoxChooseHeadofDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedTeacherName = comboBoxChooseHeadofDepartment.SelectedItem.ToString();
-            foreach (var teacher in teachers)
+            if (comboBoxChooseHeadofDepartment.SelectedItem is TeacherDTO selectedTeacher)
+                selectedTeacherID = selectedTeacher.TeacherID; // Lưu ID của giáo viên đã chọn
+        }
+
+
+        private bool CheckValidForm(string departmentName, string headOfDepartment, string email, int establishedYear)
+        {
+            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(headOfDepartment) || string.IsNullOrEmpty(email) || establishedYear == -1)
             {
-                if (teacher.FullName == selectedTeacherName)
+                MessageBox.Show("Hãy nhập đầy đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!RegexData.IsValidEmail(email))
+            {
+                MessageBox.Show("Email phải có dạng <tên>@gmail.com (không có kí tự đặc biệt)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (!departmentBLL.CheckValidName(departmentName))
+            {
+                MessageBox.Show("Không được trùng tên khoa cũ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        // get check valid form
+        // populate new depa, check if success
+        // change teacher role ChangeTeacherRoleToHeadOfDepartment, reload list clearform
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            string departmentName = textBoxDepartmentName?.Text;
+            string headOfDepartment = comboBoxChooseHeadofDepartment.SelectedItem?.ToString();
+            string email = textBoxEmail?.Text;
+            int establishedYear = -1;
+            if (comboBox1.SelectedItem != null) { establishedYear = Int32.Parse(comboBox1.SelectedItem.ToString()); }
+            if (!CheckValidForm(departmentName, headOfDepartment, email, establishedYear)) return;
+            int teacherID = 0;
+            foreach (var teacher in teacherList)
+            {
+                if (string.Equals(headOfDepartment, teacher.FullName, StringComparison.OrdinalIgnoreCase))
                 {
-                    selectedTeacherID = teacher.TeacherID; // Lưu ID của giáo viên đã chọn
+                    teacherID = teacher.TeacherID;
                     break;
                 }
             }
+            DepartmentDTO department = new DepartmentDTO
+            {
+                DepartmentName = departmentName,
+                Email = email,
+                EstablishedYear = establishedYear,
+                TeacherID = teacherID,
+                Teacher = new TeacherDTO
+                {
+                    TeacherID = teacherID,
+                    FullName = headOfDepartment
+                }
+            };
+
+            bool isAdded = departmentBLL.AddDepartment(department);
+            if (isAdded)
+            {
+                teacherBLL.ChangeTeacherRoleToHeadOfDepartment(selectedTeacherID);
+                MessageBox.Show("Department added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadListDepartment(); // Reload the list of departments
+                ClearForm();
+            }
+            else
+            {
+                MessageBox.Show("Failed to add department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void listViewDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,15 +185,53 @@ namespace GUI
                 ListViewItem selectedItem = listViewDepartment.SelectedItems[0];
 
                 // Gán dữ liệu từ các SubItems vào các trường input
-                textBoxEmail.Text = selectedItem.SubItems[1].Text;    // Tên khoa
+                textBoxDepartmentName.Text = selectedItem.SubItems[1].Text;    // Tên khoa
                 comboBoxChooseHeadofDepartment.Text = selectedItem.SubItems[2].Text; // Trưởng khoa
-                textBoxDepartmentName.Text = selectedItem.SubItems[3].Text;             // Email
-                comboBox1.Text = selectedItem.SubItems[4].Text;
+                textBoxEmail.Text = selectedItem.SubItems[3].Text;             // Email
+                comboBox1.Text = selectedItem.SubItems[4].Text;               // Năm thành lập
+                if (int.TryParse(selectedItem.SubItems[5].Text, out int teacherID))
+                {
+                    oldTeacherId = teacherID; // Gán giá trị đã chuyển đổi
+                }
+
+                // Lấy Department ID từ SubItem[0]
+                string textValue = selectedItem.SubItems[0].Text;
+
+                if (int.TryParse(textValue, out int departmentId))
+                {
+                    // Thành công, sử dụng departmentId
+                    Console.WriteLine($"Department ID: {departmentId}");
+                }
+
+                // Xóa dữ liệu cũ của ComboBox trước khi thêm dữ liệu mới
+                comboBoxChooseHeadofDepartment.DataSource = null;
+
+                // Lấy danh sách giáo viên theo DepartmentID
+                teachers = departmentBLL.getTeacherByDepartmentiD(departmentId);
+                if (teachers != null && teachers.Count > 0)
+                {
+                    if (teachers != null && teachers.Count > 0)
+                    {
+                        // Gán danh sách giáo viên vào ComboBox
+                        comboBoxChooseHeadofDepartment.DataSource = teachers;
+                        comboBoxChooseHeadofDepartment.DisplayMember = "FullName";
+                        comboBoxChooseHeadofDepartment.ValueMember = "TeacherID";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có giáo viên nào để làm trưởng khoa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+                comboBox1.Enabled = false;
+
             }
         }
 
-        // check count if list selected, get listviewitem, check null
-        // populate new dto, check update success
+
+        // check count if list selected
+        // reload headlist, get listviewitem from form, check valid
+        // populate new dto, check update success clear form reload list
 
         private void button_update_Click(object sender, EventArgs e)
         {
@@ -171,42 +240,54 @@ namespace GUI
                 MessageBox.Show("Vui lòng chọn 1 khoa bất kỳ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
             ListViewItem selectedItem = listViewDepartment.SelectedItems[0];
             int departmentID = int.Parse(selectedItem.Text);
-            string departmentName = textBoxEmail.Text;
-            string headOfDepartment = comboBoxChooseHeadofDepartment.Text;
-            string email = textBoxDepartmentName.Text;
+            string departmentName = textBoxDepartmentName.Text;
+            int headOfDepartmentId = (int)comboBoxChooseHeadofDepartment.SelectedValue;
+            string nameHeadOfDepartment = comboBoxChooseHeadofDepartment.Text;
+            string email = textBoxEmail.Text;
             string establishedYearText = comboBox1.Text;
-            int establishedYear;
-            int.TryParse(establishedYearText, out establishedYear);
-
-            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(headOfDepartment) || string.IsNullOrEmpty(email))
+            int establishedYear = -1;
+            if (comboBox1.SelectedItem != null) { establishedYear = Int32.Parse(comboBox1.SelectedItem.ToString()); }
+            if (!RegexData.IsValidEmail(email))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Email phải có dạng <tên>@gmail.com (không có kí tự đặc biệt)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+
             DepartmentDTO department = new DepartmentDTO
             {
-                DepartmentID = departmentID,
                 DepartmentName = departmentName,
-                //HeadOfDepartment = headOfDepartment,
                 Email = email,
-                EstablishedYear = establishedYear
+                EstablishedYear = establishedYear,
+                TeacherID = headOfDepartmentId,
+                Teacher = new TeacherDTO
+                {
+                    TeacherID = headOfDepartmentId,
+                    FullName = nameHeadOfDepartment
+                },
+                DepartmentID = departmentID
             };
 
             bool isUpdated = departmentBLL.UpdateDepartment(department);
             if (isUpdated)
             {
+                departmentBLL.UpdateTeacherRole(headOfDepartmentId, oldTeacherId);
                 MessageBox.Show("Cập nhật khoa thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                addDataDefault(); // Reload the list of departments
+                LoadListDepartment(); // Reload the list of departments
+                ClearForm();
+                LoadListDepartment();
             }
             else
             {
                 MessageBox.Show("Cập nhật khoa thất bại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // check count for checked rows, show confirm dialogresult as messagebox
+        // if yes traverse teacherList for teacherName, listviewitem for each depaID to delete
+        // update role, check success clear form reload list
 
         private void button_delete_Click(object sender, EventArgs e)
         {
@@ -219,45 +300,70 @@ namespace GUI
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa hay không ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
+
                 foreach (ListViewItem item in listViewDepartment.CheckedItems)
                 {
-                    int departmentID = int.Parse(item.Text); // Get the department ID from the selected item
+                    int departmentID = Int32.Parse(item.Text); // Get the department ID from the selected item
+                    string teacherName = item.SubItems[2].Text.ToString();
+                    int teacherID;
+                    foreach (var teacher in teacherList)
+                    {
+                        if (string.Equals(teacherName, teacher.FullName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            teacherID = teacher.TeacherID; // Lưu ID của giáo viên đã chọn
+                            teacherBLL.UpdateTeacherRole(teacherID, 1);
+                            break;
+                        }
+                    }
 
                     bool isDeleted = departmentBLL.DeleteDepartment(departmentID);
                     if (!isDeleted)
                     {
-                        MessageBox.Show($"Xảy ra lỗi khi xóa ID :  {departmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Xảy ra lỗi khi xóa ID: {departmentID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
 
                 MessageBox.Show("Xóa thành công!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                addDataDefault(); // Reload the list of departments
+
+                ClearForm();
+                LoadListDepartment(); // Reload the list of departments
             }
         }
 
-        private void panel_searchBtn_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
+        // check null searchbar, clear listview
+        // get search result list, populate listviewitem with result
         private void button_search_Click(object sender, EventArgs e)
         {
             string searchQuery = textBoxSearch.Text.Trim();
             if (string.IsNullOrEmpty(searchQuery))
             {
-                MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                addDataDefault();
+                MessageBox.Show("Vui lòng nhập từ khoá để tìm kiếm!", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearForm();
                 return;
             }
+
             listViewDepartment.Items.Clear();
             List<DepartmentDTO> searchResults = departmentBLL.SearchDepartments(searchQuery);
-            LoadListDepartment(searchResults);
+            foreach (var department in searchResults)
+            {
+
+                ListViewItem item = new ListViewItem(department.DepartmentID.ToString());
+                item.SubItems.Add(department.DepartmentName);
+                item.SubItems.Add(department.Teacher?.FullName ?? string.Empty);
+                item.SubItems.Add(department.Email);
+                item.SubItems.Add(department.EstablishedYear.ToString());
+                listViewDepartment.Items.Add(item);
+            }
         }
 
-        private void label_panelTitle_Click(object sender, EventArgs e)
+        private void button_clear_Click(object sender, EventArgs e)
         {
-
+            ClearForm();
+            LoadListDepartment();
         }
+
     }
+
 }

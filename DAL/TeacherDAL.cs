@@ -59,6 +59,18 @@ namespace DAL
             }
         }
 
+        public List<TeacherDTO> GetAllTeachers()
+        {
+            List<TeacherDTO> teacherList = new List<TeacherDTO>();
+            string query = "SELECT * FROM Teacher";
+            using (var connection = Connection())
+            {
+                connection.Open();
+                teacherList = connection.Query<TeacherDTO>(query).ToList();
+
+            }
+            return teacherList;
+        }
         public SearchResponse<TeacherDTO> Search(SearchRequest request, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";
@@ -118,7 +130,7 @@ namespace DAL
         {
             string query = @"Insert into teacher (FullName, Gender, Email, PhoneNumber, Status, DepartmentID, Username, Password, RoleID) 
                             Values (@FullName, @Gender, @Email, @PhoneNumber, @Status, @DepartmentID, @Username, @Password, @RoleID)";
-            using(var connection = Connection())
+            using (var connection = Connection())
             {
                 int affectedRows = connection.Execute(query, teacherDTO);
 
@@ -176,7 +188,7 @@ namespace DAL
             }
         }
 
-        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID , string injectSQL)
+        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID, string injectSQL)
         {
 
             string query = @"Select * from teacher
@@ -249,13 +261,13 @@ namespace DAL
         }
 
         // Lấy danh sách giáo viên chưa làm trưởng khoa để đề cử
-        public List<TeacherDTO> GetTeachersForHeadOfDepartment()       
+        public List<TeacherDTO> GetTeachersForHeadOfDepartment()
         {
             using (var connection = Connection())
             {
                 connection.Open();
 
-                string query = "SELECT TeacherID, FullName FROM Teacher WHERE RoleID = 1 AND Status = 1 ";
+                string query = "SELECT TeacherID, FullName , DepartmentID FROM Teacher WHERE RoleID = 1 AND Status = 1 ";
 
                 List<TeacherDTO> foundTeachers = (connection.Query<TeacherDTO>(query)).ToList();
 
@@ -272,11 +284,14 @@ namespace DAL
 
                 string query = "UPDATE Teacher SET RoleID = @RoleID WHERE TeacherID = @TeacherID";
 
-                var rowsUpdated = connection.Execute(query, new { 
-                    RoleID = newRoleID, 
-                    TeacherID = teacherID });
+                var rowsUpdated = connection.Execute(query, new
+                {
+                    RoleID = newRoleID,
+                    TeacherID = teacherID
+                });
 
-                if (rowsUpdated <= 0) {
+                if (rowsUpdated <= 0)
+                {
                     return false;
                 }
 
@@ -373,6 +388,7 @@ namespace DAL
                 return connection.QuerySingleOrDefault<string>(query, new { TeacherId = teacherId });
             }
         }
+
 
     }
 }

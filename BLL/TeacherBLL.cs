@@ -15,14 +15,18 @@ namespace BLL
         {
             teacherDAL = new TeacherDAL();
         }
-
-        public TeacherDTO GetUserSession(AccountDTO account) 
-        { 
+        public List<TeacherDTO> GetAllTeachers()
+        {
+            return teacherDAL.GetAllTeachers();
+        }
+        public TeacherDTO GetUserSession(AccountDTO account)
+        {
             TeacherDTO foundTeacher = teacherDAL.GetUserSession(account);
             return foundTeacher;
         }
 
-        public SearchResponse<TeacherDTO> Search(SearchRequest request) {
+        public SearchResponse<TeacherDTO> Search(SearchRequest request)
+        {
             try
             {
                 int roleID = SessionLogin.LoggedInTeacher.RoleID;
@@ -40,16 +44,16 @@ namespace BLL
             }
         }
 
-        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID , bool check)
+        public SearchResponse<TeacherDTO> SearchTeacherInDepartment(SearchRequest request, int departmentID, bool check)
         {
             try
             {
                 string injectSQl;
-                if (check) 
+                if (check)
                     injectSQl = "and (teacher.RoleID = 1 or teacher.RoleID = 3)";
                 else injectSQl = "and teacher.RoleID = 1 ";
 
-                    return teacherDAL.SearchTeacherInDepartment(request, departmentID, injectSQl );
+                return teacherDAL.SearchTeacherInDepartment(request, departmentID, injectSQl);
             }
             catch (Exception ex)
             {
@@ -58,7 +62,12 @@ namespace BLL
             }
         }
 
-        public bool Create(TeacherDTO teacherDTO) {
+        public bool UpdateTeacherRole(int teacherID, int roleID)
+        {
+            return teacherDAL.UpdateTeacherRole(teacherID, roleID);
+        }
+        public bool Create(TeacherDTO teacherDTO)
+        {
             try
             {
                 teacherDTO.Password = PasswordHasher.HashPassword(teacherDTO.Password);
@@ -117,12 +126,12 @@ namespace BLL
             return teacherDAL.UpdateTeacherInfo(updatedTeacher);
         }
 
-        public TeacherDTO GetInforTeacherByIdStudent(int  studentID)
+        public TeacherDTO GetInforTeacherByIdStudent(int studentID)
         {
             return teacherDAL.GetInforTeacherByIdStudent(studentID);
         }
 
-        public bool ChangePassword(string newPassword , int teacherId)
+        public bool ChangePassword(string newPassword, int teacherId)
         {
             string hash = PasswordHasher.HashPassword(newPassword);
             return teacherDAL.ChangePassword(hash, teacherId);
@@ -134,7 +143,7 @@ namespace BLL
             string storedPasswordHash = teacherDAL.GetPasswordHash(teacherId);
 
             // So sánh mật khẩu nhập vào (sau khi hash) với mật khẩu trong DB
-            return PasswordHasher.VerifyPassword( inputPassword, storedPasswordHash);
+            return PasswordHasher.VerifyPassword(inputPassword, storedPasswordHash);
         }
 
     }

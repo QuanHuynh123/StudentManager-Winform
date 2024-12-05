@@ -71,7 +71,7 @@ namespace GUI
             if (SessionLogin.IsLoggedIn)
             {
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 // Mở trang chính sau khi đăng nhập thành công
                 home main = new home();
                 main.Show();
@@ -100,5 +100,9 @@ namespace GUI
             }
         }
 
+        private void exitApplicationButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

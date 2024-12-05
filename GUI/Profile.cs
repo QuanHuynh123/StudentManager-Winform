@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -60,6 +61,7 @@ namespace GUI
             textBox_department.ReadOnly = true;
         }
 
+
         private void button_update_Click_1(object sender, EventArgs e)
         {
             try
@@ -67,8 +69,26 @@ namespace GUI
                 // Lấy thông tin đã chỉnh sửa từ các textbox
                 string updatedEmail = textBox_email.Text.Trim();
                 string updatedPhone = textBox_phone.Text.Trim();
-                bool updatedGender = comboBox_gender.SelectedIndex == 0;
+                int selectedGenderIndex = comboBox_gender.SelectedIndex;
                 string updatedFullName = textBox_profileName.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(updatedFullName))
+                {
+                    MessageBox.Show("Tên không được để trống.");
+                    return; 
+                }
+
+                if (string.IsNullOrWhiteSpace(updatedEmail) || !RegexData.IsValidEmail(updatedEmail))
+                {
+                    MessageBox.Show("Email không hợp lệ.");
+                    return; 
+                }
+
+                if (string.IsNullOrWhiteSpace(updatedPhone) || !RegexData.IsValidPhoneNumber(updatedPhone))
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ.");
+                    return;  
+                }
 
                 // Tạo DTO chứa thông tin cập nhật
                 TeacherDTO updatedTeacher = new TeacherDTO
@@ -76,7 +96,7 @@ namespace GUI
                     TeacherID = SessionLogin.LoggedInTeacher.TeacherID, // ID của giảng viên hiện tại
                     Email = updatedEmail,
                     PhoneNumber = updatedPhone,
-                    Gender = updatedGender ? false : true,
+                    Gender = selectedGenderIndex == 0 ? true : false,
                     FullName = updatedFullName,
                     DepartmentID = SessionLogin.LoggedInTeacher.DepartmentID,
                     RoleID = SessionLogin.LoggedInTeacher.RoleID
@@ -105,5 +125,10 @@ namespace GUI
             new ChangePasswordDialog(SessionLogin.LoggedInTeacher.TeacherID).Show();
         }
 
+        private bool IsValidEmail(string email)
+        {
+            var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, emailPattern);
+        }
     }
 }

@@ -39,11 +39,14 @@ namespace GUI
             usernameTextBox = new TextBox();
             passwordTextBox = new TextBox();
             forgotPasswordLabel = new Label();
+            panel2Button = new Panel();
+            exitApplicationButton = new Button();
             loginButton = new Button();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             customPanel.SuspendLayout();
             tableLayoutPanel.SuspendLayout();
+            panel2Button.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pictureBox1.SuspendLayout();
             SuspendLayout();
@@ -86,7 +89,7 @@ namespace GUI
             tableLayoutPanel.Controls.Add(usernameTextBox, 0, 1);
             tableLayoutPanel.Controls.Add(passwordTextBox, 0, 2);
             tableLayoutPanel.Controls.Add(forgotPasswordLabel, 0, 3);
-            tableLayoutPanel.Controls.Add(loginButton, 0, 4);
+            tableLayoutPanel.Controls.Add(panel2Button, 0, 4);
             tableLayoutPanel.Dock = DockStyle.Bottom;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
@@ -118,9 +121,9 @@ namespace GUI
             usernameTextBox.Anchor = AnchorStyles.None;
             usernameTextBox.Font = new Font("Arial", 14F);
             usernameTextBox.ForeColor = Color.Silver;
-            usernameTextBox.Location = new Point(136, 215);
+            usernameTextBox.Location = new Point(136, 212);
             usernameTextBox.Name = "usernameTextBox";
-            usernameTextBox.Size = new Size(362, 29);
+            usernameTextBox.Size = new Size(362, 34);
             usernameTextBox.TabIndex = 1;
             usernameTextBox.Text = "Username";
             usernameTextBox.Enter += usernameTextBox_Enter;
@@ -131,9 +134,9 @@ namespace GUI
             passwordTextBox.Anchor = AnchorStyles.None;
             passwordTextBox.Font = new Font("Arial", 14F);
             passwordTextBox.ForeColor = Color.Silver;
-            passwordTextBox.Location = new Point(135, 280);
+            passwordTextBox.Location = new Point(135, 277);
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.Size = new Size(363, 29);
+            passwordTextBox.Size = new Size(363, 34);
             passwordTextBox.TabIndex = 2;
             passwordTextBox.Text = "Password";
             passwordTextBox.Enter += passwordTextBox_Enter;
@@ -152,6 +155,29 @@ namespace GUI
             forgotPasswordLabel.Text = "Quên mật khẩu";
             forgotPasswordLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // panel2Button
+            // 
+            panel2Button.Controls.Add(exitApplicationButton);
+            panel2Button.Controls.Add(loginButton);
+            panel2Button.Dock = DockStyle.Fill;
+            panel2Button.Location = new Point(3, 395);
+            panel2Button.Name = "panel2Button";
+            panel2Button.Size = new Size(628, 129);
+            panel2Button.TabIndex = 4;
+            // 
+            // exitApplicationButton
+            // 
+            exitApplicationButton.BackColor = Color.Red;
+            exitApplicationButton.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            exitApplicationButton.ForeColor = SystemColors.ControlLightLight;
+            exitApplicationButton.Location = new Point(332, 39);
+            exitApplicationButton.Name = "exitApplicationButton";
+            exitApplicationButton.Size = new Size(195, 41);
+            exitApplicationButton.TabIndex = 0;
+            exitApplicationButton.Text = "THOÁT";
+            exitApplicationButton.UseVisualStyleBackColor = false;
+            exitApplicationButton.Click += exitApplicationButton_Click;
+            // 
             // loginButton
             // 
             loginButton.Anchor = AnchorStyles.None;
@@ -160,9 +186,9 @@ namespace GUI
             loginButton.FlatStyle = FlatStyle.Flat;
             loginButton.Font = new Font("Arial", 10F, FontStyle.Bold);
             loginButton.ForeColor = Color.White;
-            loginButton.Location = new Point(167, 439);
+            loginButton.Location = new Point(98, 39);
             loginButton.Name = "loginButton";
-            loginButton.Size = new Size(299, 41);
+            loginButton.Size = new Size(195, 41);
             loginButton.TabIndex = 4;
             loginButton.Text = "ĐĂNG NHẬP";
             loginButton.UseVisualStyleBackColor = false;
@@ -190,6 +216,7 @@ namespace GUI
             customPanel.ResumeLayout(false);
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
+            panel2Button.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pictureBox1.ResumeLayout(false);
             ResumeLayout(false);
@@ -236,7 +263,9 @@ namespace GUI
         private TextBox passwordTextBox;
         private Label forgotPasswordLabel;
         private Button loginButton;
+        private Button exitApplicationButton;
         private PictureBox pictureBox1;
+        private Panel panel2Button;
         //private Panel overlay;
     }
 }

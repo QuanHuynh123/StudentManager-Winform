@@ -52,8 +52,10 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
             panel_task = new Panel();
             panel_controlBtn = new Panel();
+            button_clear = new Button();
             button_delete = new Button();
             button_update = new Button();
             panel_search = new Panel();
@@ -116,7 +118,6 @@
             label_panelTitle.TabIndex = 0;
             label_panelTitle.Text = "THÔNG TIN KHOA";
             label_panelTitle.TextAlign = ContentAlignment.MiddleCenter;
-            label_panelTitle.Click += label_panelTitle_Click;
             // 
             // button_add
             // 
@@ -280,7 +281,7 @@
             listViewDepartment.BackColor = Color.WhiteSmoke;
             listViewDepartment.BorderStyle = BorderStyle.FixedSingle;
             listViewDepartment.CheckBoxes = true;
-            listViewDepartment.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            listViewDepartment.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6 });
             listViewDepartment.Dock = DockStyle.Fill;
             listViewDepartment.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listViewDepartment.GridLines = true;
@@ -309,12 +310,16 @@
             // columnHeader4
             // 
             columnHeader4.Text = "Email";
-            columnHeader4.Width = 250;
+            columnHeader4.Width = 200;
             // 
             // columnHeader5
             // 
             columnHeader5.Text = "Năm Thành Lập";
             columnHeader5.Width = 120;
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Mã trưởng khoa";
             // 
             // panel_task
             // 
@@ -328,20 +333,34 @@
             // 
             // panel_controlBtn
             // 
+            panel_controlBtn.Controls.Add(button_clear);
             panel_controlBtn.Controls.Add(button_delete);
             panel_controlBtn.Controls.Add(button_update);
             panel_controlBtn.Dock = DockStyle.Right;
-            panel_controlBtn.Location = new Point(264, 0);
+            panel_controlBtn.Location = new Point(153, 0);
             panel_controlBtn.Name = "panel_controlBtn";
-            panel_controlBtn.Size = new Size(466, 117);
+            panel_controlBtn.Size = new Size(577, 117);
             panel_controlBtn.TabIndex = 9;
+            // 
+            // button_clear
+            // 
+            button_clear.BackColor = Color.CadetBlue;
+            button_clear.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button_clear.ForeColor = SystemColors.ButtonHighlight;
+            button_clear.Location = new Point(52, 33);
+            button_clear.Name = "button_clear";
+            button_clear.Size = new Size(167, 40);
+            button_clear.TabIndex = 9;
+            button_clear.Text = "Clear";
+            button_clear.UseVisualStyleBackColor = false;
+            button_clear.Click += button_clear_Click;
             // 
             // button_delete
             // 
             button_delete.BackColor = Color.FromArgb(255, 128, 128);
             button_delete.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_delete.ForeColor = SystemColors.ButtonHighlight;
-            button_delete.Location = new Point(253, 33);
+            button_delete.Location = new Point(398, 33);
             button_delete.Name = "button_delete";
             button_delete.Size = new Size(167, 40);
             button_delete.TabIndex = 8;
@@ -354,7 +373,7 @@
             button_update.BackColor = Color.FromArgb(35, 48, 103);
             button_update.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_update.ForeColor = SystemColors.ButtonHighlight;
-            button_update.Location = new Point(59, 33);
+            button_update.Location = new Point(225, 33);
             button_update.Name = "button_update";
             button_update.Size = new Size(167, 40);
             button_update.TabIndex = 6;
@@ -486,5 +505,7 @@
         private Panel panel_controlBtn;
         private Panel panel_searchBtn;
         private Panel panel_searchBar;
+        private Button button_clear;
+        private ColumnHeader columnHeader6;
     }
 }

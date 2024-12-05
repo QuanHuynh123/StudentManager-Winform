@@ -34,9 +34,9 @@ namespace BLL
             return _dashBoardDAL.GetTotalClasses();
         }
 
-        public List<(int EnrollmentYear, int StudentCount)> GetEnrollmentDataByDepartment(int departmentId)
+        public List<(int EnrollmentYear, int StudentCount)> GetEnrollmentStudent()
         {
-            return _dashBoardDAL.GetEnrollmentDataByDepartment(departmentId);
+            return _dashBoardDAL.GetEnrollmentStudent();
         }
 
         public Dictionary<bool, int> GetPassFailRatioForCurrentYear()

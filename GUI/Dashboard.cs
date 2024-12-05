@@ -39,7 +39,7 @@ namespace GUI
         private void LoadChart1()
         {
             // Lấy dữ liệu từ BLL (Dữ liệu số lượng sinh viên nhập học theo từng năm)
-            var enrollmentData = dashBoardBLL.GetEnrollmentDataByDepartment(SessionLogin.LoggedInTeacher.TeacherID);
+            var enrollmentData = dashBoardBLL.GetEnrollmentStudent();
 
             CartesianChart cartesianChart1 = new CartesianChart
             {
@@ -77,7 +77,7 @@ namespace GUI
                 new Axis
                 {
                     Labeler = value => value.ToString(), 
-                    Name = "Sinh viên nhập học"
+                    Name = "Thống kê sinh viên nhập học các năm"
         }
             };
 
@@ -96,44 +96,45 @@ namespace GUI
 
             // Tạo dữ liệu ColumnSeries cho "Đậu" và "Rớt"
             var series = new List<ColumnSeries<int>>
-    {
-        new ColumnSeries<int>
-        {
-            Values = new[] { passFailData.ContainsKey(true) ? passFailData[true] : 0 }, // Số lượng Đậu
-            Name = "Đạt",
-            Fill = new SolidColorPaint(SKColors.Green)
-        },
-        new ColumnSeries<int>
-        {
-            Values = new[] { passFailData.ContainsKey(false) ? passFailData[false] : 0 }, // Số lượng Rớt
-            Name = "Chưa đạt",
-            Fill = new SolidColorPaint(SKColors.Red)
-        }
-    };
+            {
+                new ColumnSeries<int>
+                {
+                    Values = new[] { passFailData.ContainsKey(true) ? passFailData[true] : 0 }, // Số lượng Đậu
+                    Name = "Đạt",
+                    Fill = new SolidColorPaint(SKColors.Green)
+                },
+                new ColumnSeries<int>
+                {
+                    Values = new[] { passFailData.ContainsKey(false) ? passFailData[false] : 0 }, // Số lượng Rớt
+                    Name = "Chưa đạt",
+                    Fill = new SolidColorPaint(SKColors.Red)
+                }
+            };
 
             cartesianChart2.Series = series.ToArray();
 
             // Đặt trục X (hiển thị các nhãn Đậu, Rớt)
             cartesianChart2.XAxes = new Axis[]
             {
-        new Axis
-        {
-            Labels = new[] { "Đạt", "Chưa Đạt" }, // Các nhãn trục X
-            Name = "Kết quả",
-            NamePaint = new SolidColorPaint(SKColors.Black),
-            LabelsPaint = new SolidColorPaint(SKColors.Black)
-        }
+                new Axis
+                {
+                    Labels = new[] { "Đạt", "Chưa Đạt" }, // Các nhãn trục X
+                    Name = "Kết quả",
+                    NamePaint = new SolidColorPaint(SKColors.Black),
+                    LabelsPaint = new SolidColorPaint(SKColors.Black),
+                }
             };
 
             // Đặt trục Y (hiển thị số lượng sinh viên)
             cartesianChart2.YAxes = new Axis[]
             {
-        new Axis
-        {
-            Name = "Sinh viên đạt môn",
-            NamePaint = new SolidColorPaint(SKColors.Black),
-            Labeler = value => value.ToString(),
-        }
+                new Axis
+                {
+                    Name = "Thống kê sinh viên đạt môn/năm",
+                    NamePaint = new SolidColorPaint(SKColors.Black),
+                    Labeler = value => value.ToString(),
+                    MinLimit = 0,  // Đảm bảo giá trị không âm
+                }
             };
 
             panel_chart2.Controls.Add(cartesianChart2);

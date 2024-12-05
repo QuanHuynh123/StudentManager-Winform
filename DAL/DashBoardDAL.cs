@@ -44,30 +44,32 @@ namespace DAL
                 return totalClasses;
             }
         }
-        public List<(int EnrollmentYear, int StudentCount)> GetEnrollmentDataByDepartment(int departmentId)
+        public List<(int EnrollmentYear, int StudentCount)> GetEnrollmentStudent()
         {
             using (var connection = Connection())
             {
                 connection.Open();
-                string query = @"SELECT 
+                string query = @"
+            SELECT 
                 YEAR(EnrollmentDate) AS EnrollmentYear,
                 COUNT(StudentID) AS StudentCount
             FROM 
                 [Student]
             WHERE 
                 YEAR(EnrollmentDate) BETWEEN YEAR(GETDATE()) - 4 AND YEAR(GETDATE())
-                AND DepartmentID = @DepartmentID
             GROUP BY 
                 YEAR(EnrollmentDate)
             ORDER BY 
                 EnrollmentYear ASC;";
 
-                var result = connection.Query<(int EnrollmentYear, int StudentCount)>(query, new { DepartmentID = departmentId }).ToList();
+                // Truy vấn không sử dụng DepartmentID
+                var result = connection.Query<(int EnrollmentYear, int StudentCount)>(query).ToList();
                 return result;
             }
         }
 
-         public Dictionary<bool, int> GetPassFailRatioForCurrentYear()
+
+        public Dictionary<bool, int> GetPassFailRatioForCurrentYear()
         {
             using (var connection = Connection())
             {

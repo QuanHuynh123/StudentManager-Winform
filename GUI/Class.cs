@@ -272,7 +272,7 @@ namespace GUI
                     bool isDeleted = classBLL.Delete_action(classID);
                     if (!isDeleted)
                     {
-                        MessageBox.Show($"Xảy ra lỗi khi xóa ID : {classID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Lớp còn học sinh, giảng viên không được phép xóa !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -293,11 +293,16 @@ namespace GUI
                 textBox_room.Text = selectedItem.SubItems[2].Text;
                 comboBox_subject.SelectedValue = int.Parse(selectedItem.SubItems[3].Text.Split(" - ")[0]);
                 comboBox_teacher.SelectedValue = int.Parse(selectedItem.SubItems[4].Text.Split(" - ")[0]);
+                comboBox_teacher.Enabled = false; 
                 textBox_start_period.Text = selectedItem.SubItems[5].Text;
                 textBox_end_period.Text = selectedItem.SubItems[6].Text;
                 textBox_day.Text = selectedItem.SubItems[7].Text;
                 //dateTimePicker_start_date.Value = DateTime.TryParse(selectedItem.SubItems[8].Text, out var startDate) ? startDate : DateTime.Today;
                 //dateTimePicker_end_date.Value = DateTime.TryParse(selectedItem.SubItems[9].Text, out var endDate) ? endDate : DateTime.Today;
+            }
+            else
+            {
+                comboBox_teacher.Enabled = true;
             }
         }
 
@@ -337,6 +342,87 @@ namespace GUI
             List<ClassForExport> data = classResponse.Data.Adapt<List<ClassForExport>>();
 
             Common.ExportExcel<ClassForExport>(data, fileName);
+        }
+
+        private bool validateInput()
+        {
+
+            int maxPeriod = 5;
+            bool isPassed = false;
+            try
+            {
+                if (string.IsNullOrEmpty(textBox_class_name.Text))
+                {
+                    MessageBox.Show("Tên lớp không hợp lệ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Subject ID
+                if (subjectIdSelected <= 0)
+                {
+                    MessageBox.Show("Mã môn học không hợp lệ. Vui lòng chọn một môn học hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Teacher ID
+                if (teacherIdSelected <= 0)
+                {
+                    MessageBox.Show("Mã giáo viên không hợp lệ. Vui lòng chọn một giáo viên hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Room
+                if (string.IsNullOrWhiteSpace(textBox_room.Text))
+                {
+                    MessageBox.Show("Phòng không được để trống. Vui lòng nhập tên phòng hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Start Period
+                if (!int.TryParse(textBox_start_period.Text, out int startPeriod) || startPeriod <= 0)
+                {
+                    MessageBox.Show("Tiết bắt đầu không hợp lệ. Vui lòng nhập một số nguyên dương.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate End Period
+                if (!int.TryParse(textBox_end_period.Text, out int endPeriod) || endPeriod <= 0)
+                {
+                    MessageBox.Show("Tiết kết thúc không hợp lệ. Vui lòng nhập một số nguyên dương.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Check if Start Period is less than or equal to End Period
+                if (startPeriod > endPeriod)
+                {
+                    MessageBox.Show("Tiết bắt đầu phải nhỏ hơn hoặc bằng tiết kết thúc.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Check if Start Period is less than or equal to End Period
+                if (endPeriod > startPeriod)
+                {
+                    MessageBox.Show("Vượt quá số tiết cho phép.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Day
+                if (!int.TryParse(textBox_day.Text, out int day) || day < 1 || day > 7)
+                {
+                    MessageBox.Show("Thứ không hợp lệ. Vui lòng nhập số từ 1 (Thứ Hai) đến 7 (Chủ Nhật).", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // If all validations pass
+                MessageBox.Show("Tất cả đầu vào đều hợp lệ!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return !isPassed;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return isPassed;
+            }
         }
 
     }

@@ -108,13 +108,13 @@ namespace GUI
                 return;  // Dừng lại nếu có lỗi
             }
 
-            if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
+            if (string.IsNullOrWhiteSpace(email) || !RegexData.IsValidEmail(email))
             {
                 MessageBox.Show("Email không hợp lệ.");
                 return;  // Dừng lại nếu có lỗi
             }
 
-            if (string.IsNullOrWhiteSpace(phone) || !IsValidPhoneNumber(phone))
+            if (string.IsNullOrWhiteSpace(phone) || !RegexData.IsValidPhoneNumber(phone))
             {
                 MessageBox.Show("Số điện thoại không hợp lệ.");
                 return;  // Dừng lại nếu có lỗi
@@ -159,10 +159,6 @@ namespace GUI
                 MessageBox.Show("Chưa chọn chương trình đào tạo.");
             }
         }
-
-
-
-
         public void loadComboBoxProgram()
         {
             // Lấy danh sách các chương trình đào tạo
@@ -251,18 +247,6 @@ namespace GUI
         {
             // Lấy ProgramID từ SelectedValue của comboBox
             int selectedProgramID = (int)comboBox_program.SelectedValue;
-        }
-        private bool IsValidEmail(string email)
-        {
-            var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, emailPattern);
-        }
-
-        // Hàm kiểm tra định dạng số điện thoại
-        private bool IsValidPhoneNumber(string phoneNumber)
-        {
-            var phonePattern = @"^\d{10}$";  // Giả sử số điện thoại là 10 chữ số
-            return Regex.IsMatch(phoneNumber, phonePattern);
         }
 
         private void button_update_Click(object sender, EventArgs e)

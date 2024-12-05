@@ -74,8 +74,8 @@ namespace GUI
             panel_avatar = new Panel();
             pictureBox_avatar = new PictureBox();
             panel_header = new Panel();
-            panel_name = new Panel();
             label_name = new Label();
+            panel_name = new Panel();
             label_role = new Label();
             label_headertitle = new Label();
             mainPanel = new Panel();
@@ -165,12 +165,11 @@ namespace GUI
             flowLayoutPanelMenu.Name = "flowLayoutPanelMenu";
             flowLayoutPanelMenu.Size = new Size(270, 707);
             flowLayoutPanelMenu.TabIndex = 22;
-            flowLayoutPanelMenu.Paint += flowLayoutPanelMenu_Paint;
             // 
             // panelSpace
             // 
-            panelSpace.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelSpace.BackColor = Color.White;
+            panelSpace.Dock = DockStyle.Top;
             panelSpace.Location = new Point(3, 3);
             panelSpace.Name = "panelSpace";
             panelSpace.Size = new Size(270, 5);
@@ -581,6 +580,7 @@ namespace GUI
             // 
             // panel_header
             // 
+            panel_header.Controls.Add(label_name);
             panel_header.Controls.Add(panel_name);
             panel_header.Controls.Add(label_headertitle);
             panel_header.Dock = DockStyle.Left;
@@ -590,9 +590,21 @@ namespace GUI
             panel_header.Size = new Size(783, 121);
             panel_header.TabIndex = 21;
             // 
+            // label_name
+            // 
+            label_name.AutoSize = true;
+            label_name.BackColor = Color.Transparent;
+            label_name.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            label_name.ForeColor = Color.MidnightBlue;
+            label_name.Location = new Point(39, 64);
+            label_name.Name = "label_name";
+            label_name.Padding = new Padding(1, 0, 0, 0);
+            label_name.Size = new Size(174, 25);
+            label_name.TabIndex = 6;
+            label_name.Text = "Trương Thị Mỹ Lan";
+            // 
             // panel_name
             // 
-            panel_name.Controls.Add(label_name);
             panel_name.Controls.Add(label_role);
             panel_name.Dock = DockStyle.Top;
             panel_name.Location = new Point(10, 66);
@@ -600,20 +612,6 @@ namespace GUI
             panel_name.Name = "panel_name";
             panel_name.Size = new Size(279, 29);
             panel_name.TabIndex = 20;
-            // 
-            // label_name
-            // 
-            label_name.AutoSize = true;
-            label_name.BackColor = Color.Transparent;
-            label_name.Dock = DockStyle.Left;
-            label_name.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_name.ForeColor = Color.MidnightBlue;
-            label_name.Location = new Point(37, 0);
-            label_name.Name = "label_name";
-            label_name.Padding = new Padding(1, 0, 0, 0);
-            label_name.Size = new Size(156, 23);
-            label_name.TabIndex = 6;
-            label_name.Text = "Trương Thị Mỹ Lan";
             // 
             // label_role
             // 
