@@ -156,6 +156,11 @@ namespace GUI
 
         private void button_add_Click(object sender, EventArgs e)
         {
+            if (!validateInput())
+            {
+                return;
+            }
+
             // Get data
             string className = textBox_class_name.Text;
             int subjectID = subjectIdSelected;
@@ -205,6 +210,11 @@ namespace GUI
             if (listView_class.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn 1 record bất kỳ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!validateInput())
+            {
                 return;
             }
 
@@ -400,7 +410,7 @@ namespace GUI
                 }
 
                 // Check if Start Period is less than or equal to End Period
-                if (endPeriod > startPeriod)
+                if (endPeriod - startPeriod > 5)
                 {
                     MessageBox.Show("Vượt quá số tiết cho phép.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return isPassed;
