@@ -410,7 +410,7 @@ namespace GUI
                 }
 
                 // Check if Start Period is less than or equal to End Period
-                if (endPeriod - startPeriod > 5)
+                if (endPeriod - startPeriod > maxPeriod)
                 {
                     MessageBox.Show("Vượt quá số tiết cho phép.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return isPassed;

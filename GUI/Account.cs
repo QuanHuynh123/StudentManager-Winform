@@ -100,6 +100,11 @@ namespace GUI
 
         private void button_add_Click(object sender, EventArgs e)
         {
+            if (!validateInput())
+            {
+                return;
+            }
+
             // Get data
             string email = textBox_email.Text;
             string phoneNumber = textBox_phone_number.Text;
@@ -147,6 +152,11 @@ namespace GUI
             if (listView_account.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn 1 record bất kỳ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!validateInput())
+            {
                 return;
             }
 
@@ -250,6 +260,83 @@ namespace GUI
                 textBox_username.Text = selectedItem.SubItems[5].Text;
                 comboBox_department.SelectedValue = int.Parse(selectedItem.SubItems[6].Text.Split(" - ")[0]);
                 comboBox_role.SelectedValue = int.Parse(selectedItem.SubItems[7].Text.Split(" - ")[0]);
+            }
+        }
+
+        private bool validateInput()
+        {
+            bool isPassed = false;
+            try
+            {
+                // Validate Email
+                string email = textBox_email.Text;
+                if (string.IsNullOrWhiteSpace(email) || !RegexData.IsValidEmail(email))
+                {
+                    MessageBox.Show("Email không hợp lệ. Vui lòng nhập một địa chỉ email hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Phone Number
+                string phoneNumber = textBox_phone_number.Text;
+                if (string.IsNullOrWhiteSpace(phoneNumber) || !RegexData.IsValidPhoneNumber(phoneNumber))
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng chỉ nhập số.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Full Name
+                if (string.IsNullOrWhiteSpace(textBox_full_name.Text))
+                {
+                    MessageBox.Show("Họ và tên không được để trống. Vui lòng nhập họ và tên.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Gender
+                if (comboBox_gender.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Vui lòng chọn giới tính.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Username
+                string username = textBox_username.Text;
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    MessageBox.Show("Tên đăng nhập không được để trống. Vui lòng nhập tên đăng nhập.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Password
+                string password = textBox_password.Text;
+                if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
+                {
+                    MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Department
+                if (comboBox_department.SelectedValue == null || !int.TryParse(comboBox_department.SelectedValue.ToString(), out int departmentID) || departmentID <= 0)
+                {
+                    MessageBox.Show("Vui lòng chọn một phòng ban hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // Validate Role
+                if (comboBox_role.SelectedValue == null || !int.TryParse(comboBox_role.SelectedValue.ToString(), out int roleID) || roleID <= 0)
+                {
+                    MessageBox.Show("Vui lòng chọn một vai trò hợp lệ.", "Lỗi xác minh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return isPassed;
+                }
+
+                // If all validations pass
+                MessageBox.Show("Dữ liệu hợp lệ. Tiếp tục xử lý...", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return !isPassed;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return isPassed;
             }
         }
     }

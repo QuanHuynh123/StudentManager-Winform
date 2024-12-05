@@ -140,7 +140,7 @@ namespace GUI
         private void openAccount()
         {
             Account accountWindow = new Account() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            loadPanel("QUẢN LÝ LỚP", accountWindow);
+            loadPanel("QUẢN LÝ TÀI KHOẢN", accountWindow);
         }
 
         private void ApplyHoverEffect()

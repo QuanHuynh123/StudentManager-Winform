@@ -24,7 +24,7 @@ namespace BLL
                     return roleDAL.Search(request);
                 }
                 var response = roleDAL.Search(request);
-                response.Data = response.Data.Where(r => r.RoleID != Constants.Principal).ToList();
+                response.Data = response.Data.Where(r => r.RoleID != Constants.Principal && r.RoleID != Constants.HEAD_OF_DEPARTMENT).ToList();
 
                 return response;
             }
