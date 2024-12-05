@@ -59,6 +59,18 @@ namespace DAL
             }
         }
 
+        public List<TeacherDTO> GetAllTeachers()
+        {
+            List<TeacherDTO> teacherList = new List<TeacherDTO>();
+            string query = "SELECT * FROM Teacher";
+            using (var connection = Connection())
+            {
+                connection.Open();
+                teacherList = connection.Query<TeacherDTO>(query).ToList();
+
+            }
+            return teacherList;
+        }
         public SearchResponse<TeacherDTO> Search(SearchRequest request, int departmentID = 0)
         {
             string keyWord = !string.IsNullOrWhiteSpace(request.KeyWord) ? request.KeyWord.ToLower() : "";

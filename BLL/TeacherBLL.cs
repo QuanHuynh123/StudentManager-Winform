@@ -15,7 +15,10 @@ namespace BLL
         {
             teacherDAL = new TeacherDAL();
         }
-
+        public List<TeacherDTO> GetAllTeachers()
+        {
+            return teacherDAL.GetAllTeachers();
+        }
         public TeacherDTO GetUserSession(AccountDTO account) 
         { 
             TeacherDTO foundTeacher = teacherDAL.GetUserSession(account);
@@ -58,6 +61,10 @@ namespace BLL
             }
         }
 
+        public bool UpdateTeacherRole(int teacherID,int roleID)
+        {
+            return teacherDAL.UpdateTeacherRole(teacherID,roleID);
+        }
         public bool Create(TeacherDTO teacherDTO) {
             try
             {

@@ -3,6 +3,7 @@ using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BLL
 {
@@ -40,7 +41,41 @@ namespace BLL
                 return null;
             }
         }
-
+        //Kiểm tra email hợp lệ
+        public bool CheckValidEmail(string email)
+        {
+            string format = @"^[a-zA-Z0-9]+@gmail\.com$";
+            Regex regex = new Regex(format);
+            if (regex.IsMatch(email)) return true;
+            else return false;
+        }
+        // Kiểm tra trùng tên khoa
+        public bool CheckValidName(string departmentName)
+        {
+            bool result = true;
+            List<DepartmentDTO> departments = departmentDAL.GetAllDepartments();
+            foreach(var item in departments)
+            {
+                if(string.Equals(departmentName,item.DepartmentName,StringComparison.OrdinalIgnoreCase))
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+        public bool CheckExistedDepartment(int departmentID)
+        {
+            bool result = true;
+            List<DepartmentDTO> departments = departmentDAL.GetAllDepartments();
+            foreach (var item in departments)
+            {
+                if (string.Equals(departmentID.ToString(), item.DepartmentID.ToString(), StringComparison.OrdinalIgnoreCase))
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
         // Thêm Department mới
         public bool AddDepartment(DepartmentDTO department)
         {
@@ -49,7 +84,10 @@ namespace BLL
                 // Kiểm tra trước khi thêm vào cơ sở dữ liệu
                 if (string.IsNullOrEmpty(department.DepartmentName))
                     return false;
-
+                if (!CheckValidName(department.DepartmentName))
+                {
+                    return false;
+                }
                 return departmentDAL.AddDepartment(department);
             }
             catch (Exception ex)
@@ -84,7 +122,6 @@ namespace BLL
             {
                 if (departmentID <= 0)
                     return false;
-
                 return departmentDAL.DeleteDepartment(departmentID);
             }
             catch (Exception ex)
@@ -95,14 +132,14 @@ namespace BLL
         }
 
         // Tìm kiếm Department theo tên
-        public List<DepartmentDTO> SearchDepartments(string departmentName)
+        public List<DepartmentDTO> SearchDepartments(string searchQuery)
         {
             try
             {
-                if (string.IsNullOrEmpty(departmentName))
+                if (string.IsNullOrEmpty(searchQuery))
                     return new List<DepartmentDTO>();
 
-                return departmentDAL.SearchDepartments(departmentName);
+                return departmentDAL.SearchDepartments(searchQuery);
             }
             catch (Exception ex)
             {
