@@ -1,19 +1,13 @@
 ﻿using BLL;
+using DocumentFormat.OpenXml.Bibliography;
 using LiveChartsCore;
-using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.WinForms;
 using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace GUI
 {
@@ -41,10 +35,6 @@ namespace GUI
             // Lấy dữ liệu từ BLL (Dữ liệu số lượng sinh viên nhập học theo từng năm)
             var enrollmentData = dashBoardBLL.GetEnrollmentStudent();
 
-            CartesianChart cartesianChart1 = new CartesianChart
-            {
-                Dock = DockStyle.Fill
-            };
 
             // Dữ liệu cho chart: số lượng sinh viên nhập học theo từng năm
             var series = new List<ColumnSeries<int>>();
@@ -57,89 +47,84 @@ namespace GUI
                 });
             }
 
-            cartesianChart1.Series = series.ToArray();
+            var years = enrollmentData.Select(data => data.EnrollmentYear).ToArray();
+            var studentCounts = enrollmentData.Select(data => data.StudentCount).ToArray();
 
-            // Biến years để lưu các năm duy nhất
-            var years = enrollmentData.Select(x => x.EnrollmentYear.ToString()).Distinct().ToArray();
 
-            // Gắn trục X với các năm
-            cartesianChart1.XAxes = new Axis[]
+            // Gán dữ liệu vào Series của CartesianChart
+            cartesianChart1.Series = new ObservableCollection<ISeries>
             {
-                new Axis
+                new ColumnSeries<int>
                 {
-                    Labels = years, // Sử dụng các năm lấy từ enrollmentData
+                    Values = new ObservableCollection<int>(studentCounts) // Dữ liệu từ mảng studentCounts
                 }
             };
 
-            // Gắn trục Y với số lượng sinh viên
-            cartesianChart1.YAxes = new Axis[]
+            // Gán nhãn trục X (các năm) từ mảng years
+            cartesianChart1.XAxes = new List<Axis>
             {
                 new Axis
                 {
-                    Labeler = value => value.ToString(), 
-                    Name = "Thống kê sinh viên nhập học các năm"
-        }
+                    Labels = years.Select(year => year.ToString()).ToArray() // Chuyển đổi years thành chuỗi
+                }
+            };
+
+            // Tùy chỉnh trục Y (số lượng học sinh)
+            cartesianChart1.YAxes = new List<Axis>
+            {
+                new Axis
+                {
+                    Labeler = value => value.ToString() // Hiển thị giá trị số lượng học sinh trực tiếp
+                }
             };
 
             panel_chart1.Controls.Add(cartesianChart1);
         }
+
         private void LoadChart2()
         {
             // Lấy dữ liệu từ BLL
             var passFailData = dashBoardBLL.GetPassFailRatioForCurrentYear();
 
-            // Khởi tạo CartesianChart
-            CartesianChart cartesianChart2 = new CartesianChart
+            // Tạo hai mảng cho giá trị và tên
+            var values = new[]
             {
-                Dock = DockStyle.Fill
+                passFailData.ContainsKey(true) ? passFailData[true] : 0,  // Số lượng Đậu
+                passFailData.ContainsKey(false) ? passFailData[false] : 0 // Số lượng Rớt
             };
 
-            // Tạo dữ liệu ColumnSeries cho "Đậu" và "Rớt"
-            var series = new List<ColumnSeries<int>>
+            var names = new[] { "Đạt", "Chưa đạt" }; // Nhãn cho trục X
+
+            // Gán dữ liệu vào Series của CartesianChart
+            cartesianChart2.Series = new ObservableCollection<ISeries>
             {
                 new ColumnSeries<int>
                 {
-                    Values = new[] { passFailData.ContainsKey(true) ? passFailData[true] : 0 }, // Số lượng Đậu
-                    Name = "Đạt",
+                    Values = new ObservableCollection<int>(values), // Gán dữ liệu từ mảng values
+                    Name = "Tỉ lệ đạt",
                     Fill = new SolidColorPaint(SKColors.Green)
-                },
-                new ColumnSeries<int>
-                {
-                    Values = new[] { passFailData.ContainsKey(false) ? passFailData[false] : 0 }, // Số lượng Rớt
-                    Name = "Chưa đạt",
-                    Fill = new SolidColorPaint(SKColors.Red)
                 }
             };
 
-            cartesianChart2.Series = series.ToArray();
-
-            // Đặt trục X (hiển thị các nhãn Đậu, Rớt)
-            cartesianChart2.XAxes = new Axis[]
+            // Gán nhãn trục X từ mảng names
+            cartesianChart2.XAxes = new List<Axis>
             {
                 new Axis
                 {
-                    Labels = new[] { "Đạt", "Chưa Đạt" }, // Các nhãn trục X
-                    Name = "Kết quả",
-                    NamePaint = new SolidColorPaint(SKColors.Black),
-                    LabelsPaint = new SolidColorPaint(SKColors.Black),
+                    Labels = names // Gán nhãn từ mảng names
                 }
             };
 
-            // Đặt trục Y (hiển thị số lượng sinh viên)
-            cartesianChart2.YAxes = new Axis[]
+            // Tùy chỉnh trục Y
+            cartesianChart2.YAxes = new List<Axis>
             {
                 new Axis
                 {
-                    Name = "Thống kê sinh viên đạt môn/năm",
-                    NamePaint = new SolidColorPaint(SKColors.Black),
-                    Labeler = value => value.ToString(),
-                    MinLimit = 0,  // Đảm bảo giá trị không âm
+                    Labeler = value => value.ToString() // Hiển thị số lượng trực tiếp
                 }
             };
-
             panel_chart2.Controls.Add(cartesianChart2);
         }
-
 
 
     }

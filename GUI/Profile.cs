@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DAL;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -107,6 +108,9 @@ namespace GUI
                 {
                     MessageBox.Show("Thông tin đã được cập nhật thành công!");
                     SessionLogin.LoggedInTeacher = updatedTeacher;
+
+                    tableLayoutPanel_form.Controls.Clear();
+
                     loadProfile();
                 }
                 else
@@ -122,13 +126,42 @@ namespace GUI
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
-            new ChangePasswordDialog(SessionLogin.LoggedInTeacher.TeacherID).Show();
+            // Tạo đối tượng Form và cấu hình
+            ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog(SessionLogin.LoggedInTeacher.TeacherID)
+            {
+                TopLevel = false, // Không phải cửa sổ độc lập
+                FormBorderStyle = FormBorderStyle.None, // Loại bỏ viền cửa sổ
+                Dock = DockStyle.Fill,
+            };
+
+            // Lưu trữ các control cũ để khôi phục sau khi đóng dialog
+            List<Control> oldControls = new List<Control>();
+            foreach (Control control in tableLayoutPanel_form.Controls)
+            {
+                oldControls.Add(control);
+            }
+
+            // Thêm overlay hoặc ChangePasswordDialog vào tableLayoutPanel_form
+            tableLayoutPanel_form.Controls.Clear();
+            tableLayoutPanel_form.RowCount = 1; // Đảm bảo có đủ hàng
+            tableLayoutPanel_form.Controls.Add(changePasswordDialog, 0, 0); // Thêm vào cột đầu tiên
+            changePasswordDialog.Show();
+
+            // Sự kiện đóng form
+            changePasswordDialog.FormClosed += (s, args) =>
+            {
+                // Khôi phục các control cũ sau khi đóng
+                tableLayoutPanel_form.Controls.Clear();
+                foreach (var control in oldControls)
+                {
+                    tableLayoutPanel_form.Controls.Add(control);
+                }
+
+                // Làm mới dữ liệu giao diện ProfileForm
+                loadProfile();
+            };
         }
 
-        private bool IsValidEmail(string email)
-        {
-            var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, emailPattern);
-        }
+
     }
 }

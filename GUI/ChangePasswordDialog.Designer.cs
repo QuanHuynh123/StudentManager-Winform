@@ -50,39 +50,45 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.BackColor = Color.FromArgb(35, 48, 103);
             flowLayoutPanel1.Controls.Add(panel4);
             flowLayoutPanel1.Controls.Add(panel1);
             flowLayoutPanel1.Controls.Add(panel2);
             flowLayoutPanel1.Controls.Add(panel3);
             flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(316, 191);
+            flowLayoutPanel1.Size = new Size(500, 500);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel4
             // 
             panel4.Controls.Add(label1);
             panel4.Controls.Add(textBox_oldPassword);
-            panel4.Location = new Point(3, 3);
+            panel4.Location = new Point(10, 10);
+            panel4.Margin = new Padding(10);
             panel4.Name = "panel4";
-            panel4.Size = new Size(313, 40);
+            panel4.Size = new Size(481, 48);
             panel4.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(9, 11);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(7, 11);
             label1.Name = "label1";
-            label1.Size = new Size(76, 15);
+            label1.Size = new Size(78, 15);
             label1.TabIndex = 1;
             label1.Text = "OldPassword";
             // 
             // textBox_oldPassword
             // 
-            textBox_oldPassword.Location = new Point(114, 8);
+            textBox_oldPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox_oldPassword.Location = new Point(156, 8);
             textBox_oldPassword.Name = "textBox_oldPassword";
-            textBox_oldPassword.Size = new Size(187, 23);
+            textBox_oldPassword.Size = new Size(313, 23);
             textBox_oldPassword.TabIndex = 0;
             textBox_oldPassword.Enter += oldPassword_Enter;
             // 
@@ -90,26 +96,29 @@
             // 
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBox_newPassword);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 49);
+            panel1.Location = new Point(10, 78);
+            panel1.Margin = new Padding(10);
             panel1.Name = "panel1";
-            panel1.Size = new Size(313, 40);
+            panel1.Size = new Size(481, 40);
             panel1.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(9, 11);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(7, 11);
             label2.Name = "label2";
-            label2.Size = new Size(84, 15);
+            label2.Size = new Size(88, 15);
             label2.TabIndex = 2;
             label2.Text = "New Password";
             // 
             // textBox_newPassword
             // 
-            textBox_newPassword.Location = new Point(114, 8);
+            textBox_newPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox_newPassword.Location = new Point(156, 8);
             textBox_newPassword.Name = "textBox_newPassword";
-            textBox_newPassword.Size = new Size(187, 23);
+            textBox_newPassword.Size = new Size(313, 23);
             textBox_newPassword.TabIndex = 1;
             textBox_newPassword.Enter += newPassword_Enter;
             // 
@@ -117,25 +126,29 @@
             // 
             panel2.Controls.Add(label3);
             panel2.Controls.Add(textBox_confirmPassword);
-            panel2.Location = new Point(3, 95);
+            panel2.Location = new Point(10, 138);
+            panel2.Margin = new Padding(10);
             panel2.Name = "panel2";
-            panel2.Size = new Size(313, 40);
+            panel2.Size = new Size(481, 40);
             panel2.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(9, 11);
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ControlLightLight;
+            label3.Location = new Point(7, 11);
             label3.Name = "label3";
-            label3.Size = new Size(104, 15);
+            label3.Size = new Size(107, 15);
             label3.TabIndex = 3;
             label3.Text = "Confirm Password";
             // 
             // textBox_confirmPassword
             // 
-            textBox_confirmPassword.Location = new Point(114, 8);
+            textBox_confirmPassword.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBox_confirmPassword.Location = new Point(156, 8);
             textBox_confirmPassword.Name = "textBox_confirmPassword";
-            textBox_confirmPassword.Size = new Size(187, 23);
+            textBox_confirmPassword.Size = new Size(313, 23);
             textBox_confirmPassword.TabIndex = 2;
             textBox_confirmPassword.Enter += confirmPassword_Enter;
             // 
@@ -143,19 +156,21 @@
             // 
             panel3.Controls.Add(button_cancel);
             panel3.Controls.Add(button_change);
-            panel3.Location = new Point(3, 141);
+            panel3.Location = new Point(10, 198);
+            panel3.Margin = new Padding(10);
             panel3.Name = "panel3";
-            panel3.Size = new Size(313, 40);
+            panel3.Size = new Size(497, 46);
             panel3.TabIndex = 2;
+            panel3.Paint += panel3_Paint;
             // 
             // button_cancel
             // 
             button_cancel.BackColor = Color.FromArgb(255, 8, 8);
             button_cancel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_cancel.ForeColor = SystemColors.ControlLightLight;
-            button_cancel.Location = new Point(181, 8);
+            button_cancel.Location = new Point(295, 3);
             button_cancel.Name = "button_cancel";
-            button_cancel.Size = new Size(100, 29);
+            button_cancel.Size = new Size(150, 30);
             button_cancel.TabIndex = 1;
             button_cancel.Text = "Hủy";
             button_cancel.UseVisualStyleBackColor = false;
@@ -166,9 +181,9 @@
             button_change.BackColor = Color.FromArgb(8, 225, 8);
             button_change.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_change.ForeColor = SystemColors.ControlLightLight;
-            button_change.Location = new Point(47, 8);
+            button_change.Location = new Point(56, 3);
             button_change.Name = "button_change";
-            button_change.Size = new Size(96, 30);
+            button_change.Size = new Size(150, 30);
             button_change.TabIndex = 0;
             button_change.Text = "Xác nhận";
             button_change.UseVisualStyleBackColor = false;
@@ -178,7 +193,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(316, 191);
+            ClientSize = new Size(500, 500);
             Controls.Add(flowLayoutPanel1);
             Name = "ChangePasswordDialog";
             Text = "ChangePasswordDialog";

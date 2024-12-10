@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel_main = new TableLayoutPanel();
             panel1 = new Panel();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel_avatar = new Panel();
@@ -57,7 +57,7 @@
             label1 = new Label();
             button_update = new Button();
             buttonChangePassword = new Button();
-            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel_main.SuspendLayout();
             panel1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel_avatar.SuspendLayout();
@@ -72,21 +72,21 @@
             panel10.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel_main
             // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 252F));
-            tableLayoutPanel1.Controls.Add(panel1, 1, 0);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel_form, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(933, 556);
-            tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel_main.ColumnCount = 2;
+            tableLayoutPanel_main.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel_main.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 252F));
+            tableLayoutPanel_main.Controls.Add(panel1, 1, 0);
+            tableLayoutPanel_main.Controls.Add(tableLayoutPanel_form, 0, 0);
+            tableLayoutPanel_main.Dock = DockStyle.Fill;
+            tableLayoutPanel_main.Location = new Point(0, 0);
+            tableLayoutPanel_main.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel_main.Name = "tableLayoutPanel_main";
+            tableLayoutPanel_main.RowCount = 1;
+            tableLayoutPanel_main.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel_main.Size = new Size(933, 556);
+            tableLayoutPanel_main.TabIndex = 0;
             // 
             // panel1
             // 
@@ -154,6 +154,7 @@
             // 
             // tableLayoutPanel_form
             // 
+            tableLayoutPanel_form.BackColor = SystemColors.ControlLightLight;
             tableLayoutPanel_form.ColumnCount = 1;
             tableLayoutPanel_form.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 676F));
             tableLayoutPanel_form.Controls.Add(tableLayoutPanel2, 0, 1);
@@ -447,13 +448,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(933, 556);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tableLayoutPanel_main);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Profile";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Account";
-            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel_main.ResumeLayout(false);
             panel1.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
@@ -479,7 +480,7 @@
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel_main;
         private Panel panel1;
         private Panel panel_avatar;
         private PictureBox pictureBox_avatar;

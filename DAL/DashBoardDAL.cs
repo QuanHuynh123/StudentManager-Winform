@@ -50,17 +50,17 @@ namespace DAL
             {
                 connection.Open();
                 string query = @"
-            SELECT 
-                YEAR(EnrollmentDate) AS EnrollmentYear,
-                COUNT(StudentID) AS StudentCount
-            FROM 
-                [Student]
-            WHERE 
-                YEAR(EnrollmentDate) BETWEEN YEAR(GETDATE()) - 4 AND YEAR(GETDATE())
-            GROUP BY 
-                YEAR(EnrollmentDate)
-            ORDER BY 
-                EnrollmentYear ASC;";
+                                SELECT 
+                                    YEAR(EnrollmentDate) AS EnrollmentYear,
+                                    COUNT(StudentID) AS StudentCount
+                                FROM 
+                                    [Student]
+                                WHERE 
+                                    YEAR(EnrollmentDate) BETWEEN YEAR(GETDATE()) - 4 AND YEAR(GETDATE())
+                                GROUP BY 
+                                    YEAR(EnrollmentDate)
+                                ORDER BY 
+                                    EnrollmentYear ASC;";
 
                 // Truy vấn không sử dụng DepartmentID
                 var result = connection.Query<(int EnrollmentYear, int StudentCount)>(query).ToList();

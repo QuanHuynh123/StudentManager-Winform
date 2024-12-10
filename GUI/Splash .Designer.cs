@@ -47,9 +47,9 @@ namespace GUI
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(136, 355);
+            label1.Location = new Point(137, 264);
             label1.Name = "label1";
-            label1.Size = new Size(498, 54);
+            label1.Size = new Size(399, 45);
             label1.TabIndex = 1;
             label1.Text = "QUẢN LÝ SINH VIÊN SGU";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -61,9 +61,10 @@ namespace GUI
             pictureBox.BackColor = Color.Transparent;
             pictureBox.BackgroundImage = (Image)resources.GetObject("pictureBox.BackgroundImage");
             pictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox.Location = new Point(194, 3);
+            pictureBox.Location = new Point(203, 6);
+            pictureBox.Margin = new Padding(3, 2, 3, 2);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(382, 309);
+            pictureBox.Size = new Size(268, 224);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
             pictureBox.Click += pictureBox_Click;
@@ -73,27 +74,29 @@ namespace GUI
             tableLayoutPanel.Anchor = AnchorStyles.None;
             tableLayoutPanel.BackColor = Color.Transparent;
             tableLayoutPanel.ColumnCount = 1;
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 674F));
             tableLayoutPanel.Controls.Add(label1, 0, 1);
             tableLayoutPanel.Controls.Add(pictureBox, 0, 0);
             tableLayoutPanel.Location = new Point(0, 0);
+            tableLayoutPanel.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            tableLayoutPanel.Size = new Size(770, 450);
+            tableLayoutPanel.Size = new Size(674, 338);
             tableLayoutPanel.TabIndex = 0;
             tableLayoutPanel.Paint += tableLayoutPanel_Paint_1;
             // 
             // Splash
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(770, 450);
+            ClientSize = new Size(674, 338);
             Controls.Add(tableLayoutPanel);
             ForeColor = SystemColors.ActiveCaptionText;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Splash";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Splash";

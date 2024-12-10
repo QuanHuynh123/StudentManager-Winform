@@ -2,6 +2,7 @@
 using DTO;
 using System.Data;
 using System.Reflection.Emit;
+using static SkiaSharp.HarfBuzz.SKShaper;
 
 namespace GUI
 {
@@ -99,6 +100,16 @@ namespace GUI
 
         private void AddSemesterPanel(TableLayoutPanel tableLayoutMain, List<TranscriptDTO> transcripts, float averageSemester4, float averageSemester10, int totalCreditPass, int row, float tichluyGPA4,float tichluyGPA10, float saveTotalCreditPass)
         {
+
+            if (float.IsNaN(tichluyGPA4))
+            {
+                tichluyGPA4 = 0.0f;
+            }
+            if (float.IsNaN(tichluyGPA10))
+            {
+                tichluyGPA10 = 0.0f;
+            }
+
             // Tạo Panel chính cho học kỳ
             var semesterPanel = new Panel
             {

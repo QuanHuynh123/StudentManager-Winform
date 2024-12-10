@@ -97,6 +97,7 @@ namespace GUI
             comboBox_credit.Items.Clear();
             comboBox_credit.Items.Add(1);
             comboBox_credit.Items.Add(2);
+            comboBox_credit.Items.Add(3);
             comboBox_credit.Items.Add(4);
             comboBox_credit.SelectedIndex = 0;
         }

@@ -15,7 +15,7 @@ namespace GUI
     {
         int teacherId;
         TeacherBLL teacherBLL;
-        public ChangePasswordDialog( int teacherId)
+        public ChangePasswordDialog(int teacherId)
         {
             InitializeComponent();
             this.teacherId = teacherId;
@@ -24,19 +24,19 @@ namespace GUI
 
         private void oldPassword_Enter(object sender, EventArgs e)
         {
-                textBox_oldPassword.Text = "";
-                textBox_oldPassword.PasswordChar = '*'; 
+            textBox_oldPassword.Text = "";
+            textBox_oldPassword.PasswordChar = '*';
         }
         private void newPassword_Enter(object sender, EventArgs e)
         {
-                textBox_newPassword.Text = "";
-                textBox_newPassword.PasswordChar = '*'; 
+            textBox_newPassword.Text = "";
+            textBox_newPassword.PasswordChar = '*';
         }
 
         private void confirmPassword_Enter(object sender, EventArgs e)
         {
-                textBox_confirmPassword.Text = "";
-                textBox_confirmPassword.PasswordChar = '*'; 
+            textBox_confirmPassword.Text = "";
+            textBox_confirmPassword.PasswordChar = '*';
         }
 
         private void button_change_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace GUI
             string newPassword = textBox_newPassword.Text;
             string confirmPassword = textBox_confirmPassword.Text;
 
-            if (!teacherBLL.ValidateOldPassword(teacherId,oldPassword))
+            if (!teacherBLL.ValidateOldPassword(teacherId, oldPassword))
             {
                 MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -57,7 +57,7 @@ namespace GUI
                 return;
             }
 
-            bool isPasswordChanged = teacherBLL.ChangePassword(newPassword,teacherId);
+            bool isPasswordChanged = teacherBLL.ChangePassword(newPassword, teacherId);
 
             if (isPasswordChanged)
             {
@@ -73,6 +73,11 @@ namespace GUI
         private void button_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
