@@ -25,16 +25,22 @@ namespace GUI
         public StudentDetail(int studentID)
         {
             InitializeComponent();
+            this.studentID = studentID;
+            init(this.studentID);
+        }
+
+        private void init(int studentId)
+        {
             studentBLL = new StudentBLL();
             departmentBLL = new DepartmentBLL();
             trainingProgramBLL = new TrainingProgramBLL();
             teacherBLL = new TeacherBLL();
             classBLL = new ClassBLL();
-            this.studentID = studentID;
             student = studentBLL.getStudentInfo(studentID);
             loadInfoStudent();
             loadAllFunction();
         }
+
         private void loadInfoStudent()
         {
             labelStudentID.Text = student.StudentID.ToString();
@@ -82,12 +88,67 @@ namespace GUI
 
         private void openTranscript()
         {
-            new Transcript(studentID, student.TotalCreditsEarned, student.Gpa).Show();
+
+            //Transcript transcript = 
+                new Transcript(studentID, student.TotalCreditsEarned, student.Gpa).Show();
+            //{
+            //    TopLevel = false, 
+            //    FormBorderStyle = FormBorderStyle.None,
+            //    Dock = DockStyle.Fill 
+            //};
+
+            //List<Control> oldControls = new List<Control>();
+            //foreach (Control control in tableLayoutPanel1.Controls)
+            //{
+            //    oldControls.Add(control);
+            //}
+
+            //transcript.Show();
+            ////transcript.BringToFront();
+            //tableLayoutPanel1.Controls.Clear();
+            //tableLayoutPanel1.ColumnCount = 1;
+            //tableLayoutPanel1.RowCount = 1; 
+            //tableLayoutPanel1.Controls.Add(transcript, 0, 0);
+
+            //transcript.FormClosed += (sender, e) =>
+            //{
+            //    // Khôi phục các control cũ sau khi đóng
+            //    tableLayoutPanel1.Controls.Clear();
+            //    tableLayoutPanel1.RowCount = 1;
+            //    tableLayoutPanel1.ColumnCount = 2;
+            //    foreach (var control in oldControls)
+            //    {
+            //        tableLayoutPanel1.Controls.Add(control);
+            //    }
+               
+            //    init(this.studentID);
+            //    oldControls.Clear();
+            //};
+
         }
+
 
         private void openTimetable()
         {
-            new Timetable(studentID).Show();
+            //Timetable timetable =  
+                new Timetable(studentID).Show();
+            //{
+            //    TopLevel = false,
+            //    FormBorderStyle = FormBorderStyle.None, 
+            //    Dock = DockStyle.Fill 
+            //};
+
+            //timetable.BringToFront();
+            //tableLayoutPanel1.Controls.Add(timetable, 0, 0);
+            //tableLayoutPanel1.SetColumnSpan(timetable, 2);
+
+            //timetable.FormClosed += (sender, e) =>
+            //{
+            //    tableLayoutPanel1.Controls.Remove(timetable);
+            //    init(this.studentID);
+            //};
+
+            //timetable.Show();
         }
     }
 }

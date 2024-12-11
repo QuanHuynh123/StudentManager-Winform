@@ -126,6 +126,9 @@ namespace GUI
             panel_chart2.Controls.Add(cartesianChart2);
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

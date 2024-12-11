@@ -11,14 +11,14 @@ namespace GUI
         private int studentID;
         private TranscriptBLL transcriptBLL;
         int totalCreditsEarned;
-        float GPA; 
-        public Transcript(int studentId, int totalCreditsEarned, float GPA )
+        float GPA;
+        public Transcript(int studentId, int totalCreditsEarned, float GPA)
         {
             InitializeComponent();
             this.studentID = studentId;
             this.totalCreditsEarned = totalCreditsEarned; // Sửa lại để gán đúng giá trị
             this.GPA = GPA;
-            transcriptBLL  = new TranscriptBLL();
+            transcriptBLL = new TranscriptBLL();
             loadTranscriptStudent(studentId);
         }
 
@@ -34,15 +34,15 @@ namespace GUI
 
             tableLayoutPanelTranscript.RowCount = yearSemesters.Count();
 
-            float averageSemester4 = 0, averageSemester10 = 0 , total10 = 0 ,  he10_1Mon = 0  ;
-            int total4 = 0 , totalCreditPass = 0 ,  totalCreditSemester =0, he4_1Mon = 0;
+            float averageSemester4 = 0, averageSemester10 = 0, total10 = 0, he10_1Mon = 0;
+            int total4 = 0, totalCreditPass = 0, totalCreditSemester = 0, he4_1Mon = 0;
             int row = yearSemesters.Count();
-            float saveTotalCreditPass = 0 , savehe4SemesterPass = 0  , save10SemesterPass = 0 ;
-            float tichluyGPA4 = 0 , tichluyGPA10 = 0;
+            float saveTotalCreditPass = 0, savehe4SemesterPass = 0, save10SemesterPass = 0;
+            float tichluyGPA4 = 0, tichluyGPA10 = 0;
 
             foreach (var yearSemester in yearSemesters)
             {
-              
+
                 foreach (var transcript in yearSemester)
                 {
                     he10_1Mon = transcript.TotalScore * transcript.Credits;  // tính tbm hệ 10
@@ -63,11 +63,11 @@ namespace GUI
                 averageSemester10 = total10 / totalCreditSemester;
                 tichluyGPA4 = (float)Math.Round(savehe4SemesterPass / saveTotalCreditPass, 2);
                 tichluyGPA10 = (float)Math.Round(save10SemesterPass / saveTotalCreditPass, 2);
-                AddSemesterPanel(tableLayoutPanelTranscript, yearSemester.ToList(), averageSemester4, averageSemester10, totalCreditPass, row, tichluyGPA4, tichluyGPA10,  saveTotalCreditPass );
+                AddSemesterPanel(tableLayoutPanelTranscript, yearSemester.ToList(), averageSemester4, averageSemester10, totalCreditPass, row, tichluyGPA4, tichluyGPA10, saveTotalCreditPass);
                 row--;
                 averageSemester4 = 0;
                 averageSemester10 = 0;
-                total10 = 0 ;
+                total10 = 0;
                 total4 = 0;
                 totalCreditSemester = 0;
                 totalCreditPass = 0;
@@ -98,7 +98,7 @@ namespace GUI
             }
         }
 
-        private void AddSemesterPanel(TableLayoutPanel tableLayoutMain, List<TranscriptDTO> transcripts, float averageSemester4, float averageSemester10, int totalCreditPass, int row, float tichluyGPA4,float tichluyGPA10, float saveTotalCreditPass)
+        private void AddSemesterPanel(TableLayoutPanel tableLayoutMain, List<TranscriptDTO> transcripts, float averageSemester4, float averageSemester10, int totalCreditPass, int row, float tichluyGPA4, float tichluyGPA10, float saveTotalCreditPass)
         {
 
             if (float.IsNaN(tichluyGPA4))
@@ -142,8 +142,8 @@ namespace GUI
                 var listView = CreateListView(transcripts);
                 panelTop.RowStyles.Add(new RowStyle(SizeType.Percent, 20)); // Top: 20%
                 panelTop.RowStyles.Add(new RowStyle(SizeType.Percent, 80)); // Bottom: 80%
-                panelTop.Controls.Add(labelSemester,0,0);
-                panelTop.Controls.Add(listView,0,1);
+                panelTop.Controls.Add(labelSemester, 0, 0);
+                panelTop.Controls.Add(listView, 0, 1);
 
 
                 // Panel Bottom - Chứa thông tin tóm tắt kết quả bảng điểm
@@ -156,25 +156,25 @@ namespace GUI
                     BackColor = Color.DarkBlue
                 };
                 // Thêm các label thông tin điêm vào panelBottom
-                var labelGPA4 = new System.Windows.Forms.Label { Text = $"Điểm trung bình lũy hệ 4 : {tichluyGPA4}", Dock = DockStyle.Top , ForeColor = Color.White };
-                var labelAverageSemester4 = new System.Windows.Forms.Label { Text = $"Điểm trung bình học kỳ hệ 4 : {averageSemester4}", Dock = DockStyle.Top , ForeColor = Color.White };
-                var labelAverageSemester10 = new System.Windows.Forms.Label { Text = $"Điểm trung bình học kỳ hệ 10 : {averageSemester10}", Dock = DockStyle.Top , ForeColor = Color.White };
-                var labelTotalCredits = new System.Windows.Forms.Label { Text = $"Tổng số tín chỉ tích lũy :{saveTotalCreditPass}", Dock = DockStyle.Top , ForeColor = Color.White };
-                var labelTotalCreditSemester = new System.Windows.Forms.Label { Text = $"Tín chỉ đạt : {totalCreditPass}", Dock = DockStyle.Top , ForeColor = Color.White };
+                var labelGPA4 = new System.Windows.Forms.Label { Text = $"Điểm trung bình lũy hệ 4 : {tichluyGPA4}", Dock = DockStyle.Top, ForeColor = Color.White };
+                var labelAverageSemester4 = new System.Windows.Forms.Label { Text = $"Điểm trung bình học kỳ hệ 4 : {averageSemester4}", Dock = DockStyle.Top, ForeColor = Color.White };
+                var labelAverageSemester10 = new System.Windows.Forms.Label { Text = $"Điểm trung bình học kỳ hệ 10 : {averageSemester10}", Dock = DockStyle.Top, ForeColor = Color.White };
+                var labelTotalCredits = new System.Windows.Forms.Label { Text = $"Tổng số tín chỉ tích lũy :{saveTotalCreditPass}", Dock = DockStyle.Top, ForeColor = Color.White };
+                var labelTotalCreditSemester = new System.Windows.Forms.Label { Text = $"Tín chỉ đạt : {totalCreditPass}", Dock = DockStyle.Top, ForeColor = Color.White };
                 var labelGPA10 = new System.Windows.Forms.Label { Text = $"Điểm trung bình lũy hệ 10 :{tichluyGPA10}", Dock = DockStyle.Top, ForeColor = Color.White };
-                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33)); 
-                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33)); 
-                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33)); 
-                panelBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,50));
+                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33));
+                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33));
+                panelBottom.RowStyles.Add(new RowStyle(SizeType.Percent, 33));
+                panelBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
                 panelBottom.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
 
-                panelBottom.Controls.Add(labelAverageSemester4, 0 , 0 );
-                panelBottom.Controls.Add(labelAverageSemester10, 0 , 1 );
-                panelBottom.Controls.Add(labelTotalCreditSemester,0,2);
+                panelBottom.Controls.Add(labelAverageSemester4, 0, 0);
+                panelBottom.Controls.Add(labelAverageSemester10, 0, 1);
+                panelBottom.Controls.Add(labelTotalCreditSemester, 0, 2);
                 panelBottom.Controls.Add(labelGPA4, 1, 0);
                 panelBottom.Controls.Add(labelGPA10, 1, 1);
-                panelBottom.Controls.Add(labelTotalCredits,1,2);
-               
+                panelBottom.Controls.Add(labelTotalCredits, 1, 2);
+
 
                 // Thêm các panel con vào TableLayoutPanel
                 semesterLayout.Controls.Add(panelTop, 0, 0);
@@ -206,7 +206,7 @@ namespace GUI
             listView.Columns.Add("Điểm tổng kết", 100);
             listView.Columns.Add("Kết quả", 100);
 
-            int index = 1; 
+            int index = 1;
             // Thêm dữ liệu
             foreach (var transcript in transcripts)
             {
@@ -226,7 +226,9 @@ namespace GUI
             return listView;
         }
 
-
-
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
